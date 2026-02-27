@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICSDC - Scalable Fortified Cloud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PAGE LOADER -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">Loading...</p>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- DROPDOWN -->
+    <div id="dropdown-wrap">
+        <div id="dropdown">
+            <div data-strapi-dd="sidebar" class="hidden" id="dd-sidebar"></div>
+            <div data-strapi-dd="flatLeft" class="hidden" id="dd-flat-left">
+                <div data-strapi-dd="flatIcon" class="dd-flat-icon"></div>
+                <div>
+                    <h3 data-strapi-dd="flatTitle"></h3>
+                    <p data-strapi-dd="flatDesc"></p>
+                </div>
+            </div>
+            <div id="dd-content">
+                <div id="dd-top-bar">
+                    <div data-strapi-dd="panelTitle" class="hidden" id="dd-panel-title"></div>
+                    <button class="dd-close" onclick="closeDropdown()">✕</button>
+                </div>
+                <div data-strapi-dd="grid" id="dd-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <img data-strapi="mainLogo" src="" alt="ICSDC logo" class="logo-icon">
+            </a>
+
+            <!-- Desktop nav links -->
+            <ul data-strapi-nav class="nav-links" id="nav-links"></ul>
+
+            <button class="btn-login desktop-login-btn">Login</button>
+
+            <!-- Hamburger button (mobile/tablet only) -->
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile nav menu -->
+        <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+            <ul data-strapi-nav-mobile class="mobile-nav-links" id="mobile-nav-links"></ul>
+            <button class="btn-login mobile-login-btn">Login</button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section">
+        <div class="hero">
+            <div class="hero-content">
+                <h1 data-strapi="mainHeading" class="hero-title"></h1>
+                <p data-strapi="subHeading" class="hero-sub"></p>
+                <p data-strapi="description" class="hero-desc"></p>
+                <div class="hero-price-container">
+                    <div class="hero-price-block">
+                        <div class="hero-price">
+                            <span data-strapi="price"></span><span class="price-unit">/mo</span>
+                        </div>
+                        <p data-strapi="priceNote" class="price-note"></p>
+                    </div>
+                    <div class="hero-btns">
+                        <button class="btn-outline">Sign up</button>
+                        <button class="btn-primary">View Plans &rarr;</button>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right">
+                <img src="assets/images/hero_right.png" alt="Cloud service illustration" class="hero-right-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section id="why-us" class="why-us section">
+        <div class="container">
+            <h2 class="title">Why Choose Us</h2>
+            <h2 class="subtitle">Built for Enterprise Cloud Excellence</h2>
+            <div data-strapi-grid="whyUs" class="why-grid"></div>
+        </div>
+    </section>
+
+    <!-- WHO WE ARE -->
+    <section id="who-we-are" class="who-we-are section">
+        <div class="who-we-are-inner">
+            <div class="who-we-are-image">
+                <img src="assets/images/best-cloud-service-provider 1.png" alt="Best cloud service provider">
+            </div>
+            <div class="blue-container">
+                <h2 class="title">Who We Are?</h2>
+                <p class="who-we-are-paragraph">At ICSDC, we don't just host your data - we power your digital
+                    infrastructure. As a next-generation cloud service provider and data center, we adjoin advanced
+                    technology, intelligent infrastructure, and expert support to deliver unmatched reliability and
+                    speed. For over 15 years, businesses have trusted us to keep their operations seamless, secure, and
+                    always connected.</p>
+                <div class="who-we-are-btns">
+                    <button class="btn-outline feature-cards">Ultra-fast and scalable cloud solutions built for
+                        growth</button>
+                    <button class="btn-outline feature-cards">Enterprise-grade security with Least downtime</button>
+                    <button class="btn-outline feature-cards">Real people, real support - available 24/7</button>
+                    <button class="btn-primary feature-cards">Connect with a Cloud Architect Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LESS CLOUD COMPLEX -->
+    <section id="less-cloud-complex" class="less-cloud-complex section">
+        <div class="less-cloud-inner">
+            <div class="blue-container-left">
+                <h2 class="title">Less Cloud Complexity, More Expert Support with ICSDC Cloud Services</h2>
+                <p class="who-we-are-paragraph">ICSDC servers operate across multiple global regions with dedicated
+                    deployment points in India (Noida &amp; Mumbai) for unmatched speed and reliability.</p>
+            </div>
+            <div class="less-cloud-complex-image">
+                <div class="gradient"></div>
+                <img src="assets/images/image 1.png" alt="ICSDC global infrastructure map">
+            </div>
+        </div>
+    </section>
+
+    <script>
+        STRAPI_URL = "http://localhost:1337";
+        TOKEN = "5e685bd788588b5db88df3d3d47ad9a446f82768a2514d7dce437f6dc10c872d61b83b91763e6ea54acb9f7d7aac432e1714eef2dd12d718aae5c3bbae246aa90a85d22938474559dd9327dc2f7c9114b06bfdbb4ce9daf5d4e8f45b7a608c7d80eea92ac9896b47238380007a7d592b3825db93c9f9e5fbdab95be79a2c8e6e";
+    </script>
+    <script src="assets/js/main.js" type="module"></script>
+</body>
+
+</html>
