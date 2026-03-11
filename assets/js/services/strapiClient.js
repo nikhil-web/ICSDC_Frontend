@@ -9,6 +9,7 @@
 // e.g.  const BASE_URL = process.env.STRAPI_URL
 const BASE_URL = (typeof STRAPI_URL !== "undefined" ? STRAPI_URL : "http://localhost:1337");
 const API_TOKEN = (typeof TOKEN !== "undefined" ? TOKEN : "");
+const REQUEST_TIMEOUT_MS = 8000;
 
 const DEFAULT_HEADERS = {
     "Content-Type": "application/json",
@@ -25,11 +26,22 @@ const DEFAULT_HEADERS = {
 export async function fetchAPI(path) {
     const url = `${BASE_URL}${path}`;
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
     let response;
     try {
-        response = await fetch(url, { headers: DEFAULT_HEADERS });
+        response = await fetch(url, {
+            headers: DEFAULT_HEADERS,
+            signal: controller.signal,
+        });
     } catch (networkErr) {
-        throw new Error(`[strapiClient] Network error fetching "${path}": ${networkErr.message}`);
+        const reason = networkErr?.name === "AbortError"
+            ? `Request timed out after ${REQUEST_TIMEOUT_MS}ms`
+            : networkErr.message;
+        throw new Error(`[strapiClient] Network error fetching "${path}": ${reason}`);
+    } finally {
+        clearTimeout(timeoutId);
     }
 
     if (!response.ok) {

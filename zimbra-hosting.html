@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/cloud-hosting.css">
-    <style>.hidden { display: none; }</style>
     <style>
     .zimbra-eyebrow {
       display:inline-flex; align-items:center; gap:8px;
@@ -122,7 +121,7 @@
             <div id="dd-content">
                 <div id="dd-top-bar">
                     <div data-strapi-dd="panelTitle" class="hidden" id="dd-panel-title"></div>
-                    <button class="dd-close" onclick="closeDropdown()">&#10005;</button>
+                    <button class="dd-close" onclick="closeDropdown()">✕</button>
                 </div>
                 <div data-strapi-dd="grid" id="dd-grid"></div>
             </div>
@@ -328,12 +327,12 @@
   <div class="testi-container">
     <h2 class="testi-title" data-animate="fade-up">Read Client Stories About ICSDC Zimbra Hosting</h2>
     <div class="testi-scroll-viewport">
-      <div class="testi-grid" role="list">
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"ICSDC's Zimbra Hosting made our email system far more stable and organized. Daily communication became smoother, and mailbox performance improved instantly from day one."</p><span class="testi-author">Rachit Malhotra — Communication Manager, Private Organization</span></div>
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"The migration experience was effortless and surprisingly quick. Their team handled everything smoothly, and our users didn't face any downtime during the entire switch."</p><span class="testi-author">Simran Kaur — IT Administrator, Corporate Office</span></div>
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"We finally have a reliable email setup with zero spam issues. The difference in mailbox cleanliness and speed is noticeable every single day for our entire team."</p><span class="testi-author">Megha Sharma — Senior Coordinator, Professional Services Group</span></div>
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"ICSDC's Zimbra platform feels secure, fast, and easy for our entire staff. Accessing email across devices has become completely seamless for all our remote teams."</p><span class="testi-author">Naina Verma — Administrative Head, Corporate Department</span></div>
-      </div>
+      <div class="testi-grid" id="testi-grid" role="list"></div>
+    </div>
+    <div class="testi-pagination" id="testi-dots" role="tablist" aria-label="Testimonial navigation"></div>
+    <div class="testi-nav">
+      <button class="testi-nav-btn" id="testi-prev" aria-label="Previous testimonial">&#8249;</button>
+      <button class="testi-nav-btn" id="testi-next" aria-label="Next testimonial">&#8250;</button>
     </div>
   </div>
 </section>
@@ -344,16 +343,7 @@
   <div class="faq-container">
     <div class="faq-col">
       <h2 class="faq-title" data-animate="fade-up">FAQs About ICSDC Zimbra Hosting</h2>
-      <dl class="faq-accordions">
-        <div class="faq-item"><dt class="faq-question">What is Zimbra Hosting and how does it work?</dt><dd class="faq-answer">Zimbra Hosting provides a cloud-based email and collaboration suite where your mailboxes, calendars, contacts, and files are hosted on ICSDC's secure infrastructure with full admin control and enterprise-grade performance.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Is Zimbra better than traditional email hosting solutions?</dt><dd class="faq-answer">Yes. Zimbra offers built-in collaboration tools like shared calendars, tasks, chat, and file management — features not commonly found in standard email hosting. It's a complete communication platform, not just email.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Does Zimbra support Outlook, Apple Mail, and mobile apps?</dt><dd class="faq-answer">Zimbra works seamlessly with Outlook, Apple Mail, Thunderbird, Android, and iOS devices, ensuring smooth access and synchronization across all platforms and clients.</dd></div>
-        <div class="faq-item"><dt class="faq-question">How secure is Zimbra Email Hosting at ICSDC?</dt><dd class="faq-answer">Your mail environment is protected through anti-spam filtering, anti-virus scanning, encrypted connections, firewalls, and ICSDC's hardened cloud infrastructure with continuous monitoring.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Can I migrate my existing email data to Zimbra?</dt><dd class="faq-answer">Yes. ICSDC provides assisted migration for emails, contacts, calendars, and files from platforms like cPanel, Google Workspace, Exchange, and Microsoft 365 with minimal downtime.</dd></div>
-        <div class="faq-item"><dt class="faq-question">How much storage can I get for my Zimbra mailboxes?</dt><dd class="faq-answer">Storage is fully scalable. Start with a base plan and increase mailbox space or overall storage instantly as your team grows — no downtime required.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Does ICSDC provide admin-level controls for Zimbra?</dt><dd class="faq-answer">Yes. Administrators get full access to manage users, set policies, control storage, create groups, and enforce security rules from a centralized web admin console.</dd></div>
-        <div class="faq-item"><dt class="faq-question">How reliable is the uptime on ICSDC Zimbra Hosting?</dt><dd class="faq-answer">ICSDC operates on high-availability infrastructure with redundant systems, ensuring stable uptime and uninterrupted email delivery for mission-critical business communication.</dd></div>
-      </dl>
+      <dl class="faq-accordions" id="faq-accordions"></dl>
     </div>
     <div class="faq-contact-card" data-animate="fade-left">
       <h3 class="faq-contact-title">Chat with Our Zimbra Experts</h3>
