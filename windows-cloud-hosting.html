@@ -293,12 +293,12 @@
   <div class="testi-container">
     <h2 class="testi-title" data-animate="fade-up">ICSDC Windows Cloud Hosting Client Stories</h2>
     <div class="testi-scroll-viewport">
-      <div class="testi-grid" role="list">
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"The performance leap after moving to ICSDC's Windows Cloud was huge. Our internal tools and reporting systems run far smoother now — even our non-technical staff noticed the improvement."</p><span class="testi-author">Aditya Mehra — Operations Lead, FinTech Company</span></div>
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"Their support team actually understands Windows workloads. We received clear guidance during setup and quick help whenever needed — it feels like having an extended IT team."</p><span class="testi-author">Neha Rana — Senior Developer, Software Solutions Agency</span></div>
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"Our remote staff now works without lag or disconnects. RDP performance is stable even during peak hours — for us, that reliability alone made the switch worth it."</p><span class="testi-author">Manisha Gupta — Team Coordinator, IT Services Firm</span></div>
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"The environment handled both legacy apps and new .NET Core builds perfectly. We run older software alongside modern projects without conflicts — ICSDC's setup is genuinely well-tuned."</p><span class="testi-author">Sarthak Verma — Technical Lead, Enterprise Consulting Group</span></div>
-      </div>
+      <div class="testi-grid" id="testi-grid" role="list"></div>
+    </div>
+    <div class="testi-pagination" id="testi-dots" role="tablist" aria-label="Testimonial navigation"></div>
+    <div class="testi-nav">
+      <button class="testi-nav-btn" id="testi-prev" aria-label="Previous testimonial">&#8249;</button>
+      <button class="testi-nav-btn" id="testi-next" aria-label="Next testimonial">&#8250;</button>
     </div>
   </div>
 </section>
@@ -309,16 +309,7 @@
   <div class="faq-container">
     <div class="faq-col">
       <h2 class="faq-title" data-animate="fade-up">FAQs About ICSDC Windows Cloud Hosting</h2>
-      <dl class="faq-accordions">
-        <div class="faq-item"><dt class="faq-question">What is Windows Cloud Hosting and how is it different from VPS or shared hosting?</dt><dd class="faq-answer">Windows Cloud Hosting gives you a dedicated Windows Server environment on cloud infrastructure with guaranteed resources, full admin access, and instant scalability — more powerful than VPS and incomparably better than shared hosting.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Which versions of Windows Server are available?</dt><dd class="faq-answer">ICSDC supports Windows Server 2016, 2019, and 2022. You can choose the version that best fits your application's compatibility requirements.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Do I get full administrator (RDP) access?</dt><dd class="faq-answer">Yes. Every ICSDC Windows cloud server includes full administrator-level RDP access, allowing you to install software, configure environments, and manage resources freely.</dd></div>
-        <div class="faq-item"><dt class="faq-question">How scalable are the resources?</dt><dd class="faq-answer">Resources can be upgraded instantly without downtime. You can increase CPU, RAM, or NVMe storage as your workload grows — seamlessly and without service interruption.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Can I host MS SQL, .NET/ASP.NET applications or legacy Windows software?</dt><dd class="faq-answer">Absolutely. ICSDC is fully optimized for .NET apps, IIS-based services, MS SQL databases, ERP/CRM systems, older Windows-native software, and Crystal Reports.</dd></div>
-        <div class="faq-item"><dt class="faq-question">What is the typical deployment time?</dt><dd class="faq-answer">Deployment takes just a few minutes. Once your plan is confirmed, your Windows cloud instance is automatically provisioned and ready for RDP access.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Are there hidden charges or metered usage fees?</dt><dd class="faq-answer">ICSDC provides transparent, predictable pricing. You only pay for the plan you choose — no hidden fees, no surprise surcharges, no metered traps.</dd></div>
-        <div class="faq-item"><dt class="faq-question">What support is provided — 24/7, managed vs unmanaged?</dt><dd class="faq-answer">ICSDC offers 24/7 expert support. Managed plans include updates, monitoring, optimization, and security. Unmanaged gives full control. Migration assistance is available for both.</dd></div>
-      </dl>
+      <dl class="faq-accordions" id="faq-accordions"></dl>
     </div>
     <div class="faq-contact-card" data-animate="fade-left">
       <h3 class="faq-contact-title">Chat with Our Windows Cloud Experts</h3>

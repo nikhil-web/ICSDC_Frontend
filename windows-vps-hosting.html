@@ -325,12 +325,12 @@
   <div class="testi-container">
     <h2 class="testi-title" data-animate="fade-up">Read Our Client Stories for ICSDC Windows VPS Hosting</h2>
     <div class="testi-scroll-viewport">
-      <div class="testi-grid" role="list">
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"ICSDC made our Windows-based applications run smoother than they ever did on our previous host. We shifted our internal CRM and reporting tools and the performance difference was immediate."</p><span class="testi-author">Riya S. — Operations Manager, FinTech Company</span></div>
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"The reliability has been consistent from day one. Our remote staff uses RDP daily and we've never experienced lag or disconnects. ICSDC's infrastructure genuinely feels enterprise-grade."</p><span class="testi-author">Arvind Kumar — Founder, IT Services Firm</span></div>
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"We run a mix of legacy apps and new .NET builds — ICSDC handles both effortlessly. Easy deployment, smooth updates, and support that actually knows Windows inside out."</p><span class="testi-author">Minal Jain — Senior Developer, Software Development Agency</span></div>
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"The managed plan was a lifesaver. We didn't have an in-house server admin, so ICSDC's team handled security patches and monitoring while we focused on our product."</p><span class="testi-author">Soham Verma — Product Lead, SaaS Company</span></div>
-      </div>
+      <div class="testi-grid" id="testi-grid" role="list"></div>
+    </div>
+    <div class="testi-pagination" id="testi-dots" role="tablist" aria-label="Testimonial navigation"></div>
+    <div class="testi-nav">
+      <button class="testi-nav-btn" id="testi-prev" aria-label="Previous testimonial">&#8249;</button>
+      <button class="testi-nav-btn" id="testi-next" aria-label="Next testimonial">&#8250;</button>
     </div>
   </div>
 </section>
@@ -341,16 +341,7 @@
   <div class="faq-container">
     <div class="faq-col">
       <h2 class="faq-title" data-animate="fade-up">FAQs About ICSDC Windows VPS Hosting</h2>
-      <dl class="faq-accordions">
-        <div class="faq-item"><dt class="faq-question">What is Windows VPS Hosting and how does it work at ICSDC?</dt><dd class="faq-answer">Windows VPS Hosting at ICSDC provides a virtual server running Windows OS with dedicated resources, full admin control, and RDP access — isolated from other users on high-performance KVM infrastructure.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Do I get full RDP and administrator access?</dt><dd class="faq-answer">Yes. Every ICSDC Windows VPS includes full admin-level Remote Desktop (RDP) access, allowing complete control over software installation, configurations, and server management.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Which Windows Server versions are available?</dt><dd class="faq-answer">You can choose from Windows Server 2016, 2019, or 2022 depending on your application requirements and compatibility needs.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Can I host .NET, IIS, SQL Server, or custom Windows applications?</dt><dd class="faq-answer">Absolutely. ICSDC Windows VPS supports ASP.NET, .NET Core, IIS-based apps, MS SQL databases, Crystal Reports, ERP tools, CRM systems, and any Windows-native software.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Does ICSDC offer Managed and Unmanaged Windows VPS?</dt><dd class="faq-answer">Yes. Choose Managed if you want ICSDC to handle updates, monitoring, and security, or Unmanaged if you prefer complete technical control over your environment.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Can I upgrade my CPU, RAM, or storage later?</dt><dd class="faq-answer">Yes. ICSDC allows seamless scaling — upgrade RAM, CPU, and storage anytime without downtime, ensuring smooth growth as your workloads evolve.</dd></div>
-        <div class="faq-item"><dt class="faq-question">How secure is my Windows VPS with ICSDC?</dt><dd class="faq-answer">Your VPS is protected with multi-layered firewalls, encrypted RDP, OS hardening, DDoS mitigation, continuous monitoring, and snapshot recovery — enterprise-grade security by default.</dd></div>
-        <div class="faq-item"><dt class="faq-question">What type of support does ICSDC provide?</dt><dd class="faq-answer">ICSDC offers 24/7/365 expert support through chat, tickets, and phone, assisting with setup, troubleshooting, security, and Windows-specific workload optimisation.</dd></div>
-      </dl>
+      <dl class="faq-accordions" id="faq-accordions"></dl>
     </div>
     <div class="faq-contact-card" data-animate="fade-left">
       <h3 class="faq-contact-title">Chat with Our Windows Experts</h3>

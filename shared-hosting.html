@@ -341,28 +341,12 @@
         <div class="testi-container">
             <h2 class="testi-title" data-animate="fade-up">Client Stories</h2>
             <div class="testi-scroll-viewport">
-                <div class="testi-grid" role="list">
-                    <div class="testi-card" role="listitem">
-                        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                        <p class="testi-quote">"We moved our website to ICSDC Shared Hosting six months ago, and the difference has been night and day. Pages load instantly, and we haven't had a single outage since switching."</p>
-                        <span class="testi-author">Rohan Malhotra &mdash; CTO, FinTech Industry</span>
-                    </div>
-                    <div class="testi-card" role="listitem">
-                        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                        <p class="testi-quote">"ICSDC made it simple for us to host multiple client projects under one account. The control panel is clean, and their server stability is something we can genuinely rely on."</p>
-                        <span class="testi-author">Sneha Kapoor &mdash; Project Manager, Web Development Agency</span>
-                    </div>
-                    <div class="testi-card" role="listitem">
-                        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                        <p class="testi-quote">"As a startup founder, every rupee counts. ICSDC's shared hosting gave us enterprise-level reliability at startup-friendly pricing. Best hosting decision we've made."</p>
-                        <span class="testi-author">Arjun Sethi &mdash; Founder, Tech Startup</span>
-                    </div>
-                    <div class="testi-card" role="listitem">
-                        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                        <p class="testi-quote">"We've hosted eCommerce stores before, but ICSDC's shared hosting has been rock-solid. No downtime, excellent site speed, and automatic backups give us complete peace of mind."</p>
-                        <span class="testi-author">Priya Mehta &mdash; Operations Head, eCommerce Sector</span>
-                    </div>
-                </div>
+                <div class="testi-grid" id="testi-grid" role="list"></div>
+            </div>
+            <div class="testi-pagination" id="testi-dots" role="tablist" aria-label="Testimonial navigation"></div>
+            <div class="testi-nav">
+                <button class="testi-nav-btn" id="testi-prev" aria-label="Previous testimonial">&#8249;</button>
+                <button class="testi-nav-btn" id="testi-next" aria-label="Next testimonial">&#8250;</button>
             </div>
         </div>
     </section>
@@ -375,40 +359,7 @@
         <div class="faq-container">
             <div class="faq-col">
                 <h2 class="faq-title" data-animate="fade-up">FAQs About ICSDC Shared Hosting</h2>
-                <dl class="faq-accordions">
-                    <div class="faq-item">
-                        <dt class="faq-question">What is Shared Hosting?</dt>
-                        <dd class="faq-answer">Shared Hosting is a type of web hosting where multiple websites share server resources. It's perfect for small businesses, bloggers, and startups looking for affordable, reliable web hosting.</dd>
-                    </div>
-                    <div class="faq-item">
-                        <dt class="faq-question">Is ICSDC Shared Hosting suitable for eCommerce websites?</dt>
-                        <dd class="faq-answer">Yes! ICSDC Shared Hosting is optimized for small to medium eCommerce sites with fast page load speeds, free SSL, daily backups, and a secure environment to run your online store.</dd>
-                    </div>
-                    <div class="faq-item">
-                        <dt class="faq-question">Can I upgrade my hosting plan later?</dt>
-                        <dd class="faq-answer">Absolutely. You can easily upgrade from Shared Hosting to VPS or Cloud Hosting without downtime or data loss &mdash; your growth path is fully supported.</dd>
-                    </div>
-                    <div class="faq-item">
-                        <dt class="faq-question">Do you provide website migration support?</dt>
-                        <dd class="faq-answer">Yes. Our team offers free website migration assistance to help you transfer your website from another provider to ICSDC safely and seamlessly.</dd>
-                    </div>
-                    <div class="faq-item">
-                        <dt class="faq-question">What kind of support can I expect?</dt>
-                        <dd class="faq-answer">24/7 expert support from real engineers &mdash; not bots. Whether it's setup, troubleshooting, or performance optimization, our India-based team is always ready to help.</dd>
-                    </div>
-                    <div class="faq-item">
-                        <dt class="faq-question">Will shared hosting affect my website speed?</dt>
-                        <dd class="faq-answer">No &mdash; ICSDC uses resource-isolated environments, NVMe SSD storage, and optimized server configurations to maintain consistent speed for every hosted site.</dd>
-                    </div>
-                    <div class="faq-item">
-                        <dt class="faq-question">How many websites can I host?</dt>
-                        <dd class="faq-answer">It depends on the plan. Some plans support a single website, while higher-tier shared hosting plans let you host multiple websites under one account.</dd>
-                    </div>
-                    <div class="faq-item">
-                        <dt class="faq-question">Do I need technical knowledge to use shared hosting?</dt>
-                        <dd class="faq-answer">Not at all. ICSDC Shared Hosting includes an easy control panel, one-click installs, guided setup, and 24/7 support &mdash; fully beginner-friendly from day one.</dd>
-                    </div>
-                </dl>
+                <dl class="faq-accordions" id="faq-accordions"></dl>
             </div>
             <div class="faq-contact-card" data-animate="fade-left">
                 <h3 class="faq-contact-title">Chat with Our Hosting Experts</h3>

@@ -369,28 +369,12 @@
   <div class="testi-container">
     <h2 class="testi-title" data-animate="fade-up">Read our Client Stories for ICSDC AWS Cloud Hosting</h2>
     <div class="testi-scroll-viewport">
-      <div class="testi-grid" role="list">
-        <div class="testi-card" role="listitem">
-          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testi-quote">"Moving our infrastructure to AWS with ICSDC was one of the smoothest transitions we've experienced. Their team handled the migration with precision — zero downtime, zero data loss."</p>
-          <span class="testi-author">Arjun Bhatia — CTO, IT &amp; Software Company</span>
-        </div>
-        <div class="testi-card" role="listitem">
-          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testi-quote">"We needed a stable cloud platform to handle booking systems and guest management. ICSDC configured our AWS setup exactly how we needed it — performance has been flawless since day one."</p>
-          <span class="testi-author">Priya Malhotra — Operations Manager, Hospitality Firm</span>
-        </div>
-        <div class="testi-card" role="listitem">
-          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testi-quote">"Our design workflows require high performance and zero delays. ICSDC's AWS hosting has been incredibly consistent, and their support team genuinely understands cloud architecture."</p>
-          <span class="testi-author">David Fernandes — Co-Founder, Creative &amp; Digital Agency</span>
-        </div>
-        <div class="testi-card" role="listitem">
-          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testi-quote">"AWS is powerful, but managing it can be complex. ICSDC simplified everything — security, backups, monitoring — and gave us a reliable team we could actually call when needed."</p>
-          <span class="testi-author">Rohan Desai — IT Infrastructure Lead, Healthcare Technology</span>
-        </div>
-      </div>
+      <div class="testi-grid" id="testi-grid" role="list"></div>
+    </div>
+    <div class="testi-pagination" id="testi-dots" role="tablist" aria-label="Testimonial navigation"></div>
+    <div class="testi-nav">
+      <button class="testi-nav-btn" id="testi-prev" aria-label="Previous testimonial">&#8249;</button>
+      <button class="testi-nav-btn" id="testi-next" aria-label="Next testimonial">&#8250;</button>
     </div>
   </div>
 </section>
@@ -403,16 +387,7 @@
   <div class="faq-container">
     <div class="faq-col">
       <h2 class="faq-title" data-animate="fade-up">FAQs About ICSDC AWS Cloud Hosting</h2>
-      <dl class="faq-accordions" id="aws-faq">
-        <div class="faq-item"><dt class="faq-question">What is AWS Cloud Hosting?</dt><dd class="faq-answer">AWS Cloud Hosting allows you to run applications, websites, and workloads on Amazon Web Services' global cloud infrastructure with pay-as-you-go pricing and enterprise-grade reliability.</dd></div>
-        <div class="faq-item"><dt class="faq-question">How does ICSDC help with AWS hosting?</dt><dd class="faq-answer">ICSDC handles setup, migration, configuration, monitoring, and ongoing management so you can use AWS without dealing with the technical complexity yourself.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Can I migrate my existing servers to AWS?</dt><dd class="faq-answer">Yes. ICSDC provides smooth and structured migration services with minimal downtime, handling the entire process from assessment to go-live.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Is AWS secure enough for sensitive data?</dt><dd class="faq-answer">Yes. AWS offers strong security features like encryption, IAM controls, network isolation, and compliance certifications. ICSDC adds additional layers on top.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Will my AWS environment be fully managed by ICSDC?</dt><dd class="faq-answer">Yes. ICSDC manages backups, updates, monitoring, optimization, and troubleshooting as part of our managed AWS services.</dd></div>
-        <div class="faq-item"><dt class="faq-question">How is pricing calculated for AWS hosting?</dt><dd class="faq-answer">AWS uses a pay-as-you-go model. ICSDC helps you track and optimize usage to avoid unnecessary costs, with transparent plan pricing available.</dd></div>
-        <div class="faq-item"><dt class="faq-question">What kind of support does ICSDC offer?</dt><dd class="faq-answer">ICSDC provides 24/7 technical support with certified cloud engineers available to help whenever you need — no ticket loops or generic responses.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Can I integrate AWS with my on-premise systems?</dt><dd class="faq-answer">Yes. AWS supports hybrid cloud setups using VPNs, Direct Connect, and secure networking configurations that ICSDC configures for you.</dd></div>
-      </dl>
+      <dl class="faq-accordions" id="faq-accordions"></dl>
     </div>
     <div class="faq-contact-card" data-animate="fade-left">
       <h3 class="faq-contact-title">Chat with Our AWS Experts</h3>
