@@ -769,8 +769,8 @@
             </div>
             <div class="testi-pagination" id="cloud-testi-dots" role="tablist" aria-label="Testimonial navigation"></div>
             <div class="testi-nav">
-                <button class="testi-nav-btn" id="cloud-testi-prev" aria-label="Previous testimonial">&#8592;</button>
-                <button class="testi-nav-btn" id="cloud-testi-next" aria-label="Next testimonial">&#8594;</button>
+                <button class="testi-nav-btn" id="cloud-testi-prev" aria-label="Previous testimonial">&#8249;</button>
+                <button class="testi-nav-btn" id="cloud-testi-next" aria-label="Next testimonial">&#8250;</button>
             </div>
         </div>
     </section>
@@ -878,7 +878,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&#169; Copyright <span id="cloud-footer-year"></span> ICSDC. All Rights Reserved</p>
+            <p>&#169; Copyright <span id="footer-year"></span> ICSDC. All Rights Reserved</p>
         </div>
     </footer>
 
@@ -907,11 +907,14 @@
     <script src="assets/js/main.js" type="module"></script>
     <script src="assets/js/components.js"></script>
     <script src="assets/js/polish.js" defer></script>
+        <script src="assets/js/main.js" type="module"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/polish.js" defer></script>
     <script src="assets/js/cloud-hosting.js" defer></script>
 
     <script>
         (function () {
-            var el = document.getElementById('cloud-footer-year');
+            var el = document.getElementById('footer-year');
             if (el) el.textContent = new Date().getFullYear();
         })();
     </script>

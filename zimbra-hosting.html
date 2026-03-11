@@ -283,11 +283,11 @@
     <h2 class="title" data-animate="fade-up">How ICSDC Helps You Move from Exchange or Google Workspace to Zimbra</h2>
     <p class="subtitle" data-animate="fade-up">Migrating to Zimbra is simple with ICSDC. Our team combines Zimbra's proven tools with deep cloud expertise for a smooth, zero-disruption transition.</p>
     <div class="zimbra-steps" data-stagger>
-      <div class="zimbra-step"><div class="zimbra-step-num">1</div><h3>Review Your Current Setup</h3><p>We evaluate your existing platform — Exchange, Office 365, or Google Workspace — to identify the right migration strategy for your team.</p><div class="zimbra-step-arrow">&#8594;</div></div>
-      <div class="zimbra-step"><div class="zimbra-step-num">2</div><h3>Pick the Best Zimbra Edition</h3><p>ICSDC helps you choose between Zimbra Open Source or Network Edition based on your collaboration needs and scale.</p><div class="zimbra-step-arrow">&#8594;</div></div>
-      <div class="zimbra-step"><div class="zimbra-step-num">3</div><h3>Prepare Your Environment</h3><p>Your Zimbra server is deployed and configured on ICSDC cloud with DNS and security settings ready before migration begins.</p><div class="zimbra-step-arrow">&#8594;</div></div>
-      <div class="zimbra-step"><div class="zimbra-step-num">4</div><h3>Use the Right Migration Tools</h3><p>Exchange/O365: Zimbra Migration Wizard. Google Workspace: Google migration utilities + IMAPSync for complete data transfer.</p><div class="zimbra-step-arrow">&#8594;</div></div>
-      <div class="zimbra-step"><div class="zimbra-step-num">5</div><h3>Run a Pilot Migration</h3><p>We test a few user accounts to confirm accuracy and stability before the full rollout — zero guesswork.</p><div class="zimbra-step-arrow">&#8594;</div></div>
+      <div class="zimbra-step"><div class="zimbra-step-num">1</div><h3>Review Your Current Setup</h3><p>We evaluate your existing platform — Exchange, Office 365, or Google Workspace — to identify the right migration strategy for your team.</p><div class="zimbra-step-arrow">&#8250;</div></div>
+      <div class="zimbra-step"><div class="zimbra-step-num">2</div><h3>Pick the Best Zimbra Edition</h3><p>ICSDC helps you choose between Zimbra Open Source or Network Edition based on your collaboration needs and scale.</p><div class="zimbra-step-arrow">&#8250;</div></div>
+      <div class="zimbra-step"><div class="zimbra-step-num">3</div><h3>Prepare Your Environment</h3><p>Your Zimbra server is deployed and configured on ICSDC cloud with DNS and security settings ready before migration begins.</p><div class="zimbra-step-arrow">&#8250;</div></div>
+      <div class="zimbra-step"><div class="zimbra-step-num">4</div><h3>Use the Right Migration Tools</h3><p>Exchange/O365: Zimbra Migration Wizard. Google Workspace: Google migration utilities + IMAPSync for complete data transfer.</p><div class="zimbra-step-arrow">&#8250;</div></div>
+      <div class="zimbra-step"><div class="zimbra-step-num">5</div><h3>Run a Pilot Migration</h3><p>We test a few user accounts to confirm accuracy and stability before the full rollout — zero guesswork.</p><div class="zimbra-step-arrow">&#8250;</div></div>
       <div class="zimbra-step"><div class="zimbra-step-num">6</div><h3>Complete the Full Migration</h3><p>All accounts migrated with minimal downtime, followed by post-migration checks to ensure everything runs smoothly from day one.</p></div>
     </div>
   </div>
@@ -323,44 +323,110 @@
 
 
 <!-- ════ TESTIMONIALS ════ -->
-<section class="testi-section" id="testimonials">
-  <div class="testi-container">
-    <h2 class="testi-title" data-animate="fade-up">Read Client Stories About ICSDC Zimbra Hosting</h2>
-    <div class="testi-scroll-viewport">
-      <div class="testi-grid" role="list">
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"ICSDC's Zimbra Hosting made our email system far more stable and organized. Daily communication became smoother, and mailbox performance improved instantly from day one."</p><span class="testi-author">Rachit Malhotra — Communication Manager, Private Organization</span></div>
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"The migration experience was effortless and surprisingly quick. Their team handled everything smoothly, and our users didn't face any downtime during the entire switch."</p><span class="testi-author">Simran Kaur — IT Administrator, Corporate Office</span></div>
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"We finally have a reliable email setup with zero spam issues. The difference in mailbox cleanliness and speed is noticeable every single day for our entire team."</p><span class="testi-author">Megha Sharma — Senior Coordinator, Professional Services Group</span></div>
-        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"ICSDC's Zimbra platform feels secure, fast, and easy for our entire staff. Accessing email across devices has become completely seamless for all our remote teams."</p><span class="testi-author">Naina Verma — Administrative Head, Corporate Department</span></div>
-      </div>
+<section class="testi-section" aria-labelledby="testi-heading">
+    <div class="testi-container">
+        <h2 id="testi-heading" class="testi-title">See our Clients Stories</h2>
+
+        <!-- Cards rendered by components.js -->
+        <div class="testi-scroll-viewport">
+            <div class="testi-grid" role="list" id="testi-grid"></div>
+        </div>
+
+        <!-- Pagination dots rendered by components.js -->
+        <div class="testi-pagination" role="tablist" aria-label="Testimonial navigation" id="testi-dots"></div>
+
+        <div class="testi-nav">
+            <button class="testi-nav-btn" id="testi-prev" aria-label="Previous testimonial">&#8249;</button>
+            <button class="testi-nav-btn" id="testi-next" aria-label="Next testimonial">&#8250;</button>
+        </div>
     </div>
-  </div>
 </section>
 
 
 <!-- ════ FAQ ════ -->
-<section class="faq-section" id="faq">
+<section class="faq-section" id="faq" aria-labelledby="faq-heading">
   <div class="faq-container">
     <div class="faq-col">
-      <h2 class="faq-title" data-animate="fade-up">FAQs About ICSDC Zimbra Hosting</h2>
-      <dl class="faq-accordions">
-        <div class="faq-item"><dt class="faq-question">What is Zimbra Hosting and how does it work?</dt><dd class="faq-answer">Zimbra Hosting provides a cloud-based email and collaboration suite where your mailboxes, calendars, contacts, and files are hosted on ICSDC's secure infrastructure with full admin control and enterprise-grade performance.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Is Zimbra better than traditional email hosting solutions?</dt><dd class="faq-answer">Yes. Zimbra offers built-in collaboration tools like shared calendars, tasks, chat, and file management — features not commonly found in standard email hosting. It's a complete communication platform, not just email.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Does Zimbra support Outlook, Apple Mail, and mobile apps?</dt><dd class="faq-answer">Zimbra works seamlessly with Outlook, Apple Mail, Thunderbird, Android, and iOS devices, ensuring smooth access and synchronization across all platforms and clients.</dd></div>
-        <div class="faq-item"><dt class="faq-question">How secure is Zimbra Email Hosting at ICSDC?</dt><dd class="faq-answer">Your mail environment is protected through anti-spam filtering, anti-virus scanning, encrypted connections, firewalls, and ICSDC's hardened cloud infrastructure with continuous monitoring.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Can I migrate my existing email data to Zimbra?</dt><dd class="faq-answer">Yes. ICSDC provides assisted migration for emails, contacts, calendars, and files from platforms like cPanel, Google Workspace, Exchange, and Microsoft 365 with minimal downtime.</dd></div>
-        <div class="faq-item"><dt class="faq-question">How much storage can I get for my Zimbra mailboxes?</dt><dd class="faq-answer">Storage is fully scalable. Start with a base plan and increase mailbox space or overall storage instantly as your team grows — no downtime required.</dd></div>
-        <div class="faq-item"><dt class="faq-question">Does ICSDC provide admin-level controls for Zimbra?</dt><dd class="faq-answer">Yes. Administrators get full access to manage users, set policies, control storage, create groups, and enforce security rules from a centralized web admin console.</dd></div>
-        <div class="faq-item"><dt class="faq-question">How reliable is the uptime on ICSDC Zimbra Hosting?</dt><dd class="faq-answer">ICSDC operates on high-availability infrastructure with redundant systems, ensuring stable uptime and uninterrupted email delivery for mission-critical business communication.</dd></div>
+      <h2 id="faq-heading" class="faq-title">Frequently Asked Questions</h2>
+      <!-- Accordion items — self-contained, not populated by components.js -->
+      <dl class="faq-accordions" id="zimbra-faq-accordions">
+        <div class="faq-item faq-open" data-faq-index="0">
+          <dt><button class="faq-question" aria-expanded="true" aria-controls="zfaq-0"><span>What is Zimbra Hosting and how does it work?</span><svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></dt>
+          <dd class="faq-answer" id="zfaq-0" role="region"><p>Zimbra Hosting provides a cloud-based email and collaboration suite where your mailboxes, calendars, contacts, and files are hosted on ICSDC's secure infrastructure with full admin control and enterprise-grade performance.</p></dd>
+        </div>
+        <div class="faq-item" data-faq-index="1">
+          <dt><button class="faq-question" aria-expanded="false" aria-controls="zfaq-1"><span>Is Zimbra better than traditional email hosting solutions?</span><svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></dt>
+          <dd class="faq-answer" id="zfaq-1" role="region"><p>Yes. Zimbra offers built-in collaboration tools like shared calendars, tasks, chat, and file management — features not commonly found in standard email hosting. It's a complete communication platform, not just email.</p></dd>
+        </div>
+        <div class="faq-item" data-faq-index="2">
+          <dt><button class="faq-question" aria-expanded="false" aria-controls="zfaq-2"><span>Does Zimbra support Outlook, Apple Mail, and mobile apps?</span><svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></dt>
+          <dd class="faq-answer" id="zfaq-2" role="region"><p>Zimbra works seamlessly with Outlook, Apple Mail, Thunderbird, Android, and iOS devices, ensuring smooth access and synchronization across all platforms and clients.</p></dd>
+        </div>
+        <div class="faq-item" data-faq-index="3">
+          <dt><button class="faq-question" aria-expanded="false" aria-controls="zfaq-3"><span>How secure is Zimbra Email Hosting at ICSDC?</span><svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></dt>
+          <dd class="faq-answer" id="zfaq-3" role="region"><p>Your mail environment is protected through anti-spam filtering, anti-virus scanning, encrypted connections, firewalls, and ICSDC's hardened cloud infrastructure with continuous monitoring.</p></dd>
+        </div>
+        <div class="faq-item" data-faq-index="4">
+          <dt><button class="faq-question" aria-expanded="false" aria-controls="zfaq-4"><span>Can I migrate my existing email data to Zimbra?</span><svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></dt>
+          <dd class="faq-answer" id="zfaq-4" role="region"><p>Yes. ICSDC provides assisted migration for emails, contacts, calendars, and files from platforms like cPanel, Google Workspace, Exchange, and Microsoft 365 with minimal downtime.</p></dd>
+        </div>
+        <div class="faq-item" data-faq-index="5">
+          <dt><button class="faq-question" aria-expanded="false" aria-controls="zfaq-5"><span>How much storage can I get for my Zimbra mailboxes?</span><svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></dt>
+          <dd class="faq-answer" id="zfaq-5" role="region"><p>Storage is fully scalable. Start with a base plan and increase mailbox space or overall storage instantly as your team grows — no downtime required.</p></dd>
+        </div>
+        <div class="faq-item" data-faq-index="6">
+          <dt><button class="faq-question" aria-expanded="false" aria-controls="zfaq-6"><span>Does ICSDC provide admin-level controls for Zimbra?</span><svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></dt>
+          <dd class="faq-answer" id="zfaq-6" role="region"><p>Yes. Administrators get full access to manage users, set policies, control storage, create groups, and enforce security rules from a centralized web admin console.</p></dd>
+        </div>
+        <div class="faq-item" data-faq-index="7">
+          <dt><button class="faq-question" aria-expanded="false" aria-controls="zfaq-7"><span>How reliable is the uptime on ICSDC Zimbra Hosting?</span><svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></dt>
+          <dd class="faq-answer" id="zfaq-7" role="region"><p>ICSDC operates on high-availability infrastructure with redundant systems, ensuring stable uptime and uninterrupted email delivery for mission-critical business communication.</p></dd>
+        </div>
       </dl>
     </div>
-    <div class="faq-contact-card" data-animate="fade-left">
-      <h3 class="faq-contact-title">Chat with Our Zimbra Experts</h3>
-      <p class="faq-contact-desc">Our India-based team specializes in Zimbra deployments, migrations from Exchange and Google Workspace, and ongoing email infrastructure management. Available 24/7.</p>
-      <a href="/contact" class="faq-contact-btn">Talk to an Expert <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-    </div>
+    <!-- Sticky contact card -->
+    <aside class="faq-contact-card" aria-label="Contact us">
+      <h3 class="faq-contact-title">Chat with Our Zimbra<br>Experts</h3>
+      <p class="faq-contact-desc">
+        Our India-based team specializes in Zimbra deployments, migrations from Exchange and Google Workspace, and ongoing email infrastructure management.<br><br>
+        &#128222; +91 98109 58857
+      </p>
+      <a href="/contact" class="faq-contact-btn">
+        Talk to an Expert
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </aside>
   </div>
 </section>
+
+<!-- Zimbra FAQ accordion script (self-contained — does not use #faq-accordions) -->
+<script>
+(function () {
+    var dl = document.getElementById('zimbra-faq-accordions');
+    if (!dl) return;
+    var openIndex = 0;
+
+    function setOpen(idx) {
+        dl.querySelectorAll('.faq-item').forEach(function (item) {
+            var i = parseInt(item.dataset.faqIndex, 10);
+            var isOpen = i === idx;
+            item.classList.toggle('faq-open', isOpen);
+            var btn = item.querySelector('.faq-question');
+            if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        openIndex = idx;
+    }
+
+    dl.querySelectorAll('.faq-question').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var idx = parseInt(btn.closest('.faq-item').dataset.faqIndex, 10);
+            setOpen(openIndex === idx ? -1 : idx);
+        });
+    });
+})();
+</script>
 
 
 <!-- ════ FINAL CTA ════ -->
@@ -390,7 +456,7 @@
                         <span>New York, NY 535022</span>
                         <span>United States</span>
                         <span class="footer-phone">Phone: +1 5589 55488 55</span>
-                        <span>Email: <a href="/cdn-cgi/l/email-protection#c9a0a7afa689a0aabaadaae7aaa6a4" class="footer-email-link"><span class="__cf_email__" data-cfemail="741d1a121b341d170710175a171b19">[email&#160;protected]</span></a></span>
+                        <span>Email: <a href="mailto:info@icsdc.com" class="footer-email-link">info@icsdc.com</a></span>
                     </address>
                     <div class="footer-social" aria-label="Social media links">
                         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -444,12 +510,12 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&#169; Copyright <span id="cloud-footer-year"></span> ICSDC. All Rights Reserved</p>
+            <p>&#169; Copyright <span id="footer-year"></span> ICSDC. All Rights Reserved</p>
         </div>
     </footer>
 
     <!-- SCROLL ANIMATION ENGINE -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         (function () {
             var observer = new IntersectionObserver(function (entries) {
                 entries.forEach(function (entry) {
