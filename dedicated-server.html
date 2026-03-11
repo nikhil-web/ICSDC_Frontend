@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dedicated Server Hosting | Smooth Migration | ICSDC</title>
+    <meta name="description"
+        content="Get 100% dedicated power, guaranteed 99.95% uptime, and 24/7 support. ICSDC offers instant deployment and seamless migration.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/dedicated-server.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PAGE LOADER -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">Loading...</p>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- DROPDOWN (populated by main.js) -->
+    <div id="dropdown-wrap">
+        <div id="dropdown">
+            <div data-strapi-dd="sidebar" class="hidden" id="dd-sidebar"></div>
+            <div data-strapi-dd="flatLeft" class="hidden" id="dd-flat-left">
+                <div data-strapi-dd="flatIcon" class="dd-flat-icon"></div>
+                <div>
+                    <h3 data-strapi-dd="flatTitle"></h3>
+                    <p data-strapi-dd="flatDesc"></p>
+                </div>
+            </div>
+            <div id="dd-content">
+                <div id="dd-top-bar">
+                    <div data-strapi-dd="panelTitle" class="hidden" id="dd-panel-title"></div>
+                    <button class="dd-close" onclick="closeDropdown()">&#10005;</button>
+                </div>
+                <div data-strapi-dd="grid" id="dd-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR (identical to homepage — populated by main.js) -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo">
+                <img data-strapi="mainLogo" src="" alt="ICSDC logo" class="logo-icon">
+            </a>
+            <ul data-strapi-nav class="nav-links" id="nav-links"></ul>
+            <button class="btn-login desktop-login-btn">Login</button>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+            <ul data-strapi-nav-mobile class="mobile-nav-links" id="mobile-nav-links"></ul>
+            <button class="btn-login mobile-login-btn">Login</button>
+        </div>
+    </nav>
+
+    <!-- ════════════════════════════════════
+         SECTION 1 — HERO
+    ════════════════════════════════════ -->
+    <section class="hero-section">
+        <div class="hero">
+            <div class="hero-content">
+                <span class="ds-eyebrow">
+                    <span class="ds-eyebrow-dot"></span>
+                    Enterprise Dedicated Hosting
+                </span>
+                <h1 class="hero-title">Best Dedicated Server: Seamless Migration, Maximum Power</h1>
+                <p class="hero-sub">Your Server, Your Rules, Our Service</p>
+                <p class="hero-desc">Get exclusive dedicated server performance &amp; complete support built for your
+                    business without risking downtime.</p>
+                <div class="hero-price-container">
+                    <div class="hero-price-block">
+                        <div class="hero-price">
+                            <span>&#8377;4,999</span><span class="price-unit">/mo</span>
+                        </div>
+                        <p class="price-note">Starting price &mdash; No hidden fees, transparent billing.</p>
+                    </div>
+                    <div class="hero-btns">
+                        <button class="btn-outline">Start Free Trial</button>
+                        <button class="btn-primary">View Plans &rarr;</button>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right">
+                <!-- Server rack visual -->
+                <div class="ds-server-visual">
+                    <div class="ds-server-rack">
+                        <div class="ds-rack-unit">
+                            <div class="ds-rack-led"></div>
+                            <div class="ds-rack-bars">
+                                <div class="ds-rack-bar" style="flex:3"></div>
+                                <div class="ds-rack-bar" style="flex:2"></div>
+                                <div class="ds-rack-bar" style="flex:4"></div>
+                            </div>
+                            <span class="ds-rack-label">CPU</span>
+                            <span class="ds-rack-stat">98%</span>
+                        </div>
+                        <div class="ds-rack-unit">
+                            <div class="ds-rack-led"></div>
+                            <div class="ds-rack-bars">
+                                <div class="ds-rack-bar" style="flex:5"></div>
+                                <div class="ds-rack-bar" style="flex:1"></div>
+                                <div class="ds-rack-bar" style="flex:3"></div>
+                            </div>
+                            <span class="ds-rack-label">RAM</span>
+                            <span class="ds-rack-stat">64 GB</span>
+                        </div>
+                        <div class="ds-rack-unit">
+                            <div class="ds-rack-led"></div>
+                            <div class="ds-rack-bars">
+                                <div class="ds-rack-bar" style="flex:2"></div>
+                                <div class="ds-rack-bar" style="flex:6"></div>
+                                <div class="ds-rack-bar" style="flex:1"></div>
+                            </div>
+                            <span class="ds-rack-label">NVMe</span>
+                            <span class="ds-rack-stat">2 TB</span>
+                        </div>
+                        <div class="ds-rack-unit">
+                            <div class="ds-rack-led"></div>
+                            <div class="ds-rack-bars">
+                                <div class="ds-rack-bar" style="flex:4"></div>
+                                <div class="ds-rack-bar" style="flex:3"></div>
+                                <div class="ds-rack-bar" style="flex:2"></div>
+                            </div>
+                            <span class="ds-rack-label">NET</span>
+                            <span class="ds-rack-stat">1 Gbps</span>
+                        </div>
+                    </div>
+                    <!-- Floating uptime badge -->
+                    <div class="ds-hero-badge">
+                        <div class="ds-hero-badge-dot"></div>
+                        <div>
+                            <div class="ds-hero-badge-text">All systems operational</div>
+                            <div class="ds-hero-badge-sub">99.95% Uptime SLA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 2 — FOUR FEATURE HIGHLIGHTS
+    ════════════════════════════════════ -->
+    <section id="ds-features" class="why-us section">
+        <div class="container">
+            <div class="why-grid" data-stagger>
+
+                <div class="why-card">
+                    <div class="why-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22"
+                            height="22">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                    </div>
+                    <h3>Seamless Performance</h3>
+                    <p>Get 100% exclusive resources with guaranteed isolation, ensuring smooth performance even at peak
+                        load time without interference from other users.</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22"
+                            height="22">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <path d="M8 21h8M12 17v4" />
+                        </svg>
+                    </div>
+                    <h3>Real-time Admin Control</h3>
+                    <p>Full administrator access &amp; monitoring lets you customise your environment, security, and
+                        applications exactly to your business needs.</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22"
+                            height="22">
+                            <line x1="12" y1="1" x2="12" y2="23" />
+                            <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                        </svg>
+                    </div>
+                    <h3>Predictable Flat-Rate Cost</h3>
+                    <p>Move beyond usage spikes with transparent monthly billing that avoids surprise invoices and
+                        guarantees complete budget predictability.</p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22"
+                            height="22">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+                        </svg>
+                    </div>
+                    <h3>24/7/365 Real-time Support</h3>
+                    <p>Access certified Indian cloud architects instantly, ensuring rapid resolution and reliable
+                        guidance whenever your mission-critical systems demand it.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 3 — PRICING PLANS
+    ════════════════════════════════════ -->
+    <section id="ds-pricing" class="section ds-pricing">
+        <div class="container">
+            <span class="ds-section-label" data-animate="fade-up">Pricing</span>
+            <h2 class="title" data-animate="fade-up">Our Dedicated Server Plans that Suit You</h2>
+            <p class="subtitle" data-animate="fade-up">Access exclusive hardware, consistent performance and reliable
+                infrastructure with pricing designed for every workload.</p>
+
+            <div class="ds-pricing-grid" data-stagger>
+
+                <!-- Plan 1: Essential -->
+                <div class="ds-plan-card">
+                    <div class="ds-plan-tier">Essential</div>
+                    <div class="ds-plan-price-wrap">
+                        <span class="ds-plan-currency">&#8377;</span>
+                        <span class="ds-plan-price">4,999</span>
+                        <span class="ds-plan-period">/mo</span>
+                    </div>
+                    <p class="ds-plan-tagline">Perfect for growing businesses needing dedicated power without the
+                        complexity.</p>
+                    <hr class="ds-plan-divider">
+                    <ul class="ds-plan-features">
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            4-Core Dedicated CPU
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            16 GB DDR4 RAM
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            500 GB NVMe SSD Storage
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            100 Mbps Network Port
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            1 Dedicated IP Address
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            Basic DDoS Protection
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            99.95% Uptime SLA
+                        </li>
+                    </ul>
+                    <button class="ds-plan-cta ds-plan-cta-outline">Get Started</button>
+                </div>
+
+                <!-- Plan 2: Professional (Featured) -->
+                <div class="ds-plan-card ds-featured">
+                    <span class="ds-plan-badge">Most Popular</span>
+                    <div class="ds-plan-tier">Professional</div>
+                    <div class="ds-plan-price-wrap">
+                        <span class="ds-plan-currency">&#8377;</span>
+                        <span class="ds-plan-price">9,999</span>
+                        <span class="ds-plan-period">/mo</span>
+                    </div>
+                    <p class="ds-plan-tagline">The complete solution for scaling businesses demanding peak performance.
+                    </p>
+                    <hr class="ds-plan-divider">
+                    <ul class="ds-plan-features">
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            8-Core Dedicated CPU
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            32 GB DDR4 RAM
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            1 TB NVMe SSD Storage
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            1 Gbps High-Speed Network Port
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            2 Dedicated IP Addresses
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            Advanced DDoS + Firewall
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            Managed Support Included
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            Free Zero-Downtime Migration
+                        </li>
+                    </ul>
+                    <button class="ds-plan-cta ds-plan-cta-primary">Get Started &rarr;</button>
+                </div>
+
+                <!-- Plan 3: Enterprise -->
+                <div class="ds-plan-card">
+                    <div class="ds-plan-tier">Enterprise</div>
+                    <div class="ds-plan-price-wrap">
+                        <span class="ds-plan-currency">&#8377;</span>
+                        <span class="ds-plan-price">19,999</span>
+                        <span class="ds-plan-period">/mo</span>
+                    </div>
+                    <p class="ds-plan-tagline">Maximum power for mission-critical workloads with fully managed
+                        infrastructure.</p>
+                    <hr class="ds-plan-divider">
+                    <ul class="ds-plan-features">
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            16-Core Dedicated CPU
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            64 GB DDR4 ECC RAM
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            2 TB NVMe SSD RAID Storage
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            10 Gbps Premium Network Port
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            5 Dedicated IP Addresses
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            Multi-Layer Security Suite
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            Fully Managed + Custom Config
+                        </li>
+                        <li class="ds-plan-feature">
+                            <span class="ds-plan-check"><svg viewBox="0 0 12 12" fill="none">
+                                    <polyline points="2,6 5,9 10,3" />
+                                </svg></span>
+                            Priority 24/7 Support
+                        </li>
+                    </ul>
+                    <button class="ds-plan-cta ds-plan-cta-outline">Contact Sales</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 4 — 12 PILLARS
+    ════════════════════════════════════ -->
+    <section id="ds-pillars" class="section" style="background: var(--bg-light);">
+        <div class="container">
+            <span class="ds-section-label" data-animate="fade-up">Core Offerings</span>
+            <h2 class="title" data-animate="fade-up">ICSDC Pillars of Powerful Dedicated Servers</h2>
+            <p class="subtitle" data-animate="fade-up">At ICSDC, we believe in not settling for less. Our dedicated
+                server specifications match your exact business needs.</p>
+
+            <div class="ds-pillar-grid" data-stagger>
+
+                <div class="ds-pillar-card">
+                    <div class="ds-pillar-icon">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="11" width="18" height="11" rx="2" />
+                            <path d="M7 11V7a5 5 0 0110 0v4" />
+                        </svg>
+                    </div>
+                    <h3>Full Root Access &amp; Control</h3>
+                    <p>Gain complete administrative control of your server environment, allowing deep customisation,
+                        complex software installations, and precise configuration tuning.</p>
+                </div>
+
+                <div class="ds-pillar-card">
+                    <div class="ds-pillar-icon">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        </svg>
+                    </div>
+                    <h3>99.95% Uptime with SLA</h3>
+                    <p>We guarantee industry-leading maximum availability and reliability. Our infrastructure is
+                        engineered with redundancy to keep mission-critical applications running.</p>
+                </div>
+
+                <div class="ds-pillar-card">
+                    <div class="ds-pillar-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                    </div>
+                    <h3>Premium Bandwidth</h3>
+                    <p>Enjoy lightning-fast data transfer rates and generous monthly allocations, ensuring your visitors
+                        and applications always run at optimal speed without throttling.</p>
+                </div>
+
+                <div class="ds-pillar-card">
+                    <div class="ds-pillar-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+                        </svg>
+                    </div>
+                    <h3>High-Speed 1 Gbps Network Port</h3>
+                    <p>Ensure high-speed, low-latency connectivity for all demanding applications, streaming services,
+                        and data synchronization needs right out of the box.</p>
+                </div>
+
+                <div class="ds-pillar-card">
+                    <div class="ds-pillar-icon">
+                        <svg viewBox="0 0 24 24">
+                            <ellipse cx="12" cy="5" rx="9" ry="3" />
+                            <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" />
+                            <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" />
+                        </svg>
+                    </div>
+                    <h3>Fast NVMe SSD Storage</h3>
+                    <p>Experience ultimate speed and rapid data migration with premium, high-performance Non-Volatile
+                        Memory Express solid-state drives.</p>
+                </div>
+
+                <div class="ds-pillar-card">
+                    <div class="ds-pillar-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="2" y1="12" x2="22" y2="12" />
+                            <path
+                                d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                        </svg>
+                    </div>
+                    <h3>Dedicated IP Address</h3>
+                    <p>Secure your own unique online identity and improve email deliverability and reputation with a
+                        dedicated, non-shared Internet Protocol address.</p>
+                </div>
+
+                <div class="ds-pillar-card">
+                    <div class="ds-pillar-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </div>
+                    <h3>Multi-Layer Advanced Security Suite</h3>
+                    <p>Benefit from proactive, multi-layered defense including DDoS protection and hardware firewalls
+                        guarding your critical data at every layer.</p>
+                </div>
+
+                <div class="ds-pillar-card">
+                    <div class="ds-pillar-icon">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        </svg>
+                    </div>
+                    <h3>Flexible Scalability On-Demand</h3>
+                    <p>Easily and quickly upgrade your CPU, RAM, or storage as your business grows. Your infrastructure
+                        seamlessly adapts to rising traffic and workload demands.</p>
+                </div>
+
+                <div class="ds-pillar-card">
+                    <div class="ds-pillar-icon">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <path d="M8 21h8M12 17v4" />
+                        </svg>
+                    </div>
+                    <h3>Guaranteed &amp; Dedicated Resources</h3>
+                    <p>Your CPU, RAM, and storage are 100% reserved for you. Eliminate the &ldquo;noisy neighbor&rdquo;
+                        problem with strictly allocated, never-shared hardware.</p>
+                </div>
+
+                <div class="ds-pillar-card">
+                    <div class="ds-pillar-icon">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="4" y="4" width="16" height="16" rx="2" />
+                            <path d="M9 9h6M9 12h6M9 15h4" />
+                        </svg>
+                    </div>
+                    <h3>Custom OS Installation Freedom</h3>
+                    <p>Install your preferred operating system — from various Linux distributions to Windows Server —
+                        with our flexible and fast installation options.</p>
+                </div>
+
+                <div class="ds-pillar-card">
+                    <div class="ds-pillar-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+                        </svg>
+                    </div>
+                    <h3>24/7/365 Expert Support Team</h3>
+                    <p>Get peace of mind with our dedicated team of real human experts available around the clock to
+                        assist with any hardware or network concerns.</p>
+                </div>
+
+                <div class="ds-pillar-card">
+                    <div class="ds-pillar-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                    </div>
+                    <h3>Instant Deployment</h3>
+                    <p>Get started immediately without worrying about unexpected costs. We offer the entire
+                        configuration and setup process for you at the best price.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 5 — CTA BAND #1
+    ════════════════════════════════════ -->
+    <section class="ds-cta-band" aria-label="Call to action">
+        <div class="ds-cta-inner">
+            <h2>Ready to Boost Your Business Presence with ICSDC Dedicated Server Power?</h2>
+            <p>Give us a call and get started today with zero-downtime migration and instant deployment.</p>
+            <div class="ds-cta-btns">
+                <button class="ds-cta-btn-primary">Get Started Now &rarr;</button>
+                <button class="ds-cta-btn-outline">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 6 — SECURITY SUITE
+    ════════════════════════════════════ -->
+    <section id="ds-security" class="ds-security-section">
+        <div class="ds-security-inner">
+
+            <!-- Left: security shield visual -->
+            <div class="ds-security-visual" data-animate="fade-right">
+                <div class="ds-security-shield">
+                    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M40 6L10 18V38C10 54.57 23.36 70.08 40 74C56.64 70.08 70 54.57 70 38V18L40 6Z"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M28 40L36 48L54 30" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <div class="ds-security-shield-stat">
+                        <strong>Multi-Layer</strong>
+                        <span>Security Architecture</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: text + 4 security cards -->
+            <div class="ds-security-text" data-animate="fade-left">
+                <span class="ds-section-label">Security</span>
+                <h2 class="title" style="text-align:left; margin-top:8px;">Your Digital Servers: Secured by ICSDC</h2>
+                <p class="who-we-are-paragraph" style="margin:16px 0 0;">Your dedicated server requires protection at
+                    every layer. We don&rsquo;t just provide tools; we deliver managed security services built and
+                    monitored by our experts to keep your data safe 24/7.</p>
+
+                <div class="ds-security-grid" data-stagger>
+
+                    <div class="ds-security-card">
+                        <div class="ds-security-icon">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="2" y="2" width="20" height="20" rx="3" />
+                                <path d="M7 12h10M12 7v10" />
+                            </svg>
+                        </div>
+                        <h3>Firewall as a Service (FWaaS)</h3>
+                        <p>Intelligent security gate filtering traffic at the network level, blocking threats before
+                            they reach your hardware.</p>
+                    </div>
+
+                    <div class="ds-security-card">
+                        <div class="ds-security-icon">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="11" width="18" height="11" rx="2" />
+                                <path d="M7 11V7a5 5 0 0110 0v4" />
+                                <circle cx="12" cy="16" r="1" fill="currentColor" stroke="none" />
+                            </svg>
+                        </div>
+                        <h3>PAM / Multi-Factor Auth</h3>
+                        <p>Secures your administrative layers and locks the master keys. MFA prevents access even if a
+                            password is stolen.</p>
+                    </div>
+
+                    <div class="ds-security-card">
+                        <div class="ds-security-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                <path d="M9 12l2 2 4-4" />
+                            </svg>
+                        </div>
+                        <h3>Web Application Firewall (WAF)</h3>
+                        <p>A dedicated defense blocking application-layer attacks like SQL injection and XSS targeting
+                            your websites.</p>
+                    </div>
+
+                    <div class="ds-security-card">
+                        <div class="ds-security-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                <line x1="9" y1="12" x2="15" y2="12" />
+                            </svg>
+                        </div>
+                        <h3>SSL Certificates</h3>
+                        <p>Ensures all data transferred between the server and users is strongly encrypted, building
+                            customer trust and compliance.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 7 — MORE SERVICES
+         Reuses who-we-are two-col pattern
+    ════════════════════════════════════ -->
+    <section id="ds-services" class="who-we-are section">
+        <div class="who-we-are-inner">
+            <div class="who-we-are-image" data-animate="fade-right">
+                <img src="assets/images/best-cloud-service-provider 1.png" alt="ICSDC dedicated server services">
+            </div>
+            <div class="blue-container" data-animate="fade-left">
+                <span class="ds-section-label">Server Types</span>
+                <h2 class="title" style="text-align:left; margin-top:8px;">More Services You Can Build On</h2>
+                <p class="who-we-are-paragraph">At ICSDC, we understand that no two businesses run the same way &mdash;
+                    and neither should their servers. Whether it&rsquo;s Windows or Linux, Managed or Unmanaged, ICSDC
+                    puts the power of choice &mdash; and performance &mdash; directly in your hands.</p>
+                <div class="who-we-are-btns" data-stagger>
+                    <button class="btn-outline feature-cards">Windows Dedicated Server</button>
+                    <button class="btn-outline feature-cards">Linux Dedicated Server</button>
+                    <button class="btn-outline feature-cards">Managed Dedicated Server</button>
+                    <button class="btn-primary feature-cards">Unmanaged Dedicated Server</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 8 — ICSDC VS OTHERS
+    ════════════════════════════════════ -->
+    <section id="ds-comparison" class="section ds-comparison-section">
+        <div class="container">
+            <span class="ds-section-label" data-animate="fade-up">Why ICSDC</span>
+            <h2 class="title" data-animate="fade-up">What ICSDC Gives You Different from Others</h2>
+            <p class="subtitle" data-animate="fade-up">We don&rsquo;t just compare features; we offer a superior
+                architectural standard compared to the general dedicated server market in India.</p>
+
+            <div class="ds-comparison-wrap" data-animate="fade-up">
+                <table class="ds-comparison-table" aria-label="ICSDC vs competitors comparison">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width:48%">Feature</th>
+                            <th scope="col" style="width:26%; text-align:center;">ICSDC</th>
+                            <th scope="col" style="width:26%; text-align:center;">Others</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Full Root Access &amp; Custom OS</td>
+                            <td class="ds-col-icsdc"><span class="ds-check-icon"><svg viewBox="0 0 14 14" fill="none">
+                                        <polyline points="2,7 5.5,10.5 12,3" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg></span></td>
+                            <td style="text-align:center;"><span class="ds-partial-icon"><svg viewBox="0 0 14 14"
+                                        fill="none">
+                                        <line x1="3" y1="7" x2="11" y2="7" stroke-linecap="round" />
+                                    </svg></span></td>
+                        </tr>
+                        <tr>
+                            <td>99.95% Uptime SLA Guarantee</td>
+                            <td class="ds-col-icsdc"><span class="ds-check-icon"><svg viewBox="0 0 14 14" fill="none">
+                                        <polyline points="2,7 5.5,10.5 12,3" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg></span></td>
+                            <td style="text-align:center;"><span class="ds-partial-icon"><svg viewBox="0 0 14 14"
+                                        fill="none">
+                                        <line x1="3" y1="7" x2="11" y2="7" stroke-linecap="round" />
+                                    </svg></span></td>
+                        </tr>
+                        <tr>
+                            <td>24/7 Expert Human Support</td>
+                            <td class="ds-col-icsdc"><span class="ds-check-icon"><svg viewBox="0 0 14 14" fill="none">
+                                        <polyline points="2,7 5.5,10.5 12,3" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg></span></td>
+                            <td style="text-align:center;"><span class="ds-cross-icon"><svg viewBox="0 0 14 14"
+                                        fill="none">
+                                        <line x1="3" y1="3" x2="11" y2="11" stroke-linecap="round" />
+                                        <line x1="11" y1="3" x2="3" y2="11" stroke-linecap="round" />
+                                    </svg></span></td>
+                        </tr>
+                        <tr>
+                            <td>NVMe SSD High-Speed Storage</td>
+                            <td class="ds-col-icsdc"><span class="ds-check-icon"><svg viewBox="0 0 14 14" fill="none">
+                                        <polyline points="2,7 5.5,10.5 12,3" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg></span></td>
+                            <td style="text-align:center;"><span class="ds-partial-icon"><svg viewBox="0 0 14 14"
+                                        fill="none">
+                                        <line x1="3" y1="7" x2="11" y2="7" stroke-linecap="round" />
+                                    </svg></span></td>
+                        </tr>
+                        <tr>
+                            <td>Multi-Layer DDoS Protection</td>
+                            <td class="ds-col-icsdc"><span class="ds-check-icon"><svg viewBox="0 0 14 14" fill="none">
+                                        <polyline points="2,7 5.5,10.5 12,3" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg></span></td>
+                            <td style="text-align:center;"><span class="ds-cross-icon"><svg viewBox="0 0 14 14"
+                                        fill="none">
+                                        <line x1="3" y1="3" x2="11" y2="11" stroke-linecap="round" />
+                                        <line x1="11" y1="3" x2="3" y2="11" stroke-linecap="round" />
+                                    </svg></span></td>
+                        </tr>
+                        <tr>
+                            <td>Free Zero-Downtime Migration</td>
+                            <td class="ds-col-icsdc"><span class="ds-check-icon"><svg viewBox="0 0 14 14" fill="none">
+                                        <polyline points="2,7 5.5,10.5 12,3" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg></span></td>
+                            <td style="text-align:center;"><span class="ds-cross-icon"><svg viewBox="0 0 14 14"
+                                        fill="none">
+                                        <line x1="3" y1="3" x2="11" y2="11" stroke-linecap="round" />
+                                        <line x1="11" y1="3" x2="3" y2="11" stroke-linecap="round" />
+                                    </svg></span></td>
+                        </tr>
+                        <tr>
+                            <td>Indian Data Center Presence</td>
+                            <td class="ds-col-icsdc"><span class="ds-check-icon"><svg viewBox="0 0 14 14" fill="none">
+                                        <polyline points="2,7 5.5,10.5 12,3" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg></span></td>
+                            <td style="text-align:center;"><span class="ds-cross-icon"><svg viewBox="0 0 14 14"
+                                        fill="none">
+                                        <line x1="3" y1="3" x2="11" y2="11" stroke-linecap="round" />
+                                        <line x1="11" y1="3" x2="3" y2="11" stroke-linecap="round" />
+                                    </svg></span></td>
+                        </tr>
+                        <tr>
+                            <td>Transparent Flat-Rate Billing</td>
+                            <td class="ds-col-icsdc"><span class="ds-check-icon"><svg viewBox="0 0 14 14" fill="none">
+                                        <polyline points="2,7 5.5,10.5 12,3" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg></span></td>
+                            <td style="text-align:center;"><span class="ds-partial-icon"><svg viewBox="0 0 14 14"
+                                        fill="none">
+                                        <line x1="3" y1="7" x2="11" y2="7" stroke-linecap="round" />
+                                    </svg></span></td>
+                        </tr>
+                        <tr>
+                            <td>ISO-Certified Security Standards</td>
+                            <td class="ds-col-icsdc"><span class="ds-check-icon"><svg viewBox="0 0 14 14" fill="none">
+                                        <polyline points="2,7 5.5,10.5 12,3" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg></span></td>
+                            <td style="text-align:center;"><span class="ds-cross-icon"><svg viewBox="0 0 14 14"
+                                        fill="none">
+                                        <line x1="3" y1="3" x2="11" y2="11" stroke-linecap="round" />
+                                        <line x1="11" y1="3" x2="3" y2="11" stroke-linecap="round" />
+                                    </svg></span></td>
+                        </tr>
+                        <tr>
+                            <td>Instant Deployment &amp; Setup</td>
+                            <td class="ds-col-icsdc"><span class="ds-check-icon"><svg viewBox="0 0 14 14" fill="none">
+                                        <polyline points="2,7 5.5,10.5 12,3" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg></span></td>
+                            <td style="text-align:center;"><span class="ds-partial-icon"><svg viewBox="0 0 14 14"
+                                        fill="none">
+                                        <line x1="3" y1="7" x2="11" y2="7" stroke-linecap="round" />
+                                    </svg></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 9 — BID ADIEU TO SHARING
+         Reuses less-cloud-inner pattern
+    ════════════════════════════════════ -->
+    <section id="ds-performance" class="less-cloud-complex section">
+        <div class="less-cloud-inner">
+            <div class="blue-container-left" data-animate="fade-right">
+                <span class="ds-section-label">Performance</span>
+                <h2 class="title" style="text-align:left; margin-top:8px;">Bid Adieu to Sharing Resources, Start
+                    Dominating with Unmatched Performance</h2>
+                <p class="who-we-are-paragraph">Step up to a server platform built exclusively for your success,
+                    featuring superior performance, control, and reliability.</p>
+
+                <ul class="ds-checklist" data-stagger>
+                    <li class="ds-checklist-item">
+                        <span class="ds-cl-icon"><svg viewBox="0 0 12 12" fill="none">
+                                <polyline points="2,6 5,9 10,3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                        <span><strong>Zero-Contention Power:</strong> No sharing, all speed. Dedicated CPU/RAM ensures
+                            instant response times and peak performance, regardless of external traffic.</span>
+                    </li>
+                    <li class="ds-checklist-item">
+                        <span class="ds-cl-icon"><svg viewBox="0 0 12 12" fill="none">
+                                <polyline points="2,6 5,9 10,3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                        <span><strong>Root Access:</strong> You are the administrator. Complete control to install
+                            custom software, configure unique security policies, and build your exact
+                            environment.</span>
+                    </li>
+                    <li class="ds-checklist-item">
+                        <span class="ds-cl-icon"><svg viewBox="0 0 12 12" fill="none">
+                                <polyline points="2,6 5,9 10,3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                        <span><strong>Built-in Data Isolation:</strong> Inherently higher security through physical
+                            separation and a dedicated, clean IP address. Your data is safe from &ldquo;bad
+                            neighbors.&rdquo;</span>
+                    </li>
+                    <li class="ds-checklist-item">
+                        <span class="ds-cl-icon"><svg viewBox="0 0 12 12" fill="none">
+                                <polyline points="2,6 5,9 10,3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                        <span><strong>Enterprise-Grade Resilience:</strong> Infrastructure designed for maximum uptime
+                            and immediate failover, keeping your critical applications running without
+                            interruption.</span>
+                    </li>
+                    <li class="ds-checklist-item">
+                        <span class="ds-cl-icon"><svg viewBox="0 0 12 12" fill="none">
+                                <polyline points="2,6 5,9 10,3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                        <span><strong>Expert Human Support:</strong> Access to a 24/7 technical team that understands
+                            mission-critical hosting, not just basic helpdesk inquiries.</span>
+                    </li>
+                </ul>
+
+                <div class="hero-btns" style="margin-top: 32px;">
+                    <button class="btn-primary">Get Started &rarr;</button>
+                    <button class="btn-outline">Talk to an Expert</button>
+                </div>
+            </div>
+
+            <div class="less-cloud-complex-image" data-animate="scale-up">
+                <!-- Performance stats visual -->
+                <div class="ds-perf-visual" style="width:100%;">
+                    <div class="ds-perf-stats">
+                        <div class="ds-perf-stat">
+                            <span class="ds-perf-stat-val">99.95%</span>
+                            <span class="ds-perf-stat-label">Uptime</span>
+                        </div>
+                        <div class="ds-perf-stat">
+                            <span class="ds-perf-stat-val">1 Gbps</span>
+                            <span class="ds-perf-stat-label">Network</span>
+                        </div>
+                        <div class="ds-perf-stat">
+                            <span class="ds-perf-stat-val">&lt;15m</span>
+                            <span class="ds-perf-stat-label">Support SLA</span>
+                        </div>
+                        <div class="ds-perf-stat">
+                            <span class="ds-perf-stat-val">100%</span>
+                            <span class="ds-perf-stat-label">Dedicated</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 10 — GLOBAL LOCATIONS
+         Reuses less-cloud-inner pattern (flipped)
+    ════════════════════════════════════ -->
+    <section id="ds-locations" class="less-cloud-complex section industry-validated">
+        <div class="less-cloud-inner">
+            <div class="blue-container-left" style="background: transparent;" data-animate="fade-right">
+                <span class="ds-section-label">Infrastructure</span>
+                <h2 class="title" style="text-align:left; margin-top:8px; margin-bottom:0;">Global Locations. Local
+                    Speed.</h2>
+                <p class="who-we-are-paragraph">Deploy your server across our worldwide data centers, including India
+                    (Noida &amp; Mumbai), for the best performance closer to your audience.</p>
+                <div class="ds-location-tags" data-stagger>
+                    <span class="ds-location-tag">&#128205; Noida, India</span>
+                    <span class="ds-location-tag">&#128205; Mumbai, India</span>
+                    <span class="ds-location-tag">&#127760; Global CDN Network</span>
+                    <span class="ds-location-tag">&#9889; &lt;10ms Latency</span>
+                </div>
+            </div>
+
+            <div class="less-cloud-complex-image" data-animate="scale-up">
+                <!-- Stylised map placeholder -->
+                <div class="ds-map-visual">
+
+                    <!-- India pin -->
+                    <div class="ds-map-pin" style="top:38%; left:67%;">
+                        <div class="ds-map-pin-dot"></div>
+                        <div class="ds-map-pin-label">India &#127470;&#127475;</div>
+                    </div>
+                    <!-- US pin -->
+                    <div class="ds-map-pin" style="top:40%; left:28%;">
+                        <div class="ds-map-pin-dot"></div>
+                        <div class="ds-map-pin-label">Americas</div>
+                    </div>
+                    <!-- EU pin -->
+                    <div class="ds-map-pin" style="top:28%; left:50%;">
+                        <div class="ds-map-pin-dot"></div>
+                        <div class="ds-map-pin-label">Europe</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 11 — WHEN DO YOU NEED
+    ════════════════════════════════════ -->
+    <section id="ds-when" class="section" style="background: var(--bg-light);">
+        <div class="container">
+            <span class="ds-section-label" data-animate="fade-up">Upgrade Checklist</span>
+            <h2 class="title" data-animate="fade-up">When Do You Need an ICSDC Dedicated Server?</h2>
+            <p class="subtitle" data-animate="fade-up">It&rsquo;s time to upgrade when your business hits critical mass
+                and needs guaranteed performance, security, and control.</p>
+
+            <div class="ds-when-grid" data-stagger>
+
+                <div class="ds-when-card">
+                    <div class="ds-when-num">01</div>
+                    <h3>High Traffic &amp; Peak Loads</h3>
+                    <p>Consistently handle large user volumes — e-commerce sites, viral content, or major ad campaigns —
+                        that cause slowdowns on shared hosting.</p>
+                </div>
+
+                <div class="ds-when-card">
+                    <div class="ds-when-num">02</div>
+                    <h3>Mission-Critical Applications</h3>
+                    <p>Host applications requiring massive, non-stop resources: Big Data pipelines, advanced AI models,
+                        complex databases, or high-traffic game servers.</p>
+                </div>
+
+                <div class="ds-when-card">
+                    <div class="ds-when-num">03</div>
+                    <h3>Security &amp; Compliance</h3>
+                    <p>Handle sensitive customer data (PII, financial, medical) and need physical and logical isolation
+                        to meet regulations and compliance standards.</p>
+                </div>
+
+                <div class="ds-when-card">
+                    <div class="ds-when-num">04</div>
+                    <h3>Guaranteed Uptime Demands</h3>
+                    <p>Your business relies on 100% stable performance without resource contention — no more slowdowns
+                        because of a &lsquo;bad neighbor&rsquo; on shared infrastructure.</p>
+                </div>
+
+                <div class="ds-when-card">
+                    <div class="ds-when-num">05</div>
+                    <h3>Full Customization Needed</h3>
+                    <p>Require root access to install specific operating systems, custom security patches, or unique
+                        software stacks not available in shared plans.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 12 — WHO CAN USE
+    ════════════════════════════════════ -->
+    <section id="ds-who" class="section ds-use-section">
+        <div class="container">
+            <span class="ds-section-label" data-animate="fade-up">Use Cases</span>
+            <h2 class="title" data-animate="fade-up">Who Can Use ICSDC Dedicated Servers?</h2>
+            <p class="subtitle" data-animate="fade-up">From e-commerce to AI model training, our dedicated servers are
+                built to power every kind of mission-critical workload.</p>
+
+            <div class="ds-use-grid" data-stagger>
+
+                <div class="ds-use-card">
+                    <div class="ds-use-icon"><svg viewBox="0 0 24 24">
+                            <path d="M3 3h18v18H3zM3 9h18M9 21V9" />
+                        </svg></div>
+                    <h3>High-Traffic Business Websites</h3>
+                    <p>Ideal for eCommerce portals, corporate websites, or enterprise platforms that need 24/7
+                        reliability and zero lag during peak traffic hours.</p>
+                </div>
+
+                <div class="ds-use-card">
+                    <div class="ds-use-icon"><svg viewBox="0 0 24 24">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <path d="M8 21h8M12 17v4" />
+                        </svg></div>
+                    <h3>SaaS &amp; Application Hosting</h3>
+                    <p>Configure, scale, and secure your environment without sharing resources — ensuring top-tier
+                        stability for your SaaS users.</p>
+                </div>
+
+                <div class="ds-use-card">
+                    <div class="ds-use-icon"><svg viewBox="0 0 24 24">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        </svg></div>
+                    <h3>Data Analytics &amp; Research</h3>
+                    <p>Handle complex computations, large datasets, or real-time analytics workloads with the power,
+                        bandwidth, and isolation required.</p>
+                </div>
+
+                <div class="ds-use-card">
+                    <div class="ds-use-icon"><svg viewBox="0 0 24 24">
+                            <rect x="2" y="7" width="20" height="15" rx="2" />
+                            <path d="M16 2h4a2 2 0 012 2v3M2 7V4a2 2 0 012-2h4" />
+                        </svg></div>
+                    <h3>Game Server Hosting</h3>
+                    <p>Lag-free performance, full root access, and customizable configurations for hosting multiplayer
+                        or high-traffic gaming environments.</p>
+                </div>
+
+                <div class="ds-use-card">
+                    <div class="ds-use-icon"><svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg></div>
+                    <h3>Secure Business Applications</h3>
+                    <p>Host your ERP, CRM, or financial systems in a fully isolated environment with advanced firewalls
+                        and DDoS protection.</p>
+                </div>
+
+                <div class="ds-use-card">
+                    <div class="ds-use-icon"><svg viewBox="0 0 24 24">
+                            <ellipse cx="12" cy="5" rx="9" ry="3" />
+                            <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" />
+                            <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" />
+                        </svg></div>
+                    <h3>Virtualization &amp; Private Cloud</h3>
+                    <p>Create your own private cloud or virtual server environment using ICSDC&rsquo;s high-performance
+                        hardware with complete control.</p>
+                </div>
+
+                <div class="ds-use-card">
+                    <div class="ds-use-icon"><svg viewBox="0 0 24 24">
+                            <polygon points="23 7 16 12 23 17 23 7" />
+                            <rect x="1" y="5" width="15" height="14" rx="2" />
+                        </svg></div>
+                    <h3>Media Streaming &amp; Content</h3>
+                    <p>Ensure smooth streaming, faster load times, and a premium user experience across all regions for
+                        video and audio platforms.</p>
+                </div>
+
+                <div class="ds-use-card">
+                    <div class="ds-use-icon"><svg viewBox="0 0 24 24">
+                            <polyline points="16 18 22 12 16 6" />
+                            <polyline points="8 6 2 12 8 18" />
+                        </svg></div>
+                    <h3>Dev &amp; Testing Environments</h3>
+                    <p>Developers can use dedicated servers for sandbox environments to test code, deploy updates, and
+                        run simulations safely.</p>
+                </div>
+
+                <div class="ds-use-card">
+                    <div class="ds-use-icon"><svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg></div>
+                    <h3>Enterprise Email &amp; Communication</h3>
+                    <p>Host high-volume email servers and internal communication platforms securely with guaranteed
+                        uptime and total administrative control.</p>
+                </div>
+
+                <div class="ds-use-card">
+                    <div class="ds-use-icon"><svg viewBox="0 0 24 24">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg></div>
+                    <h3>Custom Infrastructure Projects</h3>
+                    <p>From AI model training to hosting government or enterprise-grade platforms — our servers are
+                        built to adapt to any scale or specification.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 13 — TESTIMONIALS
+         Uses ds- prefixed IDs so components.js
+         does not overwrite DS-specific content
+    ════════════════════════════════════ -->
+    <section class="ds-testi-section testi-section" id="ds-testimonials">
+        <div class="ds-testi-container testi-container">
+            <h2 class="testi-title" data-animate="fade-up">Client Stories</h2>
+
+            <div class="testi-scroll-viewport">
+                <div class="testi-grid" id="ds-testi-grid" role="list" aria-label="Client testimonials">
+                    <!-- Populated by dedicated-server.js -->
+                </div>
+            </div>
+
+            <div class="testi-pagination" id="ds-testi-dots" role="tablist" aria-label="Testimonial navigation"></div>
+
+            <div class="testi-nav">
+                <button class="testi-nav-btn" id="ds-testi-prev" aria-label="Previous testimonial">&#8592;</button>
+                <button class="testi-nav-btn" id="ds-testi-next" aria-label="Next testimonial">&#8594;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 14 — FAQ
+         Uses ds- prefixed ID so components.js
+         does not overwrite DS-specific content
+    ════════════════════════════════════ -->
+    <section class="ds-faq-section faq-section" id="ds-faq">
+        <div class="ds-faq-container faq-container">
+
+            <!-- Left: accordion -->
+            <div class="faq-col">
+                <h2 class="faq-title" data-animate="fade-up">FAQs about ICSDC Dedicated Server</h2>
+                <dl class="faq-accordions" id="ds-faq-accordions">
+                    <!-- Populated by dedicated-server.js -->
+                </dl>
+            </div>
+
+            <!-- Right: sticky contact card -->
+            <div class="faq-contact-card" data-animate="fade-left">
+                <h3 class="faq-contact-title">Still have questions?</h3>
+                <p class="faq-contact-desc">Our dedicated server experts are available 24/7 to walk you through the
+                    right plan for your infrastructure.</p>
+                <a href="/contact" class="faq-contact-btn">
+                    Talk to an Expert
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 15 — FINAL CTA BAND
+    ════════════════════════════════════ -->
+    <section class="ds-cta-band ds-cta-dark" aria-label="Final call to action">
+        <div class="ds-cta-inner">
+            <h2>ICSDC is the Secure, Powerful Engine Your Growing Digital Enterprise Deserves</h2>
+            <p>Step up to a server platform built exclusively for your success — featuring superior performance,
+                control, and 24/7 reliability.</p>
+            <div class="ds-cta-btns">
+                <button class="ds-cta-btn-primary">Get Started Today &rarr;</button>
+                <button class="ds-cta-btn-outline">View All Plans</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         FOOTER — identical to homepage
+    ════════════════════════════════════ -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-main">
+            <div class="footer-container">
+
+                <!-- Brand column -->
+                <div class="footer-brand">
+                    <a href="/" aria-label="ICSDC Home">
+                        <img src="assets/images/main_logo.png" alt="ICSDC" width="117" class="footer-logo">
+                    </a>
+                    <address class="footer-address">
+                        <span>A108 Adam Street</span>
+                        <span>New York, NY 535022</span>
+                        <span>United States</span>
+                        <span class="footer-phone">Phone: +1 5589 55488 55</span>
+                        <span>Email: <a href="mailto:info@icsdc.com" class="footer-email-link">info@icsdc.com</a></span>
+                    </address>
+                    <div class="footer-social" aria-label="Social media links">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
+                            class="footer-social-link" aria-label="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="white"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+                            class="footer-social-link" aria-label="Twitter/X">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path
+                                    d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                            class="footer-social-link" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white"
+                                    stroke-width="1.5" />
+                                <circle cx="12" cy="12" r="4" stroke="white" stroke-width="1.5" />
+                                <circle cx="17.5" cy="6.5" r="1" fill="white" />
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                            class="footer-social-link" aria-label="LinkedIn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path
+                                    d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <circle cx="4" cy="4" r="2" stroke="white" stroke-width="1.5" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-link-group" aria-labelledby="footer-services">
+                    <h3 id="footer-services" class="footer-link-title">Services</h3>
+                    <ul>
+                        <li><a href="/services/dedicated-server" class="footer-link">Dedicated Server</a></li>
+                        <li><a href="/services/vps" class="footer-link">VPS Hosting</a></li>
+                        <li><a href="/services/cloud" class="footer-link">Cloud Hosting</a></li>
+                        <li><a href="/services/email" class="footer-link">Email Hosting</a></li>
+                        <li><a href="/backup-security" class="footer-link">Backup &amp; Security</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div class="footer-link-group" aria-labelledby="footer-company">
+                    <h3 id="footer-company" class="footer-link-title">Company</h3>
+                    <ul>
+                        <li><a href="/about" class="footer-link">About Us</a></li>
+                        <li><a href="/careers" class="footer-link">Careers</a></li>
+                        <li><a href="/resources/blog" class="footer-link">Blog</a></li>
+                        <li><a href="/press" class="footer-link">Press</a></li>
+                        <li><a href="/contact" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div class="footer-link-group" aria-labelledby="footer-support">
+                    <h3 id="footer-support" class="footer-link-title">Support</h3>
+                    <ul>
+                        <li><a href="/support" class="footer-link">Help Center</a></li>
+                        <li><a href="/resources/docs" class="footer-link">Documentation</a></li>
+                        <li><a href="/status" class="footer-link">System Status</a></li>
+                        <li><a href="/resources/case-studies" class="footer-link">Case Studies</a></li>
+                        <li><a href="/community" class="footer-link">Community</a></li>
+                        <li><a href="/migration" class="footer-link">Migration</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div class="footer-link-group" aria-labelledby="footer-legal">
+                    <h3 id="footer-legal" class="footer-link-title">Legal</h3>
+                    <ul>
+                        <li><a href="/privacy" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="/terms" class="footer-link">Terms of Service</a></li>
+                        <li><a href="/cookies" class="footer-link">Cookie Policy</a></li>
+                        <li><a href="/sla" class="footer-link">SLA</a></li>
+                        <li><a href="/gdpr" class="footer-link">GDPR</a></li>
+                        <li><a href="/acceptable-use" class="footer-link">Acceptable Use</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p id="ds-footer-year-text">&#169; Copyright <span id="ds-footer-year"></span> ICSDC. All Rights Reserved
+            </p>
+        </div>
+    </footer>
+
+    <!-- ════════════════════════════════════
+         SCROLL ANIMATION ENGINE
+         Identical IIFE to homepage polish
+    ════════════════════════════════════ -->
+    <script>
+        (function () {
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+            document.querySelectorAll('[data-animate], [data-stagger]').forEach(function (el) {
+                observer.observe(el);
+            });
+        })();
+    </script>
+
+    <!-- Strapi config (enables nav population via main.js) -->
+    <script>
+        STRAPI_URL = "http://localhost:1337";
+        TOKEN = "5e685bd788588b5db88df3d3d47ad9a446f82768a2514d7dce437f6dc10c872d61b83b91763e6ea54acb9f7d7aac432e1714eef2dd12d718aae5c3bbae246aa90a85d22938474559dd9327dc2f7c9114b06bfdbb4ce9daf5d4e8f45b7a608c7d80eea92ac9896b47238380007a7d592b3825db93c9f9e5fbdab95be79a2c8e6e";
+    </script>
+    <script src="assets/js/main.js" type="module"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/polish.js" defer></script>
+    <script src="assets/js/dedicated-server.js" defer></script>
+
+    <script>
+        // Footer year
+        (function () {
+            var el = document.getElementById('ds-footer-year');
+            if (el) el.textContent = new Date().getFullYear();
+        })();
+    </script>
+
+</body>
+
+</html>

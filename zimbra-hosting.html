@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Zimbra Hosting for Smarter Communication | ICSDC</title>
+    <meta name="description" content="ICSDC Zimbra Hosting — secure, high-performance email and collaboration suite with built-in calendar, chat, file sharing, and 24/7 expert support.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/cloud-hosting.css">
+    <style>.hidden { display: none; }</style>
+    <style>
+    .zimbra-eyebrow {
+      display:inline-flex; align-items:center; gap:8px;
+      background:linear-gradient(135deg,#d4380d 0%,#ff6b35 100%);
+      color:#fff; font-size:11px; font-weight:700; letter-spacing:.08em;
+      text-transform:uppercase; padding:5px 14px; border-radius:50px; margin-bottom:14px;
+    }
+    .zimbra-hero-visual {
+      width:100%; max-width:560px; aspect-ratio:4/3; border-radius:var(--radius-lg);
+      background:linear-gradient(135deg,#fff1ee 0%,#fff7f5 55%,#fef3f0 100%);
+      display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+      box-shadow:0 24px 64px rgba(212,56,13,.12),0 4px 16px rgba(0,0,0,.06);
+      animation:heroImageFloat 8s ease-in-out 1s infinite;
+    }
+    .zimbra-hero-visual svg { width:72%; height:72%; }
+    .zimbra-top-badge {
+      position:absolute; top:22px; left:22px; background:#fff;
+      border:1px solid rgba(212,56,13,.2); border-radius:12px; padding:8px 14px;
+      font-size:11px; font-weight:700; color:#d4380d;
+      box-shadow:0 4px 16px rgba(212,56,13,.12);
+      animation:cloud-badge-float 6s ease-in-out .2s infinite;
+    }
+    .zimbra-status-badge {
+      position:absolute; bottom:22px; right:22px; background:#fff;
+      border:1px solid rgba(212,56,13,.12); border-radius:12px; padding:10px 16px;
+      display:flex; align-items:center; gap:8px;
+      box-shadow:0 8px 24px rgba(212,56,13,.1);
+      animation:cloud-badge-float 5s ease-in-out .8s infinite;
+    }
+    .zimbra-dot { width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px rgba(34,197,94,.5); }
+    .zimbra-bt { font-size:12px; font-weight:700; color:var(--text-dark); }
+    .zimbra-bs { font-size:10px; color:var(--muted); }
+
+    /* Feature badge list */
+    .zimbra-features-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:32px;
+    }
+    @media(max-width:900px){ .zimbra-features-grid{ grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:580px){ .zimbra-features-grid{ grid-template-columns:1fr; } }
+    .zimbra-feat-badge {
+      background:#fff; border:1px solid rgba(212,56,13,.1); border-radius:10px;
+      padding:12px 16px; font-size:13px; color:var(--text); font-weight:500;
+      display:flex; align-items:center; gap:10px; box-shadow:var(--shadow-sm);
+      transition:all .2s;
+    }
+    .zimbra-feat-badge:hover { border-color:rgba(212,56,13,.25); box-shadow:var(--shadow-card); transform:translateY(-2px); }
+    .zimbra-feat-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:#d4380d; flex-shrink:0; }
+
+    /* Comparison table */
+    .zimbra-compare { width:100%; border-collapse:collapse; margin-top:32px; }
+    .zimbra-compare th { background:var(--blue); color:#fff; padding:14px 20px; text-align:left; font-size:14px; font-weight:700; }
+    .zimbra-compare th:first-child { border-radius:12px 0 0 0; }
+    .zimbra-compare th:last-child  { border-radius:0 12px 0 0; }
+    .zimbra-compare td { padding:12px 20px; font-size:13.5px; color:var(--text); border-bottom:1px solid var(--border); vertical-align:top; }
+    .zimbra-compare tr:nth-child(even) td { background:var(--bg-light); }
+    .zimbra-compare tr:last-child td:first-child { border-radius:0 0 0 12px; }
+    .zimbra-compare tr:last-child td:last-child  { border-radius:0 0 12px 0; }
+    .zimbra-check { color:#22c55e; font-weight:700; }
+    .zimbra-cross { color:#ef4444; font-weight:700; }
+
+    /* Migration steps */
+    .zimbra-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:36px; }
+    @media(max-width:860px){ .zimbra-steps{ grid-template-columns:1fr 1fr; } }
+    @media(max-width:580px){ .zimbra-steps{ grid-template-columns:1fr; } }
+    .zimbra-step {
+      background:#fff; border:1px solid rgba(26,86,219,.1); border-radius:14px;
+      padding:24px 20px; box-shadow:var(--shadow-card); position:relative;
+    }
+    .zimbra-step-num {
+      width:36px; height:36px; background:var(--blue); color:#fff; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; font-weight:800; font-size:15px;
+      margin-bottom:14px;
+    }
+    .zimbra-step h3 { font-size:15px; font-weight:700; color:var(--text-dark); margin-bottom:8px; }
+    .zimbra-step p  { font-size:13px; color:var(--muted); line-height:1.6; }
+    .zimbra-step-arrow {
+      position:absolute; top:50%; right:-14px; transform:translateY(-50%);
+      width:28px; height:28px; background:#eff6ff; border:1px solid rgba(26,86,219,.15);
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-size:12px; color:var(--blue); z-index:1;
+    }
+    @media(max-width:860px){ .zimbra-step-arrow{ display:none; } }
+  </style>
+</head>
+
+<body>
+
+    <!-- PAGE LOADER -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">Loading...</p>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- DROPDOWN -->
+    <div id="dropdown-wrap">
+        <div id="dropdown">
+            <div data-strapi-dd="sidebar" class="hidden" id="dd-sidebar"></div>
+            <div data-strapi-dd="flatLeft" class="hidden" id="dd-flat-left">
+                <div data-strapi-dd="flatIcon" class="dd-flat-icon"></div>
+                <div>
+                    <h3 data-strapi-dd="flatTitle"></h3>
+                    <p data-strapi-dd="flatDesc"></p>
+                </div>
+            </div>
+            <div id="dd-content">
+                <div id="dd-top-bar">
+                    <div data-strapi-dd="panelTitle" class="hidden" id="dd-panel-title"></div>
+                    <button class="dd-close" onclick="closeDropdown()">&#10005;</button>
+                </div>
+                <div data-strapi-dd="grid" id="dd-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo">
+                <img data-strapi="mainLogo" src="" alt="ICSDC logo" class="logo-icon">
+            </a>
+            <ul data-strapi-nav class="nav-links" id="nav-links"></ul>
+            <button class="btn-login desktop-login-btn">Login</button>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+            <ul data-strapi-nav-mobile class="mobile-nav-links" id="mobile-nav-links"></ul>
+            <button class="btn-login mobile-login-btn">Login</button>
+        </div>
+    </nav>
+
+<section class="hero-section">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="zimbra-eyebrow">&#9993; Zimbra Email Hosting</div>
+      <h1 class="hero-title">Advanced Zimbra Hosting for Smarter Communication Workflows</h1>
+      <p class="hero-sub">Designed for Businesses That Expect More from Their Email Hosting</p>
+      <p class="hero-desc">Experience fast, secure, and reliable communication with ICSDC's Zimbra Hosting — built for teams that depend on uninterrupted email, calendar, chat, and collaboration every day.</p>
+      <div class="hero-btns">
+        <button class="btn-primary">Get Started with Zimbra &rarr;</button>
+        <button class="btn-outline">Call +91 98109 58857</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="zimbra-hero-visual">
+        <div class="zimbra-top-badge">&#128274; Enterprise Email &amp; Collaboration</div>
+        <svg viewBox="0 0 300 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Email inbox UI -->
+          <rect x="20" y="20" width="260" height="180" rx="12" fill="#fff" stroke="rgba(212,56,13,0.1)" stroke-width="1"/>
+          <rect x="20" y="20" width="260" height="40" rx="12" fill="#d4380d"/>
+          <text x="40" y="45" font-size="13" fill="white" font-weight="700">&#9993; Zimbra Inbox</text>
+          <rect x="20" y="60" width="80" height="140" rx="0" fill="#fef9f8" stroke="rgba(212,56,13,0.08)" stroke-width="1"/>
+          <text x="32" y="82" font-size="11" fill="#d4380d" font-weight="600">Inbox</text>
+          <text x="32" y="100" font-size="11" fill="#94a3b8">Sent</text>
+          <text x="32" y="118" font-size="11" fill="#94a3b8">Drafts</text>
+          <text x="32" y="136" font-size="11" fill="#94a3b8">Calendar</text>
+          <text x="32" y="154" font-size="11" fill="#94a3b8">Contacts</text>
+          <text x="32" y="172" font-size="11" fill="#94a3b8">Tasks</text>
+          <!-- Mail list -->
+          <rect x="104" y="68" width="164" height="28" rx="6" fill="#fff3f0"/>
+          <rect x="110" y="74" width="100" height="6" rx="3" fill="#d4380d" opacity=".6"/>
+          <rect x="110" y="84" width="70" height="5" rx="2" fill="#f1f5f9"/>
+          <rect x="104" y="100" width="164" height="28" rx="6" fill="#fff"/>
+          <rect x="110" y="106" width="90" height="6" rx="3" fill="#0a1f44" opacity=".5"/>
+          <rect x="110" y="116" width="60" height="5" rx="2" fill="#f1f5f9"/>
+          <rect x="104" y="132" width="164" height="28" rx="6" fill="#fff"/>
+          <rect x="110" y="138" width="80" height="6" rx="3" fill="#0a1f44" opacity=".4"/>
+          <rect x="110" y="148" width="50" height="5" rx="2" fill="#f1f5f9"/>
+          <rect x="104" y="164" width="164" height="28" rx="6" fill="#fff"/>
+          <rect x="110" y="170" width="95" height="6" rx="3" fill="#0a1f44" opacity=".3"/>
+          <rect x="110" y="180" width="65" height="5" rx="2" fill="#f1f5f9"/>
+        </svg>
+        <div class="zimbra-status-badge">
+          <div class="zimbra-dot"></div>
+          <div><div class="zimbra-bt">Mail Delivery Active</div><div class="zimbra-bs">Zero Spam Guarantee</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ 4 PILLARS ════ -->
+<section class="why-us section">
+  <div class="container">
+    <div class="why-grid" data-stagger>
+      <div class="why-card"><div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Secure Email Environment</h3><p>Advanced anti-spam, anti-virus, and encrypted communication for enterprise-grade reliability and peace of mind.</p></div>
+      <div class="why-card"><div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><h3>High-Performance Mail Delivery</h3><p>Fast syncing, smooth access, and optimized server response for seamless daily communication workflows.</p></div>
+      <div class="why-card"><div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div><h3>Easy Management &amp; Control</h3><p>Simple admin tools for user accounts, policies, storage, and mailbox settings — managed from a central dashboard.</p></div>
+      <div class="why-card"><div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><h3>Collaboration-Ready Features</h3><p>Built-in calendars, contacts, tasks, chat, and file sharing for unified team productivity in one platform.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ FULL FEATURE LIST ════ -->
+<section id="features" class="section cloud-power-section">
+  <div class="container">
+    <span class="cloud-section-label" data-animate="fade-up">Features</span>
+    <h2 class="title" data-animate="fade-up">Everything Your Team Needs for Reliable Email Hosting</h2>
+    <p class="subtitle" data-animate="fade-up">A complete communication and collaboration suite — from email to document co-editing — all in one platform.</p>
+    <div class="zimbra-features-grid" data-stagger>
+      <div class="zimbra-feat-badge">Modern AJAX-Powered Email Experience</div>
+      <div class="zimbra-feat-badge">Personalizable Interface with Your Branding</div>
+      <div class="zimbra-feat-badge">Zimbra Desktop App for Offline Access</div>
+      <div class="zimbra-feat-badge">Create &amp; Manage Distribution Lists</div>
+      <div class="zimbra-feat-badge">Full POP &amp; IMAP Email Compatibility</div>
+      <div class="zimbra-feat-badge">Seamless Synchronization with Outlook</div>
+      <div class="zimbra-feat-badge">Advanced File, Mail &amp; Calendar Sharing</div>
+      <div class="zimbra-feat-badge">Built-In Instant Messaging for Teams</div>
+      <div class="zimbra-feat-badge">Powerful Search Across Emails &amp; Files</div>
+      <div class="zimbra-feat-badge">Flexible Hybrid Deployment Support</div>
+      <div class="zimbra-feat-badge">Mobile-Ready Contacts &amp; Calendar Sync</div>
+      <div class="zimbra-feat-badge">Optimized AJAX Mobile Webmail Interface</div>
+      <div class="zimbra-feat-badge">Easy-to-Use Web Admin Console</div>
+      <div class="zimbra-feat-badge">Role-Based Admin Access Levels</div>
+      <div class="zimbra-feat-badge">Integrated Anti-Spam &amp; Anti-Virus</div>
+      <div class="zimbra-feat-badge">Works with LDAP &amp; Active Directory</div>
+      <div class="zimbra-feat-badge">Email Archiving with e-Discovery Tools</div>
+      <div class="zimbra-feat-badge">Support for Multiple Domains</div>
+      <div class="zimbra-feat-badge">Round-the-Clock Technical Support (24/7)</div>
+      <div class="zimbra-feat-badge">High-Availability Ready Infrastructure</div>
+      <div class="zimbra-feat-badge">Central Dashboard for System Monitoring</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ WHY CHOOSE ICSDC (8 reasons) ════ -->
+<section id="why-us" class="section">
+  <div class="container">
+    <span class="cloud-section-label" data-animate="fade-up">Why ICSDC</span>
+    <h2 class="title" data-animate="fade-up">Why Choose ICSDC Zimbra Hosting?</h2>
+    <p class="subtitle" data-animate="fade-up">A Zimbra hosting experience built on stability, security, and real-world performance — with expert support that actually knows the platform.</p>
+    <div class="cloud-power-grid" data-stagger>
+      <div class="cloud-power-card"><div class="cloud-power-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Modern &amp; Responsive Interface</h3><p>Clean interface that adapts beautifully to desktops, mobiles, and browsers. Personalize the look and feel to match your brand identity.</p></div>
+      <div class="cloud-power-card"><div class="cloud-power-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>Powerful 3rd-Party Integrations</h3><p>Connect your Zimbra environment with Slack, Dropbox, Zoom, and more. ICSDC ensures integrations are configured for seamless productivity.</p></div>
+      <div class="cloud-power-card"><div class="cloud-power-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Secure Cloud Hosting Infrastructure</h3><p>Your Zimbra environment runs on ICSDC's hardened cloud infrastructure with strong privacy controls and top-tier data protection.</p></div>
+      <div class="cloud-power-card"><div class="cloud-power-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3>Zimbra Connect — Built-In Communication</h3><p>Chat, call, and collaborate without external apps. Team chat, 1:1 and group video calls, and screen sharing built right in.</p></div>
+      <div class="cloud-power-card"><div class="cloud-power-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg></div><h3>Z Drive — Next-Gen File Management</h3><p>Store, sync, and share files through integrated Z Drive. Everything is cloud-backed and works securely across all devices.</p></div>
+      <div class="cloud-power-card"><div class="cloud-power-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></div><h3>Z Docs — Collaborate Instantly</h3><p>Create documents, spreadsheets, and presentations inside your mailbox. Multiple users can co-edit in real time.</p></div>
+      <div class="cloud-power-card"><div class="cloud-power-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><h3>Mobile Sync That Just Works</h3><p>Exchange ActiveSync compatibility keeps mails, calendars, contacts, and shared items synchronized across every mobile device.</p></div>
+      <div class="cloud-power-card"><div class="cloud-power-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><h3>Switchable Interface Modes</h3><p>Users can instantly switch between Modern UI and Classic UI — making adoption easy for both tech-savvy users and those who prefer familiar layouts.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ CTA BAND ════ -->
+<section class="cloud-cta-band">
+  <div class="cloud-cta-inner">
+    <h2>Get the Right Zimbra Hosting Plan for Your Team</h2>
+    <p>From small teams to enterprise organizations — ICSDC's Zimbra plans scale with your communication needs.</p>
+    <div class="cloud-cta-btns">
+      <button class="cloud-cta-btn-primary">View Zimbra Plans &rarr;</button>
+      <button class="cloud-cta-btn-outline">Call +91 98109 58857</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ MIGRATION STEPS ════ -->
+<section id="migration" class="section">
+  <div class="container">
+    <span class="cloud-section-label" data-animate="fade-up">Migration</span>
+    <h2 class="title" data-animate="fade-up">How ICSDC Helps You Move from Exchange or Google Workspace to Zimbra</h2>
+    <p class="subtitle" data-animate="fade-up">Migrating to Zimbra is simple with ICSDC. Our team combines Zimbra's proven tools with deep cloud expertise for a smooth, zero-disruption transition.</p>
+    <div class="zimbra-steps" data-stagger>
+      <div class="zimbra-step"><div class="zimbra-step-num">1</div><h3>Review Your Current Setup</h3><p>We evaluate your existing platform — Exchange, Office 365, or Google Workspace — to identify the right migration strategy for your team.</p><div class="zimbra-step-arrow">&#8594;</div></div>
+      <div class="zimbra-step"><div class="zimbra-step-num">2</div><h3>Pick the Best Zimbra Edition</h3><p>ICSDC helps you choose between Zimbra Open Source or Network Edition based on your collaboration needs and scale.</p><div class="zimbra-step-arrow">&#8594;</div></div>
+      <div class="zimbra-step"><div class="zimbra-step-num">3</div><h3>Prepare Your Environment</h3><p>Your Zimbra server is deployed and configured on ICSDC cloud with DNS and security settings ready before migration begins.</p><div class="zimbra-step-arrow">&#8594;</div></div>
+      <div class="zimbra-step"><div class="zimbra-step-num">4</div><h3>Use the Right Migration Tools</h3><p>Exchange/O365: Zimbra Migration Wizard. Google Workspace: Google migration utilities + IMAPSync for complete data transfer.</p><div class="zimbra-step-arrow">&#8594;</div></div>
+      <div class="zimbra-step"><div class="zimbra-step-num">5</div><h3>Run a Pilot Migration</h3><p>We test a few user accounts to confirm accuracy and stability before the full rollout — zero guesswork.</p><div class="zimbra-step-arrow">&#8594;</div></div>
+      <div class="zimbra-step"><div class="zimbra-step-num">6</div><h3>Complete the Full Migration</h3><p>All accounts migrated with minimal downtime, followed by post-migration checks to ensure everything runs smoothly from day one.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ ZIMBRA VS MICROSOFT 365 ════ -->
+<section id="comparison" class="section cloud-power-section">
+  <div class="container">
+    <span class="cloud-section-label" data-animate="fade-up">Comparison</span>
+    <h2 class="title" data-animate="fade-up">Compare Zimbra vs Microsoft 365</h2>
+    <p class="subtitle" data-animate="fade-up">See why Zimbra on ICSDC gives businesses more control, better privacy, and lower total cost of ownership.</p>
+    <div style="overflow-x:auto;" data-animate="fade-up">
+      <table class="zimbra-compare">
+        <thead>
+          <tr><th>Feature / Capability</th><th>Zimbra (ICSDC Hosted)</th><th>Microsoft 365</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Email Hosting</td><td class="zimbra-check">&#10003; Robust, secure mailboxes</td><td>&#10003; Enterprise-grade mail</td></tr>
+          <tr><td>Cost Efficiency</td><td class="zimbra-check">&#10003; More affordable for teams</td><td class="zimbra-cross">&#10007; Higher recurring costs</td></tr>
+          <tr><td>Data Privacy &amp; Local Hosting</td><td class="zimbra-check">&#10003; Hosted on ICSDC's secure infrastructure</td><td class="zimbra-cross">&#10007; Data on Microsoft global servers</td></tr>
+          <tr><td>Customisation &amp; Control</td><td class="zimbra-check">&#10003; Fully customizable UI, branding &amp; admin</td><td class="zimbra-cross">&#10007; Limited customization options</td></tr>
+          <tr><td>Collaboration Tools</td><td class="zimbra-check">&#10003; Zimbra Chat, Drive, Docs, Calendar</td><td>&#10003; Teams, OneDrive, Office apps</td></tr>
+          <tr><td>Vendor Lock-in</td><td class="zimbra-check">&#10003; No lock-in; flexible ecosystem</td><td class="zimbra-cross">&#10007; Strong ecosystem lock-in</td></tr>
+          <tr><td>Admin Flexibility</td><td class="zimbra-check">&#10003; Greater control over mailflow &amp; policies</td><td class="zimbra-cross">&#10007; More restricted admin freedoms</td></tr>
+          <tr><td>Licensing Model</td><td class="zimbra-check">&#10003; Simple per-user plans</td><td class="zimbra-cross">&#10007; Complex tier-based licensing</td></tr>
+          <tr><td>Best For</td><td><strong>Businesses wanting privacy, control &amp; lower cost</strong></td><td>Businesses tied heavily to MS Office ecosystem</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ TESTIMONIALS ════ -->
+<section class="testi-section" id="testimonials">
+  <div class="testi-container">
+    <h2 class="testi-title" data-animate="fade-up">Read Client Stories About ICSDC Zimbra Hosting</h2>
+    <div class="testi-scroll-viewport">
+      <div class="testi-grid" role="list">
+        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"ICSDC's Zimbra Hosting made our email system far more stable and organized. Daily communication became smoother, and mailbox performance improved instantly from day one."</p><span class="testi-author">Rachit Malhotra — Communication Manager, Private Organization</span></div>
+        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"The migration experience was effortless and surprisingly quick. Their team handled everything smoothly, and our users didn't face any downtime during the entire switch."</p><span class="testi-author">Simran Kaur — IT Administrator, Corporate Office</span></div>
+        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"We finally have a reliable email setup with zero spam issues. The difference in mailbox cleanliness and speed is noticeable every single day for our entire team."</p><span class="testi-author">Megha Sharma — Senior Coordinator, Professional Services Group</span></div>
+        <div class="testi-card" role="listitem"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-quote">"ICSDC's Zimbra platform feels secure, fast, and easy for our entire staff. Accessing email across devices has become completely seamless for all our remote teams."</p><span class="testi-author">Naina Verma — Administrative Head, Corporate Department</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ FAQ ════ -->
+<section class="faq-section" id="faq">
+  <div class="faq-container">
+    <div class="faq-col">
+      <h2 class="faq-title" data-animate="fade-up">FAQs About ICSDC Zimbra Hosting</h2>
+      <dl class="faq-accordions">
+        <div class="faq-item"><dt class="faq-question">What is Zimbra Hosting and how does it work?</dt><dd class="faq-answer">Zimbra Hosting provides a cloud-based email and collaboration suite where your mailboxes, calendars, contacts, and files are hosted on ICSDC's secure infrastructure with full admin control and enterprise-grade performance.</dd></div>
+        <div class="faq-item"><dt class="faq-question">Is Zimbra better than traditional email hosting solutions?</dt><dd class="faq-answer">Yes. Zimbra offers built-in collaboration tools like shared calendars, tasks, chat, and file management — features not commonly found in standard email hosting. It's a complete communication platform, not just email.</dd></div>
+        <div class="faq-item"><dt class="faq-question">Does Zimbra support Outlook, Apple Mail, and mobile apps?</dt><dd class="faq-answer">Zimbra works seamlessly with Outlook, Apple Mail, Thunderbird, Android, and iOS devices, ensuring smooth access and synchronization across all platforms and clients.</dd></div>
+        <div class="faq-item"><dt class="faq-question">How secure is Zimbra Email Hosting at ICSDC?</dt><dd class="faq-answer">Your mail environment is protected through anti-spam filtering, anti-virus scanning, encrypted connections, firewalls, and ICSDC's hardened cloud infrastructure with continuous monitoring.</dd></div>
+        <div class="faq-item"><dt class="faq-question">Can I migrate my existing email data to Zimbra?</dt><dd class="faq-answer">Yes. ICSDC provides assisted migration for emails, contacts, calendars, and files from platforms like cPanel, Google Workspace, Exchange, and Microsoft 365 with minimal downtime.</dd></div>
+        <div class="faq-item"><dt class="faq-question">How much storage can I get for my Zimbra mailboxes?</dt><dd class="faq-answer">Storage is fully scalable. Start with a base plan and increase mailbox space or overall storage instantly as your team grows — no downtime required.</dd></div>
+        <div class="faq-item"><dt class="faq-question">Does ICSDC provide admin-level controls for Zimbra?</dt><dd class="faq-answer">Yes. Administrators get full access to manage users, set policies, control storage, create groups, and enforce security rules from a centralized web admin console.</dd></div>
+        <div class="faq-item"><dt class="faq-question">How reliable is the uptime on ICSDC Zimbra Hosting?</dt><dd class="faq-answer">ICSDC operates on high-availability infrastructure with redundant systems, ensuring stable uptime and uninterrupted email delivery for mission-critical business communication.</dd></div>
+      </dl>
+    </div>
+    <div class="faq-contact-card" data-animate="fade-left">
+      <h3 class="faq-contact-title">Chat with Our Zimbra Experts</h3>
+      <p class="faq-contact-desc">Our India-based team specializes in Zimbra deployments, migrations from Exchange and Google Workspace, and ongoing email infrastructure management. Available 24/7.</p>
+      <a href="/contact" class="faq-contact-btn">Talk to an Expert <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════ FINAL CTA ════ -->
+<section class="cloud-cta-band cloud-cta-dark">
+  <div class="cloud-cta-inner">
+    <h2>Power Your Communication with ICSDC Zimbra Hosting</h2>
+    <p>Secure. Scalable. Feature-rich. Your entire team's communication platform in one place.</p>
+    <div class="cloud-cta-btns">
+      <button class="cloud-cta-btn-primary">Get Started with Zimbra &rarr;</button>
+      <button class="cloud-cta-btn-outline">Call +91 98109 58857</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-main">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <a href="/" aria-label="ICSDC Home">
+                        <img src="assets/images/main_logo.png" alt="ICSDC" width="117" class="footer-logo">
+                    </a>
+                    <address class="footer-address">
+                        <span>A108 Adam Street</span>
+                        <span>New York, NY 535022</span>
+                        <span>United States</span>
+                        <span class="footer-phone">Phone: +1 5589 55488 55</span>
+                        <span>Email: <a href="/cdn-cgi/l/email-protection#c9a0a7afa689a0aabaadaae7aaa6a4" class="footer-email-link"><span class="__cf_email__" data-cfemail="741d1a121b341d170710175a171b19">[email&#160;protected]</span></a></span>
+                    </address>
+                    <div class="footer-social" aria-label="Social media links">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Twitter/X"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="white" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg></a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="white" stroke-width="1.5"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-link-group" aria-labelledby="footer-services">
+                    <h3 id="footer-services" class="footer-link-title">Services</h3>
+                    <ul>
+                        <li><a href="/services/dedicated-server" class="footer-link">Dedicated Server</a></li>
+                        <li><a href="/services/vps" class="footer-link">VPS Hosting</a></li>
+                        <li><a href="/services/cloud" class="footer-link">Cloud Hosting</a></li>
+                        <li><a href="/services/email" class="footer-link">Email Hosting</a></li>
+                        <li><a href="/backup-security" class="footer-link">Backup &amp; Security</a></li>
+                    </ul>
+                </div>
+                <div class="footer-link-group" aria-labelledby="footer-company">
+                    <h3 id="footer-company" class="footer-link-title">Company</h3>
+                    <ul>
+                        <li><a href="/about" class="footer-link">About Us</a></li>
+                        <li><a href="/careers" class="footer-link">Careers</a></li>
+                        <li><a href="/resources/blog" class="footer-link">Blog</a></li>
+                        <li><a href="/press" class="footer-link">Press</a></li>
+                        <li><a href="/contact" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-link-group" aria-labelledby="footer-support">
+                    <h3 id="footer-support" class="footer-link-title">Support</h3>
+                    <ul>
+                        <li><a href="/support" class="footer-link">Help Center</a></li>
+                        <li><a href="/resources/docs" class="footer-link">Documentation</a></li>
+                        <li><a href="/status" class="footer-link">System Status</a></li>
+                        <li><a href="/resources/case-studies" class="footer-link">Case Studies</a></li>
+                        <li><a href="/community" class="footer-link">Community</a></li>
+                        <li><a href="/migration" class="footer-link">Migration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-link-group" aria-labelledby="footer-legal">
+                    <h3 id="footer-legal" class="footer-link-title">Legal</h3>
+                    <ul>
+                        <li><a href="/privacy" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="/terms" class="footer-link">Terms of Service</a></li>
+                        <li><a href="/cookies" class="footer-link">Cookie Policy</a></li>
+                        <li><a href="/sla" class="footer-link">SLA</a></li>
+                        <li><a href="/gdpr" class="footer-link">GDPR</a></li>
+                        <li><a href="/acceptable-use" class="footer-link">Acceptable Use</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&#169; Copyright <span id="cloud-footer-year"></span> ICSDC. All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- SCROLL ANIMATION ENGINE -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        (function () {
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('[data-animate], [data-stagger]').forEach(function (el) {
+                observer.observe(el);
+            });
+        })();
+    </script>
+
+    <!-- Strapi config -->
+    <script>
+        STRAPI_URL = "http://localhost:1337";
+        TOKEN = "5e685bd788588b5db88df3d3d47ad9a446f82768a2514d7dce437f6dc10c872d61b83b91763e6ea54acb9f7d7aac432e1714eef2dd12d718aae5c3bbae246aa90a85d22938474559dd9327dc2f7c9114b06bfdbb4ce9daf5d4e8f45b7a608c7d80eea92ac9896b47238380007a7d592b3825db93c9f9e5fbdab95be79a2c8e6e";
+    </script>
+    <script src="assets/js/main.js" type="module"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/polish.js" defer></script>
+
+
+</body>
+</html>

@@ -33,6 +33,283 @@
 /* ══════════════════════════════════════
    ISO SECTION
 ══════════════════════════════════════ */
+/* PARTNERSHIPS SECTION */
+.best-cloud-services {
+    padding: 88px 0;
+    background:
+        radial-gradient(circle at top right, rgba(30, 94, 255, 0.12), transparent 32%),
+        linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+}
+
+.best-cloud-services-container {
+    width: 100%;
+    max-width: var(--c-container);
+    margin: 0 auto;
+    padding: 0 var(--c-px);
+    text-align: center;
+}
+
+.best-cloud-services-title {
+    max-width: 920px;
+    margin: 0 auto 18px;
+    font-size: clamp(28px, 3.2vw, 42px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--c-blue);
+}
+
+.best-cloud-services-subtitle {
+    max-width: 760px;
+    margin: 0 auto 36px;
+    font-size: clamp(15px, 1.4vw, 18px);
+    line-height: 1.7;
+    color: var(--c-text-mid);
+}
+
+.best-cloud-services-btns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    align-items: stretch;
+}
+
+.best-cloud-services-btns .feature-cards {
+    min-height: 76px;
+    padding: 20px 24px;
+    border: 1px solid rgba(26, 86, 219, 0.14);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: var(--c-shadow-card);
+}
+
+.best-cloud-services-btns .feature-cards:hover {
+    border-color: rgba(26, 86, 219, 0.28);
+    background: #fff;
+    box-shadow: var(--c-shadow-card-hover);
+}
+
+.business-needs-cloud {
+    padding: 80px 0 88px;
+    background: #efefef;
+}
+
+.business-needs-cloud-inner {
+    width: 100%;
+    max-width: var(--c-container);
+    margin: 0 auto;
+    padding: 0 var(--c-px);
+    display: grid;
+    grid-template-columns: minmax(420px, 0.92fr) minmax(520px, 1.08fr);
+    gap: clamp(40px, 6vw, 108px);
+    align-items: center;
+}
+
+.business-needs-visual {
+    display: grid;
+    grid-template-columns: minmax(120px, 190px) minmax(260px, 1fr);
+    align-items: start;
+    gap: 10px;
+}
+
+.business-needs-labels {
+    list-style: none;
+    padding: 78px 0 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+    align-items: flex-end;
+}
+
+.business-needs-label {
+    max-width: 170px;
+    font-size: clamp(20px, 1.65vw, 26px);
+    font-weight: 500;
+    line-height: 1.15;
+    text-align: right;
+    color: #111111;
+    letter-spacing: -0.02em;
+}
+
+.business-needs-label span {
+    display: block;
+}
+
+.business-needs-image-wrap {
+    width: 100%;
+    max-width: 700px;
+}
+
+.business-needs-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.business-needs-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.business-needs-title {
+    max-width: 760px;
+    margin: 0 0 18px;
+    font-size: clamp(34px, 3.5vw, 58px);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    color: var(--c-blue);
+}
+
+.business-needs-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.business-needs-item {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 28px;
+    align-items: center;
+    padding: 26px 0;
+    border-bottom: 1.5px solid rgba(26, 86, 219, 0.82);
+}
+
+.business-needs-icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: #d7e3f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #141414;
+}
+
+.business-needs-icon svg {
+    width: 50px;
+    height: 50px;
+}
+
+.business-needs-copy h3 {
+    margin: 0 0 6px;
+    font-size: clamp(22px, 1.8vw, 32px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: #555555;
+}
+
+.business-needs-copy p {
+    margin: 0;
+    font-size: clamp(18px, 1.45vw, 24px);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: #616161;
+}
+
+@media (max-width: 900px) {
+    .best-cloud-services {
+        padding: 72px 0;
+    }
+
+    .best-cloud-services-btns {
+        grid-template-columns: 1fr;
+    }
+
+    .business-needs-cloud {
+        padding: 72px 0;
+    }
+
+    .business-needs-cloud-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .business-needs-visual {
+        max-width: 760px;
+        margin: 0 auto;
+    }
+
+    .business-needs-title {
+        max-width: 640px;
+    }
+}
+
+@media (max-width: 640px) {
+    .best-cloud-services-title {
+        font-size: 28px;
+    }
+
+    .best-cloud-services-subtitle {
+        margin-bottom: 28px;
+    }
+
+    .best-cloud-services-btns {
+        gap: 14px;
+    }
+
+    .best-cloud-services-btns .feature-cards {
+        min-height: 68px;
+        padding: 18px 16px;
+    }
+
+    .business-needs-cloud {
+        padding: 56px 0 64px;
+    }
+
+    .business-needs-visual {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .business-needs-labels {
+        padding-top: 0;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .business-needs-label {
+        max-width: none;
+        text-align: left;
+        font-size: 20px;
+    }
+
+    .business-needs-image-wrap {
+        max-width: 520px;
+    }
+
+    .business-needs-title {
+        font-size: 30px;
+    }
+
+    .business-needs-item {
+        grid-template-columns: 72px 1fr;
+        gap: 16px;
+        padding: 22px 0;
+    }
+
+    .business-needs-icon {
+        width: 72px;
+        height: 72px;
+    }
+
+    .business-needs-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .business-needs-copy h3 {
+        font-size: 22px;
+    }
+
+    .business-needs-copy p {
+        font-size: 18px;
+        line-height: 1.45;
+    }
+}
+
 .iso-section {
     background: var(--c-blue);
     min-height: 630px;

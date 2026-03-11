@@ -54,9 +54,7 @@ export function getGlobal() {
     return fetchAPI(
         "/api/global" +
         "?populate[contactInfo]=*" +
-        "&populate[footer][populate][socialLinks]=*" +
-        "&populate[footer][populate][linkGroups][populate]=links" +
-        "&populate[footer][populate][logo]=*"
+        "&populate[footer][populate]=*"
     );
 }
 
@@ -106,9 +104,9 @@ export async function fetchAllPageData() {
         logoData,
         menuData,
         whyUsData,
-        // whoWeAreData,
+        whoWeAreData,
         // lessComplexityData,
-        // globalData,
+        globalData,
         testimonialData,
         faqData,
         cloudServicesData,
@@ -117,9 +115,9 @@ export async function fetchAllPageData() {
         getMainLogo(),
         getNavigation(),
         getWhyUs(),
-        // getWhoWeAre(),
+        getWhoWeAre(),
         // getLessComplexity(),
-        // getGlobal(),
+        getGlobal(),
         getTestimonials(),
         getFaqItems(),
         getCloudServices(),
@@ -132,7 +130,7 @@ export async function fetchAllPageData() {
         whyUsData,
         // whoWeAreData,
         // lessComplexityData,
-        // globalData,
+        globalData,
         testimonialData,
         faqData,
         cloudServicesData,
