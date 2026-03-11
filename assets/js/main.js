@@ -50,6 +50,34 @@ const LOCAL_DATA = {
         { title: "DDoS Protection", description: "Enterprise-grade mitigation absorbing multi-Tbps attacks.", svgIcon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', position: "bottom-left", animationDelay: "2.4s" },
         { title: "24×7 Support", description: "Round-the-clock certified cloud architects ready to resolve issues.", svgIcon: '<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>', position: "bottom-right", animationDelay: "3.0s" },
     ],
+    navMenus: [
+        {
+            id: "fallback-hosting",
+            label: "Hosting",
+            icon: "☁️",
+            desc: "Cloud and hosting plans built for scale.",
+            cols: 2,
+            items: [
+                { icon: "☁️", title: "Cloud Hosting", subtext: "Managed cloud hosting", url: "/cloud-hosting.html" },
+                { icon: "🧩", title: "Shared Hosting", subtext: "Affordable starter hosting", url: "/shared-hosting.html" },
+                { icon: "⚙️", title: "VPS Hosting", subtext: "Root access VPS nodes", url: "/vps-hosting.html" },
+            ],
+            sections: [],
+        },
+        {
+            id: "fallback-servers",
+            label: "Servers",
+            icon: "🖥️",
+            desc: "Dedicated and specialized server options.",
+            cols: 2,
+            items: [
+                { icon: "🖥️", title: "Dedicated Server", subtext: "Single-tenant performance", url: "/dedicated-server.html" },
+                { icon: "🪟", title: "Windows Cloud", subtext: "Windows cloud workloads", url: "/windows-cloud-hosting.html" },
+                { icon: "📧", title: "Zimbra Hosting", subtext: "Email + collaboration hosting", url: "/zimbra-hosting.html" },
+            ],
+            sections: [],
+        },
+    ],
     industryValidated: {
         heading: "Industry-Leading Excellence, Validated",
         paragraph: "ICSDC servers operate across multiple global regions with dedicated deployment points in India (Noida & Mumbai) for unmatched speed and reliability.",
@@ -266,9 +294,11 @@ function renderContactInfo(globalData) {
 //  RENDER: NAV + DROPDOWN (unchanged from original)
 // ══════════════════════════════════════════════════════════
 function initNav(menuData) {
-    const CMS_MENUS = (menuData?.data?.menus ?? []).map(menu => ({
+    const sourceMenus = menuData?.data?.menus?.length ? menuData.data.menus : LOCAL_DATA.navMenus;
+
+    const CMS_MENUS = sourceMenus.map(menu => ({
         id: String(menu.id),
-        label: menu.lebel,
+        label: menu.lebel ?? menu.label,
         icon: menu.icon,
         desc: menu.desc,
         cols: menu.cols,
@@ -280,7 +310,7 @@ function initNav(menuData) {
         })),
         sections: (menu.sections || []).map(sec => ({
             id: String(sec.id),
-            label: sec.lebel,
+            label: sec.lebel ?? sec.label,
             icon: sec.icon,
             items: (sec.items || []).map(item => ({
                 icon: item.icon,
@@ -302,6 +332,7 @@ function initNav(menuData) {
     }
 
     document.querySelectorAll("[data-strapi-nav]").forEach(navLinks => {
+        navLinks.innerHTML = "";
         CMS_MENUS.forEach(menu => {
             const li = document.createElement("li");
             li.className = "nav-item";
@@ -311,6 +342,7 @@ function initNav(menuData) {
     });
 
     document.querySelectorAll("[data-strapi-nav-mobile]").forEach(mobileNav => {
+        mobileNav.innerHTML = "";
         CMS_MENUS.forEach(menu => {
             const li = document.createElement("li");
             li.className = "nav-item";
@@ -447,6 +479,10 @@ function initHamburger() {
 // ══════════════════════════════════════════════════════════
 async function init() {
     showLoader();
+
+    // Fail-safe: never keep the loader open forever.
+    const loaderFailsafe = setTimeout(hideLoader, 12000);
+
     try {
         const {
             heroData,
@@ -471,6 +507,7 @@ async function init() {
     } catch (err) {
         console.error("[main.js] Strapi fetch failed — rendering with local fallback data:", err);
         renderHeroAndLogo(null, null);
+        initNav(null);
         renderWhyUs(null);
         // renderWhoWeAre(null);
         // renderLessComplexity(null);
@@ -478,6 +515,7 @@ async function init() {
         renderIndustryValidated(null);
         renderContactInfo(null);
     } finally {
+        clearTimeout(loaderFailsafe);
         hideLoader();
     }
 

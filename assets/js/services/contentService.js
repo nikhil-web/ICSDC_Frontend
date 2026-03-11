@@ -99,18 +99,7 @@ export function getCloudServices() {
  *   const { heroData, testimonialData, faqData, ... } = await fetchAllPageData();
  */
 export async function fetchAllPageData() {
-    const [
-        heroData,
-        logoData,
-        menuData,
-        whyUsData,
-        whoWeAreData,
-        // lessComplexityData,
-        globalData,
-        testimonialData,
-        faqData,
-        cloudServicesData,
-    ] = await Promise.all([
+    const requests = [
         getHeroSection(),
         getMainLogo(),
         getNavigation(),
@@ -121,18 +110,26 @@ export async function fetchAllPageData() {
         getTestimonials(),
         getFaqItems(),
         getCloudServices(),
-    ]);
+    ];
+
+    const settled = await Promise.allSettled(requests);
+    settled.forEach((result, index) => {
+        if (result.status === "rejected") {
+            console.warn(`[contentService] Request ${index} failed:`, result.reason?.message ?? result.reason);
+        }
+    });
+    const pick = index => (settled[index]?.status === "fulfilled" ? settled[index].value : null);
 
     return {
-        heroData,
-        logoData,
-        menuData,
-        whyUsData,
-        // whoWeAreData,
+        heroData: pick(0),
+        logoData: pick(1),
+        menuData: pick(2),
+        whyUsData: pick(3),
+        // whoWeAreData: pick(4),
         // lessComplexityData,
-        globalData,
-        testimonialData,
-        faqData,
-        cloudServicesData,
+        globalData: pick(5),
+        testimonialData: pick(6),
+        faqData: pick(7),
+        cloudServicesData: pick(8),
     };
 }
