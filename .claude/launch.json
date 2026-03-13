@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "live-server",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["-e", "require('child_process').execSync('npx -y live-server --port=3000 --no-browser \"C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Responsive FE\\\\ICSDC_Frontend - Copy\"', {stdio:'inherit'})"],
+      "port": 3000
+    },
+    {
+      "name": "python-http",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8000", "-d", "C:\\Users\\saket\\OneDrive\\Desktop\\ICSDC Responsive FE\\ICSDC_Frontend - Copy"],
+      "port": 8000
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E '\\\\.\\(html|css|js|md\\)$')",
+      "Bash(wc -l \"C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Responsive FE\\\\ICSDC_Frontend - Copy\\\\assets\\\\css\"/*.css)",
+      "Bash(wc -l \"C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Responsive FE\\\\ICSDC_Frontend - Copy\\\\assets\\\\js\"/*.js)",
+      "Bash(grep -E \"\\\\.js$\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(where npx.cmd)",
+      "Read(//c/Program Files/nodejs/**)",
+      "Bash(npm list:*)",
+      "Bash(npx --version)"
+    ]
+  }
+}
