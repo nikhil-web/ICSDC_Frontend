@@ -9,7 +9,13 @@
       "Bash(where npx.cmd)",
       "Read(//c/Program Files/nodejs/**)",
       "Bash(npm list:*)",
-      "Bash(npx --version)"
+      "Bash(npx --version)",
+      "Bash(MAIN=\"C:/Users/saket/OneDrive/Desktop/ICSDC Responsive FE/ICSDC_Frontend - Copy\")",
+      "Bash(WT=\"C:/Users/saket/OneDrive/Desktop/ICSDC Responsive FE/ICSDC_Frontend - Copy/.claude/worktrees/trusting-bartik\")",
+      "Bash(cp -r \"$MAIN\"/assets \"$WT\"/)",
+      "Bash(cp \"$MAIN\"/*.html \"$WT\"/)",
+      "Bash(cp \"$MAIN\"/IMPROVEMENT_RECOMMENDATIONS.md \"$WT\"/)",
+      "Read(//c/Users/saket/OneDrive/Desktop/ICSDC Responsive FE/ICSDC_Frontend - Copy/.claude/worktrees/trusting-bartik/**)"
     ]
   }
 }

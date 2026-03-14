@@ -4,13 +4,13 @@
     {
       "name": "live-server",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["-e", "require('child_process').execSync('npx -y live-server --port=3000 --no-browser \"C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Responsive FE\\\\ICSDC_Frontend - Copy\"', {stdio:'inherit'})"],
+      "runtimeArgs": ["-e", "require('child_process').execSync('npx -y live-server --port=3000 --no-browser \"C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Responsive FE\\\\ICSDC_Frontend - Copy\\\\.claude\\\\worktrees\\\\trusting-bartik\"', {stdio:'inherit'})"],
       "port": 3000
     },
     {
       "name": "python-http",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8000", "-d", "C:\\Users\\saket\\OneDrive\\Desktop\\ICSDC Responsive FE\\ICSDC_Frontend - Copy"],
+      "runtimeArgs": ["-m", "http.server", "8000", "-d", "C:\\Users\\saket\\OneDrive\\Desktop\\ICSDC Responsive FE\\ICSDC_Frontend - Copy\\.claude\\worktrees\\trusting-bartik"],
       "port": 8000
     }
   ]
