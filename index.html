@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICSDC - Scalable Fortified Cloud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+
+<body>
+
+    <!-- ═══ SHARED COMPONENTS (loaded via component-loader.js) ═══ -->
+    <div data-component="page-loader"></div>
+    <div class="overlay" id="overlay"></div>
+    <div data-component="dropdown"></div>
+    <div data-component="navbar"></div>
+
+    <!-- HERO -->
+    <section class="hero-section">
+        <div class="hero">
+            <div class="hero-content">
+                <h1 data-strapi="mainHeading" class="hero-title"></h1>
+                <p data-strapi="subHeading" class="hero-sub"></p>
+                <p data-strapi="description" class="hero-desc"></p>
+                <div class="hero-price-container">
+                    <div class="hero-price-block">
+                        <div class="hero-price">
+                            <span data-strapi="price"></span><span class="price-unit">/mo</span>
+                        </div>
+                        <p data-strapi="priceNote" class="price-note"></p>
+                    </div>
+                    <div class="hero-btns">
+                        <button class="btn-outline">Sign up</button>
+                        <button class="btn-primary">View Plans &rarr;</button>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right">
+                <img src="assets/images/hero_right.png" alt="Cloud service illustration" class="hero-right-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section id="why-us" class="why-us section">
+        <div class="container">
+            <h2 class="title" data-animate="fade-up">Why Choose Us</h2>
+            <h2 class="subtitle" data-animate="fade-up">Built for Enterprise Cloud Excellence</h2>
+            <div data-strapi-grid="whyUs" class="why-grid" data-stagger></div>
+        </div>
+    </section>
+
+    <!-- WHO WE ARE -->
+    <section id="who-we-are" class="who-we-are section">
+        <div class="who-we-are-inner">
+            <div class="who-we-are-image" data-animate="fade-right">
+                <img src="assets/images/best-cloud-service-provider 1.png" alt="Best cloud service provider">
+            </div>
+            <div class="blue-container" data-animate="fade-left">
+                <h2 class="title" data-strapi="whoWeAreHeading">Who We Are?</h2>
+                <p class="who-we-are-paragraph" data-strapi="whoWeAreParagraph">At ICSDC, we don't just host your data -
+                    we power your digital infrastructure. As a next-generation cloud service provider and data center,
+                    we adjoin advanced technology, intelligent infrastructure, and expert support to deliver unmatched
+                    reliability and speed. For over 15 years, businesses have trusted us to keep their operations
+                    seamless, secure, and always connected.</p>
+                <div class="who-we-are-btns" data-strapi-grid="whoWeAreCards" data-stagger>
+                    <button class="btn-outline feature-cards">Ultra-fast and scalable cloud solutions built for
+                        growth</button>
+                    <button class="btn-outline feature-cards">Enterprise-grade security with Least downtime</button>
+                    <button class="btn-outline feature-cards">Real people, real support - available 24/7</button>
+                    <button class="btn-primary feature-cards">Connect with a Cloud Architect Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LESS CLOUD COMPLEX -->
+    <section id="less-cloud-complex" class="less-cloud-complex section">
+        <div class="less-cloud-inner">
+            <div class="blue-container-left" data-animate="fade-right">
+                <h2 class="title" data-strapi="lessComplexityHeading">Less Cloud Complexity, More Expert Support with
+                    ICSDC Cloud Services</h2>
+                <p class="who-we-are-paragraph" data-strapi="lessComplexityParagraph">ICSDC servers operate across
+                    multiple global regions with dedicated deployment points in India (Noida &amp; Mumbai) for unmatched
+                    speed and reliability.</p>
+            </div>
+            <div class="less-cloud-complex-image" data-animate="scale-up">
+                <div class="gradient"></div>
+                <img src="assets/images/image 1.png" alt="ICSDC global infrastructure map">
+            </div>
+        </div>
+    </section>
+
+    <!-- CLOUD SOLUTIONS + PHONE MOCKUP -->
+    <section id="cloud-solutions" class="why-us section">
+        <div class="container">
+            <h2 class="title" data-animate="fade-up">Cloud Solutions Engineered for Your Success,<br>Find what suits
+                you!</h2>
+
+            <!-- Ripple controls -->
+            <div class="ripple-controls" data-animate="fade-up">
+                <div class="ripple-ctrl-group">
+                    <label>Rings</label>
+                    <button class="ctrl-btn" id="rings-dec">&minus;</button>
+                    <span class="ctrl-val" id="rings-val">10</span>
+                    <button class="ctrl-btn" id="rings-inc">+</button>
+                </div>
+                <div class="ripple-ctrl-group">
+                    <label>Speed</label>
+                    <button class="ctrl-btn" id="speed-dec">&minus;</button>
+                    <span class="ctrl-val" id="speed-val">8s</span>
+                    <button class="ctrl-btn" id="speed-inc">+</button>
+                </div>
+                <div class="ripple-ctrl-group">
+                    <label>Radius</label>
+                    <button class="ctrl-btn" id="radius-dec">&minus;</button>
+                    <span class="ctrl-val" id="radius-val">260</span>
+                    <button class="ctrl-btn" id="radius-inc">+</button>
+                </div>
+            </div>
+
+            <!-- Mockup: ripple behind phone + floating cards -->
+            <div class="phone-mockup-wrapper" data-animate="scale-up">
+                <!-- Floating cards rendered dynamically by main.js renderCloudServices() -->
+
+                <!-- RIPPLE + PHONE (centre) -->
+                <div class="ripple-wrap" id="ripple">
+                    <svg viewBox="0 0 600 600">
+                        <circle class="ripple-center" cx="300" cy="300" r="5" />
+                    </svg>
+                </div>
+                <div class="image-wrapper">
+                    <img src="assets/images/iPhone 16.png" alt="iPhone mockup">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INDUSTRY LEADING EXCELLENCE VALIDATED -->
+    <section id="industry-validated" class="less-cloud-complex section industry-validated">
+        <div class="less-cloud-inner">
+            <div class="blue-container-left" data-animate="fade-right">
+                <h2 class="title" data-strapi="industryValidatedHeading"></h2>
+                <p class="who-we-are-paragraph" data-strapi="industryValidatedParagraph"></p>
+            </div>
+            <div class="less-cloud-complex-image" data-animate="scale-up">
+                <img src="assets/images/industry.png" alt="ICSDC global infrastructure map">
+            </div>
+        </div>
+    </section>
+
+    <!-- ISO section -->
+    <section class="iso-section" aria-labelledby="iso-heading">
+        <div class="iso-overlay">
+            <div class="iso-container">
+                <h2 id="iso-heading" class="iso-title">Beyond Best Practice: Our ISO Standards</h2>
+                <p class="iso-subtitle">
+                    Global certifications that our security, quality, and commitment consistently meet
+                    the world's highest standard.
+                </p>
+            </div>
+            <div class="iso-image-wrapper" aria-hidden="true">
+                <img src="assets/images/beyondbest.png" alt="" class="iso-image" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Business Needs Cloud Services -->
+    <section id="business-needs-cloud" class="business-needs-cloud section"
+        aria-labelledby="business-needs-cloud-heading">
+        <div class="business-needs-cloud-inner">
+            <div class="business-needs-visual" data-animate="fade-right">
+                <ul class="business-needs-labels" aria-hidden="true">
+                    <li class="business-needs-label">99.99%<span>Uptime</span></li>
+                    <li class="business-needs-label">Super Fast Speed<span>&amp; Performance</span></li>
+                    <li class="business-needs-label">Affordable<span>Price</span></li>
+                </ul>
+                <div class="business-needs-image-wrap">
+                    <img src="assets/images/trusted-cloud-service-provider.png" alt="Cloud services illustration"
+                        class="business-needs-image">
+                </div>
+            </div>
+            <div class="business-needs-content" data-animate="fade-left">
+                <h2 id="business-needs-cloud-heading" class="business-needs-title">Why Business Needs Cloud Services in
+                    Today's Time?</h2>
+                <div class="business-needs-list">
+                    <article class="business-needs-item">
+                        <div class="business-needs-icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48" fill="none">
+                                <path d="M17 31H9V23H17V31Z" stroke="currentColor" stroke-width="2" />
+                                <path d="M31 25H17V11H31V25Z" stroke="currentColor" stroke-width="2" />
+                                <path d="M26 10H38V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                <path d="M38 10L27 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <div class="business-needs-copy">
+                            <h3>Scale Instantly</h3>
+                            <p>Handle peak demand by adding capacity in minutes, not months.</p>
+                        </div>
+                    </article>
+                    <article class="business-needs-item">
+                        <div class="business-needs-icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48" fill="none">
+                                <circle cx="11" cy="15" r="6" stroke="currentColor" stroke-width="2" />
+                                <path d="M11 12V18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                <path d="M8.5 15H13.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                <path d="M8 37V24H14V37" stroke="currentColor" stroke-width="2" />
+                                <path d="M20 37V19H26V37" stroke="currentColor" stroke-width="2" />
+                                <path d="M32 37V27H38V37" stroke="currentColor" stroke-width="2" />
+                                <path d="M20 13L27 20L38 9" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M32 9H38V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <div class="business-needs-copy">
+                            <h3>Control Cash Flow</h3>
+                            <p>Replace big hardware costs with transparent monthly payments.</p>
+                        </div>
+                    </article>
+                    <article class="business-needs-item">
+                        <div class="business-needs-icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48" fill="none">
+                                <path d="M24 9V39" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                <path d="M14 39H34" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                <path d="M20 39H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                <circle cx="24" cy="10" r="3" stroke="currentColor" stroke-width="2" />
+                                <path d="M9 19H39" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                <path d="M13 19L8 30H18L13 19Z" stroke="currentColor" stroke-width="2"
+                                    stroke-linejoin="round" />
+                                <path d="M35 19L30 30H40L35 19Z" stroke="currentColor" stroke-width="2"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="business-needs-copy">
+                            <h3>Data Safety &amp; Laws</h3>
+                            <p>Easily meet Indian data laws while getting world-class security for your customer
+                                information.</p>
+                        </div>
+                    </article>
+                    <article class="business-needs-item">
+                        <div class="business-needs-icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48" fill="none">
+                                <circle cx="20" cy="14" r="7" stroke="currentColor" stroke-width="2" />
+                                <path d="M14 23C14 19.6863 16.6863 17 20 17C23.3137 17 26 19.6863 26 23V25"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                <path d="M8 36V31C8 27.6863 10.6863 25 14 25H26C29.3137 25 32 27.6863 32 31V36"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                <path d="M31 23H40V36H22" stroke="currentColor" stroke-width="2"
+                                    stroke-linejoin="round" />
+                                <circle cx="35.5" cy="29.5" r="1.5" fill="currentColor" />
+                            </svg>
+                        </div>
+                        <div class="business-needs-copy">
+                            <h3>Data Safety &amp; Laws</h3>
+                            <p>Easily meet Indian data laws while getting world-class security for your customer
+                                information.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Cloud Services -->
+    <section class="best-cloud-services" aria-labelledby="best-cloud-services-heading">
+        <div class="best-cloud-services-container">
+            <h2 id="best-cloud-services-heading" class="best-cloud-services-title">Best Cloud Services: See Why Our
+                Partnerships Assure Excellence</h2>
+            <p class="best-cloud-services-subtitle">
+                ICSDC servers operate across multiple global regions with dedicated deployment points in India
+                (Noida & Mumbai) for unmatched speed and reliability.
+            </p>
+            <div class="best-cloud-services-btns" data-strapi-grid="ourPartnershipsCards" data-stagger>
+                <button class="btn-outline feature-cards">Ultra-fast and scalable cloud solutions built for
+                    growth</button>
+                <button class="btn-outline feature-cards">Enterprise-grade security with Least downtime</button>
+                <button class="btn-outline feature-cards">Real people, real support - available 24/7</button>
+                <button class="btn-outline feature-cards">Connect with a Cloud Architect Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testi-section" aria-labelledby="testi-heading">
+        <div class="testi-container">
+            <h2 id="testi-heading" class="testi-title">See our Clients Stories</h2>
+            <div class="testi-scroll-viewport">
+                <div class="testi-grid" role="list" id="testi-grid"></div>
+            </div>
+            <div class="testi-pagination" role="tablist" aria-label="Testimonial navigation" id="testi-dots"></div>
+            <div class="testi-nav">
+                <button class="testi-nav-btn" id="testi-prev" aria-label="Previous testimonial">&#8249;</button>
+                <button class="testi-nav-btn" id="testi-next" aria-label="Next testimonial">&#8250;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" aria-labelledby="faq-heading">
+        <div class="faq-container">
+            <div class="faq-col">
+                <h2 id="faq-heading" class="faq-title">Frequently Asked Questions</h2>
+                <dl class="faq-accordions" id="faq-accordions"></dl>
+            </div>
+            <aside class="faq-contact-card" aria-label="Contact us">
+                <h3 class="faq-contact-title">Do you have more<br>Questions??</h3>
+                <p class="faq-contact-desc">
+                    We are here to answer all your queries.<br>
+                    Take a Test Drive of Our Cloud Now!<br><br>
+                    &#128222; +91 98109 58857
+                </p>
+                <a href="/contact" class="faq-contact-btn">
+                    Get In Touch
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </aside>
+        </div>
+    </section>
+
+    <!-- ═══ CONTACT FORM (loaded via component-loader.js) ═══ -->
+    <div data-component="contact-form"></div>
+
+    <!-- ═══ FOOTER (loaded via component-loader.js) ═══ -->
+    <div data-component="footer"></div>
+
+    <!-- ═══ RIPPLE BUILDER + CONTROLS ═══ -->
+    <script>
+        (function () {
+            const SVG_NS = 'http://www.w3.org/2000/svg';
+            const svg = document.querySelector('#ripple svg');
+            const wrap = document.getElementById('ripple');
+            if (!svg || !wrap) return;
+            const center = svg.querySelector('.ripple-center');
+
+            let rings = 10;
+            let duration = 8;
+            let radius = 260;
+
+            const ringsVal = document.getElementById('rings-val');
+            const speedVal = document.getElementById('speed-val');
+            const radiusVal = document.getElementById('radius-val');
+
+            let styleEl = document.getElementById('ripple-dynamic-style');
+            if (!styleEl) {
+                styleEl = document.createElement('style');
+                styleEl.id = 'ripple-dynamic-style';
+                document.head.appendChild(styleEl);
+            }
+
+            function updateKeyframe() {
+                styleEl.textContent = `
+                @keyframes ripple-out {
+                    0%   { r: 0;        opacity: 0.65; }
+                    75%  { opacity: 0.12; }
+                    100% { r: ${radius}; opacity: 0; }
+                }
+            `;
+                const px = Math.round(radius * 2 * (520 / 600));
+                wrap.style.width = px + 'px';
+                wrap.style.height = px + 'px';
+            }
+
+            function buildRipple() {
+                updateKeyframe();
+                svg.querySelectorAll('.ripple-ring').forEach(el => el.remove());
+                for (let i = 0; i < rings; i++) {
+                    const circle = document.createElementNS(SVG_NS, 'circle');
+                    circle.setAttribute('cx', 300);
+                    circle.setAttribute('cy', 300);
+                    circle.setAttribute('r', 0);
+                    circle.classList.add('ripple-ring');
+                    circle.style.setProperty('--duration', `${duration}s`);
+                    circle.style.setProperty('--delay', `-${(duration / rings) * i}s`);
+                    svg.insertBefore(circle, center);
+                }
+            }
+
+            buildRipple();
+
+            document.getElementById('rings-dec').addEventListener('click', () => { if (rings <= 2) return; rings--; ringsVal.textContent = rings; buildRipple(); });
+            document.getElementById('rings-inc').addEventListener('click', () => { if (rings >= 20) return; rings++; ringsVal.textContent = rings; buildRipple(); });
+            document.getElementById('speed-dec').addEventListener('click', () => { if (duration <= 2) return; duration--; speedVal.textContent = duration + 's'; buildRipple(); });
+            document.getElementById('speed-inc').addEventListener('click', () => { if (duration >= 20) return; duration++; speedVal.textContent = duration + 's'; buildRipple(); });
+            document.getElementById('radius-dec').addEventListener('click', () => { if (radius <= 80) return; radius -= 20; radiusVal.textContent = radius; buildRipple(); });
+            document.getElementById('radius-inc').addEventListener('click', () => { if (radius >= 500) return; radius += 20; radiusVal.textContent = radius; buildRipple(); });
+        })();
+    </script>
+
+    <!-- ═══ STRAPI CONFIG + SCRIPTS ═══ -->
+    <script>
+        STRAPI_URL = "http://localhost:1337";
+        TOKEN = "5e685bd788588b5db88df3d3d47ad9a446f82768a2514d7dce437f6dc10c872d61b83b91763e6ea54acb9f7d7aac432e1714eef2dd12d718aae5c3bbae246aa90a85d22938474559dd9327dc2f7c9114b06bfdbb4ce9daf5d4e8f45b7a608c7d80eea92ac9896b47238380007a7d592b3825db93c9f9e5fbdab95be79a2c8e6e";
+    </script>
+    <script src="assets/js/main.js" type="module"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/polish.js" defer></script>
+
+</body>
+
+</html>

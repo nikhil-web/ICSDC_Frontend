@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows Cloud Hosting by ICSDC | High-Performance Windows Servers</title>
+  <meta name="description"
+    content="Get fast, secure, and scalable Windows Cloud Hosting with ICSDC. Run Windows apps smoothly with dedicated resources, full RDP access, and expert 24/7 support.">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/cloud-hosting.css">
+  <style>
+    .wincloud-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+    }
+
+    .wincloud-hero-visual {
+      width: 100%;
+      max-width: 560px;
+      aspect-ratio: 4/3;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 55%, #e8f5fd 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0, 120, 212, .15), 0 4px 16px rgba(0, 0, 0, .06);
+      animation: heroImageFloat 8s ease-in-out 1s infinite;
+    }
+
+    .wincloud-hero-visual svg {
+      width: 74%;
+      height: 74%;
+    }
+
+    .wincloud-top-badge {
+      position: absolute;
+      top: 22px;
+      left: 22px;
+      background: #fff;
+      border: 1px solid rgba(0, 120, 212, .2);
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0078d4;
+      box-shadow: 0 4px 16px rgba(0, 120, 212, .12);
+      animation: cloud-badge-float 6s ease-in-out .2s infinite;
+    }
+
+    .wincloud-status-badge {
+      position: absolute;
+      bottom: 22px;
+      right: 22px;
+      background: #fff;
+      border: 1px solid rgba(0, 120, 212, .15);
+      border-radius: 12px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(0, 120, 212, .12);
+      animation: cloud-badge-float 5s ease-in-out .8s infinite;
+    }
+
+    .wincloud-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, .5);
+    }
+
+    .wincloud-bt {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .wincloud-bs {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* Use-case list */
+    .wincloud-apps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    @media(max-width:900px) {
+      .wincloud-apps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:580px) {
+      .wincloud-apps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .wincloud-app-badge {
+      background: #fff;
+      border: 1px solid rgba(0, 120, 212, .12);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: var(--shadow-sm);
+      transition: all .2s;
+    }
+
+    .wincloud-app-badge:hover {
+      border-color: rgba(0, 120, 212, .3);
+      box-shadow: var(--shadow-card);
+      transform: translateY(-2px);
+    }
+
+    .wincloud-app-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #0078d4;
+      flex-shrink: 0;
+    }
+
+    /* 2-col feature section */
+    .wincloud-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    @media(max-width:860px) {
+      .wincloud-split {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    .wincloud-feature-list {
+      list-style: none;
+      margin-top: 24px;
+    }
+
+    .wincloud-feature-list li {
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .wincloud-feature-list li:last-child {
+      border-bottom: none;
+    }
+
+    .wincloud-feature-list li::before {
+      content: '✓';
+      color: #0078d4;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .wincloud-stats {
+      background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
+      border-radius: 20px;
+      padding: 36px;
+      color: #fff;
+    }
+
+    .wincloud-stat {
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, .15);
+    }
+
+    .wincloud-stat:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .wincloud-stat strong {
+      display: block;
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .wincloud-stat span {
+      font-size: 14px;
+      opacity: .75;
+      margin-top: 4px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PAGE LOADER -->
+  <div id="page-loader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+      <p class="loader-text">Loading...</p>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <!-- DROPDOWN -->
+  <div id="dropdown-wrap">
+    <div id="dropdown">
+      <div data-strapi-dd="sidebar" class="hidden" id="dd-sidebar"></div>
+      <div data-strapi-dd="flatLeft" class="hidden" id="dd-flat-left">
+        <div data-strapi-dd="flatIcon" class="dd-flat-icon"></div>
+        <div>
+          <h3 data-strapi-dd="flatTitle"></h3>
+          <p data-strapi-dd="flatDesc"></p>
+        </div>
+      </div>
+      <div id="dd-content">
+        <div id="dd-top-bar">
+          <div data-strapi-dd="panelTitle" class="hidden" id="dd-panel-title"></div>
+          <button class="dd-close" onclick="closeDropdown()">✕</button>
+        </div>
+        <div data-strapi-dd="grid" id="dd-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="logo">
+        <img data-strapi="mainLogo" src="" alt="ICSDC logo" class="logo-icon">
+      </a>
+      <ul data-strapi-nav class="nav-links" id="nav-links"></ul>
+      <button class="btn-login desktop-login-btn">Login</button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <ul data-strapi-nav-mobile class="mobile-nav-links" id="mobile-nav-links"></ul>
+      <button class="btn-login mobile-login-btn">Login</button>
+    </div>
+  </nav>
+
+  <section class="hero-section">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="wincloud-eyebrow">&#9729; Windows Cloud Hosting</div>
+        <h1 class="hero-title">Power Your Applications with Next-Gen Windows Cloud Hosting</h1>
+        <p class="hero-sub">A Future-Ready Windows Cloud Platform for Teams That Never Slow Down</p>
+        <p class="hero-desc">Run your Windows applications with unmatched speed, uptime, and security on ICSDC's
+          next-gen cloud platform — built for businesses that demand performance without compromise.</p>
+        <div class="hero-btns">
+          <button class="btn-primary">Get Started with Windows Cloud &rarr;</button>
+          <button class="btn-outline">View Plans</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="wincloud-hero-visual">
+          <div class="wincloud-top-badge">&#129695; Next-Gen Windows Cloud</div>
+          <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="40" y="30" width="240" height="160" rx="14" fill="#fff" stroke="rgba(0,120,212,0.12)"
+              stroke-width="1" />
+            <rect x="40" y="30" width="240" height="40" rx="14" fill="#0078d4" />
+            <circle cx="62" cy="50" r="7" fill="rgba(255,255,255,0.35)" />
+            <circle cx="82" cy="50" r="7" fill="rgba(255,255,255,0.35)" />
+            <circle cx="102" cy="50" r="7" fill="rgba(255,255,255,0.35)" />
+            <rect x="56" y="84" width="200" height="10" rx="5" fill="#e3f2fd" />
+            <rect x="56" y="102" width="130" height="8" rx="4" fill="#f1f5f9" />
+            <rect x="56" y="118" width="150" height="8" rx="4" fill="#f1f5f9" />
+            <rect x="56" y="134" width="110" height="8" rx="4" fill="#f1f5f9" />
+            <rect x="56" y="152" width="170" height="8" rx="4" fill="#f1f5f9" />
+            <rect x="200" y="84" width="68" height="68" rx="10" fill="#f8fafc" stroke="rgba(0,120,212,0.1)" />
+            <text x="220" y="120" text-anchor="middle" font-size="28" fill="#0078d4">&#129695;</text>
+            <line x1="40" y1="170" x2="280" y2="170" stroke="rgba(0,0,0,0.05)" stroke-width="1" />
+            <text x="56" y="188" font-size="11" fill="#94a3b8">CPU: 8 vCore &bull; RAM: 16 GB &bull; NVMe: 320 GB</text>
+          </svg>
+          <div class="wincloud-status-badge">
+            <div class="wincloud-dot"></div>
+            <div>
+              <div class="wincloud-bt">Server Active</div>
+              <div class="wincloud-bs">99.9% Uptime SLA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════ 4 PILLARS ════ -->
+  <section class="why-us section">
+    <div class="container">
+      <div class="why-grid" data-stagger>
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22"
+              height="22">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg></div>
+          <h3>Optimized Windows Performance</h3>
+          <p>Finely tuned Windows environment for smooth RDP sessions, low latency, and stable workload execution for
+            demanding apps.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22"
+              height="22">
+              <ellipse cx="12" cy="5" rx="9" ry="3" />
+              <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" />
+              <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" />
+            </svg></div>
+          <h3>Dedicated Cloud Resources</h3>
+          <p>Guaranteed CPU, RAM, and NVMe storage ensure consistent performance — your resources are never shared with
+            other users.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22"
+              height="22">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg></div>
+          <h3>Scalable &amp; Cost-Efficient</h3>
+          <p>Grow your Windows setup anytime with flexible resource upgrades — without downtime or unnecessary
+            infrastructure costs.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22"
+              height="22">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg></div>
+          <h3>Built for Business Reliability</h3>
+          <p>Enterprise datacenter uptime, secure access controls, and fast recovery options keep your operations
+            running 24/7.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════ FEATURES (12-grid) ════ -->
+  <section id="features" class="section cloud-power-section">
+    <div class="container">
+      <span class="cloud-section-label" data-animate="fade-up">Capabilities</span>
+      <h2 class="title" data-animate="fade-up">Complete Suite of Offerings for High-Performance Windows Cloud Hosting
+      </h2>
+      <p class="subtitle" data-animate="fade-up">Every feature engineered for Windows workloads — from legacy apps to
+        cutting-edge .NET deployments.</p>
+      <div class="cloud-power-grid" data-stagger>
+        <div class="cloud-power-card">
+          <div class="cloud-power-icon"><svg viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+            </svg></div>
+          <h3>High-Performance Windows Virtual Machines</h3>
+          <p>Each VM is finely optimized for smoother application execution, faster loading times, and a stable
+            environment for production workloads.</p>
+        </div>
+        <div class="cloud-power-card">
+          <div class="cloud-power-icon"><svg viewBox="0 0 24 24">
+              <ellipse cx="12" cy="5" rx="9" ry="3" />
+              <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" />
+            </svg></div>
+          <h3>Dedicated Cloud Resources (CPU, RAM, NVMe)</h3>
+          <p>Your resources are never shared with other users, ensuring consistent speed, predictable performance, and
+            reliability during peak usage.</p>
+        </div>
+        <div class="cloud-power-card">
+          <div class="cloud-power-icon"><svg viewBox="0 0 24 24">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg></div>
+          <h3>Instant Windows Server Deployment</h3>
+          <p>Spin up a fully configured Windows cloud instance within minutes — immediate use for hosting, development,
+            testing, or remote work.</p>
+        </div>
+        <div class="cloud-power-card">
+          <div class="cloud-power-icon"><svg viewBox="0 0 24 24">
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0110 0v4" />
+            </svg></div>
+          <h3>Full Administrator &amp; RDP Access</h3>
+          <p>Complete control with unrestricted administrative privileges — software installation, configuration, and
+            environment management.</p>
+        </div>
+        <div class="cloud-power-card">
+          <div class="cloud-power-icon"><svg viewBox="0 0 24 24">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg></div>
+          <h3>Scalable Cloud Infrastructure</h3>
+          <p>Increase CPU, RAM, or storage instantly as your applications grow — without any downtime, data loss, or
+            complex reconfiguration.</p>
+        </div>
+        <div class="cloud-power-card">
+          <div class="cloud-power-icon"><svg viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+            </svg></div>
+          <h3>Enterprise Datacenter Reliability</h3>
+          <p>Runs within Tier III+ datacenters with redundant power, HVAC, advanced fire suppression, and 24/7 physical
+            security monitoring.</p>
+        </div>
+        <div class="cloud-power-card">
+          <div class="cloud-power-icon"><svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20M12 2a15.3 15.3 0 010 20" />
+            </svg></div>
+          <h3>Advanced Network Performance</h3>
+          <p>Low-latency connectivity, optimized routing, and stable bandwidth that enhance RDP sessions, data
+            transfers, and remote access.</p>
+        </div>
+        <div class="cloud-power-card">
+          <div class="cloud-power-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg></div>
+          <h3>Built-In Security Layers</h3>
+          <p>Custom firewall controls, OS hardening, DDoS mitigation, encrypted access, and continuous monitoring from
+            the ground up.</p>
+        </div>
+        <div class="cloud-power-card">
+          <div class="cloud-power-icon"><svg viewBox="0 0 24 24">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg></div>
+          <h3>Support for .NET, IIS, SQL &amp; Windows Apps</h3>
+          <p>Deploy modern and legacy Windows workloads — ERP, CRM, MS SQL, IIS-based apps, and .NET frameworks —
+            without compatibility headaches.</p>
+        </div>
+        <div class="cloud-power-card">
+          <div class="cloud-power-icon"><svg viewBox="0 0 24 24">
+              <ellipse cx="12" cy="5" rx="9" ry="3" />
+              <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" />
+              <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" />
+            </svg></div>
+          <h3>Flexible Storage &amp; Database Options</h3>
+          <p>NVMe-backed storage with built-in support for MSSQL, MySQL, MariaDB, and other database systems to meet any
+            application demand.</p>
+        </div>
+        <div class="cloud-power-card">
+          <div class="cloud-power-icon"><svg viewBox="0 0 24 24">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg></div>
+          <h3>Backup, Snapshots &amp; Quick Restore</h3>
+          <p>Scheduled backups, instant snapshots, and rapid recovery features designed to safeguard against every
+            failure scenario.</p>
+        </div>
+        <div class="cloud-power-card">
+          <div class="cloud-power-icon"><svg viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+            </svg></div>
+          <h3>24/7 Expert Windows Cloud Support</h3>
+          <p>Round-the-clock access to specialists who deeply understand Windows workloads, performance tuning, and
+            real-world business applications.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════ WHY CHOOSE ════ -->
+  <section id="why-us" class="cloud-why-section">
+    <div class="cloud-why-inner">
+      <span class="cloud-section-label" data-animate="fade-up">Why ICSDC</span>
+      <h2 class="title" data-animate="fade-up">Why Choose ICSDC Windows Cloud Hosting?</h2>
+      <p class="subtitle" data-animate="fade-up">Performance-driven cloud infrastructure, deep Windows expertise, and a
+        service approach that genuinely puts your business first.</p>
+      <div class="cloud-why-grid" data-stagger>
+        <div class="cloud-why-item">
+          <div class="cloud-why-num">01</div>
+          <h3>Purpose-Built for Windows Workloads</h3>
+        </div>
+        <div class="cloud-why-item">
+          <div class="cloud-why-num">02</div>
+          <h3>Seamless Scaling Without Downtime</h3>
+        </div>
+        <div class="cloud-why-item">
+          <div class="cloud-why-num">03</div>
+          <h3>Optimized Network for Faster Access</h3>
+        </div>
+        <div class="cloud-why-item">
+          <div class="cloud-why-num">04</div>
+          <h3>Security Built Into Every Layer</h3>
+        </div>
+        <div class="cloud-why-item">
+          <div class="cloud-why-num">05</div>
+          <h3>Predictable &amp; Fair Pricing</h3>
+        </div>
+        <div class="cloud-why-item">
+          <div class="cloud-why-num">06</div>
+          <h3>Instant Deployment &amp; Easy Management</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════ WHEN TO CHOOSE + USE CASES 2-col ════ -->
+  <section id="use-cases" class="section">
+    <div class="container">
+      <span class="cloud-section-label" data-animate="fade-up">Use Cases</span>
+      <h2 class="title" data-animate="fade-up">When Should You Choose Windows Cloud Hosting?</h2>
+      <p class="subtitle" data-animate="fade-up">If your workflows depend on Windows ecosystems or you need a stable
+        remote-access setup, this is your platform.</p>
+      <div class="wincloud-split" data-stagger>
+        <div>
+          <h3 style="font-size:18px; font-weight:700; color:var(--text-dark); margin-bottom:4px;">Ideal Scenarios</h3>
+          <ul class="wincloud-feature-list">
+            <li>Applications built on .NET, IIS, MS SQL, and other Windows frameworks</li>
+            <li>Teams that rely on smooth, native Remote Desktop access</li>
+            <li>Businesses operating within the Microsoft ecosystem</li>
+            <li>Users who need full admin control and customization options</li>
+            <li>Workloads that require easy resource scaling and flexibility</li>
+            <li>Legacy Windows-based software and older systems</li>
+            <li>High-performance tasks demanding consistent speed</li>
+            <li>Environments requiring strong security and encrypted access</li>
+          </ul>
+        </div>
+        <div class="wincloud-stats" data-animate="scale-up">
+          <div class="wincloud-stat"><strong>99.9%</strong><span>Uptime SLA Guaranteed</span></div>
+          <div class="wincloud-stat"><strong>&lt;5 min</strong><span>Average Deployment Time</span></div>
+          <div class="wincloud-stat"><strong>24/7</strong><span>Expert Windows Support</span></div>
+          <div class="wincloud-stat"><strong>Instant</strong><span>Resource Scaling — No Downtime</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════ REAL-TIME APPLICATIONS ════ -->
+  <section class="section cloud-power-section">
+    <div class="container">
+      <span class="cloud-section-label" data-animate="fade-up">Applications</span>
+      <h2 class="title" data-animate="fade-up">Real-Time Applications of Windows Cloud Hosting</h2>
+      <p class="subtitle" data-animate="fade-up">From ERP to remote desktops — see what businesses run on ICSDC Windows
+        Cloud.</p>
+      <div class="wincloud-apps-grid" data-stagger>
+        <div class="wincloud-app-badge">ERP and accounting applications</div>
+        <div class="wincloud-app-badge">CRM and customer management tools</div>
+        <div class="wincloud-app-badge">Remote desktop workspaces</div>
+        <div class="wincloud-app-badge">Software development &amp; testing</div>
+        <div class="wincloud-app-badge">Database-driven applications</div>
+        <div class="wincloud-app-badge">Reporting and analytics tools</div>
+        <div class="wincloud-app-badge">HR and employee management systems</div>
+        <div class="wincloud-app-badge">Inventory and POS applications</div>
+        <div class="wincloud-app-badge">Email and file-sharing platforms</div>
+        <div class="wincloud-app-badge">Project management tools</div>
+        <div class="wincloud-app-badge">Cloud-based desktops for teams</div>
+        <div class="wincloud-app-badge">Legacy Windows applications</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════ CTA BAND ════ -->
+  <section class="cloud-cta-band">
+    <div class="cloud-cta-inner">
+      <h2>Ready to Power Your Workloads with ICSDC Windows Cloud Hosting?</h2>
+      <p>High-availability infrastructure. Full Windows control. Zero downtime scaling. Get started today.</p>
+      <div class="cloud-cta-btns">
+        <button class="cloud-cta-btn-primary">Get Started Today &rarr;</button>
+        <button class="cloud-cta-btn-outline">Talk to an Expert</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════ TESTIMONIALS ════════════════════════════ -->
+  <section class="testi-section" aria-labelledby="winvps-testi-heading">
+    <div class="testi-container">
+      <h2 id="winvps-testi-heading" class="testi-title">See our Clients Stories</h2>
+      <div class="testi-scroll-viewport">
+        <div class="testi-grid" role="list" id="winvps-testi-grid">
+          <article class="testi-card" role="listitem" data-testi-index="0" aria-label="Testimonial from Riya S.">
+            <div class="testi-left">
+              <div class="testi-avatar" aria-hidden="true"><span class="testi-avatar-initials">RS</span></div>
+              <div class="testi-client-info">
+                <p class="testi-name">Riya S.</p>
+                <p class="testi-job">Operations Manager</p>
+                <p class="testi-company">FinTech Company</p>
+              </div>
+              <div class="testi-rating" aria-label="Rating: 5 out of 5 stars"><svg class="testi-star"
+                  viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg></div>
+            </div>
+            <div class="testi-right">
+              <blockquote class="testi-quote">ICSDC made our Windows-based applications run smoother than they ever did
+                on our previous host. We shifted our internal CRM and reporting tools and the performance difference was
+                immediate.</blockquote>
+            </div>
+          </article>
+          <article class="testi-card" role="listitem" data-testi-index="1" aria-label="Testimonial from Arvind Kumar">
+            <div class="testi-left">
+              <div class="testi-avatar" aria-hidden="true"><span class="testi-avatar-initials">AK</span></div>
+              <div class="testi-client-info">
+                <p class="testi-name">Arvind Kumar</p>
+                <p class="testi-job">Founder</p>
+                <p class="testi-company">IT Services Firm</p>
+              </div>
+              <div class="testi-rating" aria-label="Rating: 5 out of 5 stars"><svg class="testi-star"
+                  viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg></div>
+            </div>
+            <div class="testi-right">
+              <blockquote class="testi-quote">The reliability has been consistent from day one. Our remote staff uses
+                RDP daily and we've never experienced lag or disconnects. ICSDC's infrastructure genuinely feels
+                enterprise-grade.</blockquote>
+            </div>
+          </article>
+          <article class="testi-card" role="listitem" data-testi-index="2" aria-label="Testimonial from Minal Jain">
+            <div class="testi-left">
+              <div class="testi-avatar" aria-hidden="true"><span class="testi-avatar-initials">MJ</span></div>
+              <div class="testi-client-info">
+                <p class="testi-name">Minal Jain</p>
+                <p class="testi-job">Senior Developer</p>
+                <p class="testi-company">Software Development Agency</p>
+              </div>
+              <div class="testi-rating" aria-label="Rating: 5 out of 5 stars"><svg class="testi-star"
+                  viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg></div>
+            </div>
+            <div class="testi-right">
+              <blockquote class="testi-quote">We run a mix of legacy apps and new .NET builds — ICSDC handles both
+                effortlessly. Easy deployment, smooth updates, and support that actually knows Windows inside out.
+              </blockquote>
+            </div>
+          </article>
+          <article class="testi-card" role="listitem" data-testi-index="3" aria-label="Testimonial from Soham Verma">
+            <div class="testi-left">
+              <div class="testi-avatar" aria-hidden="true"><span class="testi-avatar-initials">SV</span></div>
+              <div class="testi-client-info">
+                <p class="testi-name">Soham Verma</p>
+                <p class="testi-job">Product Lead</p>
+                <p class="testi-company">SaaS Company</p>
+              </div>
+              <div class="testi-rating" aria-label="Rating: 5 out of 5 stars"><svg class="testi-star"
+                  viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg></div>
+            </div>
+            <div class="testi-right">
+              <blockquote class="testi-quote">The managed plan was a lifesaver. We didn't have an in-house server admin,
+                so ICSDC's team handled security patches and monitoring while we focused on our product.</blockquote>
+            </div>
+          </article>
+          <article class="testi-card" role="listitem" data-testi-index="4" aria-label="Testimonial from Priyanka Rao">
+            <div class="testi-left">
+              <div class="testi-avatar" aria-hidden="true"><span class="testi-avatar-initials">PR</span></div>
+              <div class="testi-client-info">
+                <p class="testi-name">Priyanka Rao</p>
+                <p class="testi-job">Head of IT</p>
+                <p class="testi-company">Financial Services Company</p>
+              </div>
+              <div class="testi-rating" aria-label="Rating: 5 out of 5 stars"><svg class="testi-star"
+                  viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg><svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                  </path>
+                </svg></div>
+            </div>
+            <div class="testi-right">
+              <blockquote class="testi-quote">Moving our Tally and accounting infrastructure to ICSDC Windows VPS was
+                seamless. Zero downtime, fast RDP, and their team knew exactly how to configure our environment.
+              </blockquote>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="testi-pagination" role="tablist" aria-label="Testimonial navigation" id="winvps-testi-dots"><button
+          class="testi-dot testi-dot-active" role="tab" aria-selected="true" aria-label="Go to testimonial 1"
+          data-dot="0"></button><button class="testi-dot" role="tab" aria-selected="false"
+          aria-label="Go to testimonial 2" data-dot="1"></button><button class="testi-dot" role="tab"
+          aria-selected="false" aria-label="Go to testimonial 3" data-dot="2"></button><button class="testi-dot"
+          role="tab" aria-selected="false" aria-label="Go to testimonial 4" data-dot="3"></button><button
+          class="testi-dot" role="tab" aria-selected="false" aria-label="Go to testimonial 5" data-dot="4"></button>
+      </div>
+      <div class="testi-nav">
+        <button class="testi-nav-btn" id="winvps-testi-prev" aria-label="Previous testimonial">‹</button>
+        <button class="testi-nav-btn" id="winvps-testi-next" aria-label="Next testimonial">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ FAQ ════ -->
+  <section class="faq-section" id="faq">
+    <div class="faq-container">
+      <div class="faq-col">
+        <h2 class="faq-title" data-animate="fade-up">FAQs About ICSDC Windows Cloud Hosting</h2>
+        <dl class="faq-accordions">
+          <div class="faq-item">
+            <dt class="faq-question">What is Windows Cloud Hosting and how is it different from VPS or shared hosting?
+            </dt>
+            <dd class="faq-answer">Windows Cloud Hosting gives you a dedicated Windows Server environment on cloud
+              infrastructure with guaranteed resources, full admin access, and instant scalability — more powerful than
+              VPS and incomparably better than shared hosting.</dd>
+          </div>
+          <div class="faq-item">
+            <dt class="faq-question">Which versions of Windows Server are available?</dt>
+            <dd class="faq-answer">ICSDC supports Windows Server 2016, 2019, and 2022. You can choose the version that
+              best fits your application's compatibility requirements.</dd>
+          </div>
+          <div class="faq-item">
+            <dt class="faq-question">Do I get full administrator (RDP) access?</dt>
+            <dd class="faq-answer">Yes. Every ICSDC Windows cloud server includes full administrator-level RDP access,
+              allowing you to install software, configure environments, and manage resources freely.</dd>
+          </div>
+          <div class="faq-item">
+            <dt class="faq-question">How scalable are the resources?</dt>
+            <dd class="faq-answer">Resources can be upgraded instantly without downtime. You can increase CPU, RAM, or
+              NVMe storage as your workload grows — seamlessly and without service interruption.</dd>
+          </div>
+          <div class="faq-item">
+            <dt class="faq-question">Can I host MS SQL, .NET/ASP.NET applications or legacy Windows software?</dt>
+            <dd class="faq-answer">Absolutely. ICSDC is fully optimized for .NET apps, IIS-based services, MS SQL
+              databases, ERP/CRM systems, older Windows-native software, and Crystal Reports.</dd>
+          </div>
+          <div class="faq-item">
+            <dt class="faq-question">What is the typical deployment time?</dt>
+            <dd class="faq-answer">Deployment takes just a few minutes. Once your plan is confirmed, your Windows cloud
+              instance is automatically provisioned and ready for RDP access.</dd>
+          </div>
+          <div class="faq-item">
+            <dt class="faq-question">Are there hidden charges or metered usage fees?</dt>
+            <dd class="faq-answer">ICSDC provides transparent, predictable pricing. You only pay for the plan you choose
+              — no hidden fees, no surprise surcharges, no metered traps.</dd>
+          </div>
+          <div class="faq-item">
+            <dt class="faq-question">What support is provided — 24/7, managed vs unmanaged?</dt>
+            <dd class="faq-answer">ICSDC offers 24/7 expert support. Managed plans include updates, monitoring,
+              optimization, and security. Unmanaged gives full control. Migration assistance is available for both.</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="faq-contact-card" data-animate="fade-left">
+        <h3 class="faq-contact-title">Chat with Our Windows Cloud Experts</h3>
+        <p class="faq-contact-desc">Specialists in Windows workloads, RDP performance, .NET deployments, and SQL Server
+          — available 24/7 to help you get started or migrate.</p>
+        <a href="/contact" class="faq-contact-btn">Talk to an Expert <svg width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg></a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════ FINAL CTA ════ -->
+  <section class="cloud-cta-band cloud-cta-dark">
+    <div class="cloud-cta-inner">
+      <h2>Get Started with ICSDC Windows Cloud Hosting</h2>
+      <p>Fast. Secure. Scalable. Purpose-built for Windows — deploy your cloud server in minutes.</p>
+      <div class="cloud-cta-btns">
+        <button class="cloud-cta-btn-primary">Start My Windows Cloud &rarr;</button>
+        <button class="cloud-cta-btn-outline">View All Plans</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-main">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <a href="/" aria-label="ICSDC Home">
+            <img src="assets/images/main_logo.png" alt="ICSDC" width="117" class="footer-logo">
+          </a>
+          <address class="footer-address">
+            <span>A108 Adam Street</span>
+            <span>New York, NY 535022</span>
+            <span>United States</span>
+            <span class="footer-phone">Phone: +1 5589 55488 55</span>
+            <span>Email: <a href="mailto:info@icsdc.com" class="footer-email-link">info@icsdc.com</a></span>
+          </address>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-link"
+              aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="white"
+                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg></a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-social-link"
+              aria-label="Twitter/X"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                  stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-link"
+              aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" stroke-width="1.5" />
+                <circle cx="12" cy="12" r="4" stroke="white" stroke-width="1.5" />
+                <circle cx="17.5" cy="6.5" r="1" fill="white" />
+              </svg></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-link"
+              aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+                  stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="4" cy="4" r="2" stroke="white" stroke-width="1.5" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="footer-link-group" aria-labelledby="footer-services">
+          <h3 id="footer-services" class="footer-link-title">Services</h3>
+          <ul>
+            <li><a href="/services/dedicated-server" class="footer-link">Dedicated Server</a></li>
+            <li><a href="/services/vps" class="footer-link">VPS Hosting</a></li>
+            <li><a href="/services/cloud" class="footer-link">Cloud Hosting</a></li>
+            <li><a href="/services/email" class="footer-link">Email Hosting</a></li>
+            <li><a href="/backup-security" class="footer-link">Backup &amp; Security</a></li>
+          </ul>
+        </div>
+        <div class="footer-link-group" aria-labelledby="footer-company">
+          <h3 id="footer-company" class="footer-link-title">Company</h3>
+          <ul>
+            <li><a href="/about" class="footer-link">About Us</a></li>
+            <li><a href="/careers" class="footer-link">Careers</a></li>
+            <li><a href="/resources/blog" class="footer-link">Blog</a></li>
+            <li><a href="/press" class="footer-link">Press</a></li>
+            <li><a href="/contact" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-link-group" aria-labelledby="footer-support">
+          <h3 id="footer-support" class="footer-link-title">Support</h3>
+          <ul>
+            <li><a href="/support" class="footer-link">Help Center</a></li>
+            <li><a href="/resources/docs" class="footer-link">Documentation</a></li>
+            <li><a href="/status" class="footer-link">System Status</a></li>
+            <li><a href="/resources/case-studies" class="footer-link">Case Studies</a></li>
+            <li><a href="/community" class="footer-link">Community</a></li>
+            <li><a href="/migration" class="footer-link">Migration</a></li>
+          </ul>
+        </div>
+        <div class="footer-link-group" aria-labelledby="footer-legal">
+          <h3 id="footer-legal" class="footer-link-title">Legal</h3>
+          <ul>
+            <li><a href="/privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="/terms" class="footer-link">Terms of Service</a></li>
+            <li><a href="/cookies" class="footer-link">Cookie Policy</a></li>
+            <li><a href="/sla" class="footer-link">SLA</a></li>
+            <li><a href="/gdpr" class="footer-link">GDPR</a></li>
+            <li><a href="/acceptable-use" class="footer-link">Acceptable Use</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&#169; Copyright <span id="footer-year"></span> ICSDC. All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- SCROLL ANIMATION ENGINE -->
+  <script>
+    (function () {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('[data-animate], [data-stagger]').forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+
+  <!-- Strapi config -->
+  <script>
+    STRAPI_URL = "http://localhost:1337";
+    TOKEN = "5e685bd788588b5db88df3d3d47ad9a446f82768a2514d7dce437f6dc10c872d61b83b91763e6ea54acb9f7d7aac432e1714eef2dd12d718aae5c3bbae246aa90a85d22938474559dd9327dc2f7c9114b06bfdbb4ce9daf5d4e8f45b7a608c7d80eea92ac9896b47238380007a7d592b3825db93c9f9e5fbdab95be79a2c8e6e";
+  </script>
+  <script src="assets/js/main.js" type="module"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/polish.js" defer></script>
+
+
+</body>
+
+</html>
