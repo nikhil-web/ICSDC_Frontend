@@ -4667,6 +4667,360 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
+
+        /* ══════════════════════════════════════
+   DOMAIN REGISTRATION PAGE — SCOPED STYLES
+   All classes prefixed dom-* to prevent
+   collision with other page styles.
+══════════════════════════════════════ */
+
+        /* ── Eyebrow badge ── */
+        .dom-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--blue-light);
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: var(--radius-xl);
+            margin-bottom: 20px;
+            border: 1px solid rgba(26, 86, 219, 0.15);
+        }
+
+        .dom-eyebrow-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--blue);
+            border-radius: 50%;
+            animation: dom-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes dom-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.4; transform: scale(0.7); }
+        }
+
+        /* ── Search bar ── */
+        .dom-search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 6px 6px 6px 20px;
+            margin-bottom: 16px;
+            max-width: 540px;
+            box-shadow: var(--shadow-card);
+            transition: border-color var(--transition-base) ease,
+                        box-shadow var(--transition-base) ease;
+        }
+
+        .dom-search-bar:focus-within {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 4px rgba(26, 86, 219, 0.10), var(--shadow-card);
+        }
+
+        .dom-search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            font-family: inherit;
+            color: var(--text);
+            background: transparent;
+            min-width: 0;
+        }
+
+        .dom-search-input::placeholder {
+            color: var(--muted);
+        }
+
+        .dom-search-btn {
+            padding: 12px 24px;
+            background: var(--blue);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            white-space: nowrap;
+            transition: background var(--transition-base) ease,
+                        transform var(--transition-fast) ease,
+                        box-shadow var(--transition-base) ease;
+            box-shadow: 0 2px 8px rgba(26, 86, 219, 0.25);
+        }
+
+        .dom-search-btn:hover {
+            background: var(--blue-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(26, 86, 219, 0.35);
+        }
+
+        /* ── TLD pills ── */
+        .dom-tld-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .dom-tld {
+            display: inline-block;
+            background: rgba(26, 86, 219, 0.06);
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(26, 86, 219, 0.10);
+            transition: background var(--transition-base) ease,
+                        border-color var(--transition-base) ease;
+        }
+
+        .dom-tld:hover {
+            background: rgba(26, 86, 219, 0.12);
+            border-color: rgba(26, 86, 219, 0.25);
+        }
+
+        /* ── Hero visual (globe) ── */
+        .dom-hero-visual {
+            width: 100%;
+            max-width: 460px;
+            aspect-ratio: 1 / 1;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 55%, #e0f2fe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(26, 86, 219, 0.13), 0 4px 16px rgba(0,0,0,0.06);
+            animation: heroImageFloat 8s ease-in-out 1s infinite;
+        }
+
+        .dom-hero-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 65% 30%, rgba(26,86,219,0.10) 0%, transparent 55%),
+                radial-gradient(circle at 25% 70%, rgba(79,209,197,0.07) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .dom-globe-wrap {
+            position: relative;
+            z-index: 1;
+            width: 220px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dom-globe-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .dom-globe-pin {
+            position: absolute;
+            background: var(--white);
+            border: 1px solid rgba(26,86,219,0.15);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-dark);
+            box-shadow: 0 4px 12px rgba(26,86,219,0.12);
+            white-space: nowrap;
+        }
+
+        .dom-pin-1 {
+            top: 8%;
+            right: -10%;
+            animation: dom-pin-float 4s ease-in-out infinite;
+        }
+
+        .dom-pin-2 {
+            bottom: 20%;
+            left: -12%;
+            animation: dom-pin-float 5s ease-in-out 0.5s infinite;
+        }
+
+        .dom-pin-3 {
+            top: 50%;
+            right: -15%;
+            animation: dom-pin-float 4.5s ease-in-out 1s infinite;
+        }
+
+        @keyframes dom-pin-float {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-6px); }
+        }
+
+        /* Status badge */
+        .dom-status-badge {
+            position: absolute;
+            bottom: 22px;
+            right: 22px;
+            background: var(--white);
+            border: 1px solid rgba(26,86,219,0.12);
+            border-radius: 12px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 24px rgba(26,86,219,0.12);
+            z-index: 2;
+            animation: dom-pin-float 5s ease-in-out 0.8s infinite;
+        }
+
+        .dom-status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px rgba(34,197,94,0.5);
+            flex-shrink: 0;
+        }
+
+        .dom-badge-text {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+        }
+
+        .dom-badge-sub {
+            font-size: 10px;
+            color: var(--muted);
+            font-weight: 400;
+        }
+
+        /* ── Popular Domains / TLD Pricing Grid ── */
+        .dom-pricing-placeholder {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .dom-tld-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .dom-tld-card {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow-card);
+            transition: transform var(--transition-base) ease,
+                        box-shadow var(--transition-base) ease,
+                        border-color var(--transition-base) ease;
+            position: relative;
+        }
+
+        .dom-tld-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card-hover);
+            border-color: rgba(26,86,219,0.22);
+        }
+
+        .dom-tld-card.dom-tld-featured {
+            border-color: var(--blue);
+            background: linear-gradient(180deg, #f0f6ff 0%, var(--white) 100%);
+        }
+
+        .dom-tld-ext {
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: 800;
+            color: var(--blue);
+            letter-spacing: -0.03em;
+        }
+
+        .dom-tld-price {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--muted-alt);
+        }
+
+        .dom-tld-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--orange);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 3px 14px;
+            border-radius: var(--radius-xl);
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(245,158,11,0.35);
+        }
+
+        /* ── Domain responsive ── */
+        @media (max-width: 1024px) {
+            .dom-tld-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dom-search-bar {
+                max-width: 100%;
+            }
+
+            .dom-tld-pills {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .dom-tld-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .dom-search-bar {
+                flex-direction: column;
+                padding: 8px;
+                gap: 8px;
+            }
+
+            .dom-search-input {
+                width: 100%;
+                padding: 8px 12px;
+            }
+
+            .dom-search-btn {
+                width: 100%;
+                padding: 12px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dom-tld-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .dom-tld-card {
+                padding: 20px 14px;
+            }
+        }
     </style>
 </head>
 
