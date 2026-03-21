@@ -1,0 +1,25 @@
+{
+  "module_page_scripts": {
+    "acronis-backup.html": "assets/js/acronis-backup.js",
+    "aws-cloud-hosting.html": "assets/js/aws-cloud-hosting.js",
+    "azure-cloud-hosting.html": "assets/js/azure-cloud-hosting.js",
+    "cloud-hosting.html": "assets/js/cloud-hosting.js",
+    "dedicated-server.html": "assets/js/dedicated-server.js",
+    "domain-registration.html": "assets/js/domain-registration.js",
+    "email-hosting.html": "assets/js/email-hosting.js",
+    "linux-dedicated-server.html": "assets/js/linux-dedicated-server.js",
+    "shared-hosting.html": "assets/js/shared-hosting.js",
+    "vps-hosting.html": "assets/js/vps-hosting.js",
+    "windows-cloud-hosting.html": "assets/js/windows-cloud-hosting.js",
+    "windows-dedicated-server.html": "assets/js/windows-dedicated-server.js",
+    "windows-vps-hosting.html": "assets/js/windows-vps-hosting.js",
+    "zimbra-hosting.html": "assets/js/zimbra-hosting.js"
+  },
+  "module_shared_scripts": [
+    "assets/js/main.js"
+  ],
+  "classic_shared_scripts": [
+    "assets/js/components.js",
+    "assets/js/polish.js"
+  ]
+}

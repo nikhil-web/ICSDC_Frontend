@@ -84,7 +84,7 @@ function fill(data) {
         if (!key || !(key in data)) return;
         const value = data[key];
         if (el.tagName === "IMG") {
-            el.src = value;
+            if (value) el.src = value;
         } else {
             el.textContent = value;
         }
@@ -97,6 +97,7 @@ function fill(data) {
 function renderHeroAndLogo(heroData, logoData) {
     const hero = heroData?.data ?? LOCAL_DATA.hero;
     const logo = logoData?.data?.mainLogo;
+    const fallbackLogo = "assets/images/main_logo.png";
 
     fill({
         mainHeading: hero.mainHeading ?? LOCAL_DATA.hero.mainHeading,
@@ -104,7 +105,7 @@ function renderHeroAndLogo(heroData, logoData) {
         description: hero.description ?? LOCAL_DATA.hero.description,
         price: hero.price ?? LOCAL_DATA.hero.price,
         priceNote: hero.priceNote ?? LOCAL_DATA.hero.priceNote,
-        mainLogo: logo ? uploadURL(logo, "thumbnail") : "",
+        mainLogo: logo ? uploadURL(logo, "thumbnail") : "assets/images/main_logo.png",
     });
 }
 
@@ -453,8 +454,6 @@ async function init() {
             logoData,
             menuData,
             whyUsData,
-            // whoWeAreData,
-            // lessComplexityData,
             globalData,
             cloudServicesData,
         } = await fetchAllPageData();
@@ -462,8 +461,6 @@ async function init() {
         renderHeroAndLogo(heroData, logoData);
         initNav(menuData);
         renderWhyUs(whyUsData);
-        // renderWhoWeAre(whoWeAreData);
-        // renderLessComplexity(lessComplexityData);
         renderCloudServices(cloudServicesData);
         renderIndustryValidated(heroData);   // industryValidated fields live on homepage
         renderContactInfo(globalData);
@@ -472,8 +469,6 @@ async function init() {
         console.error("[main.js] Strapi fetch failed — rendering with local fallback data:", err);
         renderHeroAndLogo(null, null);
         renderWhyUs(null);
-        // renderWhoWeAre(null);
-        // renderLessComplexity(null);
         renderCloudServices(null);
         renderIndustryValidated(null);
         renderContactInfo(null);

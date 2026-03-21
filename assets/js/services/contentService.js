@@ -488,25 +488,6 @@ export function getLinuxDedicatedServerPage() {
     );
 }
 
-// ──────────────────────────────────────────────────────────
-//  HOMEPAGE (Single Type — full page data)
-// ──────────────────────────────────────────────────────────
-
-/**
- * Fetches the entire Homepage content in a single API call.
- * Uses explicit deep populate for all nested components.
- */
-export function getHomepagePage() {
-    return fetchAPI(
-        "/api/homepage" +
-        "?populate[seo]=*" +
-        "&populate[heroCtaPrimary]=*" +
-        "&populate[heroCtaSecondary]=*" +
-        "&populate[whoWeAreCards]=*" +
-        "&populate[solutionCards]=*" +
-        "&populate[cloudNeedsItems]=*"
-    );
-}
 
 // ──────────────────────────────────────────────────────────
 //  AGGREGATE FETCH
@@ -527,8 +508,6 @@ export async function fetchAllPageData() {
         logoData,
         menuData,
         whyUsData,
-        // whoWeAreData,
-        // lessComplexityData,
         globalData,
         testimonialData,
         faqData,
@@ -538,8 +517,6 @@ export async function fetchAllPageData() {
         getMainLogo(),
         getNavigation(),
         getWhyUs(),
-        // getWhoWeAre(),
-        // getLessComplexity(),
         getGlobal(),
         getTestimonials(),
         getFaqItems(),
@@ -551,8 +528,6 @@ export async function fetchAllPageData() {
         logoData,
         menuData,
         whyUsData,
-        // whoWeAreData,
-        // lessComplexityData,
         globalData,
         testimonialData,
         faqData,
