@@ -55,6 +55,7 @@ import { getCloudHostingPage } from './services/contentService.js';
         populateCtaBand('.cloud-cta-dark', page.ctaBand3);
     } catch (err) {
         console.error('[cloud-hosting] CMS load failed:', err);
+    } finally {
+        hidePageLoader();
     }
-    hidePageLoader();
 })();

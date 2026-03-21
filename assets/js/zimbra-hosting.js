@@ -463,10 +463,10 @@ import { getZimbraHostingPage } from './services/contentService.js';
         } catch (err) {
             console.error('[zimbra-hosting] Failed to load CMS data:', err);
             // Page will display with hardcoded fallback content from HTML
+        } finally {
+            // Always hide loader after content attempt
+            hidePageLoader();
         }
-
-        // Always hide loader after content attempt
-        hidePageLoader();
     }
 
     if (document.readyState === 'loading') {

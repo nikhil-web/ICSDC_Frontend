@@ -42,5 +42,7 @@ import { getHomepagePage } from './services/contentService.js';
         }
     } catch (err) {
         console.error('[homepage-cms] CMS load failed:', err);
+    } finally {
+        hidePageLoader();
     }
 })();

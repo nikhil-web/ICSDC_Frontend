@@ -321,10 +321,10 @@ import {
 
         } catch (err) {
             console.error('[domain-registration] Failed to load CMS data:', err);
+        } finally {
+            // Always hide loader after content attempt
+            hidePageLoader();
         }
-
-        // Always hide loader after content attempt
-        hidePageLoader();
     }
 
     if (document.readyState === 'loading') {
