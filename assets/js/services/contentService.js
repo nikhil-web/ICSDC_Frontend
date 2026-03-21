@@ -488,25 +488,6 @@ export function getLinuxDedicatedServerPage() {
     );
 }
 
-// ──────────────────────────────────────────────────────────
-//  HOMEPAGE (Single Type — full page data)
-// ──────────────────────────────────────────────────────────
-
-/**
- * Fetches the entire Homepage content in a single API call.
- * Uses explicit deep populate for all nested components.
- */
-export function getHomepagePage() {
-    return fetchAPI(
-        "/api/homepage" +
-        "?populate[seo]=*" +
-        "&populate[heroCtaPrimary]=*" +
-        "&populate[heroCtaSecondary]=*" +
-        "&populate[whoWeAreCards]=*" +
-        "&populate[solutionCards]=*" +
-        "&populate[cloudNeedsItems]=*"
-    );
-}
 
 // ──────────────────────────────────────────────────────────
 //  AGGREGATE FETCH
