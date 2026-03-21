@@ -54,6 +54,7 @@ import { getWindowsDedicatedServerPage } from './services/contentService.js';
         populateCtaBand('.cloud-cta-dark', page.ctaBand2);
     } catch (err) {
         console.error('[windows-dedicated-server] CMS load failed:', err);
+    } finally {
+        hidePageLoader();
     }
-    hidePageLoader();
 })();

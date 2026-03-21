@@ -67,6 +67,7 @@ import { getAzureCloudHostingPage } from './services/contentService.js';
         populateCtaBand('.azure-cta-band, .cloud-cta-band', page.ctaBand1);
     } catch (err) {
         console.error('[azure-cloud-hosting] CMS load failed:', err);
+    } finally {
+        hidePageLoader();
     }
-    hidePageLoader();
 })();

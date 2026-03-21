@@ -46,6 +46,7 @@ import { getAwsCloudHostingPage } from './services/contentService.js';
         populateCtaBand('.cloud-cta-dark', page.ctaBand2);
     } catch (err) {
         console.error('[aws-cloud-hosting] CMS load failed:', err);
+    } finally {
+        hidePageLoader();
     }
-    hidePageLoader();
 })();

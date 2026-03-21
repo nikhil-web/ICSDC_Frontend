@@ -316,10 +316,10 @@ import {
 
         } catch (err) {
             console.error('[acronis-backup] Failed to load CMS data:', err);
+        } finally {
+            // Always hide loader after content attempt
+            hidePageLoader();
         }
-
-        // Always hide loader after content attempt
-        hidePageLoader();
     }
 
     if (document.readyState === 'loading') {

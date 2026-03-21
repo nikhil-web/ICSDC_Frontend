@@ -33,6 +33,7 @@ import { getEmailHostingPage } from './services/contentService.js';
         populateCtaBand('.cloud-cta-dark', page.ctaBand2);
     } catch (err) {
         console.error('[email-hosting] CMS load failed:', err);
+    } finally {
+        hidePageLoader();
     }
-    hidePageLoader();
 })();
