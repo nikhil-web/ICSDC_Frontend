@@ -1,8 +1,7 @@
 // ══════════════════════════════════════════════════════════
 //  main.js — ICSDC Frontend + Strapi Integration
-//  Renders: Hero, Logo, Nav, WhyUs, WhoWeAre,
-//           LessComplexity, CloudServices, IndustryValidated,
-//           ContactInfo, Footer
+//  Renders: Hero, Logo, Nav, WhyUs, CloudServices,
+//           IndustryValidated, ContactInfo, Footer
 // ══════════════════════════════════════════════════════════
 
 import { uploadURL } from "./services/strapiClient.js";
@@ -125,40 +124,6 @@ function renderWhyUs(whyUsData) {
 
     document.querySelectorAll('[data-strapi-grid="whyUs"]').forEach(grid => {
         grid.innerHTML = html;
-    });
-}
-
-// ══════════════════════════════════════════════════════════
-//  RENDER: WHO WE ARE
-// ══════════════════════════════════════════════════════════
-function renderWhoWeAre(whoWeAreData) {
-    const data = whoWeAreData?.data ?? LOCAL_DATA.whoWeAre;
-    const cards = data.featureCards ?? LOCAL_DATA.whoWeAre.featureCards;
-
-    fill({
-        whoWeAreHeading: data.heading ?? LOCAL_DATA.whoWeAre.heading,
-        whoWeAreParagraph: data.paragraph ?? LOCAL_DATA.whoWeAre.paragraph,
-    });
-
-    const html = cards.map(card => {
-        const cls = card.variant === "primary" ? "btn-primary feature-cards" : "btn-outline feature-cards";
-        return `<button class="${cls}">${card.label}</button>`;
-    }).join("");
-
-    document.querySelectorAll('[data-strapi-grid="whoWeAreCards"]').forEach(el => {
-        el.innerHTML = html;
-    });
-}
-
-// ══════════════════════════════════════════════════════════
-//  RENDER: LESS CLOUD COMPLEXITY
-// ══════════════════════════════════════════════════════════
-function renderLessComplexity(lessComplexityData) {
-    const data = lessComplexityData?.data ?? LOCAL_DATA.lessComplexity;
-
-    fill({
-        lessComplexityHeading: data.heading ?? LOCAL_DATA.lessComplexity.heading,
-        lessComplexityParagraph: data.paragraph ?? LOCAL_DATA.lessComplexity.paragraph,
     });
 }
 
