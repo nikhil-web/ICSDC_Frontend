@@ -8,7 +8,7 @@
     'use strict';
 
     // ── CONFIG (set by index.html before this script loads) ──
-    const BASE_URL = (typeof STRAPI_URL !== "undefined" ? STRAPI_URL : "http://localhost:1337");
+    const BASE_URL = (typeof window.getStrapiUrl === "function" ? window.getStrapiUrl() : "http://localhost:1337");
     const API_TOKEN = (typeof TOKEN !== "undefined" ? TOKEN : "");
 
     const headers = {
