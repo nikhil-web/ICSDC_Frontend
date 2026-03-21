@@ -147,9 +147,9 @@ import { getSharedHostingPage } from './services/contentService.js';
 
     } catch (err) {
         console.error('[shared-hosting] CMS load failed:', err);
+    } finally {
+        hidePageLoader();
     }
-
-    hidePageLoader();
 
     /* ───────────────────────────────────────────────────────
        TESTIMONIALS CAROUSEL

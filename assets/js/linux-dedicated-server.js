@@ -54,6 +54,7 @@ import { getLinuxDedicatedServerPage } from './services/contentService.js';
         populateCtaBand('.cloud-cta-band, .cloud-cta-dark', page.ctaBand1);
     } catch (err) {
         console.error('[linux-dedicated-server] CMS load failed:', err);
+    } finally {
+        hidePageLoader();
     }
-    hidePageLoader();
 })();

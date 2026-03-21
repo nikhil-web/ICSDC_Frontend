@@ -542,7 +542,7 @@ import { getVpsHostingPage } from './services/contentService.js';
 
     } catch (err) {
         console.error('[vps-hosting] CMS load failed:', err);
+    } finally {
+        hidePageLoader();
     }
-
-    hidePageLoader();
 })();
