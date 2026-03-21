@@ -453,8 +453,8 @@ async function init() {
             logoData,
             menuData,
             whyUsData,
-            // whoWeAreData,
-            // lessComplexityData,
+            whoWeAreData,
+            lessComplexityData,
             globalData,
             cloudServicesData,
         } = await fetchAllPageData();
@@ -462,8 +462,8 @@ async function init() {
         renderHeroAndLogo(heroData, logoData);
         initNav(menuData);
         renderWhyUs(whyUsData);
-        // renderWhoWeAre(whoWeAreData);
-        // renderLessComplexity(lessComplexityData);
+        renderWhoWeAre(whoWeAreData);
+        renderLessComplexity(lessComplexityData);
         renderCloudServices(cloudServicesData);
         renderIndustryValidated(heroData);   // industryValidated fields live on homepage
         renderContactInfo(globalData);
@@ -472,8 +472,8 @@ async function init() {
         console.error("[main.js] Strapi fetch failed — rendering with local fallback data:", err);
         renderHeroAndLogo(null, null);
         renderWhyUs(null);
-        // renderWhoWeAre(null);
-        // renderLessComplexity(null);
+        renderWhoWeAre(null);
+        renderLessComplexity(null);
         renderCloudServices(null);
         renderIndustryValidated(null);
         renderContactInfo(null);
