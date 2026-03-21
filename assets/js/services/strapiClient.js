@@ -7,7 +7,9 @@
 // ── Config ───────────────────────────────────────────────
 // In production: replace with environment variable injection
 // e.g.  const BASE_URL = process.env.STRAPI_URL
-const BASE_URL = (typeof STRAPI_URL !== "undefined" ? STRAPI_URL : "http://localhost:1337");
+const BASE_URL = (typeof window !== "undefined" && typeof window.getStrapiUrl === "function")
+    ? window.getStrapiUrl()
+    : "http://localhost:1337";
 const API_TOKEN = (typeof TOKEN !== "undefined" ? TOKEN : "");
 
 const DEFAULT_HEADERS = {
