@@ -36,16 +36,6 @@ export function getWhyUs() {
     return fetchAPI("/api/why-us-section?populate=cards");
 }
 
-/** Who We Are section with feature buttons */
-export function getWhoWeAre() {
-    return fetchAPI("/api/who-we-are-section?populate=featureCards");
-}
-
-/** Less Cloud Complexity text section */
-export function getLessComplexity() {
-    return fetchAPI("/api/less-complexity-section");
-}
-
 /**
  * Global single type — contact info + footer data
  * Uses explicit deep populate to avoid over-fetching.
@@ -527,8 +517,6 @@ export async function fetchAllPageData() {
         logoData,
         menuData,
         whyUsData,
-        // whoWeAreData,
-        // lessComplexityData,
         globalData,
         testimonialData,
         faqData,
@@ -538,8 +526,6 @@ export async function fetchAllPageData() {
         getMainLogo(),
         getNavigation(),
         getWhyUs(),
-        // getWhoWeAre(),
-        // getLessComplexity(),
         getGlobal(),
         getTestimonials(),
         getFaqItems(),
@@ -551,8 +537,6 @@ export async function fetchAllPageData() {
         logoData,
         menuData,
         whyUsData,
-        // whoWeAreData,
-        // lessComplexityData,
         globalData,
         testimonialData,
         faqData,
