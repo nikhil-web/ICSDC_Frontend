@@ -8,7 +8,13 @@
     'use strict';
 
     // ── CONFIG (set by index.html before this script loads) ──
+<<<<<<< HEAD
+    const BASE_URL = (typeof window !== "undefined" && typeof window.resolveStrapiBaseUrl === "function")
+        ? window.resolveStrapiBaseUrl()
+        : "";
+=======
     const BASE_URL = (typeof window.getStrapiUrl === "function" ? window.getStrapiUrl() : "http://localhost:1337");
+>>>>>>> pre-develop
     const API_TOKEN = (typeof TOKEN !== "undefined" ? TOKEN : "");
 
     const headers = {
