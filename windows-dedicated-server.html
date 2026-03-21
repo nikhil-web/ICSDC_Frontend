@@ -4788,6 +4788,1609 @@
             }
         }
     </style>
+
+    <style>
+        /* ====== windows-dedicated-server.css ====== */
+
+        /* ====== Who We Are checklist ====== */
+        .wds-about-list {
+            list-style: none;
+            padding: 0;
+            margin: 2.5rem auto 0;
+            max-width: 760px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem 2rem;
+        }
+
+        .wds-about-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--c-text, #1e293b);
+            padding: 0.75rem 1rem;
+            background: var(--c-surface, #f8fafc);
+            border-radius: 10px;
+            border: 1px solid var(--c-border, #e2e8f0);
+        }
+
+        .wds-about-check {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--c-primary, #0078d4);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+
+        /* ====== WDS Hero / Decorative / Misc ====== */
+        .wds-hero-visual {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .wds-tech-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 120, 212, 0.12);
+            color: var(--c-primary, #0078d4);
+            border: 1px solid rgba(0, 120, 212, 0.25);
+            border-radius: 999px;
+            padding: 0.4rem 1rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .wds-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(22, 163, 74, 0.1);
+            border: 1px solid rgba(22, 163, 74, 0.25);
+            border-radius: 999px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #16a34a;
+        }
+
+        .wds-status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #16a34a;
+            animation: pulse-dot 1.8s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.4);
+            }
+        }
+
+        .wds-server-rack {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 12px 16px;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+        }
+
+        .wds-rack-unit {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #1e293b;
+            border-radius: 6px;
+            padding: 6px 10px;
+        }
+
+        .wds-rack-led {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 6px #4ade80;
+            flex-shrink: 0;
+        }
+
+        .wds-rack-label {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            flex: 1;
+            white-space: nowrap;
+        }
+
+        .wds-rack-bars {
+            display: flex;
+            gap: 2px;
+            align-items: flex-end;
+            height: 14px;
+        }
+
+        .wds-rack-bar {
+            width: 4px;
+            background: var(--c-primary, #0078d4);
+            border-radius: 2px;
+            opacity: 0.7;
+        }
+
+        .wds-rack-stat {
+            font-size: 0.68rem;
+            color: #64748b;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        .wds-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--c-primary, #0078d4);
+            margin-bottom: 0.75rem;
+        }
+
+        .wds-eyebrow-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--c-primary, #0078d4);
+            display: inline-block;
+        }
+
+        .wds-badge-text {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--c-heading, #0f172a);
+            line-height: 1.2;
+        }
+
+        .wds-badge-sub {
+            font-size: 0.72rem;
+            color: var(--c-muted, #64748b);
+            margin-top: 2px;
+        }
+
+        .wds-note {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: var(--c-muted, #64748b);
+            font-style: italic;
+        }
+
+        .wds-pricing-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 3rem 2rem;
+            background: var(--c-surface, #f8fafc);
+            border: 2px dashed var(--c-border, #e2e8f0);
+            border-radius: 16px;
+            text-align: center;
+            color: var(--c-muted, #64748b);
+        }
+
+        .wds-pricing-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--c-primary, #0078d4);
+            opacity: 0.6;
+        }
+
+
+        /* ====== Comparison Table ====== */
+        .wds-compare-wrap {
+            overflow-x: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 32px rgba(0, 0, 0, 0.10);
+            margin-top: 2rem;
+        }
+
+        .wds-compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            font-size: 0.95rem;
+        }
+
+        .wds-compare-table thead tr {
+            background: var(--c-primary, #0078d4);
+            color: #fff;
+        }
+
+        .wds-compare-table thead th {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .wds-compare-table tbody tr:nth-child(even) {
+            background: #f4f8fd;
+        }
+
+        .wds-compare-table tbody tr:hover {
+            background: #e8f1fb;
+            transition: background 0.2s;
+        }
+
+        .wds-compare-table td {
+            padding: 0.85rem 1.25rem;
+            border-bottom: 1px solid #e5eaf2;
+            color: var(--c-text, #1e293b);
+        }
+
+        .wds-col-managed {
+            background: rgba(0, 120, 212, 0.06) !important;
+        }
+
+        .wds-check {
+            color: #16a34a;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .wds-cross {
+            color: #dc2626;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 640px) {
+            .wds-compare-table {
+                font-size: 0.82rem;
+            }
+
+            .wds-compare-table td,
+            .wds-compare-table th {
+                padding: 0.65rem 0.75rem;
+            }
+        }
+
+        /* ══════════════════════════════════════
+   CLOUD HOSTING PAGE — SCOPED STYLES
+   All classes prefixed cloud-* to prevent
+   any collision with style.css,
+   components.css, dedicated-server.css,
+   or vps-hosting.css. Zero overrides.
+══════════════════════════════════════ */
+
+        /* ══════════════════════════════════════
+   SHARED UTILITIES
+══════════════════════════════════════ */
+        .cloud-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--blue-light);
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: var(--radius-xl);
+            margin-bottom: 20px;
+            border: 1px solid rgba(26, 86, 219, 0.15);
+        }
+
+        .cloud-eyebrow-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--blue);
+            border-radius: 50%;
+            animation: cloud-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes cloud-pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.7);
+            }
+        }
+
+        .cloud-section-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.10em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 8px;
+            opacity: 0.75;
+        }
+
+        /* ══════════════════════════════════════
+   HERO — CLOUD NODE VISUAL
+══════════════════════════════════════ */
+        .cloud-hero-visual {
+            width: 100%;
+            max-width: 560px;
+            aspect-ratio: 4 / 3;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 55%, #e0f2fe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(26, 86, 219, 0.13), 0 4px 16px rgba(0, 0, 0, 0.06);
+            animation: heroImageFloat 8s ease-in-out 1s infinite;
+        }
+
+        .cloud-hero-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 65% 30%, rgba(26, 86, 219, 0.10) 0%, transparent 55%),
+                radial-gradient(circle at 25% 70%, rgba(79, 209, 197, 0.07) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* SVG connection graph */
+        .cloud-node-graph {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cloud-node-graph svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .cloud-node-circle {
+            fill: var(--white);
+            stroke: rgba(26, 86, 219, 0.20);
+            stroke-width: 1;
+            filter: drop-shadow(0 4px 12px rgba(26, 86, 219, 0.12));
+            transition: all 0.3s ease;
+        }
+
+        .cloud-node-circle.cloud-node-center {
+            fill: var(--blue);
+            stroke: rgba(26, 86, 219, 0.40);
+        }
+
+        .cloud-node-icon {
+            font-size: 18px;
+        }
+
+        .cloud-edge {
+            stroke: rgba(26, 86, 219, 0.18);
+            stroke-width: 1.2;
+            stroke-dasharray: 5 4;
+            fill: none;
+            animation: cloud-dash 3s linear infinite;
+        }
+
+        .cloud-edge:nth-child(2) {
+            animation-delay: -0.5s;
+        }
+
+        .cloud-edge:nth-child(3) {
+            animation-delay: -1s;
+        }
+
+        .cloud-edge:nth-child(4) {
+            animation-delay: -1.5s;
+        }
+
+        .cloud-edge:nth-child(5) {
+            animation-delay: -2s;
+        }
+
+        .cloud-edge:nth-child(6) {
+            animation-delay: -2.5s;
+        }
+
+        @keyframes cloud-dash {
+            to {
+                stroke-dashoffset: -36;
+            }
+        }
+
+        /* Floating data badge */
+        .cloud-hero-badge {
+            position: absolute;
+            bottom: 22px;
+            right: 22px;
+            background: var(--white);
+            border: 1px solid rgba(26, 86, 219, 0.12);
+            border-radius: 12px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 24px rgba(26, 86, 219, 0.12);
+            z-index: 2;
+            animation: cloud-badge-float 5s ease-in-out 0.8s infinite;
+        }
+
+        @keyframes cloud-badge-float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .cloud-hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+            flex-shrink: 0;
+        }
+
+        .cloud-hero-badge-text {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+        }
+
+        .cloud-hero-badge-sub {
+            font-size: 10px;
+            color: var(--muted);
+            font-weight: 400;
+        }
+
+        /* India badge top-left */
+        .cloud-hero-india-badge {
+            position: absolute;
+            top: 22px;
+            left: 22px;
+            background: var(--white);
+            border: 1px solid rgba(26, 86, 219, 0.12);
+            border-radius: 12px;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 16px rgba(26, 86, 219, 0.10);
+            z-index: 2;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--blue);
+            letter-spacing: 0.04em;
+            animation: cloud-badge-float 6s ease-in-out 0.2s infinite;
+        }
+
+        /* ══════════════════════════════════════
+   12-FEATURE POWER GRID
+══════════════════════════════════════ */
+        .cloud-power-section {
+            background: var(--bg-light);
+        }
+
+        .cloud-power-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: left;
+        }
+
+        .cloud-power-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 26px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: var(--shadow-card);
+            transition: transform var(--transition-base) ease,
+                box-shadow var(--transition-base) ease,
+                border-color var(--transition-base) ease;
+        }
+
+        .cloud-power-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card-hover);
+            border-color: rgba(26, 86, 219, 0.18);
+        }
+
+        .cloud-power-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, #e8f0fe 0%, #c7d9fb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform var(--transition-base) var(--ease-out-back);
+        }
+
+        .cloud-power-card:hover .cloud-power-icon {
+            transform: scale(1.12) rotate(-4deg);
+        }
+
+        .cloud-power-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--blue);
+            stroke-width: 1.8;
+            fill: none;
+        }
+
+        .cloud-power-card h3 {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .cloud-power-card p {
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--muted-alt);
+            margin: 0;
+        }
+
+        /* ══════════════════════════════════════
+   PRICING
+══════════════════════════════════════ */
+        .cloud-pricing-section {
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        }
+
+        .cloud-pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .cloud-plan-card {
+            position: relative;
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px 32px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-card);
+            transition: transform var(--transition-base) var(--ease-out-expo),
+                box-shadow var(--transition-base) ease,
+                border-color var(--transition-base) ease;
+        }
+
+        .cloud-plan-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-card-hover);
+            border-color: rgba(26, 86, 219, 0.22);
+        }
+
+        .cloud-plan-card.cloud-featured {
+            background: var(--blue);
+            border-color: var(--blue);
+            transform: translateY(-8px);
+            box-shadow: 0 24px 64px rgba(26, 86, 219, 0.32), 0 8px 24px rgba(26, 86, 219, 0.20);
+            z-index: 2;
+        }
+
+        .cloud-plan-card.cloud-featured:hover {
+            transform: translateY(-14px);
+        }
+
+        .cloud-plan-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--orange);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 4px 16px;
+            border-radius: var(--radius-xl);
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+        }
+
+        .cloud-plan-tier {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 12px;
+        }
+
+        .cloud-plan-card.cloud-featured .cloud-plan-tier {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .cloud-plan-price-wrap {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            margin-bottom: 4px;
+        }
+
+        .cloud-plan-currency {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-dark);
+            align-self: flex-start;
+            margin-top: 8px;
+        }
+
+        .cloud-plan-price {
+            font-size: clamp(36px, 4vw, 48px);
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.04em;
+            line-height: 1;
+        }
+
+        .cloud-plan-period {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        .cloud-plan-card.cloud-featured .cloud-plan-currency,
+        .cloud-plan-card.cloud-featured .cloud-plan-price {
+            color: var(--white);
+        }
+
+        .cloud-plan-card.cloud-featured .cloud-plan-period {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .cloud-plan-tagline {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--muted-alt);
+            margin: 12px 0 0;
+        }
+
+        .cloud-plan-card.cloud-featured .cloud-plan-tagline {
+            color: rgba(255, 255, 255, 0.80);
+        }
+
+        .cloud-plan-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 22px 0;
+            border: none;
+        }
+
+        .cloud-plan-card.cloud-featured .cloud-plan-divider {
+            background: rgba(255, 255, 255, 0.20);
+        }
+
+        .cloud-plan-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            flex: 1;
+            margin-bottom: 28px;
+        }
+
+        .cloud-plan-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .cloud-plan-card.cloud-featured .cloud-plan-feature {
+            color: rgba(255, 255, 255, 0.90);
+        }
+
+        .cloud-plan-check {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(26, 86, 219, 0.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+        }
+
+        .cloud-plan-card.cloud-featured .cloud-plan-check {
+            background: rgba(255, 255, 255, 0.20);
+        }
+
+        .cloud-plan-check svg {
+            width: 10px;
+            height: 10px;
+            stroke: var(--blue);
+            stroke-width: 2.5;
+        }
+
+        .cloud-plan-card.cloud-featured .cloud-plan-check svg {
+            stroke: var(--white);
+        }
+
+        .cloud-plan-cta {
+            width: 100%;
+            padding: 14px 24px;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            letter-spacing: -0.01em;
+            transition: background var(--transition-base) ease,
+                transform var(--transition-fast) ease,
+                box-shadow var(--transition-base) ease;
+            min-height: 48px;
+            border: 2px solid transparent;
+        }
+
+        .cloud-plan-cta-outline {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        .cloud-plan-cta-outline:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+            background: var(--blue-light);
+            transform: translateY(-1px);
+        }
+
+        .cloud-plan-cta-primary {
+            background: var(--white);
+            color: var(--blue);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+        }
+
+        .cloud-plan-cta-primary:hover {
+            background: var(--blue-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
+        }
+
+        /* ══════════════════════════════════════
+   CLOUD FRAMEWORKS STRIP
+══════════════════════════════════════ */
+        .cloud-frameworks-section {
+            background: var(--bg-light);
+            padding: 64px 0;
+        }
+
+        .cloud-frameworks-inner {
+            width: 100%;
+            max-width: var(--c-container);
+            margin: 0 auto;
+            padding: 0 var(--c-px);
+        }
+
+        .cloud-frameworks-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            margin-top: 36px;
+        }
+
+        .cloud-framework-badge {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+            box-shadow: var(--shadow-card);
+            transition: transform var(--transition-base) ease,
+                box-shadow var(--transition-base) ease,
+                border-color var(--transition-base) ease,
+                color var(--transition-base) ease;
+            white-space: nowrap;
+        }
+
+        .cloud-framework-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-card-hover);
+            border-color: rgba(26, 86, 219, 0.25);
+            color: var(--blue);
+        }
+
+        .cloud-framework-badge svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--blue);
+            stroke-width: 1.8;
+            fill: none;
+            flex-shrink: 0;
+        }
+
+        /* ══════════════════════════════════════
+   MANAGED / UNMANAGED CHOICE
+   (2-col: content left, panel-box right)
+══════════════════════════════════════ */
+        .cloud-choice-section {
+            background: var(--white);
+        }
+
+        .cloud-choice-inner {
+            width: 100%;
+            max-width: var(--c-container);
+            margin: 0 auto;
+            padding: 80px var(--c-px);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(48px, 7vw, 100px);
+            align-items: center;
+        }
+
+        .cloud-choice-options {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .cloud-choice-card {
+            background: var(--bg-light);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px 22px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: transform var(--transition-base) ease,
+                box-shadow var(--transition-base) ease,
+                border-color var(--transition-base) ease;
+        }
+
+        .cloud-choice-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-card-hover);
+            border-color: rgba(26, 86, 219, 0.20);
+        }
+
+        .cloud-choice-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, #e8f0fe 0%, #c7d9fb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform var(--transition-base) var(--ease-out-back);
+        }
+
+        .cloud-choice-card:hover .cloud-choice-card-icon {
+            transform: scale(1.1) rotate(-4deg);
+        }
+
+        .cloud-choice-card-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--blue);
+            stroke-width: 1.8;
+            fill: none;
+        }
+
+        .cloud-choice-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+            margin: 0 0 5px;
+        }
+
+        .cloud-choice-card p {
+            font-size: 13.5px;
+            line-height: 1.65;
+            color: var(--muted-alt);
+            margin: 0;
+        }
+
+        /* Portal box (right side) */
+        .cloud-portal-box {
+            background: var(--blue);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(26, 86, 219, 0.28);
+        }
+
+        .cloud-portal-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(79, 209, 197, 0.10) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .cloud-portal-box>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cloud-portal-box h3 {
+            font-size: clamp(20px, 2vw, 26px);
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -0.03em;
+            margin: 0 0 12px;
+            line-height: 1.2;
+        }
+
+        .cloud-portal-box p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.80);
+            line-height: 1.65;
+            margin: 0 0 24px;
+        }
+
+        .cloud-portal-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .cloud-portal-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cloud-portal-step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .cloud-portal-step span {
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.90);
+            font-weight: 500;
+        }
+
+        .cloud-portal-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.70);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 16px;
+            line-height: 1.5;
+        }
+
+        /* ══════════════════════════════════════
+   WHY CHOOSE — 10-item checklist band
+══════════════════════════════════════ */
+        .cloud-why-section {
+            background: #efefef;
+            padding: 80px 0;
+        }
+
+        .cloud-why-inner {
+            width: 100%;
+            max-width: var(--c-container);
+            margin: 0 auto;
+            padding: 0 var(--c-px);
+            text-align: center;
+        }
+
+        .cloud-why-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-top: 48px;
+            text-align: left;
+        }
+
+        .cloud-why-item {
+            background: var(--white);
+            border: 1px solid rgba(26, 86, 219, 0.10);
+            border-radius: var(--radius-lg);
+            padding: 20px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: var(--shadow-card);
+            transition: transform var(--transition-base) ease,
+                box-shadow var(--transition-base) ease;
+        }
+
+        .cloud-why-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .cloud-why-num {
+            font-size: 28px;
+            font-weight: 800;
+            color: rgba(26, 86, 219, 0.10);
+            letter-spacing: -0.04em;
+            line-height: 1;
+        }
+
+        .cloud-why-item h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+            margin: 0;
+            line-height: 1.35;
+        }
+
+        /* ══════════════════════════════════════
+   USE CASES (6-item)
+══════════════════════════════════════ */
+        .cloud-use-section {
+            background: var(--white);
+        }
+
+        .cloud-use-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: left;
+        }
+
+        .cloud-use-card {
+            background: var(--bg-light);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: var(--shadow-card);
+            transition: transform var(--transition-base) ease,
+                box-shadow var(--transition-base) ease,
+                border-color var(--transition-base) ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cloud-use-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue), var(--accent-teal));
+            opacity: 0;
+            transition: opacity var(--transition-base) ease;
+        }
+
+        .cloud-use-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card-hover);
+            border-color: rgba(26, 86, 219, 0.20);
+        }
+
+        .cloud-use-card:hover::after {
+            opacity: 1;
+        }
+
+        .cloud-use-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, #e8f0fe 0%, #c7d9fb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform var(--transition-base) var(--ease-out-back);
+        }
+
+        .cloud-use-card:hover .cloud-use-icon {
+            transform: scale(1.12) rotate(-4deg);
+        }
+
+        .cloud-use-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--blue);
+            stroke-width: 1.8;
+            fill: none;
+        }
+
+        .cloud-use-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .cloud-use-card p {
+            font-size: 13.5px;
+            line-height: 1.65;
+            color: var(--muted-alt);
+            margin: 0;
+        }
+
+        /* ══════════════════════════════════════
+   MODERN WORKLOADS (7-item scrolling
+   marquee-style or grid)
+══════════════════════════════════════ */
+        .cloud-workload-section {
+            background: var(--bg-light);
+        }
+
+        .cloud-workload-inner {
+            width: 100%;
+            max-width: var(--c-container);
+            margin: 0 auto;
+            padding: 80px var(--c-px);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(48px, 7vw, 100px);
+            align-items: center;
+        }
+
+        .cloud-workload-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .cloud-workload-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            transition: background var(--transition-base) ease;
+        }
+
+        .cloud-workload-item:last-child {
+            border-bottom: none;
+        }
+
+        .cloud-workload-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #e8f0fe 0%, #c7d9fb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform var(--transition-base) var(--ease-out-back);
+        }
+
+        .cloud-workload-item:hover .cloud-workload-icon {
+            transform: scale(1.1) rotate(-4deg);
+        }
+
+        .cloud-workload-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--blue);
+            stroke-width: 1.8;
+            fill: none;
+        }
+
+        .cloud-workload-item h3 {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+            margin: 0 0 4px;
+            line-height: 1.3;
+        }
+
+        .cloud-workload-item p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--muted-alt);
+            margin: 0;
+        }
+
+        /* Workload visual */
+        .cloud-workload-visual {
+            width: 100%;
+            max-width: 480px;
+            aspect-ratio: 1 / 1;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--blue) 0%, #1341b0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(26, 86, 219, 0.25);
+        }
+
+        .cloud-workload-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.10) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(79, 209, 197, 0.12) 0%, transparent 50%);
+        }
+
+        .cloud-workload-stats {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 32px;
+            width: 100%;
+        }
+
+        .cloud-workload-stat {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            padding: 20px 14px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .cloud-workload-stat strong {
+            display: block;
+            font-size: clamp(18px, 2.2vw, 26px);
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -0.04em;
+            line-height: 1;
+        }
+
+        .cloud-workload-stat span {
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.70);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* ══════════════════════════════════════
+   DASHBOARD MANAGEMENT (4-item)
+   Reuses who-we-are 2-col pattern
+══════════════════════════════════════ */
+        .cloud-dashboard-section {
+            background: var(--white);
+        }
+
+        .cloud-dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .cloud-dashboard-item {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 20px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            box-shadow: var(--shadow-card);
+            transition: transform var(--transition-base) ease,
+                box-shadow var(--transition-base) ease,
+                border-color var(--transition-base) ease;
+        }
+
+        .cloud-dashboard-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-card-hover);
+            border-color: rgba(26, 86, 219, 0.18);
+        }
+
+        .cloud-dash-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #e8f0fe 0%, #c7d9fb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform var(--transition-base) var(--ease-out-back);
+        }
+
+        .cloud-dashboard-item:hover .cloud-dash-icon {
+            transform: scale(1.1) rotate(-4deg);
+        }
+
+        .cloud-dash-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--blue);
+            stroke-width: 1.8;
+            fill: none;
+        }
+
+        .cloud-dashboard-item h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.015em;
+            margin: 0 0 4px;
+            line-height: 1.3;
+        }
+
+        .cloud-dashboard-item p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--muted-alt);
+            margin: 0;
+        }
+
+        /* ══════════════════════════════════════
+   CTA BANDS
+══════════════════════════════════════ */
+        .cloud-cta-band {
+            background: var(--blue);
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0;
+        }
+
+        .cloud-cta-band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(79, 209, 197, 0.10) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .cloud-cta-band.cloud-cta-dark {
+            background: var(--c-footer-bg);
+        }
+
+        .cloud-cta-inner {
+            width: 100%;
+            max-width: var(--c-container);
+            margin: 0 auto;
+            padding: 0 var(--c-px);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cloud-cta-inner h2 {
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            max-width: 760px;
+            margin: 0 auto 14px;
+        }
+
+        .cloud-cta-inner p {
+            font-size: clamp(15px, 1.5vw, 18px);
+            color: rgba(255, 255, 255, 0.80);
+            line-height: 1.65;
+            margin: 0 auto 36px;
+            max-width: 560px;
+        }
+
+        .cloud-cta-btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cloud-cta-btn-primary {
+            padding: 14px 32px;
+            background: var(--white);
+            color: var(--blue);
+            border: 2px solid transparent;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            letter-spacing: -0.01em;
+            transition: background var(--transition-base) ease,
+                transform var(--transition-fast) ease,
+                box-shadow var(--transition-base) ease;
+            min-height: 48px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cloud-cta-btn-primary:hover {
+            background: var(--blue-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.20);
+        }
+
+        .cloud-cta-btn-outline {
+            padding: 14px 32px;
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.45);
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: border-color var(--transition-base) ease,
+                background var(--transition-base) ease,
+                transform var(--transition-fast) ease;
+            min-height: 48px;
+        }
+
+        .cloud-cta-btn-outline:hover {
+            border-color: rgba(255, 255, 255, 0.80);
+            background: rgba(255, 255, 255, 0.10);
+            transform: translateY(-1px);
+        }
+
+        /* ══════════════════════════════════════
+   RESPONSIVE — TABLET (≤ 1024px)
+══════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .cloud-pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .cloud-plan-card.cloud-featured {
+                transform: translateY(0);
+            }
+
+            .cloud-power-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cloud-why-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .cloud-use-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cloud-choice-inner,
+            .cloud-workload-inner {
+                grid-template-columns: 1fr;
+                padding: 60px var(--c-px);
+            }
+
+            .cloud-workload-visual {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        /* ══════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 640px)
+══════════════════════════════════════ */
+        @media (max-width: 640px) {
+
+            .cloud-power-grid,
+            .cloud-use-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cloud-why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cloud-dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cloud-cta-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cloud-cta-btn-primary,
+            .cloud-cta-btn-outline {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .cloud-frameworks-grid {
+                gap: 10px;
+            }
+
+            .cloud-framework-badge {
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cloud-why-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -4967,6 +6570,45 @@
     </section>
 
     <!-- ════════ FEATURES ════════ -->
+
+    <!-- WHO WE ARE SECTION -->
+    <section id="wds-about" class="section" aria-labelledby="wds-about-heading">
+        <div class="container">
+            <span class="cloud-section-label" data-animate="fade-up">About ICSDC</span>
+            <h2 id="wds-about-heading" class="section-title" data-animate="fade-up">Who We Are?</h2>
+            <p class="section-subtitle" data-animate="fade-up">ICSDC delivers reliable, high-performance Windows
+                Dedicated Server solutions built for businesses that demand power, stability, and complete control. With
+                enterprise-grade infrastructure and expert support, we ensure your workloads run smoothly, securely, and
+                without disruption.</p>
+            <ul class="wds-about-list" data-stagger>
+                <li class="wds-about-item" data-animate="fade-up">
+                    <span class="wds-about-check" aria-hidden="true">&#10003;</span>
+                    <span>Windows server specialists</span>
+                </li>
+                <li class="wds-about-item" data-animate="fade-up">
+                    <span class="wds-about-check" aria-hidden="true">&#10003;</span>
+                    <span>Enterprise-grade collaborative data center</span>
+                </li>
+                <li class="wds-about-item" data-animate="fade-up">
+                    <span class="wds-about-check" aria-hidden="true">&#10003;</span>
+                    <span>Proven expertise in performance optimization</span>
+                </li>
+                <li class="wds-about-item" data-animate="fade-up">
+                    <span class="wds-about-check" aria-hidden="true">&#10003;</span>
+                    <span>Strong security and compliance standards</span>
+                </li>
+                <li class="wds-about-item" data-animate="fade-up">
+                    <span class="wds-about-check" aria-hidden="true">&#10003;</span>
+                    <span>24/7 technical support</span>
+                </li>
+                <li class="wds-about-item" data-animate="fade-up">
+                    <span class="wds-about-check" aria-hidden="true">&#10003;</span>
+                    <span>Managed &amp; unmanaged server configurations</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
     <section id="wds-features" class="section cloud-power-section">
         <div class="container">
             <span class="cloud-section-label" data-animate="fade-up">Infrastructure</span>
@@ -5240,6 +6882,108 @@
     </section>
 
     <!-- ════════ USE CASES ════════ -->
+
+    <!-- READY FOR A SERVER SECTION -->
+    <section id="wds-ready" class="section cloud-power-section" aria-labelledby="wds-ready-heading">
+        <div class="container">
+            <span class="cloud-section-label" data-animate="fade-up">Why ICSDC</span>
+            <h2 id="wds-ready-heading" class="section-title" data-animate="fade-up">Ready for a Server That Actually
+                Keeps Up With You?</h2>
+            <p class="section-subtitle" data-animate="fade-up">Choose ICSDC Windows Dedicated Server when performance,
+                security, and reliability become non-negotiable.</p>
+            <div class="cloud-power-grid" data-stagger>
+                <div class="cloud-power-card">
+                    <div class="cloud-power-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" />
+                            <path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z" />
+                            <path d="M12 12v5M9.5 14.5l2.5-2.5 2.5 2.5" />
+                        </svg>
+                    </div>
+                    <h3>Pricing Built Around Your Needs</h3>
+                    <p>Get flexible, transparent pricing without long-term commitments. Choose a plan that fits your
+                        budget and scale as your workload grows.</p>
+                </div>
+                <div class="cloud-power-card">
+                    <div class="cloud-power-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            <path d="M2 17l10 5 10-5" />
+                            <path d="M2 12l10 5 10-5" />
+                        </svg>
+                    </div>
+                    <h3>Strong Network &amp; Reliable Connectivity</h3>
+                    <p>Stay connected with high-speed bandwidth, secure routing, and robust data center infrastructure.
+                        Enjoy smooth performance with low latency and stable network access.</p>
+                </div>
+                <div class="cloud-power-card">
+                    <div class="cloud-power-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </div>
+                    <h3>Security That Works in the Background &mdash; 24/7</h3>
+                    <p>Your server is protected with strict access controls, dedicated firewalls, and continuous
+                        monitoring. ICSDC ensures your Windows environment stays safe, compliant, and disruption-free.
+                    </p>
+                </div>
+                <div class="cloud-power-card">
+                    <div class="cloud-power-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                    </div>
+                    <h3>Simple Backup &amp; Fast Recovery Options</h3>
+                    <p>Backup your data easily with automated or customized options. Restore files or entire systems
+                        quickly to keep your operations running without unnecessary downtime.</p>
+                </div>
+                <div class="cloud-power-card">
+                    <div class="cloud-power-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <path d="M8 21h8M12 17v4" />
+                        </svg>
+                    </div>
+                    <h3>Powerful Hardware for Growing Workloads</h3>
+                    <p>Run demanding Windows applications with enterprise-grade hardware, NVMe storage, high-performance
+                        processors, and expandable resources whenever you need more power.</p>
+                </div>
+                <div class="cloud-power-card">
+                    <div class="cloud-power-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                    </div>
+                    <h3>Consistent Uptime You Can Count On</h3>
+                    <p>With redundant power, stable infrastructure, and proactive monitoring, ICSDC keeps your Windows
+                        server &mdash; and your business &mdash; running reliably day and night.</p>
+                </div>
+                <div class="cloud-power-card">
+                    <div class="cloud-power-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="2" y1="12" x2="22" y2="12" />
+                            <path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+                        </svg>
+                    </div>
+                    <h3>Global Reach, Local Performance</h3>
+                    <p>Host your Windows server in our secure data center and deliver fast, consistent performance to
+                        users and teams across regions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="wds-usecases" class="section cloud-use-section">
         <div class="container">
             <span class="cloud-section-label" data-animate="fade-up">Who Needs It</span>
@@ -5361,9 +7105,9 @@
                             alt="ICSDC" width="117" class="footer-logo"></a>
                     <address class="footer-address"><span>A108 Adam Street</span><span>New York, NY
                             535022</span><span>United States</span><span class="footer-phone">Phone: +1 5589 55488
-                            55</span><span>Email: <a href="/cdn-cgi/l/email-protection#80e9eee6efc0e9e3f3e4e3aee3efed"
+                            55</span><span>Email: <a href="/cdn-cgi/l/email-protection#b2dbdcd4ddf2dbd1c1d6d19cd1dddf"
                                 class="footer-email-link"><span class="__cf_email__"
-                                    data-cfemail="0c65626a634c656f7f686f226f6361">[email&#160;protected]</span></a></span>
+                                    data-cfemail="e980878f86a9808a9a8d8ac78a8684">[email&#160;protected]</span></a></span>
                     </address>
                     <div class="footer-social" aria-label="Social media links"><a href="https://facebook.com"
                             target="_blank" rel="noopener noreferrer" class="footer-social-link"
@@ -5441,6 +7185,7 @@
             <p>&#169; Copyright <span id="footer-year"></span> ICSDC. All Rights Reserved</p>
         </div>
     </footer>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         (function () {
             var observer = new IntersectionObserver(function (entries) {
@@ -5463,7 +7208,7 @@
     <script src="assets/js/main.js" type="module"></script>
     <script src="assets/js/components.js"></script>
     <script src="assets/js/polish.js" defer></script>
-    <!-- <script src="assets/js/acronis-backup.js" defer></script> -->
+    <script src="assets/js/windows-dedicated-server.js" defer></script>
     <script>
         (function () {
             var el = document.getElementById('footer-year');

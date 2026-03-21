@@ -1,284 +1,548 @@
 /**
  * vps-hosting.js
  * ──────────────
- * Handles VPS-page-specific content:
- *   1. Testimonials  — uses #vps-testi-grid (isolated from components.js)
- *   2. FAQ accordion — uses #vps-faq-accordions
- *   3. Button ripple — extends to vps-cta-btn-primary
- *   4. Page loader hide
+ * CMS-driven version: fetches all page content from Strapi
+ * and populates DOM sections dynamically.
  *
- * Pattern mirrors dedicated-server.js exactly.
+ * Sections handled:
+ *   1.  SEO meta tags
+ *   2.  Hero (eyebrow + VM stack visual)
+ *   3.  Why-Us Pillars (4 icon cards)
+ *   4.  Infrastructure (14 pillar cards)
+ *   5.  Pricing Plans (3 cards)
+ *   6.  VPS Types (button strip)
+ *   7.  Speed Architecture (stats + feature list)
+ *   8.  Management Systems (6 cards)
+ *   9.  CTA Band #1
+ *   10. VPS Difference (3 cards)
+ *   11. Global Deployment (locations grid)
+ *   12. Use Cases (4 cards)
+ *   13. Control Panels (5 badges)
+ *   14. Testimonials
+ *   15. FAQ
+ *   16. CTA Band #2 (final CTA)
  */
 
-(function () {
+import {
+    populateSEO,
+    populateHero,
+    populateIconCards,
+    populateSectionHeader,
+    populateCtaBand,
+    populatePricingPlans,
+    populateStats,
+    populateTechBadges,
+    populateLocationCards,
+    hidePageLoader,
+    markActiveNavLink,
+    setText,
+    setHTML,
+    resolveIcon,
+    ICONS,
+    starSVG,
+    getInitials,
+    checkSVG
+} from './utils/cms-helpers.js';
+
+import { getVpsHostingPage } from './services/contentService.js';
+
+(async function () {
     'use strict';
 
-    /* ─────────────────────────────────────────────────────────
-       VPS-SPECIFIC TESTIMONIALS (from DOCX)
-    ───────────────────────────────────────────────────────── */
-    var VPS_TESTIMONIALS = [
-        {
-            name: 'A. Miller',
-            title: 'Lead DevOps Engineer',
-            company: 'Tech Company',
-            quote: 'The difference after moving our high-transaction database was immediate. Query speeds dropped by 40% thanks to the NVMe I/O. The performance is genuinely dedicated.',
-            rating: 5
-        },
-        {
-            name: 'S. Chen',
-            title: 'Software Architect',
-            company: 'Software Company',
-            quote: 'Finally, a VPS that truly respects root access. We needed a specific kernel module for our staging environment, and ICSDC let us install it in minutes. Complete freedom.',
-            rating: 5
-        },
-        {
-            name: 'R. Singh',
-            title: 'CTO',
-            company: 'FinTech Startup',
-            quote: "We can't afford silent failures. The KVM isolation means our resources are always there, and the monitoring alerts are spot-on. Solid infrastructure, period.",
-            rating: 5
-        },
-        {
-            name: 'E. Lopez',
-            title: 'E-commerce Director',
-            company: 'E-commerce Company',
-            quote: "We outgrew our old host overnight. With ICSDC, the one-click RAM and CPU scaling meant zero downtime during our peak traffic surge. Seamless growth is a reality here.",
-            rating: 5
-        }
-    ];
+    markActiveNavLink();
 
-    /* ─────────────────────────────────────────────────────────
-       VPS-SPECIFIC FAQ ITEMS (from DOCX)
-    ───────────────────────────────────────────────────────── */
-    var VPS_FAQ = [
-        {
-            question: 'Is my CPU/RAM truly dedicated, or is it burstable?',
-            answer: 'Your resources are truly guaranteed and dedicated via ICSDC KVM virtualization. There is no resource over-selling, ensuring your assigned CPU, RAM, and storage IOPS are consistently available to your environment at all times.'
-        },
-        {
-            question: 'Can I install a custom OS or kernel?',
-            answer: 'Yes. You are given full root access, allowing you complete freedom to install any compatible Linux distribution or Windows OS version, and to compile or modify custom kernel modules as your application demands.'
-        },
-        {
-            question: 'How fast is the VPS provisioning process?',
-            answer: 'Provisioning is instant and automated. Once your order is processed, your VPS environment will be available and ready for SSH access within minutes, allowing you to deploy your applications immediately.'
-        },
-        {
-            question: 'What is the process for scaling up resources?',
-            answer: 'Scaling is on-demand and vertical. You can instantly add CPU cores, RAM, or storage via your central control panel with minimal to zero downtime, eliminating the need for complex server migration.'
-        },
-        {
-            question: 'Do you offer management services?',
-            answer: 'ICSDC provides unmanaged VPS hosting, giving you maximum control and cost efficiency. We manage the hardware and network, while you manage the OS, software, and application stack using your full root access. Managed plans are also available on request.'
-        }
-    ];
+    try {
+        var res = await getVpsHostingPage();
+        var page = res.data;
 
-    /* ─────────────────────────────────────────────────────────
-       HELPERS
-    ───────────────────────────────────────────────────────── */
-    function getInitials(name) {
-        return name.split(' ').map(function (n) { return n[0]; }).join('').toUpperCase().slice(0, 2);
-    }
+        /* ── 1. SEO ─────────────────────────────────────────── */
+        populateSEO(page.seo);
 
-    function starSVG() {
-        return '<svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">' +
-            '<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>' +
-            '</svg>';
-    }
-
-    function buildTestiCard(t, index) {
-        var initials = getInitials(t.name);
-        var stars = '';
-        for (var s = 0; s < t.rating; s++) { stars += starSVG(); }
-
-        return '<article class="testi-card" role="listitem" data-testi-index="' + index + '" aria-label="Testimonial from ' + t.name + '">' +
-            '<div class="testi-left">' +
-            '<div class="testi-avatar" aria-hidden="true">' +
-            '<span class="testi-avatar-initials">' + initials + '</span>' +
-            '</div>' +
-            '<div class="testi-client-info">' +
-            '<p class="testi-name">' + t.name + '</p>' +
-            '<p class="testi-job">' + (t.title || '') + '</p>' +
-            '<p class="testi-company">' + t.company + '</p>' +
-            '</div>' +
-            '<div class="testi-rating" aria-label="Rating: ' + t.rating + ' out of 5 stars">' + stars + '</div>' +
-            '</div>' +
-            '<div class="testi-right">' +
-            '<blockquote class="testi-quote">' + t.quote + '</blockquote>' +
-            '</div>' +
-            '</article>';
-    }
-
-    /* ─────────────────────────────────────────────────────────
-       TESTIMONIALS
-    ───────────────────────────────────────────────────────── */
-    function initVPSTestimonials() {
-        var grid     = document.getElementById('vps-testi-grid');
-        var dotsWrap = document.getElementById('vps-testi-dots');
-        var prevBtn  = document.getElementById('vps-testi-prev');
-        var nextBtn  = document.getElementById('vps-testi-next');
-        if (!grid || !dotsWrap) return;
-
-        grid.innerHTML = VPS_TESTIMONIALS.map(function (t, i) { return buildTestiCard(t, i); }).join('');
-
-        dotsWrap.innerHTML = VPS_TESTIMONIALS.map(function (_, i) {
-            return '<button class="testi-dot' + (i === 0 ? ' testi-dot-active' : '') + '" role="tab" aria-selected="' + (i === 0) + '" aria-label="Go to testimonial ' + (i + 1) + '" data-dot="' + i + '"></button>';
-        }).join('');
-
-        var cards = Array.from(grid.querySelectorAll('.testi-card'));
-        var dots  = Array.from(dotsWrap.querySelectorAll('.testi-dot'));
-
-        function scrollToCard(index) {
-            var card = cards[index];
-            if (!card) return;
-            grid.scrollTo({ left: card.offsetLeft - 4, behavior: 'smooth' });
-        }
-
-        dots.forEach(function (btn, i) {
-            btn.addEventListener('click', function () { scrollToCard(i); });
-        });
-
-        function currentIndex() {
-            var scrollLeft = grid.scrollLeft;
-            var closest = 0, minDist = Infinity;
-            cards.forEach(function (card, i) {
-                var dist = Math.abs(card.offsetLeft - scrollLeft);
-                if (dist < minDist) { minDist = dist; closest = i; }
+        /* ── 2. Hero ────────────────────────────────────────── */
+        var heroSection = document.querySelector('.hero-section');
+        if (heroSection) {
+            populateHero(heroSection, {
+                eyebrow: page.heroEyebrow,
+                eyebrowSelector: '.vps-eyebrow',
+                title: page.heroTitle,
+                subtitle: page.heroSubtitle,
+                description: page.heroDescription,
+                price: page.heroPrice,
+                priceNote: page.heroPriceNote,
+                ctaPrimary: page.heroCtaPrimary,
+                ctaSecondary: page.heroCtaSecondary
             });
-            return closest;
         }
 
-        prevBtn && prevBtn.addEventListener('click', function () {
-            var idx = currentIndex();
-            scrollToCard(idx === 0 ? VPS_TESTIMONIALS.length - 1 : idx - 1);
-        });
+        /* ── 3. Why-Us Pillars (4 cards) ────────────────────── */
+        populateIconCards('.why-us .why-grid', page.pillars, 'why-card');
 
-        nextBtn && nextBtn.addEventListener('click', function () {
-            var idx = currentIndex();
-            scrollToCard(idx === VPS_TESTIMONIALS.length - 1 ? 0 : idx + 1);
-        });
+        /* ── 4. Infrastructure Section (14 cards) ───────────── */
+        (function () {
+            var section = document.getElementById('vps-infrastructure');
+            if (!section) return;
+            if (page.infraLabel) setText(section, '.vps-section-label', page.infraLabel);
+            if (page.infraTitle) setText(section, '.title', page.infraTitle);
+            if (page.infraSubtitle) setText(section, '.subtitle', page.infraSubtitle);
 
-        var scrollTimer;
-        grid.addEventListener('scroll', function () {
-            clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(function () {
-                var idx = currentIndex();
-                dots.forEach(function (d, i) {
-                    d.classList.toggle('testi-dot-active', i === idx);
-                    d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
-                });
-            }, 80);
-        });
-    }
+            if (page.infraCards && page.infraCards.length) {
+                var grid = section.querySelector('.vps-pillar-grid');
+                if (grid) {
+                    grid.innerHTML = page.infraCards.map(function (card) {
+                        return '<div class="vps-pillar-card">' +
+                            '<div class="vps-pillar-icon">' + resolveIcon(card.icon) + '</div>' +
+                            '<h3>' + (card.title || '') + '</h3>' +
+                            '<p>' + (card.description || '') + '</p>' +
+                            '</div>';
+                    }).join('');
+                }
+            }
+        })();
 
-    /* ─────────────────────────────────────────────────────────
-       FAQ ACCORDION
-    ───────────────────────────────────────────────────────── */
-    function initVPSFAQ() {
-        var dl = document.getElementById('vps-faq-accordions');
-        if (!dl) return;
+        /* ── 5. Pricing Plans ───────────────────────────────── */
+        (function () {
+            var section = document.getElementById('vps-pricing');
+            if (!section) return;
+            if (page.pricingLabel) setText(section, '.vps-section-label', page.pricingLabel);
+            if (page.pricingTitle) setText(section, '.title', page.pricingTitle);
+            if (page.pricingSubtitle) setHTML(section, '.subtitle', page.pricingSubtitle);
 
-        var openIndex = 0;
+            if (page.pricingPlans && page.pricingPlans.length) {
+                var grid = section.querySelector('.vps-pricing-grid');
+                if (grid) {
+                    grid.innerHTML = page.pricingPlans.map(function (plan) {
+                        var isFeatured = plan.badge && plan.badge.length > 0;
+                        var featuredClass = isFeatured ? ' vps-featured' : '';
+                        var badgeHTML = isFeatured
+                            ? '<span class="vps-plan-badge">' + plan.badge + '</span>'
+                            : '';
+                        var ctaClass = plan.ctaStyle === 'primary' ? 'vps-plan-cta-primary' : 'vps-plan-cta-outline';
 
-        function render() {
-            dl.innerHTML = VPS_FAQ.map(function (faq, i) {
-                var isOpen = i === openIndex;
-                return '<div class="faq-item' + (isOpen ? ' faq-open' : '') + '" data-faq-index="' + i + '">' +
-                    '<dt>' +
-                    '<button class="faq-question" aria-expanded="' + isOpen + '" aria-controls="vps-faq-answer-' + i + '" id="vps-faq-question-' + i + '">' +
-                    '<span>' + faq.question + '</span>' +
-                    '<svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">' +
-                    '<path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
-                    '</svg>' +
-                    '</button>' +
-                    '</dt>' +
-                    '<dd class="faq-answer" id="vps-faq-answer-' + i + '" role="region" aria-labelledby="vps-faq-question-' + i + '">' +
-                    '<p>' + faq.answer + '</p>' +
-                    '</dd>' +
-                    '</div>';
+                        var featuresHTML = '';
+                        if (plan.features && plan.features.length) {
+                            featuresHTML = plan.features.map(function (f) {
+                                return '<li class="vps-plan-feature">' +
+                                    '<span class="vps-plan-check">' + checkSVG() + '</span>' +
+                                    (f.label || '') +
+                                    '</li>';
+                            }).join('');
+                        }
+
+                        return '<div class="vps-plan-card' + featuredClass + '">' +
+                            badgeHTML +
+                            '<div class="vps-plan-tier">' + (plan.tier || '') + '</div>' +
+                            '<div class="vps-plan-price-wrap">' +
+                            '<span class="vps-plan-currency">' + (plan.currency || '&#8377;') + '</span>' +
+                            '<span class="vps-plan-price">' + (plan.price || '') + '</span>' +
+                            '<span class="vps-plan-period">/mo</span>' +
+                            '</div>' +
+                            (plan.tagline ? '<p class="vps-plan-tagline">' + plan.tagline + '</p>' : '') +
+                            '<hr class="vps-plan-divider">' +
+                            '<ul class="vps-plan-features">' + featuresHTML + '</ul>' +
+                            '<button class="vps-plan-cta ' + ctaClass + '">' + (plan.ctaText || '') + '</button>' +
+                            '</div>';
+                    }).join('');
+                }
+            }
+        })();
+
+        /* ── 6. VPS Types (button strip) ────────────────────── */
+        (function () {
+            if (!page.vpsTypes || !page.vpsTypes.length) return;
+            var strip = document.querySelector('.vps-types-strip');
+            if (!strip) return;
+
+            strip.innerHTML = page.vpsTypes.map(function (t) {
+                return '<button class="vps-type-link">' +
+                    resolveIcon(t.icon) +
+                    (t.title || '') +
+                    '<span class="vps-type-arrow">&rarr;</span>' +
+                    '</button>';
+            }).join('');
+        })();
+
+        /* ── 7. Speed Architecture ──────────────────────────── */
+        (function () {
+            var section = document.getElementById('vps-speed');
+            if (!section) return;
+
+            // Stats (left visual)
+            if (page.speedStats && page.speedStats.length) {
+                var statWrap = section.querySelector('.vps-speed-stat-wrap');
+                if (statWrap) {
+                    statWrap.innerHTML = page.speedStats.map(function (s) {
+                        return '<div class="vps-speed-stat">' +
+                            '<strong>' + (s.value || '') + '</strong>' +
+                            '<span>' + (s.label || '') + '</span>' +
+                            '</div>';
+                    }).join('');
+                }
+            }
+
+            // Section label + title (right side)
+            if (page.speedLabel) setText(section, '.vps-section-label', page.speedLabel);
+            if (page.speedTitle) setHTML(section, '.title', page.speedTitle);
+
+            // Feature items (right list)
+            if (page.speedFeatures && page.speedFeatures.length) {
+                var list = section.querySelector('.vps-speed-list');
+                if (list) {
+                    list.innerHTML = page.speedFeatures.map(function (f) {
+                        return '<div class="vps-speed-item">' +
+                            '<div class="vps-speed-icon">' + resolveIcon(f.icon) + '</div>' +
+                            '<div>' +
+                            '<h3>' + (f.title || '') + '</h3>' +
+                            '<p>' + (f.description || '') + '</p>' +
+                            '</div>' +
+                            '</div>';
+                    }).join('');
+                }
+            }
+        })();
+
+        /* ── 8. Management Systems (6 cards) ────────────────── */
+        (function () {
+            var section = document.getElementById('vps-management');
+            if (!section) return;
+            if (page.mgmtLabel) setText(section, '.vps-section-label', page.mgmtLabel);
+            if (page.mgmtTitle) setText(section, '.title', page.mgmtTitle);
+            if (page.mgmtSubtitle) setText(section, '.subtitle', page.mgmtSubtitle);
+
+            if (page.mgmtCards && page.mgmtCards.length) {
+                var grid = section.querySelector('.vps-mgmt-grid');
+                if (grid) {
+                    grid.innerHTML = page.mgmtCards.map(function (card) {
+                        return '<div class="vps-mgmt-card">' +
+                            '<div class="vps-mgmt-icon">' + resolveIcon(card.icon) + '</div>' +
+                            '<h3>' + (card.title || '') + '</h3>' +
+                            '<p>' + (card.description || '') + '</p>' +
+                            '</div>';
+                    }).join('');
+                }
+            }
+        })();
+
+        /* ── 9. CTA Band #1 ────────────────────────────────── */
+        (function () {
+            var cta = page.ctaBand1;
+            if (!cta) return;
+            var section = document.querySelector('.vps-cta-band:not(.vps-cta-dark)');
+            if (!section) return;
+            var inner = section.querySelector('.vps-cta-inner');
+            if (!inner) return;
+
+            setHTML(inner, 'h2', cta.title);
+            setHTML(inner, 'p', cta.description);
+
+            var btns = inner.querySelector('.vps-cta-btns');
+            if (btns) {
+                var primaryBtn = btns.querySelector('.vps-cta-btn-primary');
+                var secondaryBtn = btns.querySelector('.vps-cta-btn-outline');
+                if (primaryBtn && cta.ctaPrimary) {
+                    primaryBtn.innerHTML = cta.ctaPrimary.text;
+                    if (cta.ctaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaPrimary.link + "'");
+                }
+                if (secondaryBtn && cta.ctaSecondary) {
+                    secondaryBtn.textContent = cta.ctaSecondary.text;
+                    if (cta.ctaSecondary.link) secondaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaSecondary.link + "'");
+                }
+            }
+        })();
+
+        /* ── 10. VPS Difference (3 cards) ───────────────────── */
+        (function () {
+            var section = document.getElementById('vps-difference');
+            if (!section) return;
+            if (page.diffLabel) setText(section, '.vps-section-label', page.diffLabel);
+            if (page.diffTitle) setHTML(section, 'h2:not(.vps-section-label)', page.diffTitle);
+            if (page.diffSubtitle) setHTML(section, 'p[data-animate]', page.diffSubtitle);
+
+            if (page.diffCards && page.diffCards.length) {
+                var grid = section.querySelector('.vps-diff-grid');
+                if (grid) {
+                    grid.innerHTML = page.diffCards.map(function (card) {
+                        return '<div class="vps-diff-card">' +
+                            '<div class="vps-diff-icon">' + resolveIcon(card.icon) + '</div>' +
+                            '<h3>' + (card.title || '') + '</h3>' +
+                            '<p>' + (card.description || '') + '</p>' +
+                            '</div>';
+                    }).join('');
+                }
+            }
+        })();
+
+        /* ── 11. Global Deployment (locations) ──────────────── */
+        (function () {
+            var section = document.getElementById('vps-global');
+            if (!section) return;
+
+            var content = section.querySelector('.vps-global-content');
+            if (content) {
+                if (page.globalLabel) setText(content, '.vps-section-label', page.globalLabel);
+                if (page.globalTitle) setHTML(content, '.title', page.globalTitle);
+
+                // Description (may contain multiple paragraphs)
+                if (page.globalDescription) {
+                    var paragraphs = content.querySelectorAll('.who-we-are-paragraph');
+                    var descParts = page.globalDescription.split('\n\n');
+                    paragraphs.forEach(function (p, i) {
+                        if (descParts[i]) p.innerHTML = descParts[i];
+                    });
+                }
+
+                // CTA buttons
+                var primaryBtn = content.querySelector('.btn-primary');
+                var outlineBtn = content.querySelector('.btn-outline');
+                if (primaryBtn && page.globalCtaPrimary) {
+                    primaryBtn.innerHTML = page.globalCtaPrimary.text;
+                    if (page.globalCtaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + page.globalCtaPrimary.link + "'");
+                }
+                if (outlineBtn && page.globalCtaSecondary) {
+                    outlineBtn.textContent = page.globalCtaSecondary.text;
+                    if (page.globalCtaSecondary.link) outlineBtn.setAttribute('onclick', "window.location.href='" + page.globalCtaSecondary.link + "'");
+                }
+            }
+
+            // Location cards
+            if (page.locations && page.locations.length) {
+                var grid = section.querySelector('.vps-locations-grid');
+                if (grid) {
+                    var sorted = page.locations.slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+                    grid.innerHTML = sorted.map(function (loc) {
+                        return '<div class="vps-location-card">' +
+                            '<span class="vps-location-flag">' + (loc.flag || '') + '</span>' +
+                            '<div class="vps-location-info">' +
+                            '<h4>' + (loc.name || '') + '</h4>' +
+                            '<p>' + (loc.description || '') + '</p>' +
+                            '</div>' +
+                            '</div>';
+                    }).join('');
+                }
+            }
+        })();
+
+        /* ── 12. Use Cases (4 cards) ────────────────────────── */
+        (function () {
+            var section = document.getElementById('vps-usecases');
+            if (!section) return;
+            if (page.useCasesLabel) setText(section, '.vps-section-label', page.useCasesLabel);
+            if (page.useCasesTitle) setText(section, '.title', page.useCasesTitle);
+            if (page.useCasesSubtitle) setText(section, '.subtitle', page.useCasesSubtitle);
+
+            if (page.useCases && page.useCases.length) {
+                var grid = section.querySelector('.vps-use-grid');
+                if (grid) {
+                    grid.innerHTML = page.useCases.map(function (card) {
+                        return '<div class="vps-use-card">' +
+                            '<div class="vps-use-icon">' + resolveIcon(card.icon) + '</div>' +
+                            '<div>' +
+                            '<h3>' + (card.title || '') + '</h3>' +
+                            '<p>' + (card.description || '') + '</p>' +
+                            '</div>' +
+                            '</div>';
+                    }).join('');
+                }
+            }
+        })();
+
+        /* ── 13. Control Panels (5 badges) ──────────────────── */
+        (function () {
+            var section = document.getElementById('vps-panels');
+            if (!section) return;
+            if (page.panelsLabel) setText(section, '.vps-section-label', page.panelsLabel);
+            if (page.panelsTitle) setText(section, '.title', page.panelsTitle);
+            if (page.panelsSubtitle) setText(section, '.subtitle', page.panelsSubtitle);
+
+            if (page.controlPanels && page.controlPanels.length) {
+                var strip = section.querySelector('.vps-panels-strip');
+                if (strip) {
+                    var sorted = page.controlPanels.slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+                    strip.innerHTML = sorted.map(function (panel) {
+                        return '<div class="vps-panel-badge">' +
+                            '<div class="vps-panel-icon">' + resolveIcon(panel.icon) + '</div>' +
+                            '<span class="vps-panel-name">' + (panel.name || '') + '</span>' +
+                            '</div>';
+                    }).join('');
+                }
+            }
+        })();
+
+        /* ── 14. Testimonials ───────────────────────────────── */
+        (function () {
+            if (!page.testimonials || !page.testimonials.length) return;
+            var grid = document.getElementById('vps-testi-grid');
+            var dotsWrap = document.getElementById('vps-testi-dots');
+            var prevBtn = document.getElementById('vps-testi-prev');
+            var nextBtn = document.getElementById('vps-testi-next');
+            if (!grid || !dotsWrap) return;
+
+            var items = page.testimonials;
+
+            grid.innerHTML = items.map(function (t, i) {
+                var initials = getInitials(t.name);
+                var stars = '';
+                for (var s = 0; s < (t.rating || 5); s++) { stars += starSVG(); }
+
+                return '<article class="testi-card" role="listitem" data-testi-index="' + i + '" aria-label="Testimonial from ' + t.name + '">' +
+                    '<div class="testi-left">' +
+                    '<div class="testi-avatar" aria-hidden="true">' +
+                    '<span class="testi-avatar-initials">' + initials + '</span>' +
+                    '</div>' +
+                    '<div class="testi-client-info">' +
+                    '<p class="testi-name">' + t.name + '</p>' +
+                    '<p class="testi-job">' + (t.title || '') + '</p>' +
+                    '<p class="testi-company">' + (t.company || '') + '</p>' +
+                    '</div>' +
+                    '<div class="testi-rating" aria-label="Rating: ' + (t.rating || 5) + ' out of 5 stars">' + stars + '</div>' +
+                    '</div>' +
+                    '<div class="testi-right">' +
+                    '<blockquote class="testi-quote">' + t.quote + '</blockquote>' +
+                    '</div>' +
+                    '</article>';
             }).join('');
 
-            dl.querySelectorAll('.faq-answer').forEach(function (ans) {
-                ans.style.display = 'block';
-                ans.style.overflow = 'hidden';
+            // Dots
+            dotsWrap.innerHTML = items.map(function (_, i) {
+                return '<button class="testi-dot' + (i === 0 ? ' testi-dot-active' : '') + '" role="tab" aria-selected="' + (i === 0) + '" aria-label="Go to testimonial ' + (i + 1) + '" data-dot="' + i + '"></button>';
+            }).join('');
+
+            var cards = Array.from(grid.querySelectorAll('.testi-card'));
+            var dots = Array.from(dotsWrap.querySelectorAll('.testi-dot'));
+
+            function scrollToCard(index) {
+                var card = cards[index];
+                if (!card) return;
+                grid.scrollTo({ left: card.offsetLeft - 4, behavior: 'smooth' });
+            }
+
+            dots.forEach(function (btn, i) {
+                btn.addEventListener('click', function () { scrollToCard(i); });
             });
 
-            dl.querySelectorAll('.faq-question').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    var index = parseInt(btn.closest('.faq-item').dataset.faqIndex, 10);
-                    openIndex = (openIndex === index) ? null : index;
-                    render();
+            function currentIndex() {
+                var scrollLeft = grid.scrollLeft;
+                var closest = 0, minDist = Infinity;
+                cards.forEach(function (card, i) {
+                    var dist = Math.abs(card.offsetLeft - scrollLeft);
+                    if (dist < minDist) { minDist = dist; closest = i; }
                 });
+                return closest;
+            }
+
+            if (prevBtn) prevBtn.addEventListener('click', function () {
+                var idx = currentIndex();
+                scrollToCard(idx === 0 ? items.length - 1 : idx - 1);
             });
-        }
 
-        render();
+            if (nextBtn) nextBtn.addEventListener('click', function () {
+                var idx = currentIndex();
+                scrollToCard(idx === items.length - 1 ? 0 : idx + 1);
+            });
+
+            var scrollTimer;
+            grid.addEventListener('scroll', function () {
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(function () {
+                    var idx = currentIndex();
+                    dots.forEach(function (d, i) {
+                        d.classList.toggle('testi-dot-active', i === idx);
+                        d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+                    });
+                }, 80);
+            });
+        })();
+
+        /* ── 15. FAQ ────────────────────────────────────────── */
+        (function () {
+            if (!page.faqs || !page.faqs.length) return;
+            var dl = document.getElementById('vps-faq-accordions');
+            if (!dl) return;
+
+            if (page.faqTitle) {
+                setText(document, '.faq-title', page.faqTitle);
+            }
+
+            var sorted = page.faqs.slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+            var openIndex = 0;
+
+            function render() {
+                dl.innerHTML = sorted.map(function (faq, i) {
+                    var isOpen = i === openIndex;
+                    return '<div class="faq-item' + (isOpen ? ' faq-open' : '') + '" data-faq-index="' + i + '">' +
+                        '<dt>' +
+                        '<button class="faq-question" aria-expanded="' + isOpen + '" aria-controls="vps-faq-' + i + '">' +
+                        '<span>' + faq.question + '</span>' +
+                        '<svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">' +
+                        '<path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+                        '</svg>' +
+                        '</button>' +
+                        '</dt>' +
+                        '<dd class="faq-answer" id="vps-faq-' + i + '" role="region">' +
+                        '<p>' + faq.answer + '</p>' +
+                        '</dd>' +
+                        '</div>';
+                }).join('');
+
+                dl.querySelectorAll('.faq-question').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        var index = parseInt(btn.closest('.faq-item').dataset.faqIndex, 10);
+                        openIndex = (openIndex === index) ? null : index;
+                        render();
+                    });
+                });
+            }
+
+            render();
+
+            // FAQ contact card
+            if (page.faqContactTitle || page.faqContactDescription) {
+                var card = document.querySelector('.faq-contact-card');
+                if (card) {
+                    if (page.faqContactTitle) setText(card, '.faq-contact-title', page.faqContactTitle);
+                    if (page.faqContactDescription) setText(card, '.faq-contact-desc', page.faqContactDescription);
+                    if (page.faqContactBtnLabel) {
+                        var btn = card.querySelector('.faq-contact-btn');
+                        if (btn) {
+                            var svg = btn.querySelector('svg');
+                            btn.textContent = page.faqContactBtnLabel + ' ';
+                            if (svg) btn.appendChild(svg);
+                            if (page.faqContactBtnUrl) btn.setAttribute('href', page.faqContactBtnUrl);
+                        }
+                    }
+                }
+            }
+        })();
+
+        /* ── 16. CTA Band #2 (final CTA) ───────────────────── */
+        (function () {
+            var cta = page.ctaBand2;
+            if (!cta) return;
+            var section = document.querySelector('.vps-cta-dark');
+            if (!section) return;
+            var inner = section.querySelector('.vps-cta-inner');
+            if (!inner) return;
+
+            setHTML(inner, 'h2', cta.title);
+            setHTML(inner, 'p', cta.description);
+
+            var btns = inner.querySelector('.vps-cta-btns');
+            if (btns) {
+                var primaryBtn = btns.querySelector('.vps-cta-btn-primary');
+                var secondaryBtn = btns.querySelector('.vps-cta-btn-outline');
+                if (primaryBtn && cta.ctaPrimary) {
+                    primaryBtn.innerHTML = cta.ctaPrimary.text;
+                    if (cta.ctaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaPrimary.link + "'");
+                }
+                if (secondaryBtn && cta.ctaSecondary) {
+                    secondaryBtn.textContent = cta.ctaSecondary.text;
+                    if (cta.ctaSecondary.link) secondaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaSecondary.link + "'");
+                }
+            }
+        })();
+
+    } catch (err) {
+        console.error('[vps-hosting] CMS load failed:', err);
     }
 
-    /* ─────────────────────────────────────────────────────────
-       BUTTON RIPPLE
-    ───────────────────────────────────────────────────────── */
-    function initCTARipple() {
-        function addRipple(e) {
-            var btn = e.currentTarget;
-            var existing = btn.querySelector('.ripple-effect');
-            if (existing) existing.remove();
-
-            var rect = btn.getBoundingClientRect();
-            var size = Math.max(rect.width, rect.height);
-            var x = e.clientX - rect.left - size / 2;
-            var y = e.clientY - rect.top - size / 2;
-
-            var ripple = document.createElement('span');
-            ripple.className = 'ripple-effect';
-            ripple.style.cssText = [
-                'position:absolute',
-                'border-radius:50%',
-                'background:rgba(255,255,255,0.25)',
-                'transform:scale(0)',
-                'animation:rippleAnim 0.5s linear',
-                'pointer-events:none',
-                'width:' + size + 'px',
-                'height:' + size + 'px',
-                'left:' + x + 'px',
-                'top:' + y + 'px'
-            ].join(';');
-
-            btn.style.overflow = 'hidden';
-            btn.style.position = 'relative';
-            btn.appendChild(ripple);
-            ripple.addEventListener('animationend', function () { ripple.remove(); });
-        }
-
-        document.querySelectorAll('.vps-cta-btn-primary').forEach(function (btn) {
-            btn.addEventListener('click', addRipple);
-        });
-    }
-
-    /* ─────────────────────────────────────────────────────────
-       PAGE LOADER
-    ───────────────────────────────────────────────────────── */
-    function hidePageLoader() {
-        var loader = document.getElementById('page-loader');
-        if (!loader) return;
-        loader.classList.add('loader-done');
-        setTimeout(function () { loader.classList.add('loader-hidden'); }, 520);
-    }
-
-    /* ─────────────────────────────────────────────────────────
-       BOOT
-    ───────────────────────────────────────────────────────── */
-    function init() {
-        initVPSTestimonials();
-        initVPSFAQ();
-        initCTARipple();
-        hidePageLoader();
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
-    }
-
+    hidePageLoader();
 })();

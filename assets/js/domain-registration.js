@@ -1,172 +1,336 @@
 /**
  * domain-registration.js
- * Handles: testimonials carousel, FAQ accordion, CTA ripple, page loader
- * Prefix: dom
+ * ──────────────────────
+ * CMS-driven version: fetches all page content from Strapi
+ * and populates DOM sections dynamically.
+ *
+ * Sections handled:
+ *   1.  SEO meta tags
+ *   2.  Hero (eyebrow + search bar + TLD pills + globe visual)
+ *   3.  4 Pillars (icon cards)
+ *   4.  TLD Pricing (section header + TLD cards)
+ *   5.  Features (section header + 12 icon cards)
+ *   6.  CTA Band #1
+ *   7.  Why Domain Matters (section header + 6 icon cards)
+ *   8.  Smart Tips (section header + 6 icon cards)
+ *   9.  Testimonials
+ *   10. FAQ
+ *   11. CTA Band #2
  */
+
+import { getDomainRegistrationPage } from './services/contentService.js';
+import {
+    populateSEO,
+    populateHero,
+    populateIconCards,
+    populateSectionHeader,
+    populateCtaBand,
+    populateTldCards,
+    populateStats,
+    hidePageLoader,
+    markActiveNavLink,
+    setText,
+    setHTML
+} from './utils/cms-helpers.js';
+
 (function () {
     'use strict';
 
-    var TESTIMONIALS = [
-        {
-            name: 'Rohan Mehta',
-            title: 'Co-Founder',
-            company: 'Fintech Company',
-            quote: 'ICSDC made our domain registration effortless. The process was quick, transparent, and secure — exactly what a fintech startup like ours needs. Their support team was always available when we had questions.',
-            rating: 5
-        },
-        {
-            name: 'Neha Arora',
-            title: 'Operations Head',
-            company: 'Education Company',
-            quote: "We moved all our domains to ICSDC for better management, and it's been a great decision. Their dashboard is intuitive, and support is always available. DNS management has never been simpler.",
-            rating: 5
-        },
-        {
-            name: 'Arjun Nair',
-            title: 'Technical Director',
-            company: 'IT Company',
-            quote: 'From registering domains to managing DNS, ICSDC gives us everything in one place. Their reliability and uptime are unmatched. The WHOIS privacy feature alone makes the switch worthwhile.',
-            rating: 5
-        },
-        {
-            name: 'Simran Kaur',
-            title: 'Founder',
-            company: 'E-Commerce Brand',
-            quote: 'As a growing online brand, we needed a domain partner we could trust. ICSDC made it simple, affordable, and incredibly fast to get started. The free add-ons like DNS tools and forwarding are a great bonus.',
-            rating: 5
-        }
-    ];
+    /* ─────────────────────────────────────────────────────────
+       LOCAL HELPERS
+    ───────────────────────────────────────────────────────── */
 
-    var FAQ = [
-        {
-            question: 'How do I register a domain with ICSDC?',
-            answer: 'Search your desired name on our domain checker, choose your preferred extension, and complete the registration in a few clicks. The process takes just a few minutes.'
-        },
-        {
-            question: 'Can I transfer my existing domain to ICSDC?',
-            answer: 'Yes, you can easily transfer your domain to ICSDC with zero downtime and full support throughout the process, including DNS migration assistance.'
-        },
-        {
-            question: 'Will my personal details be protected?',
-            answer: 'Absolutely. ICSDC offers WHOIS privacy protection to keep your personal information safe and hidden from public records and spam databases.'
-        },
-        {
-            question: 'What if my desired domain name is already taken?',
-            answer: 'Try alternative extensions or variations — our smart search tool helps you find the closest available match and suggests alternatives instantly.'
-        },
-        {
-            question: 'Does ICSDC offer support after registration?',
-            answer: 'Yes! Our expert support team is available 24/7 to assist you with setup, renewals, DNS management, transfers, and any other domain-related needs.'
-        },
-        {
-            question: 'How long does a domain registration last?',
-            answer: 'Most domains can be registered for 1 year, and you can extend them for multiple years. Some extensions may require a longer minimum term.'
-        },
-        {
-            question: 'Can I change my domain after registering?',
-            answer: 'Domain names cannot be renamed, but you can register a new one and redirect your old domain to it. Our team will help with the redirection setup.'
-        },
-        {
-            question: 'What are TLDs, ccTLDs, and gTLDs?',
-            answer: 'TLD is the ending of a domain (e.g., .com). ccTLD stands for country-specific TLDs (e.g., .in for India, .uk for the UK). gTLD refers to general TLDs like .com, .net, .online, etc.'
-        },
-        {
-            question: 'What if the name I want is unavailable?',
-            answer: 'Try a different extension or a slight variation of your name. Our domain search will also suggest available alternatives based on your search.'
-        }
-    ];
-
-    function getInitials(n) { return n.split(' ').map(function(w){return w[0];}).join('').toUpperCase().slice(0,2); }
-    function starSVG() { return '<svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>'; }
-
-    function buildCard(t, i) {
-        var init = getInitials(t.name);
-        var stars = '';
-        for (var s = 0; s < t.rating; s++) stars += starSVG();
-        return '<article class="testi-card" role="listitem" data-testi-index="' + i + '" aria-label="Testimonial from ' + t.name + '">' +
-            '<div class="testi-left"><div class="testi-avatar" aria-hidden="true"><span class="testi-avatar-initials">' + init + '</span></div>' +
-            '<div class="testi-client-info"><p class="testi-name">' + t.name + '</p><p class="testi-job">' + (t.title||'') + '</p><p class="testi-company">' + t.company + '</p></div>' +
-            '<div class="testi-rating" aria-label="Rating: ' + t.rating + ' out of 5 stars">' + stars + '</div></div>' +
-            '<div class="testi-right"><blockquote class="testi-quote">' + t.quote + '</blockquote></div></article>';
+    function getInitials(name) {
+        if (!name) return '';
+        return name.split(' ').map(function (n) { return n[0]; }).join('').toUpperCase().slice(0, 2);
     }
 
-    function initTestimonials() {
-        var grid = document.getElementById('dom-testi-grid');
-        var dots = document.getElementById('dom-testi-dots');
-        var prev = document.getElementById('dom-testi-prev');
-        var next = document.getElementById('dom-testi-next');
-        if (!grid || !dots) return;
-        grid.innerHTML = TESTIMONIALS.map(buildCard).join('');
-        dots.innerHTML = TESTIMONIALS.map(function(_, i) {
-            return '<button class="testi-dot' + (i===0?' testi-dot-active':'') + '" role="tab" aria-selected="' + (i===0) + '" aria-label="Go to testimonial ' + (i+1) + '" data-dot="' + i + '"></button>';
-        }).join('');
-        var cards = Array.from(grid.querySelectorAll('.testi-card'));
-        var dotBtns = Array.from(dots.querySelectorAll('.testi-dot'));
-        function scrollTo(i) { var c = cards[i]; if (c) grid.scrollTo({left: c.offsetLeft - 4, behavior: 'smooth'}); }
-        dotBtns.forEach(function(b, i) { b.addEventListener('click', function() { scrollTo(i); }); });
-        function current() {
-            var sl = grid.scrollLeft, cl = 0, md = Infinity;
-            cards.forEach(function(c, i) { var d = Math.abs(c.offsetLeft - sl); if (d < md) { md = d; cl = i; } });
-            return cl;
+    function starSVG() {
+        return '<svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">' +
+            '<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>' +
+            '</svg>';
+    }
+
+    /* ─────────────────────────────────────────────────────────
+       SECTION POPULATORS
+    ───────────────────────────────────────────────────────── */
+
+    /** 2. Hero Section */
+    function populateDomHero(page) {
+        var section = document.querySelector('.hero-section');
+        if (!section) return;
+
+        // Eyebrow
+        if (page.heroEyebrow) {
+            var eyebrow = section.querySelector('.dom-eyebrow');
+            if (eyebrow) {
+                var dot = eyebrow.querySelector('.dom-eyebrow-dot');
+                eyebrow.textContent = '';
+                if (dot) eyebrow.appendChild(dot);
+                eyebrow.appendChild(document.createTextNode(' ' + page.heroEyebrow));
+            }
         }
-        prev && prev.addEventListener('click', function() { var i = current(); scrollTo(i===0?TESTIMONIALS.length-1:i-1); });
-        next && next.addEventListener('click', function() { var i = current(); scrollTo(i===TESTIMONIALS.length-1?0:i+1); });
-        var t;
-        grid.addEventListener('scroll', function() {
-            clearTimeout(t);
-            t = setTimeout(function() {
-                var i = current();
-                dotBtns.forEach(function(d, n) { d.classList.toggle('testi-dot-active', n===i); d.setAttribute('aria-selected', n===i?'true':'false'); });
+
+        if (page.heroTitle) setText(section, '.hero-title', page.heroTitle);
+        if (page.heroSubtitle) setText(section, '.hero-sub', page.heroSubtitle);
+        if (page.heroDescription) setHTML(section, '.hero-desc', page.heroDescription);
+
+        // CTA / Search button
+        var searchBtn = section.querySelector('.dom-search-btn');
+        if (searchBtn && page.heroCtaPrimary) {
+            searchBtn.innerHTML = page.heroCtaPrimary.text;
+            if (page.heroCtaPrimary.link && page.heroCtaPrimary.link !== '#') {
+                searchBtn.setAttribute('onclick', "window.location.href='" + page.heroCtaPrimary.link + "'");
+            }
+        }
+
+        // TLD Pills
+        if (page.tldPills && page.tldPills.length) {
+            var pillsContainer = section.querySelector('.dom-tld-pills');
+            if (pillsContainer) {
+                pillsContainer.innerHTML = page.tldPills.map(function (tld) {
+                    return '<span class="dom-tld">' + tld + '</span>';
+                }).join('');
+            }
+        }
+    }
+
+    /** 3. Pillars (4 icon cards in .why-us .why-grid) */
+    function populatePillars(pillars) {
+        if (!pillars || !pillars.length) return;
+        populateIconCards('.why-us .why-grid', pillars, 'why-card');
+    }
+
+    /** 4. TLD Pricing Cards */
+    function populateTldPricing(label, title, subtitle, cards) {
+        populateSectionHeader('#dom-pricing', label, title, subtitle);
+
+        if (!cards || !cards.length) return;
+        var grid = document.querySelector('#dom-pricing .dom-tld-grid');
+        if (!grid) return;
+
+        var sorted = cards.slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+
+        grid.innerHTML = sorted.map(function (card) {
+            var featuredClass = card.badge ? ' dom-tld-featured' : '';
+            var badgeHTML = card.badge
+                ? '<span class="dom-tld-badge">' + card.badge + '</span>'
+                : '';
+
+            return '<div class="dom-tld-card' + featuredClass + '">' +
+                '<span class="dom-tld-ext">' + (card.extension || '') + '</span>' +
+                badgeHTML +
+                '<span class="dom-tld-price">' + (card.price || '') + '</span>' +
+                '</div>';
+        }).join('');
+    }
+
+    /** 5. Features (12 icon cards in #dom-features .cloud-power-grid) */
+    function populateFeatures(label, title, subtitle, features) {
+        populateSectionHeader('#dom-features', label, title, subtitle);
+        if (features && features.length) {
+            populateIconCards('#dom-features .cloud-power-grid', features, 'cloud-power-card');
+        }
+    }
+
+    /** 7. Why Domain Matters (6 icon cards in #dom-why .cloud-use-grid) */
+    function populateWhyCards(label, title, subtitle, cards) {
+        populateSectionHeader('#dom-why', label, title, subtitle);
+        if (cards && cards.length) {
+            populateIconCards('#dom-why .cloud-use-grid', cards, 'cloud-use-card');
+        }
+    }
+
+    /** 8. Smart Tips (6 icon cards in #dom-tips .cloud-power-grid) */
+    function populateTips(label, title, subtitle, tips) {
+        populateSectionHeader('#dom-tips', label, title, subtitle);
+        if (tips && tips.length) {
+            populateIconCards('#dom-tips .cloud-power-grid', tips, 'cloud-power-card');
+        }
+    }
+
+    /** 9. Testimonials */
+    function buildTestiCard(t, index) {
+        var initials = getInitials(t.name);
+        var stars = '';
+        for (var s = 0; s < (t.rating || 5); s++) { stars += starSVG(); }
+
+        return '<article class="testi-card" role="listitem" data-testi-index="' + index + '" aria-label="Testimonial from ' + t.name + '">' +
+            '<div class="testi-left">' +
+            '<div class="testi-avatar" aria-hidden="true">' +
+            '<span class="testi-avatar-initials">' + initials + '</span>' +
+            '</div>' +
+            '<div class="testi-client-info">' +
+            '<p class="testi-name">' + t.name + '</p>' +
+            '<p class="testi-job">' + (t.title || '') + '</p>' +
+            '<p class="testi-company">' + (t.company || '') + '</p>' +
+            '</div>' +
+            '<div class="testi-rating" aria-label="Rating: ' + (t.rating || 5) + ' out of 5 stars">' + stars + '</div>' +
+            '</div>' +
+            '<div class="testi-right">' +
+            '<blockquote class="testi-quote">' + t.quote + '</blockquote>' +
+            '</div>' +
+            '</article>';
+    }
+
+    function initTestimonials(items) {
+        var grid = document.getElementById('dom-testi-grid');
+        var dotsWrap = document.getElementById('dom-testi-dots');
+        var prevBtn = document.getElementById('dom-testi-prev');
+        var nextBtn = document.getElementById('dom-testi-next');
+        if (!grid || !dotsWrap || !items || !items.length) return;
+
+        grid.innerHTML = items.map(function (t, i) { return buildTestiCard(t, i); }).join('');
+
+        dotsWrap.innerHTML = items.map(function (_, i) {
+            return '<button class="testi-dot' + (i === 0 ? ' testi-dot-active' : '') + '" role="tab" aria-selected="' + (i === 0) + '" aria-label="Go to testimonial ' + (i + 1) + '" data-dot="' + i + '"></button>';
+        }).join('');
+
+        var cards = Array.from(grid.querySelectorAll('.testi-card'));
+        var dots = Array.from(dotsWrap.querySelectorAll('.testi-dot'));
+
+        function scrollToCard(index) {
+            var card = cards[index];
+            if (!card) return;
+            grid.scrollTo({ left: card.offsetLeft - 4, behavior: 'smooth' });
+        }
+
+        dots.forEach(function (btn, i) {
+            btn.addEventListener('click', function () { scrollToCard(i); });
+        });
+
+        function currentIndex() {
+            var scrollLeft = grid.scrollLeft;
+            var closest = 0, minDist = Infinity;
+            cards.forEach(function (card, i) {
+                var dist = Math.abs(card.offsetLeft - scrollLeft);
+                if (dist < minDist) { minDist = dist; closest = i; }
+            });
+            return closest;
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', function () {
+            var idx = currentIndex();
+            scrollToCard(idx === 0 ? items.length - 1 : idx - 1);
+        });
+
+        if (nextBtn) nextBtn.addEventListener('click', function () {
+            var idx = currentIndex();
+            scrollToCard(idx === items.length - 1 ? 0 : idx + 1);
+        });
+
+        var scrollTimer;
+        grid.addEventListener('scroll', function () {
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(function () {
+                var idx = currentIndex();
+                dots.forEach(function (d, i) {
+                    d.classList.toggle('testi-dot-active', i === idx);
+                    d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+                });
             }, 80);
         });
     }
 
-    function initFAQ() {
+    /** 10. FAQ Accordion */
+    function initFAQ(faqItems) {
         var dl = document.getElementById('dom-faq-accordions');
-        if (!dl) return;
-        var open = 0;
+        if (!dl || !faqItems || !faqItems.length) return;
+
+        var sorted = faqItems.slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+        var openIndex = 0;
+
         function render() {
-            dl.innerHTML = FAQ.map(function(f, i) {
-                var isOpen = i === open;
-                return '<div class="faq-item' + (isOpen?' faq-open':'') + '" data-faq-index="' + i + '">' +
-                    '<dt><button class="faq-question" aria-expanded="' + isOpen + '" aria-controls="dom-faq-ans-' + i + '" id="dom-faq-q-' + i + '">' +
-                    '<span>' + f.question + '</span>' +
-                    '<svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-                    '</button></dt>' +
-                    '<dd class="faq-answer" id="dom-faq-ans-' + i + '" role="region" aria-labelledby="dom-faq-q-' + i + '"><p>' + f.answer + '</p></dd></div>';
+            dl.innerHTML = sorted.map(function (faq, i) {
+                var isOpen = i === openIndex;
+                return '<div class="faq-item' + (isOpen ? ' faq-open' : '') + '" data-faq-index="' + i + '">' +
+                    '<dt>' +
+                    '<button class="faq-question" aria-expanded="' + isOpen + '" aria-controls="dom-faq-' + i + '">' +
+                    '<span>' + faq.question + '</span>' +
+                    '<svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">' +
+                    '<path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+                    '</svg>' +
+                    '</button>' +
+                    '</dt>' +
+                    '<dd class="faq-answer" id="dom-faq-' + i + '" role="region">' +
+                    '<p>' + faq.answer + '</p>' +
+                    '</dd>' +
+                    '</div>';
             }).join('');
-            dl.querySelectorAll('.faq-question').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    var idx = parseInt(btn.closest('.faq-item').dataset.faqIndex, 10);
-                    open = (open === idx) ? null : idx;
+
+            dl.querySelectorAll('.faq-question').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var index = parseInt(btn.closest('.faq-item').dataset.faqIndex, 10);
+                    openIndex = (openIndex === index) ? null : index;
                     render();
                 });
             });
         }
+
         render();
     }
 
-    function initRipple() {
-        document.querySelectorAll('.cloud-cta-btn-primary').forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                var r = btn.getBoundingClientRect(), sz = Math.max(r.width, r.height);
-                var sp = document.createElement('span');
-                sp.style.cssText = 'position:absolute;border-radius:50%;background:rgba(255,255,255,0.25);transform:scale(0);animation:rippleAnim 0.5s linear;pointer-events:none;width:'+sz+'px;height:'+sz+'px;left:'+(e.clientX-r.left-sz/2)+'px;top:'+(e.clientY-r.top-sz/2)+'px';
-                btn.style.overflow = 'hidden'; btn.style.position = 'relative';
-                btn.appendChild(sp);
-                sp.addEventListener('animationend', function() { sp.remove(); });
-            });
-        });
+    /* ─────────────────────────────────────────────────────────
+       BOOT -- Fetch from CMS, then populate all sections
+    ───────────────────────────────────────────────────────── */
+    async function init() {
+        markActiveNavLink();
+
+        try {
+            var response = await getDomainRegistrationPage();
+            var page = response.data;
+
+            // 1. SEO
+            populateSEO(page.seo);
+
+            // 2. Hero
+            populateDomHero(page);
+
+            // 3. Pillars
+            populatePillars(page.pillars);
+
+            // 4. TLD Pricing
+            populateTldPricing(page.tldLabel, page.tldTitle, page.tldSubtitle, page.tldCards);
+
+            // 5. Features
+            populateFeatures(page.featuresLabel, page.featuresTitle, page.featuresSubtitle, page.features);
+
+            // 6. CTA Band #1
+            populateCtaBand('.cloud-cta-band:not(.cloud-cta-dark)', page.ctaBand1);
+
+            // 7. Why Domain Matters
+            populateWhyCards(page.whyLabel, page.whyTitle, page.whySubtitle, page.whyCards);
+
+            // 8. Smart Tips
+            populateTips(page.tipsLabel, page.tipsTitle, page.tipsSubtitle, page.tips);
+
+            // 9. Testimonials
+            if (page.testimonialTitle) {
+                setText(document, '#dom-testi-heading', page.testimonialTitle);
+            }
+            initTestimonials(page.testimonials);
+
+            // 10. FAQ
+            if (page.faqTitle) {
+                setText(document, '#dom-faq-heading', page.faqTitle);
+            }
+            initFAQ(page.faqs);
+
+            // 11. CTA Band #2
+            populateCtaBand('.cloud-cta-dark', page.ctaBand2);
+
+        } catch (err) {
+            console.error('[domain-registration] Failed to load CMS data:', err);
+        }
+
+        // Always hide loader after content attempt
+        hidePageLoader();
     }
 
-    function init() {
-        initTestimonials();
-        initFAQ();
-        initRipple();
-        var ldr = document.getElementById('page-loader');
-        if (ldr) { ldr.classList.add('loader-done'); setTimeout(function(){ ldr.classList.add('loader-hidden'); }, 520); }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
     }
 
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-    else init();
 })();

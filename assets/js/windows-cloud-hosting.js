@@ -1,16 +1,17 @@
-import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, populateSolutionCards, hidePageLoader, markActiveNavLink } from './utils/cms-helpers.js';
-import { getEmailHostingPage } from './services/contentService.js';
+import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, hidePageLoader, markActiveNavLink } from './utils/cms-helpers.js';
+import { getWindowsCloudHostingPage } from './services/contentService.js';
 
 (async function () {
     'use strict';
     markActiveNavLink();
     try {
-        var res = await getEmailHostingPage();
+        var res = await getWindowsCloudHostingPage();
         var page = res.data;
 
         populateSEO(page.seo);
 
         populateHero(document.querySelector('.hero-section'), {
+            eyebrow: page.heroEyebrow,
             title: page.heroTitle,
             subtitle: page.heroSubtitle,
             description: page.heroDescription,
@@ -23,16 +24,19 @@ import { getEmailHostingPage } from './services/contentService.js';
         populateSectionHeader('#features', page.featuresLabel, page.featuresTitle, page.featuresSubtitle);
         populateIconCards('.cloud-power-grid', page.features, 'cloud-power-card');
 
-        populateSectionHeader('#solutions', page.solutionsLabel, page.solutionsTitle, page.solutionsSubtitle);
-        populateSolutionCards('.email-solutions-grid', page.solutions);
+        populateSectionHeader('#why-choose', page.whyLabel, page.whyTitle, page.whySubtitle);
+        populateIconCards('.cloud-why-grid', page.whyCards, 'cloud-power-card');
 
         populateSectionHeader('#use-cases', page.useCasesLabel, page.useCasesTitle, page.useCasesSubtitle);
-        populateIconCards('.cloud-power-grid:last-of-type', page.useCases, 'cloud-power-card');
+        populateIconCards('.cloud-use-grid', page.useCaseItems, 'cloud-use-card');
+
+        populateSectionHeader('#apps', page.appsLabel, page.appsTitle, page.appsSubtitle);
+        populateIconCards('.cloud-apps-grid', page.appCards, 'cloud-power-card');
 
         populateCtaBand('.cloud-cta-band:not(.cloud-cta-dark)', page.ctaBand1);
         populateCtaBand('.cloud-cta-dark', page.ctaBand2);
     } catch (err) {
-        console.error('[email-hosting] CMS load failed:', err);
+        console.error('[windows-cloud-hosting] CMS load failed:', err);
     }
     hidePageLoader();
 })();
