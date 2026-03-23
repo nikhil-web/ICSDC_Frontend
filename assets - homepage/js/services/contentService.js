@@ -11,17 +11,78 @@ import { fetchAPI } from "./strapiClient.js";
 //  SINGLE TYPES
 // ──────────────────────────────────────────────────────────
 
+/** Hero section text fields */
+export function getHeroSection() {
+    return fetchAPI("/api/hero-section");
+}
+
+/** Main logo media */
+export function getMainLogo() {
+    return fetchAPI("/api/main-logo?populate=*");
+}
+
 /**
  * Navigation with nested menus → sections → items
  * Matches the existing nav render engine in main.js exactly.
  */
 export function getNavigation() {
     return fetchAPI(
-        "/api/navigation?" +
-        "&populate[navLogo][populate]=*" +
-        "&populate[LoginButton][populate]=*" +
-        "&populate[menus][populate][sections][populate]=items&populate[menus][populate]=items"
+        "/api/navigation?populate[menus][populate][sections][populate]=items&populate[menus][populate]=items"
     );
+}
+
+/** Why Choose Us section with feature cards */
+export function getWhyUs() {
+    return fetchAPI("/api/why-us-section?populate=cards");
+}
+
+/** Who We Are section with feature buttons */
+export function getWhoWeAre() {
+    return fetchAPI("/api/who-we-are-section?populate=featureCards");
+}
+
+/** Less Cloud Complexity text section */
+export function getLessComplexity() {
+    return fetchAPI("/api/less-complexity-section");
+}
+
+/**
+ * Global single type — contact info + footer data
+ * Uses explicit deep populate to avoid over-fetching.
+ */
+export function getGlobal() {
+    return fetchAPI(
+        "/api/global" +
+        "?populate[contactInfo]=*" +
+        "&populate[footer][populate]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  COLLECTION TYPES
+// ──────────────────────────────────────────────────────────
+
+/**
+ * All published testimonials with optional avatar.
+ * Returns newest-first by default.
+ */
+export function getTestimonials() {
+    return fetchAPI("/api/testimonials?populate=avatar&sort=createdAt:desc");
+}
+
+/**
+ * All FAQ items, ordered by the `order` integer field.
+ */
+export function getFaqItems() {
+    return fetchAPI("/api/faq-items?sort=order:asc");
+}
+
+/**
+ * All Cloud Service cards.
+ * Sorted by `position` field so left-top → right-bot ordering is preserved.
+ */
+export function getCloudServices() {
+    return fetchAPI("/api/cloud-services?sort=createdAt:asc");
 }
 
 // ──────────────────────────────────────────────────────────
@@ -433,29 +494,17 @@ export function getLinuxDedicatedServerPage() {
 
 /**
  * Fetches the entire Homepage content in a single API call.
- * Uses explicit deep populate matching the actual home-page schema.
- *
- * Field names match src/api/home-page/content-types/home-page/schema.json
- * Component schemas verified from /src/components/**
+ * Uses explicit deep populate for all nested components.
  */
 export function getHomepagePage() {
     return fetchAPI(
-        "/api/home-page" +
-        "?populate[SEO]=*" +
-        "&populate[CallToActionPrimary]=*" +
-        "&populate[callToActionSecondary]=*" +
-        "&populate[whyChooseUs]=*" +
-        "&populate[whoWeAre][populate][featureCards]=*" +
-        "&populate[LessCloudComplexity][populate][image]=true" +
-        "&populate[CloudSolutionsEngineered]=*" +
-        "&populate[IndustryLeadingExcellenceValidated][populate][image]=true" +
-        "&populate[BeyondBestPracticeOurISOStandards][populate][image]=true" +
-        "&populate[BestCloudServices][populate][featureCards]=*" +
-        "&populate[Testimonials][populate][Avatar]=true" +
-        "&populate[FAQ]=*" +
-        "&populate[Footer][populate][socialLinks]=*" +
-        "&populate[Footer][populate][linkGroups][populate][links]=*" +
-        "&populate[Footer][populate][logo]=true"
+        "/api/homepage" +
+        "?populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[whoWeAreCards]=*" +
+        "&populate[solutionCards]=*" +
+        "&populate[cloudNeedsItems]=*"
     );
 }
 
@@ -464,3 +513,49 @@ export function getHomepagePage() {
 //  Fetches all page data in parallel — call once on page load.
 // ──────────────────────────────────────────────────────────
 
+/**
+ * fetchAllPageData()
+ * Fires all Strapi requests simultaneously.
+ * Returns a named object for easy destructuring.
+ *
+ * @example
+ *   const { heroData, testimonialData, faqData, ... } = await fetchAllPageData();
+ */
+export async function fetchAllPageData() {
+    const [
+        heroData,
+        logoData,
+        menuData,
+        whyUsData,
+        // whoWeAreData,
+        // lessComplexityData,
+        globalData,
+        testimonialData,
+        faqData,
+        cloudServicesData,
+    ] = await Promise.all([
+        getHeroSection(),
+        getMainLogo(),
+        getNavigation(),
+        getWhyUs(),
+        // getWhoWeAre(),
+        // getLessComplexity(),
+        getGlobal(),
+        getTestimonials(),
+        getFaqItems(),
+        getCloudServices(),
+    ]);
+
+    return {
+        heroData,
+        logoData,
+        menuData,
+        whyUsData,
+        // whoWeAreData,
+        // lessComplexityData,
+        globalData,
+        testimonialData,
+        faqData,
+        cloudServicesData,
+    };
+}
