@@ -24,6 +24,15 @@ export function getNavigation() {
     );
 }
 
+export function getFooter() {
+    return fetchAPI(
+        "/api/footer?" +
+        "populate[commonFooter][populate][socialLinks]=*" +
+        "&populate[commonFooter][populate][linkGroups][populate][links]=*" +
+        "&populate[commonFooter][populate][logo]=true"
+    );
+}
+
 // ──────────────────────────────────────────────────────────
 //  DEDICATED SERVER PAGE (Single Type — full page data)
 // ──────────────────────────────────────────────────────────
@@ -264,7 +273,9 @@ export function getAcronisBackupPage() {
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[whyCards]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
-        "&populate[ctaBand2][populate][ctaSecondary]=*"
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
@@ -290,7 +301,9 @@ export function getAwsCloudHostingPage() {
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[comparisonRows]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
-        "&populate[ctaBand2][populate][ctaSecondary]=*"
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
