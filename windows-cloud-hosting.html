@@ -260,7 +260,7 @@
   <nav>
     <div class="nav-inner">
       <a href="/" class="logo">
-        <img data-strapi="mainLogo" src="" alt="ICSDC logo" class="logo-icon">
+        <img data-strapi-mainLogo data-strapi="mainLogo" src="" alt="ICSDC logo" class="logo-icon">
       </a>
       <ul data-strapi-nav class="nav-links" id="nav-links"></ul>
       <button class="btn-login desktop-login-btn">Login</button>
@@ -802,11 +802,11 @@
   </section>
 
   <!-- ════ FAQ ════ -->
-  <section class="faq-section" id="faq">
+  <section class="faq-section" id="faq" aria-labelledby="winvps-faq-heading">
     <div class="faq-container">
       <div class="faq-col">
-        <h2 class="faq-title" data-animate="fade-up">FAQs About ICSDC Windows Cloud Hosting</h2>
-        <dl class="faq-accordions">
+        <h2 id="winvps-faq-heading" class="faq-title" data-animate="fade-up">FAQs About ICSDC Windows Cloud Hosting</h2>
+        <dl class="faq-accordions" id="winvps-faq-accordions">
           <div class="faq-item">
             <dt class="faq-question">What is Windows Cloud Hosting and how is it different from VPS or shared hosting?
             </dt>

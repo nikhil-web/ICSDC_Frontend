@@ -840,3 +840,33 @@
 ══════════════════════════════════════ */
 .azure-testi-section { padding: 88px 0; background: var(--white); }
 .azure-faq-section   { padding: 88px 0; background: var(--bg-light); }
+
+.azure-hero-right {
+    justify-content: flex-end;
+}
+
+.azure-section-label-center {
+    text-align: center;
+    display: block;
+}
+
+.azure-compare-subtitle {
+    margin: 8px auto 0;
+    max-width: 680px;
+    text-align: center;
+    color: var(--muted-alt);
+    font-size: 16px;
+}
+
+.azure-stack-section-label {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.55);
+    display: block;
+}
+
+.azure-pricing-note {
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--muted-alt);
+    font-style: italic;
+}

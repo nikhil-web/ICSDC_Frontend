@@ -592,3 +592,138 @@ export function markActiveNavLink() {
         }
     });
 }
+
+/**
+ * Initialize testimonials carousel/cards for page-specific containers.
+ * @param {Array} items - [{name,title,company,quote,rating,order}]
+ * @param {Object} ids - {grid,dots,prev,next}
+ */
+export function initTestimonials(items, ids) {
+    if (!items || !items.length || !ids) return;
+    var grid = document.getElementById(ids.grid);
+    var dotsWrap = document.getElementById(ids.dots);
+    var prevBtn = document.getElementById(ids.prev);
+    var nextBtn = document.getElementById(ids.next);
+    if (!grid || !dotsWrap) return;
+
+    var sorted = items.slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+
+    grid.innerHTML = sorted.map(function (t, i) {
+        var initials = getInitials(t.name || '');
+        var rating = t.rating || 5;
+        var stars = Array.from({ length: rating }, function () { return starSVG(); }).join('');
+        return '<article class="testi-card" role="listitem" data-testi-index="' + i + '" aria-label="Testimonial from ' + (t.name || 'Client') + '">' +
+            '<div class="testi-left">' +
+            '<div class="testi-avatar" aria-hidden="true"><span class="testi-avatar-initials">' + initials + '</span></div>' +
+            '<div class="testi-client-info">' +
+            '<p class="testi-name">' + (t.name || '') + '</p>' +
+            '<p class="testi-job">' + (t.title || t.jobTitle || '') + '</p>' +
+            '<p class="testi-company">' + (t.company || '') + '</p>' +
+            '</div>' +
+            '<div class="testi-rating" aria-label="Rating: ' + rating + ' out of 5 stars">' + stars + '</div>' +
+            '</div>' +
+            '<div class="testi-right"><blockquote class="testi-quote">' + (t.quote || '') + '</blockquote></div>' +
+            '</article>';
+    }).join('');
+
+    dotsWrap.innerHTML = sorted.map(function (_, i) {
+        return '<button class="testi-dot' + (i === 0 ? ' testi-dot-active' : '') + '" role="tab" aria-selected="' + (i === 0) + '" aria-label="Go to testimonial ' + (i + 1) + '" data-dot="' + i + '"></button>';
+    }).join('');
+
+    var cards = Array.from(grid.querySelectorAll('.testi-card'));
+    var dots = Array.from(dotsWrap.querySelectorAll('.testi-dot'));
+
+    function scrollToCard(index) {
+        var card = cards[index];
+        if (!card) return;
+        grid.scrollTo({ left: card.offsetLeft - 4, behavior: 'smooth' });
+    }
+
+    dots.forEach(function (btn, i) {
+        btn.addEventListener('click', function () { scrollToCard(i); });
+    });
+
+    function currentIndex() {
+        var scrollLeft = grid.scrollLeft;
+        var closest = 0;
+        var minDist = Infinity;
+        cards.forEach(function (card, i) {
+            var dist = Math.abs(card.offsetLeft - scrollLeft);
+            if (dist < minDist) {
+                minDist = dist;
+                closest = i;
+            }
+        });
+        return closest;
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function () {
+            var idx = currentIndex();
+            scrollToCard(idx === 0 ? sorted.length - 1 : idx - 1);
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function () {
+            var idx = currentIndex();
+            scrollToCard(idx === sorted.length - 1 ? 0 : idx + 1);
+        });
+    }
+
+    var scrollTimer;
+    grid.addEventListener('scroll', function () {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function () {
+            var idx = currentIndex();
+            dots.forEach(function (d, i) {
+                d.classList.toggle('testi-dot-active', i === idx);
+                d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+            });
+        }, 80);
+    });
+}
+
+/**
+ * Initialize FAQ accordion for page-specific containers.
+ * @param {Array} items - [{question,answer,order}]
+ * @param {Object} cfg - {containerId, answerPrefix}
+ */
+export function initFAQ(items, cfg) {
+    if (!items || !items.length || !cfg) return;
+    var dl = document.getElementById(cfg.containerId);
+    if (!dl) return;
+
+    var sorted = items.slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+    var openIndex = 0;
+    var answerPrefix = cfg.answerPrefix || 'faq';
+
+    function render() {
+        dl.innerHTML = sorted.map(function (faq, i) {
+            var isOpen = i === openIndex;
+            return '<div class="faq-item' + (isOpen ? ' faq-open' : '') + '" data-faq-index="' + i + '">' +
+                '<dt>' +
+                '<button class="faq-question" aria-expanded="' + isOpen + '" aria-controls="' + answerPrefix + '-' + i + '">' +
+                '<span>' + (faq.question || '') + '</span>' +
+                '<svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">' +
+                '<path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+                '</svg>' +
+                '</button>' +
+                '</dt>' +
+                '<dd class="faq-answer" id="' + answerPrefix + '-' + i + '" role="region">' +
+                '<p>' + (faq.answer || '') + '</p>' +
+                '</dd>' +
+                '</div>';
+        }).join('');
+
+        dl.querySelectorAll('.faq-question').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var index = parseInt(btn.closest('.faq-item').dataset.faqIndex, 10);
+                openIndex = openIndex === index ? null : index;
+                render();
+            });
+        });
+    }
+
+    render();
+}

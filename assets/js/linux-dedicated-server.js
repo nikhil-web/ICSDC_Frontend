@@ -1,4 +1,4 @@
-import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, populatePricingPlans, populateChecklist, populateComparisonTable, hidePageLoader, markActiveNavLink, setText, setHTML } from './utils/cms-helpers.js';
+import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, populatePricingPlans, populateChecklist, populateComparisonTable, hidePageLoader, markActiveNavLink, setText, setHTML, initTestimonials, initFAQ } from './utils/cms-helpers.js';
 import { getLinuxDedicatedServerPage } from './services/contentService.js';
 
 (async function () {
@@ -50,6 +50,20 @@ import { getLinuxDedicatedServerPage } from './services/contentService.js';
 
         populateSectionHeader('#use-cases', page.useCasesLabel, page.useCasesTitle, page.useCasesSubtitle);
         populateIconCards('.cloud-use-grid, .lds-usecase-grid', page.useCases, 'cloud-use-card');
+
+        if (page.testimonialTitle) setText(document, '#lds-testimonials .testi-title', page.testimonialTitle);
+        initTestimonials(page.testimonials, {
+            grid: 'lds-testi-grid',
+            dots: 'lds-testi-dots',
+            prev: 'lds-testi-prev',
+            next: 'lds-testi-next'
+        });
+
+        if (page.faqTitle) setText(document, '#lds-faq .faq-title', page.faqTitle);
+        initFAQ(page.faqs, {
+            containerId: 'lds-faq-accordions',
+            answerPrefix: 'lds-faq'
+        });
 
         populateCtaBand('.cloud-cta-band, .cloud-cta-dark', page.ctaBand1);
     } catch (err) {
