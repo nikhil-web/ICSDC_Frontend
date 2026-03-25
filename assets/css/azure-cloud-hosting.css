@@ -38,7 +38,7 @@
     font-weight: 700;
     letter-spacing: 0.10em;
     text-transform: uppercase;
-    color: #0078d4;
+    color: #ffffff;
     margin-bottom: 8px;
     opacity: 0.80;
 }
@@ -364,7 +364,7 @@
 }
 
 .azure-compare-table thead th:last-child {
-    background: linear-gradient(135deg, #0a3d62 0%, #1a56db 100%);
+    background: #FF8D03;
 }
 
 .azure-compare-table tbody tr:nth-child(even) {
@@ -498,6 +498,7 @@
     gap: 0;
     margin-top: 48px;
     position: relative;
+    width: 50%;
 }
 
 .azure-process-steps::before {
@@ -535,7 +536,9 @@
     box-shadow: 0 4px 16px rgba(0, 120, 212, 0.30);
 }
 
-.azure-step-content {}
+.azure-step-content {
+    text-align: left;
+}
 
 .azure-step-content h3 {
     font-size: 18px;
@@ -568,20 +571,12 @@
 ══════════════════════════════════════ */
 .azure-stack-section {
     padding: 88px 0;
-    background: #0a1f44;
+    background: var(--blue);
     position: relative;
     overflow: hidden;
 }
 
-.azure-stack-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at 20% 50%, rgba(0, 120, 212, 0.18) 0%, transparent 55%),
-        radial-gradient(circle at 80% 50%, rgba(26, 86, 219, 0.12) 0%, transparent 50%);
-    pointer-events: none;
-}
+
 
 .azure-stack-inner {
     width: 100%;
@@ -970,4 +965,12 @@
 .azure-faq-section {
     padding: 88px 0;
     background: var(--bg-light);
+}
+
+.tech-badge {
+    background: #e9e9e9;
+    margin: 10px 5px;
+    padding: 11px;
+    border-radius: 10px;
+    color: #595959;
 }

@@ -976,7 +976,7 @@ nav.scrolled {
    SECTIONS
 ══════════════════════════════════════ */
 .section {
-    padding: 64px 0 88px;
+    padding: 60px 0 60px;
 }
 
 .section .container {
@@ -1134,7 +1134,6 @@ nav.scrolled {
    WHO WE ARE
 ══════════════════════════════════════ */
 .who-we-are {
-    padding-top: 0;
     overflow: hidden;
 }
 
@@ -1149,8 +1148,8 @@ nav.scrolled {
 
 .who-we-are-image {
     flex: 0 0 40%;
-    overflow: hidden;
-    max-height: 500px;
+    /* overflow: hidden; */
+    /* max-height: 500px; */
 }
 
 .who-we-are-image img {
@@ -1174,7 +1173,7 @@ nav.scrolled {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 500px;
+    height: auto;
 }
 
 .who-we-are-paragraph {

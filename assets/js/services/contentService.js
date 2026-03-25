@@ -69,9 +69,8 @@ export function getDedicatedServerPage() {
         "&populate[faqs]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
         "&populate[ctaBand2][populate][ctaSecondary]=*" +
-        "&populate[footer][populate][address]=*" +
-        "&populate[footer][populate][socialLinks]=*" +
-        "&populate[footer][populate][linkGroups][populate]=links"
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
@@ -98,10 +97,7 @@ export function getZimbraHostingPage() {
         "&populate[comparisonRows]=*" +
         "&populate[faqs]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
-        "&populate[ctaBand2][populate][ctaSecondary]=*" +
-        "&populate[footer][populate][address]=*" +
-        "&populate[footer][populate][socialLinks]=*" +
-        "&populate[footer][populate][linkGroups][populate]=links"
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
     );
 }
 
@@ -135,7 +131,9 @@ export function getVpsHostingPage() {
         "&populate[useCases]=*" +
         "&populate[controlPanels]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
-        "&populate[ctaBand2][populate][ctaSecondary]=*"
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
@@ -169,7 +167,9 @@ export function getCloudHostingPage() {
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
         "&populate[ctaBand2][populate][ctaSecondary]=*" +
         "&populate[ctaBand3][populate][ctaPrimary]=*" +
-        "&populate[ctaBand3][populate][ctaSecondary]=*"
+        "&populate[ctaBand3][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
@@ -328,7 +328,9 @@ export function getAzureCloudHostingPage() {
         "&populate[securityFeatures]=*" +
         "&populate[pricingCtaPrimary]=*" +
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
-        "&populate[ctaBand1][populate][ctaSecondary]=*"
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 

@@ -374,6 +374,74 @@ export function populatePricingPlans(gridSelector, plans) {
     }).join('');
 }
 
+
+export function populatePricingPlansCloud(gridSelector, plans) {
+    if (!plans || !plans.length) return;
+
+    var grid = document.querySelector(gridSelector);
+    if (!grid) return;
+
+    var sorted = plans.slice().sort(function (a, b) {
+        return (a.order || 0) - (b.order || 0);
+    });
+
+    function checkSVG() {
+        return '<svg viewBox="0 0 12 12" fill="none">' +
+            '<polyline points="2,6 5,9 10,3"></polyline>' +
+            '</svg>';
+    }
+
+
+    grid.innerHTML = sorted.map(function (plan) {
+
+        var featuredClass = plan.isFeatured ? ' cloud-featured' : '';
+
+        var badge = (plan.isFeatured && plan.badge)
+            ? '<span class="cloud-plan-badge">' + plan.badge + '</span>'
+            : '';
+
+        var ctaClass = plan.ctaStyle === 'primary'
+            ? 'cloud-plan-cta-primary'
+            : 'cloud-plan-cta-outline';
+
+        var ctaArrow = plan.ctaStyle === 'primary' ? ' →' : '';
+
+        var featuresHTML = '';
+        if (plan.features && plan.features.length) {
+            featuresHTML = plan.features.map(function (f) {
+                return '<li class="cloud-plan-feature">' +
+                    '<span class="cloud-plan-check">' + checkSVG() + '</span>' +
+                    (f.label || '') +
+                    '</li>';
+            }).join('');
+        }
+
+        return '<div class="cloud-plan-card' + featuredClass + '">' +
+            badge +
+
+            '<div class="cloud-plan-tier">' + (plan.tier || '') + '</div>' +
+
+            '<div class="cloud-plan-price-wrap">' +
+            '<span class="cloud-plan-currency">' + (plan.currency || '₹') + '</span>' +
+            '<span class="cloud-plan-price">' + (plan.price || '') + '</span>' +
+            '<span class="cloud-plan-period">' + (plan.period || '/mo') + '</span>' +
+            '</div>' +
+
+            (plan.tagline
+                ? '<p class="cloud-plan-tagline">' + plan.tagline + '</p>'
+                : '') +
+
+            '<hr class="cloud-plan-divider">' +
+
+            '<ul class="cloud-plan-features">' + featuresHTML + '</ul>' +
+
+            '<button class="cloud-plan-cta ' + ctaClass + '">' +
+            (plan.ctaText || '') + ctaArrow +
+            '</button>' +
+
+            '</div>';
+    }).join('');
+}
 /**
  * Populate numbered "when" cards (e.g. "When Do You Need" section).
  * @param {string} gridSelector - CSS selector for the cards grid
@@ -493,7 +561,7 @@ export function populateTechBadges(containerSelector, badges, customIcons) {
 
     container.innerHTML = sorted.map(function (badge) {
         return '<div class="tech-badge">' +
-            '<span class="tech-badge-icon" aria-hidden="true">' + resolveIcon(badge.icon, customIcons) + '</span>' +
+
             '<span class="tech-badge-name">' + (badge.name || '') + '</span>' +
             '</div>';
     }).join('');
