@@ -65,12 +65,11 @@ export function getDedicatedServerPage() {
         "&populate[locationTags]=*" +
         "&populate[whenCards]=*" +
         "&populate[useCaseCards]=*" +
-        "&populate[testimonials]=*" +
-        "&populate[faqs]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
         "&populate[ctaBand2][populate][ctaSecondary]=*" +
         "&populate[faq][populate]=*" +
         "&populate[testimonials][populate]=*"
+
     );
 }
 
