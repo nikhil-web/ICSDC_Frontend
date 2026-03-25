@@ -310,11 +310,27 @@ import {
             }
             initTestimonials(page.testimonials);
 
+
+
+            if (page.testimonials && page.testimonials.length) {
+                initTestimonials(page.testimonials)
+            } else {
+                //hide the entire section if no testimonials            
+                var testiSection = document.getElementsByClassName('testi-section');
+                if (testiSection) {
+                    testiSection.style.display = 'none';
+                }
+            }
+
             // 10. FAQ
             if (page.faqTitle) {
                 setText(document, '#dom-faq-heading', page.faqTitle);
             }
-            initFAQ(page.faqs);
+            // 9. FAQ
+            if (page.faqTitle) {
+                setText(document, '#acr-faq-heading', page.faqTitle);
+            }
+            initFAQ(page.faq);
 
             // 11. CTA Band #2
             populateCtaBand('.cloud-cta-dark', page.ctaBand2);

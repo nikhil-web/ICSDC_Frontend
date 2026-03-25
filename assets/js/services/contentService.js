@@ -69,7 +69,6 @@ export function getDedicatedServerPage() {
         "&populate[ctaBand2][populate][ctaSecondary]=*" +
         "&populate[faq][populate]=*" +
         "&populate[testimonials][populate]=*"
-
     );
 }
 
@@ -94,9 +93,10 @@ export function getZimbraHostingPage() {
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[migrationSteps]=*" +
         "&populate[comparisonRows]=*" +
-        "&populate[faqs]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
-        "&populate[ctaBand2][populate][ctaSecondary]=*"
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
@@ -194,7 +194,9 @@ export function getSharedHostingPage() {
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
-        "&populate[ctaBand2][populate][ctaSecondary]=*"
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
@@ -219,7 +221,9 @@ export function getEmailHostingPage() {
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
-        "&populate[ctaBand2][populate][ctaSecondary]=*"
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
@@ -245,7 +249,9 @@ export function getDomainRegistrationPage() {
         "&populate[whyCards]=*" +
         "&populate[tips]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
-        "&populate[ctaBand2][populate][ctaSecondary]=*"
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
@@ -355,7 +361,9 @@ export function getWindowsCloudHostingPage() {
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
-        "&populate[ctaBand2][populate][ctaSecondary]=*"
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
@@ -385,7 +393,9 @@ export function getWindowsDedicatedServerPage() {
         "&populate[readyCards]=*" +
         "&populate[useCases]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
-        "&populate[ctaBand2][populate][ctaSecondary]=*"
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
@@ -410,7 +420,9 @@ export function getWindowsVpsHostingPage() {
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
-        "&populate[ctaBand2][populate][ctaSecondary]=*"
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
@@ -437,7 +449,9 @@ export function getLinuxDedicatedServerPage() {
         "&populate[innovationCards]=*" +
         "&populate[useCases]=*" +
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
-        "&populate[ctaBand1][populate][ctaSecondary]=*"
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
@@ -465,11 +479,11 @@ export function getHomepagePage() {
         "&populate[IndustryLeadingExcellenceValidated][populate][image]=true" +
         "&populate[BeyondBestPracticeOurISOStandards][populate][image]=true" +
         "&populate[BestCloudServices][populate][featureCards]=*" +
-        "&populate[Testimonials][populate][Avatar]=true" +
-        "&populate[FAQ]=*" +
         "&populate[Footer][populate][socialLinks]=*" +
         "&populate[Footer][populate][linkGroups][populate][links]=*" +
-        "&populate[Footer][populate][logo]=true"
+        "&populate[Footer][populate][logo]=true" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
     );
 }
 
@@ -477,4 +491,3 @@ export function getHomepagePage() {
 //  AGGREGATE FETCH
 //  Fetches all page data in parallel — call once on page load.
 // ──────────────────────────────────────────────────────────
-

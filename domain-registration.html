@@ -4698,8 +4698,8 @@
         </div>
     </div>
     <nav>
-        <div class="nav-inner"><a href="/" class="logo"><img data-strapi-mainLogo data-strapi="mainLogo" src="" alt="ICSDC logo"
-                    class="logo-icon"></a>
+        <div class="nav-inner"><a href="/" class="logo"><img data-strapi-mainLogo data-strapi="mainLogo" src=""
+                    alt="ICSDC logo" class="logo-icon"></a>
             <ul data-strapi-nav class="nav-links" id="nav-links"></ul><button
                 class="btn-login desktop-login-btn">Login</button><button class="hamburger" id="hamburger"
                 aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -5106,41 +5106,60 @@
         </div>
     </section>
 
-    <!-- ════════ TESTIMONIALS ════════ -->
-    <section class="testi-section" aria-labelledby="dom-testi-heading">
-        <div class="testi-container">
-            <h2 id="dom-testi-heading" class="testi-title">Read Our Client Stories</h2>
+    <!-- ════════════════════════════════════
+         SECTION 13 — TESTIMONIALS
+    ════════════════════════════════════ -->
+    <section class="ds-testi-section testi-section" id="ds-testimonials">
+        <div class="ds-testi-container testi-container">
+            <h2 class="testi-title" data-animate="fade-up">Client Stories</h2>
+
             <div class="testi-scroll-viewport">
-                <div class="testi-grid" role="list" id="dom-testi-grid"></div>
+                <div class="testi-grid" id="ds-testi-grid" role="list" aria-label="Client testimonials">
+                    <!-- Populated by dedicated-server.js from CMS -->
+                </div>
             </div>
-            <div class="testi-pagination" role="tablist" aria-label="Testimonial navigation" id="dom-testi-dots"></div>
+
+            <div class="testi-pagination" id="ds-testi-dots" role="tablist" aria-label="Testimonial navigation"></div>
+
             <div class="testi-nav">
-                <button class="testi-nav-btn" id="dom-testi-prev" aria-label="Previous testimonial">&#8249;</button>
-                <button class="testi-nav-btn" id="dom-testi-next" aria-label="Next testimonial">&#8250;</button>
+                <button class="testi-nav-btn" id="ds-testi-prev" aria-label="Previous testimonial">&#8249;</button>
+                <button class="testi-nav-btn" id="ds-testi-next" aria-label="Next testimonial">&#8250;</button>
             </div>
         </div>
     </section>
 
-    <!-- ════════ FAQ ════════ -->
-    <section class="faq-section" id="dom-faq" aria-labelledby="dom-faq-heading">
+    <!-- ════════════════════════════════════
+         SECTION 13 — FAQ
+    ════════════════════════════════════ -->
+    <section class="azure-faq-section faq-section section" id="azure-faq">
         <div class="faq-container">
+
             <div class="faq-col">
-                <h2 id="dom-faq-heading" class="faq-title">FAQs About ICSDC Domain Registration</h2>
-                <dl class="faq-accordions" id="dom-faq-accordions"></dl>
+                <h2 class="faq-title" data-animate="fade-up">FAQs about ICSDC Azure Cloud</h2>
+                <dl class="faq-accordions" id="faq-accordions">
+                    <!-- Populated by azure-cloud-hosting.js -->
+                </dl>
             </div>
-            <aside class="faq-contact-card">
-                <h3 class="faq-contact-title">Need Help Finding<br>Your Domain?</h3>
-                <p class="faq-contact-desc">Our domain experts are available 24/7 to help you find the perfect name and
-                    get your online presence started today.<br><br>&#128222; +91 98109 58857</p>
-                <a href="/contact" class="faq-contact-btn">Talk to an Expert <svg width="16" height="16"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" aria-hidden="true">
+
+            <div class="faq-contact-card" data-animate="fade-left">
+                <h3 class="faq-contact-title">Still have questions?</h3>
+                <p class="faq-contact-desc">Our certified Azure architects are available 24&times;7 to discuss your
+                    cloud requirements and help you make the right decision.</p>
+                <a href="/contact" class="faq-contact-btn">
+                    Talk to an Azure Expert
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="5" y1="12" x2="19" y2="12" />
                         <polyline points="12 5 19 12 12 19" />
-                    </svg></a>
-            </aside>
+                    </svg>
+                </a>
+            </div>
+
         </div>
     </section>
+    <!-- ════════════════════════════════════
+         SECTION 13 — FAQ
+    ════════════════════════════════════ -->
 
     <!-- ════════ FINAL CTA ════════ -->
     <section class="cloud-cta-band cloud-cta-dark">
@@ -5265,7 +5284,7 @@
     <script src="assets/js/main.js" type="module"></script>
     <script src="assets/js/components.js"></script>
     <script src="assets/js/polish.js" defer></script>
-    <script src="assets/js/domain-registration.js" defer></script>
+    <script src="assets/js/domain-registration.js" type="module"></script>
     <script>
         (function () {
             var el = document.getElementById('footer-year');

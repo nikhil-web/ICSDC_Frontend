@@ -393,8 +393,8 @@ import { getHomepagePage } from "./services/contentService.js";
             populateIndustryValidated(page.IndustryLeadingExcellenceValidated);
             populateISOStandards(page.BeyondBestPracticeOurISOStandards);
             populateBestCloudServices(page.BestCloudServices);
-            populateTestimonials(page.Testimonials);
-            populateFAQ(page.FAQ);
+            populateTestimonials(page.testimonials);
+            populateFAQ(page.faq);
 
 
         } catch (err) {
