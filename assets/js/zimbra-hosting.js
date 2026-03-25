@@ -8,8 +8,7 @@ import {
     hidePageLoader,
     markActiveNavLink,
     setText,
-    setHTML,
-    initTestimonials
+    setHTML
 } from './utils/cms-helpers.js';
 
 (function () {
@@ -173,12 +172,6 @@ import {
             populateComparison(page.comparisonColumns, page.comparisonRows);
 
             if (page.testimonialTitle) setText(document, '#testi-heading', page.testimonialTitle);
-            initTestimonials(page.testimonials, {
-                grid: 'testi-grid',
-                dots: 'testi-dots',
-                prev: 'testi-prev',
-                next: 'testi-next'
-            });
             if (page.faqTitle) setText(document, '#faq-heading', page.faqTitle);
             initZimbraFAQ(page.faqs);
             populateFaqContact(page);

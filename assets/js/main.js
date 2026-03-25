@@ -3,7 +3,7 @@
 //  Renders:  Navigation + Dropdown + Hamburger Menu
 // ══════════════════════════════════════════════════════════
 
-import { getNavigation } from "./services/contentService.js";
+import { getNavigation, getFooter } from "./services/contentService.js";
 
 
 // ══════════════════════════════════════════════════════════
@@ -231,6 +231,80 @@ function initLoginButton(menuData) {
 //  INIT — orchestrates the full render pipeline
 // ══════════════════════════════════════════════════════════
 
+function initFooter(footer) {
+    if (!footer) return;
+
+    // --- Logo ---
+    var logoFooter = document.querySelector("[data-strapi-logo]");
+    if (logoFooter && footer.logo) {
+        logoFooter.src = STRAPI_URL + footer.logo.url;
+        logoFooter.alt = footer.logoAlt || 'Logo';
+    }
+
+    // --- Address ---
+    var address = document.querySelector('[data-strapi-footer-address]');
+    if (address && footer.address) {
+        address.innerHTML = footer.address; // keep <br> tags from CMS
+    }
+
+    // --- Phone ---
+    var phone = document.querySelector('[data-strapi-footer-phone]');
+    if (phone && footer.phone) {
+        phone.innerHTML = footer.phone;
+    }
+
+    // --- Email ---
+    var email = document.querySelector('[data-strapi-footer-email]');
+    if (email && footer.email) {
+        email.href = 'mailto:' + footer.email;
+        email.innerHTML = footer.email;
+    }
+
+    // --- Social links ---
+    if (footer.socialLinks) {
+        footer.socialLinks.forEach(function (item) {
+            var el = document.querySelector('[data-strapi-social="' + item.platform + '"]');
+            if (el && item.url) {
+                el.href = item.url;
+            }
+        });
+    }
+
+    var groupsWrap = document.querySelector('[data-strapi-link-groups]');
+
+    if (groupsWrap && footer.linkGroups) {
+        footer.linkGroups.forEach(function (group) {
+
+            var links = (group.links || []).map(function (link) {
+                return `<li><a class="footer-link" href="${link.url || '#'}">${link.label || ''}</a></li>`;
+            }).join('');
+
+            groupsWrap.insertAdjacentHTML('beforeend', `
+            <div class="footer-link-group">
+                <h3 class="footer-link-title">${group.title || ''}</h3>
+                <ul>${links}</ul>
+            </div>
+        `);
+        });
+    }
+
+
+    /*
+    
+            <!-- Services -->
+            <div class="footer-link-group" aria-labelledby="footer-services">
+                <h3 id="footer-services" class="footer-link-title">Services</h3>
+                <ul data-strapi-link-group="services"></ul>
+            </div> */
+
+    // --- Year & Company ---
+    var yearEl = document.querySelector('[data-strapi-year]');
+    if (yearEl) yearEl.textContent = footer.copyrightYear || new Date().getFullYear();
+
+    var nameEl = document.querySelector('[data-strapi-company-name]');
+    if (nameEl && footer.companyName) nameEl.textContent = footer.companyName;
+
+}
 
 async function init() {
 
@@ -245,6 +319,10 @@ async function init() {
         initNav(menuData);
         initMainLogo(menuData);
         initLoginButton(menuData);
+
+        const footerData = await getFooter();
+        initFooter(footerData.data.commonFooter);
+
     } catch (err) {
         console.error(" Menu data fetch has failed frm strapi", err);
 
