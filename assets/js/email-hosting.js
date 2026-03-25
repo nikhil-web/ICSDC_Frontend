@@ -1,4 +1,4 @@
-import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, populateSolutionCards, hidePageLoader, markActiveNavLink } from './utils/cms-helpers.js';
+import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, populateSolutionCards, hidePageLoader, markActiveNavLink, initTestimonials, initFAQ, setText } from './utils/cms-helpers.js';
 import { getEmailHostingPage } from './services/contentService.js';
 
 (async function () {
@@ -28,6 +28,20 @@ import { getEmailHostingPage } from './services/contentService.js';
 
         populateSectionHeader('#use-cases', page.useCasesLabel, page.useCasesTitle, page.useCasesSubtitle);
         populateIconCards('.cloud-power-grid:last-of-type', page.useCases, 'cloud-power-card');
+
+        if (page.testimonialTitle) setText(document, '#email-testi-heading', page.testimonialTitle);
+        initTestimonials(page.testimonials, {
+            grid: 'email-testi-grid',
+            dots: 'email-testi-dots',
+            prev: 'email-testi-prev',
+            next: 'email-testi-next'
+        });
+
+        if (page.faqTitle) setText(document, '#email-faq-heading', page.faqTitle);
+        initFAQ(page.faqs, {
+            containerId: 'email-faq-accordions',
+            answerPrefix: 'email-faq'
+        });
 
         populateCtaBand('.cloud-cta-band:not(.cloud-cta-dark)', page.ctaBand1);
         populateCtaBand('.cloud-cta-dark', page.ctaBand2);
