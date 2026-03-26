@@ -222,6 +222,8 @@ export function getEmailHostingPage() {
         "&populate[features]=*" +
         "&populate[solutions]=*" +
         "&populate[useCases]=*" +
+        "&populate[testimonials]=*" +
+        "&populate[faqs]=*" +
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
@@ -252,6 +254,8 @@ export function getDomainRegistrationPage() {
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[whyCards]=*" +
         "&populate[tips]=*" +
+        "&populate[testimonials]=*" +
+        "&populate[faqs]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
         "&populate[ctaBand2][populate][ctaSecondary]=*" +
         "&populate[faq][populate]=*" +
