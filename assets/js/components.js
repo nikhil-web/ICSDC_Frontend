@@ -334,8 +334,8 @@
        BOOT
     ───────────────────────────────────────────────────────── */
     function init() {
-        initTestimonials();  // async — fetches from Strapi
-        initFAQ();           // async — fetches from Strapi
+        // initTestimonials();  // async — fetches from Strapi
+        // initFAQ();           // async — fetches from Strapi
         initContactForm();
     }
 

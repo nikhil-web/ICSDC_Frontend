@@ -6,7 +6,9 @@ import {
     setHTML,
     resolveIcon,
     populateCtaBand,
-    populateTechBadges
+    populateTechBadges,
+    initTestimonials,
+    initFAQ
 } from './utils/cms-helpers.js';
 import { getAzureCloudHostingPage } from './services/contentService.js';
 
@@ -179,6 +181,20 @@ import { getAzureCloudHostingPage } from './services/contentService.js';
             if (page.pricingDescription) setHTML(document, '#azure-pricing-info .azure-pricing-callout-text > p', page.pricingDescription);
 
             populateCtaBand('.azure-cta-band', page.ctaBand1);
+
+
+
+            if (page.testimonials && page.testimonials.length) {
+                initTestimonials(page.testimonials)
+            } else {
+                //hide the entire section if no testimonials            
+                var testiSection = document.getElementsByClassName('testi-section');
+                if (testiSection) {
+                    testiSection.style.display = 'none';
+                }
+            }
+
+            initFAQ(page.faq);
         } catch (err) {
             console.error('[azure-cloud-hosting] CMS load failed:', err);
         }

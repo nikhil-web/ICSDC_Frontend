@@ -25,6 +25,7 @@
  */
 
 import { getDedicatedServerPage } from './services/contentService.js';
+import { initFAQ } from './utils/cms-helpers.js';
 
 (function () {
     'use strict';
@@ -408,8 +409,8 @@ import { getDedicatedServerPage } from './services/contentService.js';
         tbody.innerHTML = sorted.map(function (r) {
             return '<tr>' +
                 '<td>' + r.feature + '</td>' +
-                '<td class="ds-col-icsdc">' + comparisonIcon(r.icsdc) + '</td>' +
-                '<td style="text-align:center;">' + comparisonIcon(r.others) + '</td>' +
+                '<td class="ds-col-icsdc">' + comparisonIcon(r.icsdcStatus) + '</td>' +
+                '<td style="text-align:center;">' + comparisonIcon(r.othersStatus) + '</td>' +
                 '</tr>';
         }).join('');
     }
@@ -887,14 +888,12 @@ import { getDedicatedServerPage } from './services/contentService.js';
             if (page.faqTitle) {
                 setText(document, '.faq-title', page.faqTitle);
             }
-            initDSFAQ(page.faqs);
+            initFAQ(page.faq);
             populateFaqContact(page.faqContactTitle, page.faqContactDescription, page.faqContactBtnLabel, page.faqContactBtnUrl);
 
             // 16. CTA Band #2
             populateCtaBand('.ds-cta-dark', page.ctaBand2);
 
-            // 17. Footer
-            populateFooter(page.footer);
 
         } catch (err) {
             console.error('[dedicated-server] Failed to load CMS data:', err);

@@ -30,18 +30,14 @@ import { getEmailHostingPage } from './services/contentService.js';
         populateIconCards('.cloud-power-grid:last-of-type', page.useCases, 'cloud-power-card');
 
         if (page.testimonialTitle) setText(document, '#email-testi-heading', page.testimonialTitle);
-        initTestimonials(page.testimonials, {
-            grid: 'email-testi-grid',
-            dots: 'email-testi-dots',
-            prev: 'email-testi-prev',
-            next: 'email-testi-next'
-        });
+        initTestimonials(page.testimonials);
 
-        if (page.faqTitle) setText(document, '#email-faq-heading', page.faqTitle);
-        initFAQ(page.faqs, {
-            containerId: 'email-faq-accordions',
-            answerPrefix: 'email-faq'
-        });
+        // 10. FAQ
+        if (page.faqTitle) {
+            setText(document, '#faq-title', page.faqTitle);
+        }
+
+        initFAQ(page.faq);
 
         populateCtaBand('.cloud-cta-band:not(.cloud-cta-dark)', page.ctaBand1);
         populateCtaBand('.cloud-cta-dark', page.ctaBand2);

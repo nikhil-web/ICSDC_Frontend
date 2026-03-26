@@ -21,6 +21,7 @@
  */
 
 import { getHomepagePage } from "./services/contentService.js";
+import { populateIconCards } from "./utils/cms-helpers.js";
 
 (function () {
 
@@ -94,6 +95,15 @@ import { getHomepagePage } from "./services/contentService.js";
             }
         }
     }
+
+
+    // why chooose us
+    /** 3. Pillars (4 icon cards in .why-us .why-grid) */
+    function populateWhyChooseUs(pillars) {
+        if (!pillars || !pillars.length) return;
+        populateIconCards('.why-us .why-grid', pillars, 'why-card');
+    }
+
 
     // ═══════════════════════════════════════════════════════════
     //  WHO WE ARE
@@ -369,80 +379,7 @@ import { getHomepagePage } from "./services/contentService.js";
     // ═══════════════════════════════════════════════════════════
     //  FOOTER
     // ═══════════════════════════════════════════════════════════
-    function populateFooter(footer) {
-        if (!footer) return;
 
-        // --- Logo ---
-        var logoFooter = document.querySelector("[data-strapi-logo]");
-        if (logoFooter && footer.logo) {
-            logoFooter.src = STRAPI_URL + footer.logo.url;
-            logoFooter.alt = footer.logoAlt || 'Logo';
-        }
-
-        // --- Address ---
-        var address = document.querySelector('[data-strapi-footer-address]');
-        if (address && footer.address) {
-            address.innerHTML = footer.address; // keep <br> tags from CMS
-        }
-
-        // --- Phone ---
-        var phone = document.querySelector('[data-strapi-footer-phone]');
-        if (phone && footer.phone) {
-            phone.innerHTML = footer.phone;
-        }
-
-        // --- Email ---
-        var email = document.querySelector('[data-strapi-footer-email]');
-        if (email && footer.email) {
-            email.href = 'mailto:' + footer.email;
-            email.innerHTML = footer.email;
-        }
-
-        // --- Social links ---
-        if (footer.socialLinks) {
-            footer.socialLinks.forEach(function (item) {
-                var el = document.querySelector('[data-strapi-social="' + item.platform + '"]');
-                if (el && item.url) {
-                    el.href = item.url;
-                }
-            });
-        }
-
-        var groupsWrap = document.querySelector('[data-strapi-link-groups]');
-
-        if (groupsWrap && footer.linkGroups) {
-            footer.linkGroups.forEach(function (group) {
-
-                var links = (group.links || []).map(function (link) {
-                    return `<li><a class="footer-link" href="${link.url || '#'}">${link.label || ''}</a></li>`;
-                }).join('');
-
-                groupsWrap.insertAdjacentHTML('beforeend', `
-            <div class="footer-link-group">
-                <h3 class="footer-link-title">${group.title || ''}</h3>
-                <ul>${links}</ul>
-            </div>
-        `);
-            });
-        }
-
-
-        /*
-        
-                <!-- Services -->
-                <div class="footer-link-group" aria-labelledby="footer-services">
-                    <h3 id="footer-services" class="footer-link-title">Services</h3>
-                    <ul data-strapi-link-group="services"></ul>
-                </div> */
-
-        // --- Year & Company ---
-        var yearEl = document.querySelector('[data-strapi-year]');
-        if (yearEl) yearEl.textContent = footer.copyrightYear || new Date().getFullYear();
-
-        var nameEl = document.querySelector('[data-strapi-company-name]');
-        if (nameEl && footer.companyName) nameEl.textContent = footer.companyName;
-
-    }
 
     // ═══════════════════════════════════════════════════════════
     //  INIT
@@ -460,15 +397,16 @@ import { getHomepagePage } from "./services/contentService.js";
             populateSEO(page.SEO);
             populateHeroSection(page);
             populateHeroCTAs(page.CallToActionPrimary, page.callToActionSecondary);
+            populateWhyChooseUs(page.whyChooseUs);
             populateWhoWeAre(page.whoWeAre);
             populateLessComplexity(page.LessCloudComplexity);
             populateCloudSolutions(page.CloudSolutionsEngineered);
             populateIndustryValidated(page.IndustryLeadingExcellenceValidated);
             populateISOStandards(page.BeyondBestPracticeOurISOStandards);
             populateBestCloudServices(page.BestCloudServices);
-            populateTestimonials(page.Testimonials);
-            populateFAQ(page.FAQ);
-            populateFooter(page.Footer);
+            populateTestimonials(page.testimonials);
+            populateFAQ(page.faq);
+
 
         } catch (err) {
             console.error('[homepage-cms] Failed to load home-page data:', err);
