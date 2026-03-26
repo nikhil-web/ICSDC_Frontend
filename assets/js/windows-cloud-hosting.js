@@ -42,7 +42,7 @@ import { getWindowsCloudHostingPage } from './services/contentService.js';
         });
 
         if (page.faqTitle) setText(document, '#winvps-faq-heading', page.faqTitle);
-        initFAQ(page.faqs, {
+        initFAQ(page.faq, {
             containerId: 'winvps-faq-accordions',
             answerPrefix: 'wincloud-faq'
         });

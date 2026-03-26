@@ -29,7 +29,9 @@ import {
     setHTML,
     resolveIcon,
     getInitials,
-    starSVG
+    starSVG,
+    initTestimonials,
+    initFAQ
 } from './utils/cms-helpers.js';
 
 import { getSharedHostingPage } from './services/contentService.js';
@@ -137,10 +139,10 @@ import { getSharedHostingPage } from './services/contentService.js';
         populateCtaBand('.cloud-cta-band:not(.cloud-cta-dark)', page.ctaBand1);
 
         /* 9. Testimonials */
-        initTestimonials(page.testimonials, 'shared');
+        initTestimonials(page.testimonials);
 
         /* 10. FAQ */
-        initFAQ(page.faqs, 'shared');
+        initFAQ(page.faq);
 
         /* 11. CTA Band #2 */
         populateCtaBand('.cloud-cta-dark', page.ctaBand2);
@@ -177,107 +179,7 @@ import { getSharedHostingPage } from './services/contentService.js';
             '</article>';
     }
 
-    function initTestimonials(items, prefix) {
-        if (!items || !items.length) return;
-        var grid = document.getElementById(prefix + '-testi-grid');
-        var dotsWrap = document.getElementById(prefix + '-testi-dots');
-        var prevBtn = document.getElementById(prefix + '-testi-prev');
-        var nextBtn = document.getElementById(prefix + '-testi-next');
-        if (!grid || !dotsWrap) return;
 
-        grid.innerHTML = items.map(function (t, i) { return buildTestiCard(t, i); }).join('');
 
-        dotsWrap.innerHTML = items.map(function (_, i) {
-            return '<button class="testi-dot' + (i === 0 ? ' testi-dot-active' : '') +
-                '" role="tab" aria-selected="' + (i === 0) +
-                '" aria-label="Go to testimonial ' + (i + 1) +
-                '" data-dot="' + i + '"></button>';
-        }).join('');
-
-        var cards = Array.from(grid.querySelectorAll('.testi-card'));
-        var dots = Array.from(dotsWrap.querySelectorAll('.testi-dot'));
-
-        function scrollToCard(index) {
-            var card = cards[index];
-            if (!card) return;
-            grid.scrollTo({ left: card.offsetLeft - 4, behavior: 'smooth' });
-        }
-
-        dots.forEach(function (btn, i) {
-            btn.addEventListener('click', function () { scrollToCard(i); });
-        });
-
-        function currentIndex() {
-            var scrollLeft = grid.scrollLeft;
-            var closest = 0, minDist = Infinity;
-            cards.forEach(function (card, i) {
-                var dist = Math.abs(card.offsetLeft - scrollLeft);
-                if (dist < minDist) { minDist = dist; closest = i; }
-            });
-            return closest;
-        }
-
-        if (prevBtn) prevBtn.addEventListener('click', function () {
-            var idx = currentIndex();
-            scrollToCard(idx === 0 ? items.length - 1 : idx - 1);
-        });
-
-        if (nextBtn) nextBtn.addEventListener('click', function () {
-            var idx = currentIndex();
-            scrollToCard(idx === items.length - 1 ? 0 : idx + 1);
-        });
-
-        var scrollTimer;
-        grid.addEventListener('scroll', function () {
-            clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(function () {
-                var idx = currentIndex();
-                dots.forEach(function (d, i) {
-                    d.classList.toggle('testi-dot-active', i === idx);
-                    d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
-                });
-            }, 80);
-        });
-    }
-
-    /* ───────────────────────────────────────────────────────
-       FAQ ACCORDION
-    ─────────────────────────────────────────────────────── */
-    function initFAQ(faqItems, prefix) {
-        var dl = document.getElementById(prefix + '-faq-accordions');
-        if (!dl || !faqItems || !faqItems.length) return;
-
-        var sorted = faqItems.slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
-        var openIndex = 0;
-
-        function render() {
-            dl.innerHTML = sorted.map(function (faq, i) {
-                var isOpen = i === openIndex;
-                return '<div class="faq-item' + (isOpen ? ' faq-open' : '') + '" data-faq-index="' + i + '">' +
-                    '<dt>' +
-                    '<button class="faq-question" aria-expanded="' + isOpen + '" aria-controls="' + prefix + '-faq-a-' + i + '">' +
-                    '<span>' + faq.question + '</span>' +
-                    '<svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">' +
-                    '<path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
-                    '</svg>' +
-                    '</button>' +
-                    '</dt>' +
-                    '<dd class="faq-answer" id="' + prefix + '-faq-a-' + i + '" role="region">' +
-                    '<p>' + faq.answer + '</p>' +
-                    '</dd>' +
-                    '</div>';
-            }).join('');
-
-            dl.querySelectorAll('.faq-question').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    var index = parseInt(btn.closest('.faq-item').dataset.faqIndex, 10);
-                    openIndex = (openIndex === index) ? null : index;
-                    render();
-                });
-            });
-        }
-
-        render();
-    }
 
 })();

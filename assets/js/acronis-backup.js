@@ -183,7 +183,7 @@ import {
             populateWhyCards(page.whyLabel, page.whyTitle, page.whySubtitle, page.whyCards);
 
             // 8. Testimonials
-            debugger
+
 
             if (page.testimonials && page.testimonials.length) {
                 initTestimonials(page.testimonials)

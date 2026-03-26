@@ -60,7 +60,7 @@ import { getWindowsDedicatedServerPage } from './services/contentService.js';
         });
 
         if (page.faqTitle) setText(document, '#wds-faq-heading', page.faqTitle);
-        initFAQ(page.faqs, {
+        initFAQ(page.faq, {
             containerId: 'wds-faq-accordions',
             answerPrefix: 'wds-faq'
         });

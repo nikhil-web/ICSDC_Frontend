@@ -8,7 +8,9 @@ import {
     hidePageLoader,
     markActiveNavLink,
     setText,
-    setHTML
+    setHTML,
+    initFAQ,
+    initTestimonials
 } from './utils/cms-helpers.js';
 
 (function () {
@@ -171,9 +173,13 @@ import {
             populateSectionHeader('#comparison', page.comparisonLabel, page.comparisonTitle, page.comparisonSubtitle);
             populateComparison(page.comparisonColumns, page.comparisonRows);
 
-            if (page.testimonialTitle) setText(document, '#testi-heading', page.testimonialTitle);
-            if (page.faqTitle) setText(document, '#faq-heading', page.faqTitle);
-            initZimbraFAQ(page.faqs);
+            if (page.testimonialTitle) setText(document, '#winvps-testi-heading', page.testimonialTitle);
+            initTestimonials(page.testimonials);
+
+            if (page.faqTitle) setText(document, '#winvps-faq-heading', page.faqTitle);
+            initFAQ(page.faq);
+
+
             populateFaqContact(page);
 
             populateCtaBand('.cloud-cta-dark', page.ctaBand2);

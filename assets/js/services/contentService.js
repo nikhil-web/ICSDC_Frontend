@@ -129,8 +129,7 @@ export function getVpsHostingPage() {
         "&populate[locations]=*" +
         "&populate[useCases]=*" +
         "&populate[controlPanels]=*" +
-        "&populate[testimonials]=*" +
-        "&populate[faqs]=*" +
+
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
         "&populate[ctaBand2][populate][ctaSecondary]=*" +
         "&populate[faq][populate]=*" +
@@ -193,8 +192,6 @@ export function getSharedHostingPage() {
         "&populate[features]=*" +
         "&populate[whyReasons]=*" +
         "&populate[techCards]=*" +
-        "&populate[testimonials]=*" +
-        "&populate[faqs]=*" +
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
@@ -222,8 +219,7 @@ export function getEmailHostingPage() {
         "&populate[features]=*" +
         "&populate[solutions]=*" +
         "&populate[useCases]=*" +
-        "&populate[testimonials]=*" +
-        "&populate[faqs]=*" +
+
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
@@ -254,8 +250,6 @@ export function getDomainRegistrationPage() {
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[whyCards]=*" +
         "&populate[tips]=*" +
-        "&populate[testimonials]=*" +
-        "&populate[faqs]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
         "&populate[ctaBand2][populate][ctaSecondary]=*" +
         "&populate[faq][populate]=*" +
@@ -366,8 +360,7 @@ export function getWindowsCloudHostingPage() {
         "&populate[whyCards]=*" +
         "&populate[useCaseItems]=*" +
         "&populate[appCards]=*" +
-        "&populate[testimonials]=*" +
-        "&populate[faqs]=*" +
+
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
@@ -402,8 +395,7 @@ export function getWindowsDedicatedServerPage() {
         "&populate[whyCards]=*" +
         "&populate[readyCards]=*" +
         "&populate[useCases]=*" +
-        "&populate[testimonials]=*" +
-        "&populate[faqs]=*" +
+
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
         "&populate[ctaBand2][populate][ctaSecondary]=*" +
         "&populate[faq][populate]=*" +
@@ -429,8 +421,7 @@ export function getWindowsVpsHostingPage() {
         "&populate[features]=*" +
         "&populate[securityCards]=*" +
         "&populate[useCases]=*" +
-        "&populate[testimonials]=*" +
-        "&populate[faqs]=*" +
+
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
@@ -462,8 +453,7 @@ export function getLinuxDedicatedServerPage() {
         "&populate[supportCards]=*" +
         "&populate[innovationCards]=*" +
         "&populate[useCases]=*" +
-        "&populate[testimonials]=*" +
-        "&populate[faqs]=*" +
+
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[faq][populate]=*" +
