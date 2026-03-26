@@ -205,7 +205,7 @@ function initHamburger() {
 
 function initMainLogo(menuData) {
     // data strapi is mainLogo we nedd to add main logo data to this image src 
-    const mainLogoEl = document.querySelector("[data-strapi-mainLogo]");
+    const mainLogoEl = document.querySelector('[data-strapi-mainLogo], [data-strapi="mainLogo"]');
     if (mainLogoEl && menuData?.data?.navLogo) {
         mainLogoEl.src = STRAPI_URL + menuData.data.navLogo.mainLogo.url;
         mainLogoEl.alt = menuData.data.navLogo.alternativeText || "Main Logo";
@@ -213,15 +213,18 @@ function initMainLogo(menuData) {
 }
 
 function initLoginButton(menuData) {
-    const loginBtn = document.querySelector(".desktop-login-btn");
-    if (loginBtn && menuData?.data?.LoginButton) {
-        loginBtn.textContent = menuData.data.LoginButton.btnText || "Login";
-        if (menuData.data.LoginButton.Link) {
+    const loginButtons = document.querySelectorAll(".desktop-login-btn, .mobile-login-btn");
+    if (!loginButtons.length || !menuData?.data?.LoginButton) return;
+
+    const { btnText, Link } = menuData.data.LoginButton;
+    loginButtons.forEach((loginBtn) => {
+        loginBtn.textContent = btnText || "Login";
+        if (Link) {
             loginBtn.addEventListener("click", () => {
-                window.location.href = menuData.data.LoginButton.Link;
+                window.location.href = Link;
             });
         }
-    }
+    });
 }
 
 // ══════════════════════════════════════════════════════════

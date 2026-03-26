@@ -1,72 +1,190 @@
-import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, populateWhenCards, populateComparisonTable, populateTechBadges, hidePageLoader, markActiveNavLink, setText, setHTML } from './utils/cms-helpers.js';
+import {
+    populateSEO,
+    hidePageLoader,
+    markActiveNavLink,
+    setText,
+    setHTML,
+    resolveIcon,
+    populateCtaBand,
+    populateTechBadges
+} from './utils/cms-helpers.js';
 import { getAzureCloudHostingPage } from './services/contentService.js';
 
-(async function () {
+(function () {
     'use strict';
-    markActiveNavLink();
-    try {
-        var res = await getAzureCloudHostingPage();
-        var page = res.data;
 
-        populateSEO(page.seo);
-
-        // Azure hero has form title/subtitle instead of standard CTAs
-        var heroSection = document.querySelector('.hero-section');
-        if (heroSection) {
-            setText(heroSection, '.hero-title', page.heroTitle);
-            setHTML(heroSection, '.hero-desc', page.heroDescription);
-            setText(heroSection, '.azure-form-title', page.heroFormTitle);
-            setText(heroSection, '.azure-form-subtitle', page.heroFormSubtitle);
-        }
-
-        populateIconCards('.why-grid', page.pillars, 'why-card');
-
-        // About
-        if (page.aboutTitle) {
-            var aboutSection = document.querySelector('.azure-who-section');
-            if (aboutSection) {
-                setText(aboutSection, '.title', page.aboutTitle);
-                setHTML(aboutSection, 'p', page.aboutDescription);
-                if (page.aboutImage) {
-                    var img = aboutSection.querySelector('img');
-                    if (img) img.src = page.aboutImage;
-                }
-            }
-        }
-
-        populateSectionHeader('#advantages', page.advantagesLabel, page.advantagesTitle, page.advantagesSubtitle);
-        populateIconCards('.azure-advantages-grid', page.advantages, 'cloud-power-card');
-
-        populateSectionHeader('#comparison', page.comparisonLabel, page.comparisonTitle, page.comparisonSubtitle);
-        populateComparisonTable('.azure-compare', page.comparisonColumns, page.comparisonRows);
-
-        populateSectionHeader('#why-different', page.whyLabel, page.whyTitle, page.whySubtitle);
-        populateIconCards('.azure-why-grid', page.whyCards, 'cloud-power-card');
-
-        populateSectionHeader('#process', page.processLabel, page.processTitle, page.processSubtitle);
-        populateWhenCards('.azure-process-grid', page.processSteps);
-
-        populateSectionHeader('#tech-stack', page.techLabel, page.techTitle, page.techSubtitle);
-        populateTechBadges('.azure-stack-grid', page.techBadges);
-
-        populateSectionHeader('#security', page.securityLabel, page.securityTitle, null);
-        if (page.securityDescription) {
-            setHTML(document.getElementById('security'), 'p.subtitle', page.securityDescription);
-        }
-        populateIconCards('.azure-security-grid', page.securityFeatures, 'cloud-power-card');
-
-        // Pricing callout
-        if (page.pricingTitle) {
-            var pricingEl = document.querySelector('.azure-pricing-callout');
-            if (pricingEl) {
-                setText(pricingEl, '.title, h2', page.pricingTitle);
-                setHTML(pricingEl, 'p', page.pricingDescription);
-            }
-        }
-
-        populateCtaBand('.azure-cta-band, .cloud-cta-band', page.ctaBand1);
-    } catch (err) {
-        console.error('[azure-cloud-hosting] CMS load failed:', err);
+    function sortByOrder(items) {
+        return (items || []).slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
     }
-    hidePageLoader();
+
+    function renderAzureCards(gridSelector, cards, cardClass, iconClass) {
+        var grid = document.querySelector(gridSelector);
+        if (!grid || !cards || !cards.length) return;
+
+        var sorted = sortByOrder(cards);
+        grid.innerHTML = sorted.map(function (card) {
+            return '<div class="' + cardClass + '">' +
+                '<div class="' + iconClass + '">' + resolveIcon(card.icon) + '</div>' +
+                '<h3>' + (card.title || '') + '</h3>' +
+                '<p>' + (card.description || '') + '</p>' +
+                '</div>';
+        }).join('');
+    }
+
+    function renderAzureComparison(columns, rows) {
+        var section = document.getElementById('azure-compare');
+        if (!section) return;
+
+        if (columns && columns.length) {
+            var ths = section.querySelectorAll('.azure-compare-table thead th');
+            columns.forEach(function (label, i) {
+                if (ths[i]) ths[i].textContent = label;
+            });
+        }
+
+        if (!rows || !rows.length) return;
+        var tbody = section.querySelector('.azure-compare-table tbody');
+        if (!tbody) return;
+
+        var sorted = sortByOrder(rows);
+        tbody.innerHTML = sorted.map(function (row) {
+            function statusIcon(status) {
+                if (status === 'check') return '<span class="azure-compare-check">✔️</span>';
+                if (status === 'cross') return '<span class="azure-compare-cross">❌</span>';
+                return '<span class="azure-compare-both">✔️</span>';
+            }
+
+            return '<tr>' +
+                '<td>' + (row.feature || '') + '</td>' +
+                '<td>' + (row.microsoftStatus ? statusIcon(row.microsoftStatus) : (row.microsoft || '')) + '</td>' +
+                '<td>' + (row.icsdcStatus ? statusIcon(row.icsdcStatus) : (row.icsdc || '')) + '</td>' +
+                '</tr>';
+        }).join('');
+    }
+
+    function renderAzureProcess(steps) {
+        var container = document.querySelector('#azure-process .azure-process-steps');
+        if (!container || !steps || !steps.length) return;
+
+        var sorted = sortByOrder(steps);
+        container.innerHTML = sorted.map(function (step, index) {
+            return '<div class="azure-step">' +
+                '<div class="azure-step-num" aria-hidden="true">' + (step.number || index + 1) + '</div>' +
+                '<div class="azure-step-content">' +
+                '<h3>' + (step.title || '') + '</h3>' +
+                '<p>' + (step.description || '') + '</p>' +
+                '</div>' +
+                '</div>';
+        }).join('');
+    }
+
+    function setSectionHeader(sectionId, label, title, subtitle, selectors) {
+        var section = document.getElementById(sectionId);
+        if (!section) return;
+
+        if (label) {
+            var labelEl = section.querySelector(selectors.label || '.azure-section-label');
+            if (labelEl) labelEl.textContent = label;
+        }
+        if (title) {
+            var titleEl = section.querySelector(selectors.title || '.title');
+            if (titleEl) titleEl.textContent = title;
+        }
+        if (subtitle) {
+            var subEl = section.querySelector(selectors.subtitle || '.subtitle');
+            if (subEl) subEl.innerHTML = subtitle;
+        }
+    }
+
+    async function init() {
+        markActiveNavLink();
+
+        try {
+            var res = await getAzureCloudHostingPage();
+            var page = res.data;
+
+            populateSEO(page.seo);
+
+            var hero = document.querySelector('.hero-section');
+            if (hero) {
+                setText(hero, '.hero-title', page.heroTitle);
+                setText(hero, '.hero-sub', page.heroSubtitle);
+                setHTML(hero, '.hero-desc', page.heroDescription);
+                setText(hero, '.azure-hero-form-title', page.heroFormTitle);
+                setText(hero, '.azure-hero-form-sub', page.heroFormSubtitle);
+                if (page.heroCtaPrimary?.text) setText(hero, '.hero-btns .btn-primary', page.heroCtaPrimary.text);
+                if (page.heroCtaPrimary?.link) {
+                    var primaryLink = hero.querySelector('.hero-btns .btn-primary');
+                    if (primaryLink) primaryLink.setAttribute('href', page.heroCtaPrimary.link);
+                }
+                if (page.heroCtaSecondary?.text) setText(hero, '.hero-btns .btn-outline', page.heroCtaSecondary.text);
+            }
+
+            renderAzureCards('#azure-features .why-grid', page.pillars, 'why-card', 'why-icon');
+
+            setSectionHeader('azure-who', page.aboutLabel, page.aboutTitle, null, {
+                label: '.azure-section-label',
+                title: '.azure-who-title'
+            });
+            if (page.aboutDescription) {
+                setHTML(document.getElementById('azure-who'), '.azure-who-body', page.aboutDescription);
+            }
+            if (page.aboutImage) {
+                var aboutImg = document.querySelector('#azure-who .azure-who-visual img');
+                if (aboutImg) aboutImg.src = page.aboutImage;
+            }
+
+            setSectionHeader('azure-advantages', page.advantagesLabel, page.advantagesTitle, page.advantagesSubtitle, {
+                label: '.azure-section-label',
+                title: '.title',
+                subtitle: '.subtitle'
+            });
+            renderAzureCards('#azure-advantages .azure-advantages-grid', page.advantages, 'azure-adv-card', 'azure-adv-icon');
+
+            setSectionHeader('azure-compare', page.comparisonLabel, page.comparisonTitle, page.comparisonSubtitle, {
+                label: '.azure-section-label',
+                title: '.title',
+                subtitle: '.azure-compare-subtitle'
+            });
+            renderAzureComparison(page.comparisonColumns, page.comparisonRows);
+
+            setSectionHeader('azure-why', page.whyLabel, page.whyTitle, page.whySubtitle, {
+                label: '.azure-section-label',
+                title: '.title',
+                subtitle: '.subtitle'
+            });
+            renderAzureCards('#azure-why .azure-why-grid', page.whyCards, 'azure-why-card', 'azure-adv-icon');
+
+            setSectionHeader('azure-process', page.processLabel, page.processTitle, page.processSubtitle, {
+                label: '.azure-section-label',
+                title: '.title',
+                subtitle: '.subtitle'
+            });
+            renderAzureProcess(page.processSteps);
+
+            setSectionHeader('azure-stack', page.techLabel, page.techTitle, page.techSubtitle, {
+                label: '.azure-section-label',
+                title: '.azure-stack-headline',
+                subtitle: '.azure-stack-subhead'
+            });
+            populateTechBadges('.azure-stack-grid', page.techBadges);
+
+            setSectionHeader('azure-security', page.securityLabel, page.securityTitle, page.securityDescription, {
+                label: '.azure-section-label',
+                title: '.azure-security-title',
+                subtitle: '.azure-security-intro'
+            });
+
+            if (page.pricingTitle) setText(document, '#azure-pricing-info h2', page.pricingTitle);
+            if (page.pricingDescription) setHTML(document, '#azure-pricing-info .azure-pricing-callout-text > p', page.pricingDescription);
+
+            populateCtaBand('.azure-cta-band', page.ctaBand1);
+        } catch (err) {
+            console.error('[azure-cloud-hosting] CMS load failed:', err);
+        }
+
+        hidePageLoader();
+    }
+
+    init();
 })();
