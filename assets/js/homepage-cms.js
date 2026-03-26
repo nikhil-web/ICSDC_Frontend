@@ -21,6 +21,7 @@
  */
 
 import { getHomepagePage } from "./services/contentService.js";
+import { populateIconCards } from "./utils/cms-helpers.js";
 
 (function () {
 
@@ -94,6 +95,15 @@ import { getHomepagePage } from "./services/contentService.js";
             }
         }
     }
+
+
+    // why chooose us
+    /** 3. Pillars (4 icon cards in .why-us .why-grid) */
+    function populateWhyChooseUs(pillars) {
+        if (!pillars || !pillars.length) return;
+        populateIconCards('.why-us .why-grid', pillars, 'why-card');
+    }
+
 
     // ═══════════════════════════════════════════════════════════
     //  WHO WE ARE
@@ -387,6 +397,7 @@ import { getHomepagePage } from "./services/contentService.js";
             populateSEO(page.SEO);
             populateHeroSection(page);
             populateHeroCTAs(page.CallToActionPrimary, page.callToActionSecondary);
+            populateWhyChooseUs(page.whyChooseUs);
             populateWhoWeAre(page.whoWeAre);
             populateLessComplexity(page.LessCloudComplexity);
             populateCloudSolutions(page.CloudSolutionsEngineered);

@@ -266,7 +266,7 @@ export function populateIconCards(gridSelector, cards, cardClass, customIcons) {
             resolveIcon(card.icon, customIcons) +
             '</div>' +
             '<h3>' + (card.title || '') + '</h3>' +
-            '<p>' + (card.description || '') + '</p>' +
+            '<p>' + (card.desc || '') + '</p>' +
             '</div>';
     }).join('');
 }

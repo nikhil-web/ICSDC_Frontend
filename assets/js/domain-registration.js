@@ -30,7 +30,9 @@ import {
     hidePageLoader,
     markActiveNavLink,
     setText,
-    setHTML
+    setHTML,
+    initFAQ,
+    initTestimonials
 } from './utils/cms-helpers.js';
 
 (function () {
@@ -173,102 +175,9 @@ import {
             '</article>';
     }
 
-    function initTestimonials(items) {
-        var grid = document.getElementById('dom-testi-grid');
-        var dotsWrap = document.getElementById('dom-testi-dots');
-        var prevBtn = document.getElementById('dom-testi-prev');
-        var nextBtn = document.getElementById('dom-testi-next');
-        if (!grid || !dotsWrap || !items || !items.length) return;
 
-        grid.innerHTML = items.map(function (t, i) { return buildTestiCard(t, i); }).join('');
 
-        dotsWrap.innerHTML = items.map(function (_, i) {
-            return '<button class="testi-dot' + (i === 0 ? ' testi-dot-active' : '') + '" role="tab" aria-selected="' + (i === 0) + '" aria-label="Go to testimonial ' + (i + 1) + '" data-dot="' + i + '"></button>';
-        }).join('');
 
-        var cards = Array.from(grid.querySelectorAll('.testi-card'));
-        var dots = Array.from(dotsWrap.querySelectorAll('.testi-dot'));
-
-        function scrollToCard(index) {
-            var card = cards[index];
-            if (!card) return;
-            grid.scrollTo({ left: card.offsetLeft - 4, behavior: 'smooth' });
-        }
-
-        dots.forEach(function (btn, i) {
-            btn.addEventListener('click', function () { scrollToCard(i); });
-        });
-
-        function currentIndex() {
-            var scrollLeft = grid.scrollLeft;
-            var closest = 0, minDist = Infinity;
-            cards.forEach(function (card, i) {
-                var dist = Math.abs(card.offsetLeft - scrollLeft);
-                if (dist < minDist) { minDist = dist; closest = i; }
-            });
-            return closest;
-        }
-
-        if (prevBtn) prevBtn.addEventListener('click', function () {
-            var idx = currentIndex();
-            scrollToCard(idx === 0 ? items.length - 1 : idx - 1);
-        });
-
-        if (nextBtn) nextBtn.addEventListener('click', function () {
-            var idx = currentIndex();
-            scrollToCard(idx === items.length - 1 ? 0 : idx + 1);
-        });
-
-        var scrollTimer;
-        grid.addEventListener('scroll', function () {
-            clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(function () {
-                var idx = currentIndex();
-                dots.forEach(function (d, i) {
-                    d.classList.toggle('testi-dot-active', i === idx);
-                    d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
-                });
-            }, 80);
-        });
-    }
-
-    /** 10. FAQ Accordion */
-    function initFAQ(faqItems) {
-        var dl = document.getElementById('dom-faq-accordions');
-        if (!dl || !faqItems || !faqItems.length) return;
-
-        var sorted = faqItems.slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
-        var openIndex = 0;
-
-        function render() {
-            dl.innerHTML = sorted.map(function (faq, i) {
-                var isOpen = i === openIndex;
-                return '<div class="faq-item' + (isOpen ? ' faq-open' : '') + '" data-faq-index="' + i + '">' +
-                    '<dt>' +
-                    '<button class="faq-question" aria-expanded="' + isOpen + '" aria-controls="dom-faq-' + i + '">' +
-                    '<span>' + faq.question + '</span>' +
-                    '<svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">' +
-                    '<path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
-                    '</svg>' +
-                    '</button>' +
-                    '</dt>' +
-                    '<dd class="faq-answer" id="dom-faq-' + i + '" role="region">' +
-                    '<p>' + faq.answer + '</p>' +
-                    '</dd>' +
-                    '</div>';
-            }).join('');
-
-            dl.querySelectorAll('.faq-question').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    var index = parseInt(btn.closest('.faq-item').dataset.faqIndex, 10);
-                    openIndex = (openIndex === index) ? null : index;
-                    render();
-                });
-            });
-        }
-
-        render();
-    }
 
     /* ─────────────────────────────────────────────────────────
        BOOT -- Fetch from CMS, then populate all sections
