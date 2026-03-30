@@ -1,0 +1,124 @@
+{
+  "version": 2,
+  "data": {
+    "single-types": {
+      "api::domain-transfer-page.domain-transfer-page": [
+        {
+          "id": 1,
+          "seo": {
+            "metaTitle": "Transfer Your Domain to ICSDC — Faster, Safer Management",
+            "metaDescription": "Transfer your domain to ICSDC with zero downtime. Faster DNS, enhanced security, transparent pricing, and 24/7 expert support. Start your domain transfer today."
+          },
+          "heroEyebrow": "⇄ Domain Transfer",
+          "heroTitle": "Shift Your Domain to ICSDC for Faster & Safer Management",
+          "heroSubtitle": "Transfer Your Domain Without Downtime or Complications",
+          "heroDescription": "Move your domain to ICSDC in just a few simple steps. No downtime, no complications — just faster performance, improved security, and reliable support whenever you need it.",
+          "heroTopBadge": "🔒 Zero-Downtime Transfer",
+          "heroStatusTitle": "Transfer Ready",
+          "heroStatusSubtitle": "Zero downtime guaranteed",
+          "heroCtaPrimary": { "text": "Transfer Your Domain", "link": "/contact" },
+          "heroCtaSecondary": { "text": "Call +91 98109 58857", "link": "tel:+919810958857" },
+          "pillars": [
+            { "order": 1, "icon": "activity", "title": "Zero Downtime Transfer", "desc": "Shift your domain smoothly without interrupting your website or email services." },
+            { "order": 2, "icon": "shield", "title": "Enhanced Security & Protection", "desc": "Get advanced DNS security, smart monitoring, and protection against unauthorized changes." },
+            { "order": 3, "icon": "grid", "title": "Entire Control With Easy Management", "desc": "Manage DNS, renewals, and settings effortlessly through a clean, user-friendly control panel." },
+            { "order": 4, "icon": "users", "title": "Expert Support Whenever You Need It", "desc": "Our domain specialists are available 24/7 to assist you with setup, migration, and troubleshooting." }
+          ],
+          "benefitsLabel": "Benefits",
+          "benefitsTitle": "Your Domain's Strongest Upgrade Starts With ICSDC",
+          "benefitsSubtitle": "Everything you need for a safe, fast, and fully managed domain experience.",
+          "benefits": [
+            { "order": 1, "icon": "activity", "title": "Guaranteed Zero Downtime During Transfer", "desc": "Your website, emails, and DNS services continue running without interruption, ensuring no loss of traffic, communication, or revenue." },
+            { "order": 2, "icon": "shield", "title": "Enterprise-Grade Security & Domain Protection", "desc": "Advanced DNS security, domain lock, automated monitoring, and protection from unauthorized changes keep your domain safe." },
+            { "order": 3, "icon": "dollar-sign", "title": "Transparent Pricing With No Hidden Costs", "desc": "Clear, predictable pricing for domain renewal and management. No unexpected charges or inflated fees." },
+            { "order": 4, "icon": "zap", "title": "Faster DNS Performance & Reliability", "desc": "Optimized DNS infrastructure delivers faster resolution times, increasing your website's speed, reliability, and SEO performance." },
+            { "order": 5, "icon": "monitor", "title": "Full Ownership & Easy Management", "desc": "Access all your domain settings, DNS records, renewal controls, and configurations in a clean and simple dashboard." },
+            { "order": 6, "icon": "users", "title": "Expert Support From Certified Specialists", "desc": "Our domain experts are available 24/7 to guide you through the transfer, troubleshoot issues, and keep your domain stable." }
+          ],
+          "ctaBand1": {
+            "title": "Move Your Domain to a Better Home",
+            "description": "Faster DNS, stronger security, and expert support — all in one smooth transfer.",
+            "ctaPrimary": { "text": "Start Your Transfer", "link": "/contact" },
+            "ctaSecondary": { "text": "Call +91 98109 58857", "link": "tel:+919810958857" }
+          },
+          "whyRegisterLabel": "Registration",
+          "whyRegisterTitle": "Why is ICSDC the Right Place to Register Your Domain?",
+          "whyRegisterSubtitle": "From setup to long-term management, ICSDC makes domain ownership simple and secure.",
+          "whyRegisterCards": [
+            { "order": 1, "icon": "zap", "title": "Fast Activation Without Complications", "desc": "Your domain goes live quickly so you can start building your website or email setup without waiting." },
+            { "order": 2, "icon": "monitor", "title": "Easy and Complete DNS Management", "desc": "Manage DNS records, redirects, and configurations easily through a clean control panel." },
+            { "order": 3, "icon": "dollar-sign", "title": "Honest Pricing With No Hidden Charges", "desc": "Transparent registration and renewal prices — no surprise fees or sudden cost jumps." },
+            { "order": 4, "icon": "shield", "title": "Strong Security to Protect Your Domain", "desc": "Domain lock, secure access controls, and monitoring ensure your domain stays safe from unauthorized changes." },
+            { "order": 5, "icon": "globe", "title": "Multiple Domain Extensions", "desc": "Find the perfect domain for your brand with a wide range of popular, premium, and industry-specific extensions." },
+            { "order": 6, "icon": "message-square", "title": "Expert Support Available Anytime", "desc": "Our support team is available 24/7 to help with setup, DNS issues, or general guidance." }
+          ],
+          "highlightCards": [
+            { "order": 1, "icon": "🔒", "title": "Free Privacy Protection for Your Domain", "description": "Domains often expose your personal details on public databases like RDAP, but ICSDC keeps your information private at no extra cost. Your identity stays protected from spam, data collectors, and unwanted third-party access." },
+            { "order": 2, "icon": "⇄", "title": "Transfer Your Existing Domain to ICSDC", "description": "Already have a domain? Move it to ICSDC quickly and safely. The transfer is smooth, requires just a few steps, and comes with zero downtime — so your website and emails stay uninterrupted." }
+          ],
+          "tipsLabel": "Smart Tips",
+          "tipsTitle": "Smart Tips Before Choosing Your Domain Name",
+          "tipsSubtitle": "Follow these simple guidelines to pick a domain that works for your brand.",
+          "tips": [
+            { "order": 1, "number": "1", "title": "Choose a Short, Clean Name", "description": "Short domains are easier to remember, type, and share. Aim for a simple name that users can recall instantly." },
+            { "order": 2, "number": "2", "title": "Keep It Simple and Clear", "description": "Avoid hyphens, numbers, and complicated words. The easier it is to spell, the easier it is to find." },
+            { "order": 3, "number": "3", "title": "Build Your Brand into the Domain", "description": "Try adding your brand name or a relevant keyword. This helps people recognize your business and improves visibility." },
+            { "order": 4, "number": "4", "title": "Check for Availability & Trademarks", "description": "Always verify that your domain isn't already taken or trademarked. This saves you from legal risks later." },
+            { "order": 5, "number": "5", "title": "Consider Local Extensions", "description": "If the .com version isn't available, think about regional extensions like .in, .uk, or .us. They're credible and often more accessible." },
+            { "order": 6, "number": "6", "title": "Don't Wait Too Long", "description": "Good domain names get registered fast. If you find one that fits your brand — secure it before someone else does." }
+          ],
+          "whySwitchLabel": "Why Switch",
+          "whySwitchTitle": "Why Switch to ICSDC for Your Domain Transfer?",
+          "whySwitchSubtitle": "More control, stronger security, and a smoother management experience compared to most regular domain providers.",
+          "whySwitchCards": [
+            { "order": 1, "icon": "shield", "title": "Better Security & Protection", "desc": "Secure domain lock, DNS security layers, and monitoring to prevent unauthorized changes or domain hijacking." },
+            { "order": 2, "icon": "dollar-sign", "title": "Transparent & Fair Pricing", "desc": "No unexpected renewal charges or hidden fees. Clear pricing so you always know what you're paying for." },
+            { "order": 3, "icon": "zap", "title": "Faster & More Reliable DNS", "desc": "Improved website speed and stability with optimized DNS infrastructure. Better loading times and stronger SEO." },
+            { "order": 4, "icon": "activity", "title": "Zero Downtime Transfer Process", "desc": "Your website and email remain fully active during the transfer. No interruption, no risk, no hassles." },
+            { "order": 5, "icon": "monitor", "title": "User-Friendly Management Panel", "desc": "Manage DNS, renewals, records, and settings with ease using a clean dashboard designed for all skill levels." },
+            { "order": 6, "icon": "users", "title": "Dedicated 24/7 Support", "desc": "Direct access to domain experts who guide you through every step — unlike generic registrars with limited support." }
+          ],
+          "relatedLabel": "Explore More",
+          "relatedTitle": "Pair Your Domain With ICSDC Solutions",
+          "relatedCards": [
+            { "order": 1, "title": "Looking for Reliable Hosting Too?", "description": "Pair your domain with our high-performance hosting solutions for faster speed, stronger security, and maximum uptime.", "btnLabel": "Explore ICSDC Hosting", "btnUrl": "/cloud-hosting.html" },
+            { "order": 2, "title": "Secure Your Emails With Google Workspace", "description": "Give your domain a professional boost with business-class email, cloud storage, and collaboration tools.", "btnLabel": "Get Google Workspace", "btnUrl": "/google-workspace.html" }
+          ],
+          "whatYouGetLabel": "Included",
+          "whatYouGetTitle": "What You Get When You Transfer to ICSDC",
+          "whatYouGetSubtitle": "A complete domain management experience with tools and monitoring built in.",
+          "whatYouGetCards": [
+            { "order": 1, "icon": "check-circle", "title": "Easy Setup Without Technical Complexity", "desc": "Move your domain effortlessly — our guided process makes the setup smooth and beginner-friendly." },
+            { "order": 2, "icon": "globe", "title": "Create Multiple Subdomains as You Grow", "desc": "Organize your website with up to 100 subdomains, perfect for blogs, departments, landing pages, or regional sites." },
+            { "order": 3, "icon": "activity", "title": "Live Monitoring for Maximum Uptime", "desc": "We keep an eye on your domain round the clock, ensuring everything stays active and running without interruption." },
+            { "order": 4, "icon": "external-link", "title": "Quick Domain Forwarding Tools", "desc": "Point your domain to any website, online store, or landing page in just a few clicks — simple, fast, and stress-free." }
+          ],
+          "testimonialTitle": "Read ICSDC Domain Transfer Stories",
+          "faqTitle": "FAQs About ICSDC Domain Transfer",
+          "faqContactTitle": "Talk to Our Domain Experts",
+          "faqContactDesc": "Our certified specialists are available 24/7 to help you with domain transfer, DNS setup, and troubleshooting.<br><br>📞 +91 98109 58857",
+          "faq": [
+            { "order": 1, "question": "How long does a domain transfer to ICSDC take?", "answer": "Most domain transfers complete within 5–7 days depending on your current registrar. ICSDC ensures the process is as smooth and quick as possible with real-time status updates." },
+            { "order": 2, "question": "Will my website or email go down during the transfer?", "answer": "No. ICSDC's zero-downtime transfer process ensures your website, email, and DNS services remain fully active throughout the entire transfer period." },
+            { "order": 3, "question": "What do I need to start a domain transfer?", "answer": "You need your domain's EPP/Authorization code (also called Auth code or transfer key) from your current registrar, and your domain must be unlocked and not in a 60-day transfer lock." },
+            { "order": 4, "question": "Is there a cost to transfer my domain to ICSDC?", "answer": "Domain transfer pricing is transparent and depends on your TLD (.com, .in, .net, etc.). Most transfers include a free 1-year extension. Contact us for exact pricing." },
+            { "order": 5, "question": "Does ICSDC offer free privacy protection for my domain?", "answer": "Yes. ICSDC includes free WHOIS privacy protection for eligible domains, keeping your personal information hidden from public databases at no extra cost." },
+            { "order": 6, "question": "Can I transfer multiple domains at once?", "answer": "Yes. ICSDC supports bulk domain transfers. Contact our support team to handle multiple domain migrations efficiently with dedicated assistance." }
+          ],
+          "ctaBand2": {
+            "title": "Transfer Your Domain to ICSDC Today",
+            "description": "Faster DNS. Stronger security. Expert support. Make the switch now.",
+            "ctaPrimary": { "text": "Transfer Now", "link": "/contact" },
+            "ctaSecondary": { "text": "Call +91 98109 58857", "link": "tel:+919810958857" }
+          },
+          "testimonials": [
+            { "order": 1, "name": "Rajesh Gupta", "jobTitle": "Founder", "company": "ShopIndia Online", "quote": "Transferred 12 domains to ICSDC last year. The process was completely smooth with zero downtime. Their support team guided us every step of the way.", "rating": 5 },
+            { "order": 2, "name": "Meera Nair", "jobTitle": "IT Manager", "company": "Kerala Tourism Board", "quote": "We were nervous about transferring our main domain, but ICSDC made it effortless. DNS was faster immediately after transfer. Highly recommend.", "rating": 5 },
+            { "order": 3, "name": "Arjun Sharma", "jobTitle": "CTO", "company": "FinanceFirst India", "quote": "ICSDC's domain management dashboard is the cleanest I've used. Full control, clear pricing, no surprises. Exactly what a domain registrar should be.", "rating": 5 }
+          ],
+          "publishedAt": "2025-01-01T00:00:00.000Z"
+        }
+      ]
+    }
+  }
+}

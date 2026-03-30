@@ -1,0 +1,99 @@
+{
+  "kind": "singleType",
+  "collectionName": "google_workspace_page",
+  "info": {
+    "singularName": "google-workspace-page",
+    "pluralName": "google-workspace-pages",
+    "displayName": "Google Workspace Page",
+    "description": "Content for the Google Workspace page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "heroEyebrow": { "type": "string", "default": "☁ Google Workspace" },
+    "heroTitle": { "type": "string", "required": true },
+    "heroSubtitle": { "type": "string" },
+    "heroDescription": { "type": "text" },
+    "heroTopBadge": { "type": "string", "default": "✓ Official Google Workspace Partner" },
+    "heroStatusTitle": { "type": "string", "default": "Active Collaboration" },
+    "heroStatusSubtitle": { "type": "string", "default": "5M+ Google Users Worldwide" },
+    "heroCtaPrimary": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-button"
+    },
+    "heroCtaSecondary": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-button"
+    },
+    "pillars": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-card"
+    },
+    "plansLabel": { "type": "string", "default": "Pricing Plans" },
+    "plansTitle": { "type": "string" },
+    "plansSubtitle": { "type": "text" },
+    "plans": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.pricing-plan"
+    },
+    "featuresLabel": { "type": "string", "default": "Features" },
+    "featuresTitle": { "type": "string" },
+    "featuresSubtitle": { "type": "text" },
+    "features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-card"
+    },
+    "ctaBand1": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-band"
+    },
+    "whyIcsdcLabel": { "type": "string", "default": "Why ICSDC" },
+    "whyIcsdcTitle": { "type": "string" },
+    "whyIcsdcSubtitle": { "type": "text" },
+    "whyCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-card"
+    },
+    "howItWorksLabel": { "type": "string", "default": "How It Works" },
+    "howItWorksTitle": { "type": "string" },
+    "howItWorksSubtitle": { "type": "text" },
+    "steps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.step-card"
+    },
+    "testimonialTitle": { "type": "string" },
+    "faqTitle": { "type": "string" },
+    "faqContactTitle": { "type": "string" },
+    "faqContactDesc": { "type": "text" },
+    "faq": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.faq-item"
+    },
+    "ctaBand2": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-band"
+    },
+    "testimonials": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.testimonial"
+    }
+  }
+}

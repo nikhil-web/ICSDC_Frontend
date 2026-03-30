@@ -1,0 +1,169 @@
+{
+  "version": 2,
+  "data": {
+    "single-types": {
+      "api::nvme-dedicated-server-page.nvme-dedicated-server-page": [
+        {
+          "id": 1,
+          "seo": {
+            "metaTitle": "NVMe Dedicated Servers India — Bare-Metal Performance, Zero Throttling | ICSDC",
+            "metaDescription": "ICSDC NVMe Dedicated Servers deliver bare-metal performance with pure NVMe SSD storage, dedicated CPU & RAM, and 24/7 expert support. Plans from ₹4,999/month in India."
+          },
+          "heroEyebrow": "🖥 NVMe Dedicated Servers",
+          "heroTitle": "Bare-Metal Power. NVMe Speed. Zero Compromise — Dedicated Servers Built for India's Demanding Workloads",
+          "heroSubtitle": "100% Dedicated Resources. Pure NVMe SSD. Unshared Performance.",
+          "heroDescription": "When you need the absolute maximum — a full physical server that belongs entirely to you. ICSDC NVMe Dedicated Servers deliver bare-metal CPU performance, lightning-fast NVMe SSD storage, and guaranteed resources with no virtualisation overhead.",
+          "heroTopBadge": "⚡ Pure NVMe SSD Storage",
+          "heroStatusTitle": "Server Online",
+          "heroStatusSubtitle": "100% Dedicated Resources",
+          "heroCtaPrimary": { "text": "Get Your Dedicated Server", "link": "/contact" },
+          "heroCtaSecondary": { "text": "Call +91 98109 58857", "link": "tel:+919810958857" },
+          "pillars": [
+            { "order": 1, "icon": "cpu", "title": "100% Bare-Metal CPU", "desc": "Entire physical processor dedicated exclusively to you — no hypervisor overhead, no CPU stealing, no sharing." },
+            { "order": 2, "icon": "hard-drive", "title": "Pure NVMe SSD", "desc": "Enterprise-grade NVMe SSD storage delivering up to 500,000 IOPS — dramatically faster than SATA or SAS." },
+            { "order": 3, "icon": "lock", "title": "Fully Isolated Hardware", "desc": "Your server is physically yours — no virtualisation, no neighbours, complete hardware-level isolation." },
+            { "order": 4, "icon": "trending-up", "title": "Consistent Peak Performance", "desc": "Guaranteed compute, memory, and I/O performance around the clock — built for the most demanding workloads." }
+          ],
+          "plansLabel": "Dedicated Server Plans",
+          "plansTitle": "NVMe Dedicated Server Plans — Choose Your Powerhouse",
+          "plansSubtitle": "All plans include full root access, pure NVMe SSD, dedicated IP, free setup, and 24/7 expert support.",
+          "plans": [
+            {
+              "order": 1,
+              "tier": "NVMe DS Starter",
+              "price": "4,999",
+              "currency": "₹",
+              "period": "/mo",
+              "tagline": "Entry-level bare-metal for growing businesses",
+              "isFeatured": false,
+              "badge": "",
+              "features": [
+                { "label": "Intel Xeon E-2300 (4 Cores / 8 Threads)" },
+                { "label": "32 GB DDR4 ECC RAM" },
+                { "label": "2 × 500 GB NVMe SSD (RAID-1)" },
+                { "label": "10 TB Bandwidth" },
+                { "label": "1 Gbps Uplink" },
+                { "label": "1 Dedicated IPv4" },
+                { "label": "Full Root Access" },
+                { "label": "Free Server Setup" },
+                { "label": "24/7 Support" }
+              ],
+              "ctaText": "Order Starter",
+              "ctaStyle": "outline"
+            },
+            {
+              "order": 2,
+              "tier": "NVMe DS Pro",
+              "price": "9,999",
+              "currency": "₹",
+              "period": "/mo",
+              "tagline": "High-performance server for serious applications",
+              "isFeatured": true,
+              "badge": "Most Popular",
+              "features": [
+                { "label": "Intel Xeon Silver 4310 (12 Cores / 24 Threads)" },
+                { "label": "64 GB DDR4 ECC RAM" },
+                { "label": "2 × 1 TB NVMe SSD (RAID-1)" },
+                { "label": "20 TB Bandwidth" },
+                { "label": "10 Gbps Uplink" },
+                { "label": "2 Dedicated IPv4" },
+                { "label": "Full Root Access" },
+                { "label": "Free Server Setup" },
+                { "label": "Hardware RAID Controller" },
+                { "label": "Priority 24/7 Support" }
+              ],
+              "ctaText": "Order Pro",
+              "ctaStyle": "solid"
+            },
+            {
+              "order": 3,
+              "tier": "NVMe DS Elite",
+              "price": "18,999",
+              "currency": "₹",
+              "period": "/mo",
+              "tagline": "Enterprise-grade power for mission-critical workloads",
+              "isFeatured": false,
+              "badge": "Enterprise",
+              "features": [
+                { "label": "Dual Intel Xeon Silver 4314 (2 × 16 Cores)" },
+                { "label": "128 GB DDR4 ECC RAM" },
+                { "label": "4 × 1 TB NVMe SSD (RAID-10)" },
+                { "label": "Unmetered Bandwidth" },
+                { "label": "10 Gbps Uplink" },
+                { "label": "4 Dedicated IPv4" },
+                { "label": "Full Root Access" },
+                { "label": "Free Server Setup" },
+                { "label": "Hardware RAID Controller" },
+                { "label": "IPMI / iDRAC Remote Access" },
+                { "label": "Dedicated Account Manager" }
+              ],
+              "ctaText": "Order Elite",
+              "ctaStyle": "outline"
+            }
+          ],
+          "infraLabel": "Infrastructure",
+          "infraTitle": "Enterprise Infrastructure That Powers Every Dedicated Server",
+          "infraSubtitle": "Tier-III data centre facilities with redundant power, cooling, and multi-carrier connectivity across India.",
+          "infraFeatures": [
+            { "order": 1, "icon": "hard-drive", "title": "Pure NVMe SSD Storage", "desc": "Enterprise Samsung and Intel NVMe SSDs with up to 500,000 IOPS — the fastest storage technology available." },
+            { "order": 2, "icon": "server", "title": "Tier-III Data Centre", "desc": "Located in India's leading Tier-III data centres with 99.982% uptime SLA and N+1 redundancy." },
+            { "order": 3, "icon": "zap", "title": "10 Gbps Network Uplink", "desc": "Dedicated 10 Gbps network ports with multi-carrier BGP routing for maximum throughput and resilience." },
+            { "order": 4, "icon": "shield", "title": "Hardware-Level DDoS Protection", "desc": "Upstream DDoS scrubbing with hardware mitigation protects your server from volumetric attacks." },
+            { "order": 5, "icon": "refresh-cw", "title": "Redundant Power & Cooling", "desc": "N+2 UPS systems and precision cooling ensure your server runs at peak performance 24/7." },
+            { "order": 6, "icon": "monitor", "title": "IPMI / iDRAC Remote Access", "desc": "Out-of-band management lets you reboot, reinstall, and troubleshoot your server from anywhere." }
+          ],
+          "whyNvmeLabel": "Why NVMe",
+          "whyNvmeTitle": "Why NVMe Storage Changes Everything for Dedicated Servers",
+          "whyNvmeSubtitle": "Traditional HDD and SATA SSD storage is the bottleneck. NVMe eliminates it completely.",
+          "whyNvmeCards": [
+            { "order": 1, "icon": "zap", "title": "10× Faster Than SATA SSD", "desc": "NVMe SSDs deliver sequential read speeds of 3,500 MB/s vs 500 MB/s for SATA — a 7× improvement in throughput." },
+            { "order": 2, "icon": "activity", "title": "500,000 IOPS", "desc": "Up to 500,000 random IOPS vs 100,000 for SATA SSD — critical for databases and transactional workloads." },
+            { "order": 3, "icon": "cpu", "title": "Lower CPU Overhead", "desc": "NVMe communicates directly via PCIe, bypassing legacy SATA controllers and reducing CPU cycles spent on I/O." },
+            { "order": 4, "icon": "database", "title": "Database Performance", "desc": "MySQL, PostgreSQL, MongoDB, and Redis all benefit enormously from NVMe's ultra-low latency and high IOPS." }
+          ],
+          "useCasesLabel": "Use Cases",
+          "useCasesTitle": "Who Needs an NVMe Dedicated Server?",
+          "useCasesSubtitle": "Dedicated servers are for workloads that demand complete resource ownership and maximum raw performance.",
+          "useCases": [
+            { "order": 1, "icon": "database", "title": "High-Traffic Databases", "desc": "Mission-critical MySQL, PostgreSQL, and MongoDB databases that cannot tolerate I/O contention or slow query times." },
+            { "order": 2, "icon": "shopping-cart", "title": "Large E-Commerce Stores", "desc": "High-volume Magento, WooCommerce, or custom stores that need consistent performance during sales and peak traffic." },
+            { "order": 3, "icon": "layers", "title": "SaaS & Multi-Tenant Apps", "desc": "SaaS platforms requiring dedicated compute and storage isolation with no shared infrastructure risk." },
+            { "order": 4, "icon": "film", "title": "Video Streaming & Encoding", "desc": "Video transcoding, live streaming, and CDN origin servers that demand high CPU throughput and fast NVMe I/O." }
+          ],
+          "whenLabel": "Getting Started",
+          "whenTitle": "From Order to Online in 4 Simple Steps",
+          "whenSubtitle": "ICSDC handles the entire server provisioning and configuration process for you.",
+          "whenCards": [
+            { "order": 1, "number": "1", "title": "Choose Your Plan", "description": "Select the NVMe Dedicated Server plan that matches your workload requirements. Our experts help you decide if needed." },
+            { "order": 2, "number": "2", "title": "Order & Payment", "description": "Complete your order online. ICSDC accepts all major payment methods including UPI, NEFT, and credit/debit cards." },
+            { "order": 3, "number": "3", "title": "Provisioning & Setup", "description": "ICSDC configures your dedicated server — OS installation, RAID setup, networking, and firewall rules all handled for you." },
+            { "order": 4, "number": "4", "title": "Handover & Go-Live", "description": "You receive root credentials and IPMI access. Your server is fully online and ready for your workloads." }
+          ],
+          "ctaBand2": {
+            "title": "Deploy Your NVMe Dedicated Server Today",
+            "description": "Bare-metal performance, NVMe speed, and 24/7 expert support — starting from ₹4,999/month.",
+            "ctaPrimary": { "text": "Order Now", "link": "/contact" },
+            "ctaSecondary": { "text": "Call +91 98109 58857", "link": "tel:+919810958857" }
+          },
+          "testimonialTitle": "What Our Dedicated Server Customers Say",
+          "testimonials": [
+            { "order": 1, "name": "Rajesh Nambiar", "jobTitle": "CTO", "company": "FinTech Solutions India", "quote": "Migrated our core banking database to an ICSDC NVMe DS Pro. Query times dropped from 800ms to under 50ms. The NVMe storage is transformational for database workloads.", "rating": 5 },
+            { "order": 2, "name": "Deepa Krishnan", "jobTitle": "Head of Infrastructure", "company": "StreamVerse Media", "quote": "We encode and stream live video 24/7 on two ICSDC NVMe Elite servers. The bare-metal CPU performance and NVMe I/O handle our transcoding pipeline without a single frame drop.", "rating": 5 },
+            { "order": 3, "name": "Arjun Mehta", "jobTitle": "Lead Developer", "company": "CartMax Commerce", "quote": "Our Magento store handles 50,000+ daily transactions on the NVMe DS Pro. The dedicated resources mean consistent page load times even during flash sales. Outstanding reliability.", "rating": 5 }
+          ],
+          "faqTitle": "FAQs About ICSDC NVMe Dedicated Servers",
+          "faqContactTitle": "Talk to Our Dedicated Server Experts",
+          "faqContactDesc": "Our infrastructure specialists are available 24/7 to help you choose the right server, plan your migration, and optimise your dedicated environment.<br><br>📞 +91 98109 58857",
+          "faq": [
+            { "order": 1, "question": "What is a dedicated server and how is it different from a VPS?", "answer": "A dedicated server is an entire physical machine exclusively allocated to you — no virtualisation, no shared hardware. A VPS is a virtual slice of a shared physical server. With a dedicated server you get the full CPU, all RAM, all NVMe storage, and the complete network uplink with zero resource contention." },
+            { "order": 2, "question": "Why choose NVMe over regular SSD or HDD?", "answer": "NVMe SSDs connect via PCIe and deliver up to 500,000 IOPS and 3,500 MB/s sequential read speeds — roughly 7× faster than SATA SSD and 100× faster than HDD. For databases, e-commerce, and high-traffic applications the performance difference is dramatic and immediately measurable." },
+            { "order": 3, "question": "How long does it take to provision a dedicated server?", "answer": "Standard ICSDC NVMe Dedicated Servers are provisioned within 24–48 hours of order confirmation. Enterprise configurations requiring custom RAID layouts or additional hardware may take up to 72 hours." },
+            { "order": 4, "question": "Can I choose my operating system?", "answer": "Yes. ICSDC supports Ubuntu 22.04 LTS, Debian 12, CentOS 9 Stream, AlmaLinux 9, Rocky Linux 9, and Windows Server. Custom OS installations can be arranged on request." },
+            { "order": 5, "question": "Is remote management (IPMI / iDRAC) included?", "answer": "IPMI and iDRAC remote access is included on NVMe DS Pro and Elite plans. It allows you to manage, reboot, and reinstall your server remotely without requiring physical data centre access." }
+          ],
+          "publishedAt": "2025-01-01T00:00:00.000Z"
+        }
+      ]
+    }
+  }
+}

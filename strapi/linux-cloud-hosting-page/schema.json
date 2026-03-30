@@ -1,0 +1,115 @@
+{
+  "kind": "singleType",
+  "collectionName": "linux_cloud_hosting_page",
+  "info": {
+    "singularName": "linux-cloud-hosting-page",
+    "pluralName": "linux-cloud-hosting-pages",
+    "displayName": "Linux Cloud Hosting Page",
+    "description": "Content for the Linux Cloud Hosting page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "heroEyebrow": { "type": "string", "default": "🐧 Linux Cloud Hosting" },
+    "heroTitle": { "type": "string", "required": true },
+    "heroSubtitle": { "type": "string" },
+    "heroDescription": { "type": "text" },
+    "heroTopBadge": { "type": "string", "default": "🧠 AI-Powered Infrastructure" },
+    "heroStatusTitle": { "type": "string", "default": "All Systems Operational" },
+    "heroStatusSubtitle": { "type": "string", "default": "99.99% Uptime" },
+    "heroCtaPrimary": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-button"
+    },
+    "heroCtaSecondary": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-button"
+    },
+    "pillars": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-card"
+    },
+    "plansLabel": { "type": "string", "default": "Cloud Plans" },
+    "plansTitle": { "type": "string" },
+    "plansSubtitle": { "type": "text" },
+    "plans": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.cloud-plan"
+    },
+    "powerLabel": { "type": "string", "default": "Power Features" },
+    "powerTitle": { "type": "string" },
+    "powerSubtitle": { "type": "text" },
+    "powerFeatures": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-card"
+    },
+    "ctaBand1": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-band"
+    },
+    "frameworksLabel": { "type": "string", "default": "Supported Frameworks" },
+    "frameworksTitle": { "type": "string" },
+    "frameworksSubtitle": { "type": "text" },
+    "frameworks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.tech-badge"
+    },
+    "whyLinuxLabel": { "type": "string", "default": "Why Linux" },
+    "whyLinuxTitle": { "type": "string" },
+    "whyLinuxSubtitle": { "type": "text" },
+    "whyLinuxCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-card"
+    },
+    "useCasesLabel": { "type": "string", "default": "Use Cases" },
+    "useCasesTitle": { "type": "string" },
+    "useCasesSubtitle": { "type": "text" },
+    "useCases": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-card"
+    },
+    "workloadsLabel": { "type": "string", "default": "Technical Specs" },
+    "workloadsTitle": { "type": "string" },
+    "workloadsSubtitle": { "type": "text" },
+    "workloadFeatures": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-card"
+    },
+    "testimonialTitle": { "type": "string" },
+    "faqTitle": { "type": "string" },
+    "faqContactTitle": { "type": "string" },
+    "faqContactDesc": { "type": "text" },
+    "faq": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.faq-item"
+    },
+    "ctaBand2": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-band"
+    },
+    "testimonials": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.testimonial"
+    }
+  }
+}

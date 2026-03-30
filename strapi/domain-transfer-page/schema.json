@@ -1,0 +1,119 @@
+{
+  "kind": "singleType",
+  "collectionName": "domain_transfer_page",
+  "info": {
+    "singularName": "domain-transfer-page",
+    "pluralName": "domain-transfer-pages",
+    "displayName": "Domain Transfer Page",
+    "description": "Content for the Domain Transfer page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "heroEyebrow": { "type": "string", "default": "⇄ Domain Transfer" },
+    "heroTitle": { "type": "string", "required": true },
+    "heroSubtitle": { "type": "string" },
+    "heroDescription": { "type": "text" },
+    "heroTopBadge": { "type": "string", "default": "🔒 Zero-Downtime Transfer" },
+    "heroStatusTitle": { "type": "string", "default": "Transfer Ready" },
+    "heroStatusSubtitle": { "type": "string", "default": "Zero downtime guaranteed" },
+    "heroCtaPrimary": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-button"
+    },
+    "heroCtaSecondary": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-button"
+    },
+    "pillars": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-card"
+    },
+    "benefitsLabel": { "type": "string", "default": "Benefits" },
+    "benefitsTitle": { "type": "string" },
+    "benefitsSubtitle": { "type": "text" },
+    "benefits": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-card"
+    },
+    "ctaBand1": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-band"
+    },
+    "whyRegisterLabel": { "type": "string", "default": "Registration" },
+    "whyRegisterTitle": { "type": "string" },
+    "whyRegisterSubtitle": { "type": "text" },
+    "whyRegisterCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-card"
+    },
+    "highlightCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.highlight-card"
+    },
+    "tipsLabel": { "type": "string", "default": "Smart Tips" },
+    "tipsTitle": { "type": "string" },
+    "tipsSubtitle": { "type": "text" },
+    "tips": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.numbered-tip"
+    },
+    "whySwitchLabel": { "type": "string", "default": "Why Switch" },
+    "whySwitchTitle": { "type": "string" },
+    "whySwitchSubtitle": { "type": "text" },
+    "whySwitchCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-card"
+    },
+    "relatedLabel": { "type": "string", "default": "Explore More" },
+    "relatedTitle": { "type": "string" },
+    "relatedCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.related-card"
+    },
+    "whatYouGetLabel": { "type": "string", "default": "Included" },
+    "whatYouGetTitle": { "type": "string" },
+    "whatYouGetSubtitle": { "type": "text" },
+    "whatYouGetCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.icon-card"
+    },
+    "testimonialTitle": { "type": "string", "default": "Read ICSDC Domain Transfer Stories" },
+    "faqTitle": { "type": "string", "default": "FAQs About ICSDC Domain Transfer" },
+    "faqContactTitle": { "type": "string" },
+    "faqContactDesc": { "type": "text" },
+    "faq": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.faq-item"
+    },
+    "ctaBand2": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-band"
+    },
+    "testimonials": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.testimonial"
+    }
+  }
+}

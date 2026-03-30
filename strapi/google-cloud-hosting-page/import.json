@@ -1,0 +1,169 @@
+{
+  "version": 2,
+  "data": {
+    "single-types": {
+      "api::google-cloud-hosting-page.google-cloud-hosting-page": [
+        {
+          "id": 1,
+          "seo": {
+            "metaTitle": "Google Cloud Hosting India — Managed GCP Partner | ICSDC",
+            "metaDescription": "ICSDC is a certified Google Cloud partner in India. Fully managed GCP setup, migration, security, and 24/7 support. Enterprise Google Cloud from ₹4,999/month."
+          },
+          "heroEyebrow": "☁ Google Cloud Hosting",
+          "heroTitle": "Managed Google Cloud Hosting — Global Infrastructure, Local Expertise",
+          "heroSubtitle": "Certified Google Cloud Partner in India",
+          "heroDescription": "Unlock the full power of Google Cloud Platform with ICSDC as your managed GCP partner. We handle architecture, migration, security, monitoring, and optimisation — so you get Google's global infrastructure without the complexity.",
+          "heroTopBadge": "☁ Google Cloud Partner",
+          "heroStatusTitle": "99.95% Uptime",
+          "heroStatusSubtitle": "GCP SLA Guaranteed",
+          "heroCtaPrimary": { "text": "Get Managed GCP Now", "link": "/contact" },
+          "heroCtaSecondary": { "text": "Call +91 98109 58857", "link": "tel:+919810958857" },
+          "pillars": [
+            { "order": 1, "icon": "globe", "title": "Global Infrastructure", "desc": "Google's network spans 200+ countries with 35 regions — serve users worldwide with ultra-low latency." },
+            { "order": 2, "icon": "settings", "title": "Fully Managed by ICSDC", "desc": "Our certified GCP engineers manage your entire cloud environment — setup, security, and ongoing operations." },
+            { "order": 3, "icon": "trending-up", "title": "Infinite Scalability", "desc": "Google Cloud scales from startup to enterprise instantly — handle any workload without infrastructure limits." },
+            { "order": 4, "icon": "shield", "title": "Google-Grade Security", "desc": "Built-in DDoS protection, Cloud Armor, IAM, and encryption — the same security Google uses internally." }
+          ],
+          "plansLabel": "GCP Plans",
+          "plansTitle": "Managed Google Cloud Plans — Powered by GCP, Managed by ICSDC",
+          "plansSubtitle": "All plans include GCP account setup, architecture design, migration, security, monitoring, and 24/7 support.",
+          "plans": [
+            {
+              "order": 1,
+              "tier": "Starter Cloud",
+              "price": "4999",
+              "currency": "₹",
+              "period": "/mo",
+              "tagline": "Managed Google Cloud for startups and small teams",
+              "isFeatured": false,
+              "badge": "",
+              "features": [
+                { "label": "GCP Account Setup & IAM" },
+                { "label": "1 Compute Engine VM (2 vCPU / 4 GB)" },
+                { "label": "50 GB Cloud Storage" },
+                { "label": "Cloud SQL (MySQL/PostgreSQL)" },
+                { "label": "24/7 Managed Support" },
+                { "label": "Daily Backups & Monitoring" }
+              ],
+              "ctaText": "Get Started",
+              "ctaStyle": "outline"
+            },
+            {
+              "order": 2,
+              "tier": "Business Cloud",
+              "price": "12999",
+              "currency": "₹",
+              "period": "/mo",
+              "tagline": "Full-featured managed GCP for growing businesses",
+              "isFeatured": true,
+              "badge": "Most Popular",
+              "features": [
+                { "label": "Full GCP Architecture Design" },
+                { "label": "2+ Compute Engine VMs (auto-scaling)" },
+                { "label": "200 GB Cloud Storage" },
+                { "label": "Managed Cloud SQL & Firestore" },
+                { "label": "Cloud CDN & Cloud Armor" },
+                { "label": "GKE (Kubernetes Engine) Support" },
+                { "label": "Priority 24/7 Support" },
+                { "label": "Free Migration Included" }
+              ],
+              "ctaText": "Get Started",
+              "ctaStyle": "primary"
+            },
+            {
+              "order": 3,
+              "tier": "Enterprise Cloud",
+              "price": "29999",
+              "currency": "₹",
+              "period": "/mo",
+              "tagline": "Custom enterprise GCP architecture for large organisations",
+              "isFeatured": false,
+              "badge": "",
+              "features": [
+                { "label": "Custom Multi-Region Architecture" },
+                { "label": "Unlimited Compute & Storage" },
+                { "label": "BigQuery & Data Analytics" },
+                { "label": "AI/ML Platform Integration" },
+                { "label": "Dedicated GCP Account Manager" },
+                { "label": "99.99% Uptime SLA" },
+                { "label": "FinOps Cost Optimisation" },
+                { "label": "Compliance & Audit Support" }
+              ],
+              "ctaText": "Contact Sales",
+              "ctaStyle": "outline"
+            }
+          ],
+          "whyGoogleLabel": "Why Google Cloud",
+          "whyGoogleTitle": "Why Choose Google Cloud Platform?",
+          "whyGoogleSubtitle": "Google Cloud is the same infrastructure that powers Google Search, YouTube, and Gmail — now available for your business.",
+          "whyGoogleCards": [
+            { "order": 1, "icon": "globe", "title": "World's Fastest Network", "desc": "Google's private fibre network spans the globe — data travels faster than the public internet." },
+            { "order": 2, "icon": "zap", "title": "Live Migration", "desc": "VMs migrate without downtime during maintenance — 99.99% availability SLA across all regions." },
+            { "order": 3, "icon": "shield", "title": "Security by Design", "desc": "Zero-trust architecture, Cloud Armor DDoS protection, and end-to-end encryption built in." },
+            { "order": 4, "icon": "bar-chart-2", "title": "BigData & Analytics", "desc": "BigQuery processes petabytes of data in seconds — built-in AI/ML with Vertex AI and TensorFlow." },
+            { "order": 5, "icon": "trending-up", "title": "True Auto-Scaling", "desc": "Compute scales to zero when idle and back to full capacity in seconds — pay only for what you use." },
+            { "order": 6, "icon": "dollar-sign", "title": "Committed Use Discounts", "desc": "Save up to 57% on compute costs with committed use contracts — ICSDC manages this for you." }
+          ],
+          "servicesLabel": "GCP Services",
+          "servicesTitle": "Google Cloud Services We Manage for You",
+          "servicesSubtitle": "ICSDC's certified GCP engineers are experts across the full Google Cloud portfolio.",
+          "servicesCards": [
+            { "order": 1, "icon": "server", "title": "Compute Engine", "desc": "Virtual machines with custom vCPU/RAM, preemptible instances, and live migration for maximum uptime." },
+            { "order": 2, "icon": "hard-drive", "title": "Cloud Storage", "desc": "Object storage with multi-region replication, lifecycle policies, and CDN integration." },
+            { "order": 3, "icon": "database", "title": "Cloud SQL & Spanner", "desc": "Managed relational databases — MySQL, PostgreSQL, and globally distributed Spanner." },
+            { "order": 4, "icon": "box", "title": "Google Kubernetes Engine", "desc": "Managed Kubernetes for containerised workloads — autopilot mode available for zero-ops deployments." },
+            { "order": 5, "icon": "globe", "title": "Cloud CDN & Load Balancing", "desc": "Google's global CDN and HTTP(S) load balancer — serve content from the nearest edge node worldwide." },
+            { "order": 6, "icon": "shield", "title": "Cloud Armor & Security", "desc": "DDoS mitigation, WAF rules, IAM policies, and VPC Service Controls managed by our security team." }
+          ],
+          "useCasesLabel": "Use Cases",
+          "useCasesTitle": "What Will You Build on Google Cloud?",
+          "useCasesSubtitle": "Google Cloud powers the world's most demanding applications — from startups to Fortune 500 enterprises.",
+          "useCases": [
+            { "order": 1, "icon": "code", "title": "Web & Mobile Apps", "desc": "Scalable backend infrastructure with Firebase, App Engine, and Cloud Run for modern applications." },
+            { "order": 2, "icon": "bar-chart-2", "title": "Data & Analytics", "desc": "BigQuery, Dataflow, and Looker for real-time analytics on petabyte-scale datasets." },
+            { "order": 3, "icon": "cpu", "title": "AI & Machine Learning", "desc": "Vertex AI, AutoML, and TPUs for training and serving ML models at any scale." },
+            { "order": 4, "icon": "briefcase", "title": "Enterprise SaaS", "desc": "Multi-tenant SaaS platforms with managed GKE, Cloud SQL, and global load balancing." }
+          ],
+          "migrationLabel": "Migration Process",
+          "migrationTitle": "Migrate to Google Cloud in 4 Steps",
+          "migrationSubtitle": "ICSDC handles your entire GCP migration — from initial assessment to go-live — with zero downtime.",
+          "migrationSteps": [
+            { "order": 1, "title": "Assessment & Discovery", "description": "We audit your current infrastructure, dependencies, and workloads to create a detailed GCP migration plan." },
+            { "order": 2, "title": "Architecture & Planning", "description": "Our GCP architects design the optimal cloud architecture — compute, storage, networking, and security." },
+            { "order": 3, "title": "Migration & Testing", "description": "We migrate your data and applications to GCP with parallel running to ensure zero-downtime cutover." },
+            { "order": 4, "title": "Optimisation & Ongoing Management", "description": "Post-migration, we optimise costs, monitor performance, and manage your GCP environment 24/7." }
+          ],
+          "ctaBand1": {
+            "title": "Ready to Move Your Business to Google Cloud?",
+            "description": "Free GCP assessment, architecture design, and migration included with every plan.",
+            "ctaPrimary": { "text": "Get Free GCP Assessment", "link": "/contact" },
+            "ctaSecondary": { "text": "Call +91 98109 58857", "link": "tel:+919810958857" }
+          },
+          "testimonialTitle": "What Our Google Cloud Clients Say",
+          "faqTitle": "FAQs About ICSDC Managed Google Cloud",
+          "faqContactTitle": "Talk to Our GCP Experts",
+          "faqContactDesc": "Our certified Google Cloud engineers are available 24/7 for consultations, architecture reviews, and migrations.<br><br>📞 +91 98109 58857",
+          "faq": [
+            { "order": 1, "question": "Is ICSDC an official Google Cloud partner?", "answer": "Yes. ICSDC is a certified Google Cloud Partner with engineers holding active GCP certifications including Professional Cloud Architect, Professional Data Engineer, and Professional DevOps Engineer." },
+            { "order": 2, "question": "Can you migrate our existing on-premises or cloud infrastructure to GCP?", "answer": "Yes. We perform end-to-end migrations from on-premises servers, AWS, Azure, or other cloud providers to Google Cloud — with zero downtime using Google's Migrate for Compute Engine tooling." },
+            { "order": 3, "question": "How does GCP pricing work and will my bills be unpredictable?", "answer": "GCP uses pay-as-you-go pricing, but ICSDC implements committed use discounts and sustained use savings to keep costs predictable. We provide monthly cost reports and alerts to prevent billing surprises." },
+            { "order": 4, "question": "What GCP regions are available for India?", "answer": "GCP has a Mumbai region (asia-south1) and Delhi region (asia-south2) for low-latency hosting in India. We also leverage Singapore and other Asia-Pacific regions for regional redundancy." },
+            { "order": 5, "question": "What is included in the management service?", "answer": "ICSDC managed GCP includes: architecture design, initial setup, IAM & security configuration, monitoring & alerting, cost optimisation, OS & software patching for your VMs, backup management, and 24/7 support from certified GCP engineers." }
+          ],
+          "ctaBand2": {
+            "title": "Experience Google Cloud with ICSDC as Your Partner",
+            "description": "Certified GCP management from ₹4,999/month. Free assessment and migration included.",
+            "ctaPrimary": { "text": "Get Managed GCP Now", "link": "/contact" },
+            "ctaSecondary": { "text": "Call +91 98109 58857", "link": "tel:+919810958857" }
+          },
+          "testimonials": [
+            { "order": 1, "name": "Arjun Mehta", "jobTitle": "Head of Engineering", "company": "DataStream Analytics", "quote": "ICSDC migrated our entire data pipeline to Google Cloud in 2 weeks with zero downtime. BigQuery performance is 50x faster than our old on-prem setup. Exceptional GCP expertise.", "rating": 5 },
+            { "order": 2, "name": "Sunita Krishnan", "jobTitle": "CTO", "company": "HealthTech India", "quote": "Running our HIPAA-compliant healthcare platform on GCP managed by ICSDC. The security configuration, Cloud Armor setup, and compliance documentation were handled perfectly.", "rating": 5 },
+            { "order": 3, "name": "Rajesh Nambiar", "jobTitle": "VP Infrastructure", "company": "EduPlatform Ltd", "quote": "Our student platform handles 100,000 concurrent users during exam season thanks to GKE auto-scaling managed by ICSDC. We've never had a capacity issue since the migration.", "rating": 5 }
+          ],
+          "publishedAt": "2025-01-01T00:00:00.000Z"
+        }
+      ]
+    }
+  }
+}
