@@ -47,4 +47,4 @@
       display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px;
     }
     @media(max-width:900px){ .aws-feature-grid { grid-template-columns:1fr 1fr; } }
-    @media(max-width:600px){ .aws-feature-grid { grid-template-columns:1fr; } }
+    @media(max-width:640px){ .aws-feature-grid { grid-template-columns:1fr; } }

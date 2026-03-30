@@ -174,11 +174,41 @@ export function getCloudHostingPage() {
 }
 
 // ──────────────────────────────────────────────────────────
-//  SHARED HOSTING PAGE (Single Type — full page data)
+//  LINUX VPS HOSTING PAGE (Single Type — full page data)
 // ──────────────────────────────────────────────────────────
 
 /**
- * Fetches the entire Shared Hosting page content in a single API call.
+ * Fetches the entire Linux VPS Hosting page content in a single API call.
+ * Uses explicit deep populate for all nested components.
+ */
+export function getLinuxVpsHostingPage() {
+    return fetchAPI(
+        "/api/linux-vps-hosting-page" +
+        "?populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars]=*" +
+        "&populate[plans][populate]=specs" +
+        "&populate[powerFeatures]=*" +
+        "&populate[osOptions]=*" +
+        "&populate[controlPanels]=*" +
+        "&populate[whyVpsCards]=*" +
+        "&populate[useCases]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  GOOGLE WORKSPACE PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+
+/**
+ * Fetches the entire Google Workspace page content in a single API call.
  * Uses explicit deep populate for all nested components.
  */
 export function getSharedHostingPage() {
@@ -494,6 +524,224 @@ export function getHomepagePage() {
 }
 
 // ──────────────────────────────────────────────────────────
+//  DOMAIN TRANSFER PAGE
+// ──────────────────────────────────────────────────────────
+export function getDomainTransferPage() {
+    return fetchAPI(
+        "/api/domain-transfer-page" +
+        "?populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars]=*" +
+        "&populate[benefits]=*" +
+        "&populate[whyRegisterCards]=*" +
+        "&populate[highlightCards]=*" +
+        "&populate[tips]=*" +
+        "&populate[whySwitchCards]=*" +
+        "&populate[relatedCards]=*" +
+        "&populate[whatYouGetCards]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  GOOGLE WORKSPACE PAGE
+// ──────────────────────────────────────────────────────────
+export function getGoogleWorkspacePage() {
+    return fetchAPI(
+        "/api/google-workspace-page" +
+        "?populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars]=*" +
+        "&populate[plans][populate]=features" +
+        "&populate[features]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[whyCards]=*" +
+        "&populate[steps]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  WORDPRESS HOSTING PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+
+/**
+ * Fetches the entire WordPress Hosting page content in a single API call.
+ * Uses explicit deep populate for all nested components.
+ */
+export function getWordpressHostingPage() {
+    return fetchAPI(
+        "/api/wordpress-hosting-page" +
+        "?populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars]=*" +
+        "&populate[plans][populate]=features" +
+        "&populate[featureCards]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[performanceCards]=*" +
+        "&populate[managedFeatures]=*" +
+        "&populate[whyChooseCards]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
 //  AGGREGATE FETCH
 //  Fetches all page data in parallel — call once on page load.
 // ──────────────────────────────────────────────────────────
+export function getLinuxCloudHostingPage() {
+    return fetchAPI(
+        "/api/linux-cloud-hosting-page" +
+        "?populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars]=*" +
+        "&populate[plans][populate]=specs" +
+        "&populate[powerFeatures]=*" +
+        "&populate[frameworks]=*" +
+        "&populate[whyLinuxCards]=*" +
+        "&populate[useCases]=*" +
+        "&populate[workloadFeatures]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  NVME DEDICATED SERVER PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getNvmeDedicatedServerPage() {
+    return fetchAPI(
+        "/api/nvme-dedicated-server-page" +
+        "?populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars]=*" +
+        "&populate[plans][populate]=features" +
+        "&populate[infraFeatures]=*" +
+        "&populate[whyNvmeCards]=*" +
+        "&populate[useCases]=*" +
+        "&populate[whenCards]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  CPANEL HOSTING PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getCpanelHostingPage() {
+    return fetchAPI(
+        "/api/cpanel-hosting-page" +
+        "?populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars]=*" +
+        "&populate[plans][populate]=features" +
+        "&populate[features]=*" +
+        "&populate[whyCards]=*" +
+        "&populate[whoCards]=*" +
+        "&populate[builtinFeatures]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  MANAGED CLOUD HOSTING PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getManagedCloudHostingPage() {
+    return fetchAPI(
+        "/api/managed-cloud-hosting-page" +
+        "?populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars]=*" +
+        "&populate[plans][populate]=features" +
+        "&populate[features]=*" +
+        "&populate[whyManagedCards]=*" +
+        "&populate[servicesCards]=*" +
+        "&populate[howItWorksSteps]=*" +
+        "&populate[useCases]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  GOOGLE CLOUD HOSTING PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getGoogleCloudHostingPage() {
+    return fetchAPI(
+        "/api/google-cloud-hosting-page" +
+        "?populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars]=*" +
+        "&populate[plans][populate]=features" +
+        "&populate[whyGoogleCards]=*" +
+        "&populate[servicesCards]=*" +
+        "&populate[useCases]=*" +
+        "&populate[migrationSteps]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  MANAGED VPS HOSTING PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getManagedVpsHostingPage() {
+    return fetchAPI(
+        "/api/managed-vps-hosting-page" +
+        "?populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars]=*" +
+        "&populate[plans][populate]=features" +
+        "&populate[features]=*" +
+        "&populate[whatWeMange]=*" +
+        "&populate[whyManagedCards]=*" +
+        "&populate[useCases]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*"
+    );
+}
