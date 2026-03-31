@@ -97,7 +97,7 @@ import {
 
             // What We Manage
             populateSectionHeader('#mvps-what-we-manage', page.whatWeManageLabel, page.whatWeManageTitle, page.whatWeManageSubtitle);
-            populateIconCards('#mvps-what-we-manage .cloud-power-grid', page.whatWeMange, 'cloud-power-card');
+            populateIconCards('#mvps-what-we-manage .cloud-power-grid', page.whatWeManage, 'cloud-power-card');
 
             // Why Managed VPS
             populateSectionHeader('#mvps-why-managed', page.whyManagedLabel, page.whyManagedTitle, page.whyManagedSubtitle);

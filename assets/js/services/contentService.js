@@ -734,7 +734,7 @@ export function getManagedVpsHostingPage() {
         "&populate[pillars]=*" +
         "&populate[plans][populate]=features" +
         "&populate[features]=*" +
-        "&populate[whatWeMange]=*" +
+        "&populate[whatWeManage]=*" +
         "&populate[whyManagedCards]=*" +
         "&populate[useCases]=*" +
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
@@ -744,4 +744,4 @@ export function getManagedVpsHostingPage() {
         "&populate[faq][populate]=*" +
         "&populate[testimonials][populate]=*"
     );
-}
+}
