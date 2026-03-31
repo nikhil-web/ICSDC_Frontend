@@ -745,3 +745,75 @@ export function getManagedVpsHostingPage() {
         "&populate[testimonials][populate]=*"
     );
 }
+
+// ──────────────────────────────────────────────────────────
+//  VPS HOSTING TRIAL PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getVpsHostingTrialPage() {
+    return fetchAPI(
+        "/api/vps-hosting-trial-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[plans][populate][features]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[whenCards][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[howSteps][populate]=*" +
+        "&populate[specs][populate]=*" +
+        "&populate[whoCards][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  GPU CLOUD HOSTING PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getGpuCloudHostingPage() {
+    return fetchAPI(
+        "/api/gpu-cloud-hosting-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[plans][populate][features]=*" +
+        "&populate[features][populate]=*" +
+        "&populate[builtinFeatures][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[gpuPortfolio][populate]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  RESELLER HOSTING PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getResellerHostingPage() {
+    return fetchAPI(
+        "/api/reseller-hosting-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[plans][populate][features]=*" +
+        "&populate[features][populate]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[toolsCards][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
