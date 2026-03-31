@@ -52,10 +52,10 @@ import {
             var featuresArr = plan.features || [];
             var featuresHtml = featuresArr.length
                 ? '<ul class="m365-plan-features">' +
-                    featuresArr.map(function (f) {
-                        return '<li>' + (f.label || f.text || f.name || f) + '</li>';
-                    }).join('') +
-                  '</ul>'
+                featuresArr.map(function (f) {
+                    return '<li>' + (f.label || f.text || f.name || f) + '</li>';
+                }).join('') +
+                '</ul>'
                 : '';
 
             var ctaText = plan.ctaText || 'Get Started';
