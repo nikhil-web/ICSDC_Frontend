@@ -817,3 +817,72 @@ export function getResellerHostingPage() {
         "&populate[ctaBand2][populate][ctaSecondary]=*"
     );
 }
+
+// ──────────────────────────────────────────────────────────
+//  GPU DEDICATED SERVER PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getGpuDedicatedServerPage() {
+    return fetchAPI(
+        "/api/gpu-dedicated-server-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[plans][populate][features]=*" +
+        "&populate[features][populate]=*" +
+        "&populate[usecases][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[models][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  MICROSOFT 365 PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getMicrosoft365Page() {
+    return fetchAPI(
+        "/api/microsoft-365-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[plans][populate][features]=*" +
+        "&populate[features][populate]=*" +
+        "&populate[backupFeatures][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[whoCards][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  CLOUD STORAGE PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getCloudStoragePage() {
+    return fetchAPI(
+        "/api/cloud-storage-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[plans][populate][features]=*" +
+        "&populate[features][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[whoCards][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
