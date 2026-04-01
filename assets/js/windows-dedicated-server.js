@@ -1,4 +1,4 @@
-import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, populateChecklist, populateComparisonTable, hidePageLoader, markActiveNavLink, setText, setHTML } from './utils/cms-helpers.js';
+import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, populateChecklist, populateComparisonTable, hidePageLoader, markActiveNavLink, setText, setHTML, initTestimonials, initFAQ } from './utils/cms-helpers.js';
 import { getWindowsDedicatedServerPage } from './services/contentService.js';
 
 (async function () {
@@ -50,6 +50,20 @@ import { getWindowsDedicatedServerPage } from './services/contentService.js';
 
         populateSectionHeader('#use-cases', page.useCasesLabel, page.useCasesTitle, page.useCasesSubtitle);
         populateIconCards('.cloud-use-grid', page.useCases, 'cloud-use-card');
+
+        if (page.testimonialTitle) setText(document, '#wds-testi-heading', page.testimonialTitle);
+        initTestimonials(page.testimonials, {
+            grid: 'wds-testi-grid',
+            dots: 'wds-testi-dots',
+            prev: 'wds-testi-prev',
+            next: 'wds-testi-next'
+        });
+
+        if (page.faqTitle) setText(document, '#wds-faq-heading', page.faqTitle);
+        initFAQ(page.faq, {
+            containerId: 'wds-faq-accordions',
+            answerPrefix: 'wds-faq'
+        });
 
         populateCtaBand('.cloud-cta-dark', page.ctaBand2);
     } catch (err) {

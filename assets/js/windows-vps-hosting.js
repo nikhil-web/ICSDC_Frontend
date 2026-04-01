@@ -1,4 +1,4 @@
-import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, hidePageLoader, markActiveNavLink } from './utils/cms-helpers.js';
+import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, hidePageLoader, markActiveNavLink, initTestimonials, initFAQ, setText } from './utils/cms-helpers.js';
 import { getWindowsVpsHostingPage } from './services/contentService.js';
 
 (async function () {
@@ -32,6 +32,12 @@ import { getWindowsVpsHostingPage } from './services/contentService.js';
 
         populateSectionHeader('#use-cases', page.useCasesLabel, page.useCasesTitle, page.useCasesSubtitle);
         populateIconCards('.cloud-use-grid', page.useCases, 'cloud-use-card');
+
+        if (page.testimonialTitle) setText(document, '#winvps-testi-heading', page.testimonialTitle);
+        initTestimonials(page.testimonials);
+
+        if (page.faqTitle) setText(document, '#winvps-faq-heading', page.faqTitle);
+        initFAQ(page.faq);
 
         populateCtaBand('.cloud-cta-band:not(.cloud-cta-dark)', page.ctaBand1);
         populateCtaBand('.cloud-cta-dark', page.ctaBand2);
