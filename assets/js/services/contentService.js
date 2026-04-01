@@ -866,6 +866,29 @@ export function getMicrosoft365Page() {
 }
 
 // ──────────────────────────────────────────────────────────
+//  BARE METAL SERVER PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getBareMetalServerPage() {
+    return fetchAPI(
+        "/api/bare-metal-server-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[serverConfigs][populate]=*" +
+        "&populate[managedFeatures][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[whoCards][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
 //  CLOUD STORAGE PAGE (Single Type — full page data)
 // ──────────────────────────────────────────────────────────
 export function getCloudStoragePage() {
@@ -882,6 +905,78 @@ export function getCloudStoragePage() {
         "&populate[whoCards][populate]=*" +
         "&populate[faq][populate]=*" +
         "&populate[testimonials][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  BARE METAL SERVER PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getBareMetalServerPage() {
+    return fetchAPI(
+        "/api/bare-metal-server-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[serverConfigs][populate]=*" +
+        "&populate[managedFeatures][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[whoCards][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  VEEAM BACKUP PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getVeeamBackupPage() {
+    return fetchAPI(
+        "/api/veeam-backup-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[features][populate]=*" +
+        "&populate[compareRows][populate]=*" +
+        "&populate[stats][populate]=*" +
+        "&populate[steps][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[whoCards][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  VIRTUAL MACHINE PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getVirtualMachinePage() {
+    return fetchAPI(
+        "/api/virtual-machine-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[vmPlans][populate]=*" +
+        "&populate[features][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[useCases][populate]=*" +
+        "&populate[whenCards][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[faq][populate]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
         "&populate[ctaBand2][populate][ctaSecondary]=*"
     );
