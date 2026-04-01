@@ -868,25 +868,25 @@ export function getMicrosoft365Page() {
 // ──────────────────────────────────────────────────────────
 //  BARE METAL SERVER PAGE (Single Type — full page data)
 // ──────────────────────────────────────────────────────────
-export function getBareMetalServerPage() {
-    return fetchAPI(
-        "/api/bare-metal-server-page?" +
-        "populate[seo]=*" +
-        "&populate[heroCtaPrimary]=*" +
-        "&populate[heroCtaSecondary]=*" +
-        "&populate[pillars][populate]=*" +
-        "&populate[serverConfigs][populate]=*" +
-        "&populate[managedFeatures][populate]=*" +
-        "&populate[ctaBand1][populate][ctaPrimary]=*" +
-        "&populate[ctaBand1][populate][ctaSecondary]=*" +
-        "&populate[whyCards][populate]=*" +
-        "&populate[whoCards][populate]=*" +
-        "&populate[faq][populate]=*" +
-        "&populate[testimonials][populate]=*" +
-        "&populate[ctaBand2][populate][ctaPrimary]=*" +
-        "&populate[ctaBand2][populate][ctaSecondary]=*"
-    );
-}
+// export function getBareMetalServerPage() {
+//     return fetchAPI(
+//         "/api/bare-metal-server-page?" +
+//         "populate[seo]=*" +
+//         "&populate[heroCtaPrimary]=*" +
+//         "&populate[heroCtaSecondary]=*" +
+//         "&populate[pillars][populate]=*" +
+//         "&populate[serverConfigs][populate]=*" +
+//         "&populate[managedFeatures][populate]=*" +
+//         "&populate[ctaBand1][populate][ctaPrimary]=*" +
+//         "&populate[ctaBand1][populate][ctaSecondary]=*" +
+//         "&populate[whyCards][populate]=*" +
+//         "&populate[whoCards][populate]=*" +
+//         "&populate[faq][populate]=*" +
+//         "&populate[testimonials][populate]=*" +
+//         "&populate[ctaBand2][populate][ctaPrimary]=*" +
+//         "&populate[ctaBand2][populate][ctaSecondary]=*"
+//     );
+// }
 
 // ──────────────────────────────────────────────────────────
 //  CLOUD STORAGE PAGE (Single Type — full page data)
@@ -951,6 +951,30 @@ export function getVeeamBackupPage() {
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[whyCards][populate]=*" +
         "&populate[whoCards][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  FIREWALL SECURITY PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getFirewallSecurityPage() {
+    return fetchAPI(
+        "/api/firewall-security-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[strengthCards][populate]=*" +
+        "&populate[adaptsCards][populate]=*" +
+        "&populate[envCards][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[servicesCards][populate]=*" +
+        "&populate[useCasesCards][populate]=*" +
         "&populate[testimonials][populate]=*" +
         "&populate[faq][populate]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
