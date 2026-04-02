@@ -26,7 +26,7 @@ import { populateIconCards } from "./utils/cms-helpers.js";
 (function () {
 
     // ── Strapi config ─────────────────────────────────────────
-    const BASE_URL = (typeof STRAPI_URL !== 'undefined' ? STRAPI_URL : 'http://localhost:1337');
+    const BASE_URL = (typeof STRAPI_URL !== 'undefined' ? STRAPI_URL : 'http://13.126.9.248:1337');
 
 
 

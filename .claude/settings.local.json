@@ -126,7 +126,16 @@
       "Bash(powershell -Command \"Select-String -Path ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC FINAL FE\\\\ICSDC_Frontend\\\\.claude\\\\worktrees\\\\zen-morse\\\\assets\\\\js\\\\services\\\\contentService.js'' -Pattern ''getForexVps|getVapt|getTally|getVpsCpanel|getFirewall''\")",
       "Bash(node import-pages.js \"Firewall Security\")",
       "Bash(powershell -Command \"Select-String -Path ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC FINAL FE\\\\ICSDC_Frontend\\\\.claude\\\\worktrees\\\\zen-morse\\\\assets\\\\js\\\\services\\\\contentService.js'' -Pattern ''export function get\\(Firewall|Vapt|ForexVps|TallyOnCloud|VpsCpanel\\)''\")",
-      "Bash(powershell -Command \"Select-String -Path ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\my-admin\\\\import-pages.js'' -Pattern ''firewall|vapt|forex|tally|cpanel'' -CaseSensitive:$false | Select-Object LineNumber,Line\")"
+      "Bash(powershell -Command \"Select-String -Path ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\my-admin\\\\import-pages.js'' -Pattern ''firewall|vapt|forex|tally|cpanel'' -CaseSensitive:$false | Select-Object LineNumber,Line\")",
+      "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\my-admin\\\\seed\\\\navigation.js'' 2>&1 | head -5; Test-Path ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\my-admin\\\\seed\\\\navigation.js''\")",
+      "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\my-admin\\\\src\\\\api\\\\navigation'' -Recurse | Select-Object Name\")",
+      "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\my-admin\\\\src\\\\components\\\\menu'' -Recurse | Select-Object Name\")",
+      "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC FINAL FE\\\\ICSDC_Frontend\\\\.claude\\\\worktrees\\\\zen-morse\\\\assets\\\\js\\\\main.js'' | Select-String ''nav|menu|dropdown|menus|sections|items'' | Select-Object -First 30\")",
+      "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC FINAL FE\\\\ICSDC_Frontend\\\\.claude\\\\worktrees\\\\zen-morse\\\\assets\\\\js\\\\main.js'' | Select-String ''renderItems|item\\\\.url|item\\\\.title|item\\\\.icon|item\\\\.subtext|sidebar|flatLeft|grid'' | Select-Object -First 20\")",
+      "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\my-admin\\\\src\\\\components\\\\buttons'' | Select-Object Name\")",
+      "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\my-admin\\\\src\\\\components\\\\buttons\\\\button.json''\")",
+      "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC FINAL FE\\\\ICSDC_Frontend\\\\.claude\\\\worktrees\\\\zen-morse\\\\assets\\\\js\\\\main.js'' | Select-String ''LoginButton|login|mainLogo'' | Select-Object -First 10\")",
+      "Bash(powershell -Command \"Get-ChildItem -Filter ''*.html'' | ForEach-Object { \\(Get-Content $_FullName -Raw\\) -replace ''STRAPI_URL = \"\"http://localhost:1337\"\"'', ''STRAPI_URL = \"\"http://13.126.9.248:1337\"\"'' | Set-Content $_FullName -NoNewline }\")"
     ]
   }
 }

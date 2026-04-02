@@ -25,7 +25,7 @@
     'use strict';
 
     // ── Config (injected by HTML before this script) ──────────────────────
-    const BASE_URL = (typeof STRAPI_URL !== 'undefined' ? STRAPI_URL : 'http://localhost:1337');
+    const BASE_URL = (typeof STRAPI_URL !== 'undefined' ? STRAPI_URL : 'http://13.126.9.248:1337');
     const API_TOKEN = (typeof TOKEN !== 'undefined' ? TOKEN : '');
 
     // ── Strapi fetch ───────────────────────────────────────────────────────
