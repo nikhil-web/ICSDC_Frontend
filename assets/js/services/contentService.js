@@ -1005,3 +1005,90 @@ export function getVirtualMachinePage() {
         "&populate[ctaBand2][populate][ctaSecondary]=*"
     );
 }
+
+// ──────────────────────────────────────────────────────────
+//  FOREX VPS PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+export function getForexVpsPage() {
+    return fetchAPI(
+        "/api/forex-vps-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[features][populate]=*" +
+        "&populate[useCasesCards][populate]=*" +
+        "&populate[whoCards][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*"
+    );
+}
+
+// ----------------------------------------------------------
+//  VAPT PAGE (Single Type � full page data)
+// ----------------------------------------------------------
+export function getVaptPage() {
+    return fetchAPI(
+        "/api/vapt-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[whyChooseCards][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[offeringsCards][populate]=*" +
+        "&populate[steps][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
+
+// ----------------------------------------------------------
+//  TALLY ON CLOUD PAGE (Single Type � full page data)
+// ----------------------------------------------------------
+export function getTallyOnCloudPage() {
+    return fetchAPI(
+        "/api/tally-on-cloud-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[improvements][populate]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[compareRows][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[whoCanCards][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
+
+// ----------------------------------------------------------
+//  VPS CPANEL PAGE (Single Type � full page data)
+// ----------------------------------------------------------
+export function getVpsCpanelPage() {
+    return fetchAPI(
+        "/api/vps-cpanel-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[advantages][populate]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
