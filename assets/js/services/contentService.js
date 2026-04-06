@@ -1092,3 +1092,57 @@ export function getVpsCpanelPage() {
         "&populate[ctaBand2][populate][ctaSecondary]=*"
     );
 }
+
+// ----------------------------------------------------------
+//  WEB HOSTING PAGE (Single Type — full page data)
+// ----------------------------------------------------------
+export function getWebHostingPage() {
+    return fetchAPI(
+        "/api/web-hosting-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[featuresCards][populate]=*" +
+        "&populate[safetyCards][populate]=*" +
+        "&populate[compareRows][populate]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[succeedCards][populate]=*" +
+        "&populate[helpCards][populate]=*" +
+        "&populate[compareRows2][populate]=*" +
+        "&populate[pamPromoCta]=*" +
+        "&populate[backupPromoCta]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*"
+    );
+}
+
+// ----------------------------------------------------------
+//  PAM MFA PAGE (Single Type — full page data)
+// ----------------------------------------------------------
+export function getPamMfaPage() {
+    return fetchAPI(
+        "/api/pam-mfa-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[controlCards][populate]=*" +
+        "&populate[mattersSteps][populate]=*" +
+        "&populate[ctaBand2][populate][ctaPrimary]=*" +
+        "&populate[ctaBand2][populate][ctaSecondary]=*" +
+        "&populate[steps][populate]=*" +
+        "&populate[whyChooseCards][populate]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[faq][populate]=*" +
+        "&populate[ctaBand3][populate][ctaPrimary]=*" +
+        "&populate[ctaBand3][populate][ctaSecondary]=*"
+    );
+}
