@@ -1121,6 +1121,34 @@ export function getWebHostingPage() {
     );
 }
 
+// ──────────────────────────────────────────────────────────
+//  MANAGED DEDICATED SERVER PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+
+/**
+ * Fetches the entire Managed Dedicated Server page content in a single API call.
+ * Uses explicit deep populate for all nested components.
+ */
+export function getManagedDedicatedServerPage() {
+    return fetchAPI(
+        "/api/managed-dedicated-server-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[pricingPlans][populate][features]=*" +
+        "&populate[standoutCards][populate]=*" +
+        "&populate[baremetalPromoCta]=*" +
+        "&populate[cloudPromoCta]=*" +
+        "&populate[whoCards][populate]=*" +
+        "&populate[compareRows][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[faq][populate]=*"
+    );
+}
+
 // ----------------------------------------------------------
 //  PAM MFA PAGE (Single Type — full page data)
 // ----------------------------------------------------------
@@ -1144,5 +1172,27 @@ export function getPamMfaPage() {
         "&populate[faq][populate]=*" +
         "&populate[ctaBand3][populate][ctaPrimary]=*" +
         "&populate[ctaBand3][populate][ctaSecondary]=*"
+    );
+}
+
+// ----------------------------------------------------------
+//  SSL CERTIFICATE PAGE (Single Type — full page data)
+// ----------------------------------------------------------
+export function getSslCertificatePage() {
+    return fetchAPI(
+        "/api/ssl-certificate-page?" +
+        "populate[seo]=*" +
+        "&populate[heroCtaPrimary]=*" +
+        "&populate[heroCtaSecondary]=*" +
+        "&populate[pillars][populate]=*" +
+        "&populate[offersCards][populate]=*" +
+        "&populate[sslTypes][populate]=*" +
+        "&populate[typesGlanceCards][populate]=*" +
+        "&populate[powerCards][populate]=*" +
+        "&populate[whyCards][populate]=*" +
+        "&populate[ctaBand1][populate][ctaPrimary]=*" +
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[testimonials][populate]=*" +
+        "&populate[faq][populate]=*"
     );
 }
