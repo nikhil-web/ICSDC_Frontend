@@ -8,7 +8,7 @@
     'use strict';
 
     // ── CONFIG (set by index.html before this script loads) ──
-    const BASE_URL = (typeof STRAPI_URL !== "undefined" ? STRAPI_URL : "http://13.126.9.248:1337");
+    const BASE_URL = (typeof STRAPI_URL !== "undefined" ? STRAPI_URL : "https://icsdcadmin.duckdns.org");
     const API_TOKEN = (typeof TOKEN !== "undefined" ? TOKEN : "");
 
     const headers = {

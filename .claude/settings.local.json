@@ -135,7 +135,7 @@
       "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\my-admin\\\\src\\\\components\\\\buttons'' | Select-Object Name\")",
       "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\my-admin\\\\src\\\\components\\\\buttons\\\\button.json''\")",
       "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC FINAL FE\\\\ICSDC_Frontend\\\\.claude\\\\worktrees\\\\zen-morse\\\\assets\\\\js\\\\main.js'' | Select-String ''LoginButton|login|mainLogo'' | Select-Object -First 10\")",
-      "Bash(powershell -Command \"Get-ChildItem -Filter ''*.html'' | ForEach-Object { \\(Get-Content $_FullName -Raw\\) -replace ''STRAPI_URL = \"\"http://localhost:1337\"\"'', ''STRAPI_URL = \"\"http://13.126.9.248:1337\"\"'' | Set-Content $_FullName -NoNewline }\")"
+      "Bash(powershell -Command \"Get-ChildItem -Filter ''*.html'' | ForEach-Object { \\(Get-Content $_FullName -Raw\\) -replace ''STRAPI_URL = \"\"http://localhost:1337\"\"'', ''STRAPI_URL = \"\"https://icsdcadmin.duckdns.org\"\"'' | Set-Content $_FullName -NoNewline }\")"
     ]
   }
 }
