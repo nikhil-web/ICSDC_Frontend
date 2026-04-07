@@ -7,7 +7,7 @@
 // ── Config ───────────────────────────────────────────────
 // Priority: global STRAPI_URL variable → remote server → localhost fallback
 const _STRAPI_CANDIDATES = [
-    "https://icsdcadmin.duckdns.org",
+    "http://13.126.9.248:1337",
     "http://localhost:1337",
 ];
 const BASE_URL = (typeof STRAPI_URL !== "undefined" ? STRAPI_URL : _STRAPI_CANDIDATES[0]);

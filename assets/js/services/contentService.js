@@ -519,7 +519,10 @@ export function getHomepagePage() {
         "&populate[Footer][populate][linkGroups][populate][links]=*" +
         "&populate[Footer][populate][logo]=true" +
         "&populate[faq][populate]=*" +
-        "&populate[testimonials][populate]=*"
+        "&populate[testimonials][populate]=*" +
+        "&populate[globalLocations]=*" +
+        "&populate[techPartners][populate][logo]=true" +
+        "&populate[trustedPartners][populate][logo]=true"
     );
 }
 
@@ -1176,6 +1179,26 @@ export function getPamMfaPage() {
 }
 
 // ----------------------------------------------------------
+//  ABOUT US PAGE (Single Type — full page data)
+// ----------------------------------------------------------
+
+/**
+ * Fetches the entire About Us page content in a single API call.
+ * Uses explicit deep populate for all nested components.
+ */
+export function getAboutUsPage() {
+    return fetchAPI(
+        "/api/about-us-page?" +
+        "populate[seo]=*" +
+        "&populate[specializationsCards]=*" +
+        "&populate[whatWeDoCards]=*" +
+        "&populate[partnersCards][populate][logo]=true" +
+        "&populate[ctaBand][populate][ctaPrimary]=*" +
+        "&populate[ctaBand][populate][ctaSecondary]=*"
+    );
+}
+
+// ----------------------------------------------------------
 //  SSL CERTIFICATE PAGE (Single Type — full page data)
 // ----------------------------------------------------------
 export function getSslCertificatePage() {
@@ -1194,5 +1217,22 @@ export function getSslCertificatePage() {
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[testimonials][populate]=*" +
         "&populate[faq][populate]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  CONTACT US PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+
+/**
+ * Fetches the entire Contact Us page content in a single API call.
+ * Uses explicit deep populate for all nested components.
+ */
+export function getContactUsPage() {
+    return fetchAPI(
+        "/api/contact-us-page?" +
+        "populate[seo]=*" +
+        "&populate[helpCards]=*" +
+        "&populate[steps]=*"
     );
 }

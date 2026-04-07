@@ -329,6 +329,107 @@ import { populateIconCards } from "./utils/cms-helpers.js";
     // ═══════════════════════════════════════════════════════════
     //  FAQ ACCORDION
     // ═══════════════════════════════════════════════════════════
+    // ── Global Presence: CMS-driven pin placement + legend ────────────────────
+    //
+    //  MAP_COORDS keys must match the `countryKey` field stored in Strapi.
+    //  Values are percentages of the SVG viewBox (2000 × 857) — they stay
+    //  accurate at every screen size because .hp-map-wrap uses aspect-ratio.
+    //  Matching invisible <circle data-country="..."> anchors are embedded in
+    //  world-map.svg as the geographic source of truth for these coordinates.
+    //
+    // Coordinates calibrated against actual SVG path data:
+    //   UK  southern coast: SVG (992, 182)   → 0°,   51°N
+    //   Germany north:      SVG (1053.9,159) → 13°E, 54°N
+    //   India NE coast:     SVG (1427.6,308) → 88°E, 22°N  ← key anchor
+    //   Angola NW coast:    SVG (1121.2,572) → 12°E,  5°S
+    // x-scale (eastern): +4.95 px/° from London baseline (x=992 at 0°)
+    // y-scale (tropical/subtropical): 9.78 px/° · temperate: 4.34–7.7 px/°
+    var MAP_COORDS = {
+        'usa': { x: 22.0, y: 24.0 },  // Washington DC  (77°W, 39°N)
+        'uk': { x: 49.6, y: 20.9 },  // London         ( 0°,  51.5°N)
+        'germany': { x: 52.8, y: 19.9 },  // Berlin         (13.4°E, 52.5°N)
+        'russia': { x: 58.9, y: 16.9 },  // Moscow         (37.6°E, 55.8°N)
+        'india': { x: 71, y: 36 },  // Noida/Delhi    (77.2°E, 28.6°N)
+        'future-expansion': { x: 74.5, y: 45.3 },  // Bangkok/SE Asia(100.5°E, 13.8°N)
+    };
+
+    function renderMapSection(title, subtitle, locations) {
+        if (title) setText('#hp-global-title', title);
+        if (subtitle) setText('#hp-global-sub', subtitle);
+        if (!locations || !locations.length) return;
+
+        var mapWrap = document.querySelector('.hp-map-wrap');
+        var legend = document.getElementById('hp-legend');
+
+        // Clear any existing dynamically-added pins
+        if (mapWrap) {
+            mapWrap.querySelectorAll('.hp-pin').forEach(function (el) { el.remove(); });
+        }
+        if (legend) legend.innerHTML = '';
+
+        // Sort by order field
+        var sorted = locations.slice().sort(function (a, b) {
+            return (a.order || 0) - (b.order || 0);
+        });
+
+        sorted.forEach(function (loc, idx) {
+            var key = (loc.countryKey || '').toLowerCase().trim();
+            var coords = MAP_COORDS[key];
+            var num = String(idx + 1).padStart(2, '0');
+            var color = loc.pinColor || (coords ? '#1a56db' : '#1a56db');
+
+            // ── Render pin on map ─────────────────────────────────────────
+            if (coords && mapWrap) {
+                var pin = document.createElement('div');
+                pin.className = 'hp-pin';
+                pin.style.cssText = 'left:' + coords.x + '%;top:' + coords.y + '%;--pin-c:' + color;
+                pin.setAttribute('aria-label', loc.title || key);
+                pin.setAttribute('data-country', key);
+                pin.innerHTML =
+                    '<div class="hp-pin-head"><span class="hp-pin-num">' + num + '</span></div>' +
+                    '<div class="hp-pin-tail"></div>';
+                mapWrap.appendChild(pin);
+            }
+
+            // ── Render legend item ────────────────────────────────────────
+            if (legend) {
+                var item = document.createElement('div');
+                item.className = 'hp-legend-item';
+                item.setAttribute('data-country', key);
+                item.innerHTML =
+                    '<div class="hp-legend-dot-row">' +
+                    '<span class="hp-legend-dot" style="background:' + color + '"></span>' +
+                    '<strong class="hp-legend-title" style="color:' + color + '">' + (loc.title || '') + '</strong>' +
+                    '</div>' +
+                    '<p class="hp-legend-desc">' + (loc.description || '') + '</p>';
+                legend.appendChild(item);
+            }
+        });
+    }
+
+    // ── Technology Partners: populate logo grid (ds.partner-logo[]) ──
+    function renderLogoBox(p) {
+        var logoObj = p.logo;
+        var logoUrl = logoObj
+            ? (logoObj.url
+                ? (logoObj.url.startsWith('http') ? logoObj.url : BASE_URL + logoObj.url)
+                : mediaURL(logoObj))
+            : null;
+        var name = p.name || '';
+        var inner = logoUrl
+            ? '<img class="hp-logo-img" src="' + logoUrl + '" alt="' + name + '" loading="lazy">'
+            : '<div class="hp-logo-badge">' + (name.substring(0, 2).toUpperCase() || '?') + '</div>';
+        return '<div class="hp-logo-box">' + inner + '<span class="hp-logo-name">' + name + '</span></div>';
+    }
+
+    function populateLogoGrid(gridId, title, partners, titleId) {
+        if (title && titleId) setText(titleId, title);
+        if (!partners || !partners.length) return;
+        var grid = document.getElementById(gridId);
+        if (!grid) return;
+        grid.innerHTML = partners.map(renderLogoBox).join('');
+    }
+
     function populateFAQ(items) {
         if (!Array.isArray(items) || !items.length) return;
         const dl = document.getElementById('faq-accordions');
@@ -404,7 +505,10 @@ import { populateIconCards } from "./utils/cms-helpers.js";
             populateIndustryValidated(page.IndustryLeadingExcellenceValidated);
             populateISOStandards(page.BeyondBestPracticeOurISOStandards);
             populateBestCloudServices(page.BestCloudServices);
+            renderMapSection(page.globalPresenceTitle, page.globalPresenceSubtitle, page.globalLocations);
             populateTestimonials(page.testimonials);
+            populateLogoGrid('hp-tech-grid', page.techPartnersTitle, page.techPartners, '#hp-tech-title');
+            populateLogoGrid('hp-trusted-grid', page.trustedTitle, page.trustedPartners, '#hp-trusted-title');
             populateFAQ(page.faq);
 
 

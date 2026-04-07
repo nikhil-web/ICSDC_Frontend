@@ -1829,6 +1829,181 @@ nav.scrolled {
 }
 
 /* ══════════════════════════════════════
+   RESPONSIVE — TABLET NARROW (≤ 900px)
+   Transition zone — wrapper starts to tighten
+══════════════════════════════════════ */
+@media (max-width: 900px) {
+    .phone-mockup-wrapper {
+        width: 88%;
+        height: 640px;
+        margin-bottom: 160px;
+    }
+
+    .floating-card {
+        width: 170px;
+        padding: 12px 14px;
+    }
+
+    .floating-card h4 {
+        font-size: 12px;
+    }
+
+    .floating-card p {
+        font-size: 10px;
+    }
+
+    .fc-icon {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 8px;
+    }
+
+    .fc-icon svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .fc-btm-l {
+        left: calc(50% - 185px);
+    }
+
+    .fc-btm-r {
+        left: calc(50% + 15px);
+    }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — TABLET SMALL (≤ 768px)
+   Critical fix: wrapper too narrow for 190px cards
+══════════════════════════════════════ */
+@media (max-width: 768px) {
+    .phone-mockup-wrapper {
+        width: 96%;
+        height: 580px;
+        margin-bottom: 100px;
+    }
+
+    .floating-card {
+        width: 148px;
+        padding: 10px 12px;
+        border-radius: 12px;
+    }
+
+    .floating-card h4 {
+        font-size: 11px;
+        margin-bottom: 4px;
+    }
+
+    .floating-card p {
+        font-size: 9px;
+        line-height: 1.4;
+    }
+
+    .fc-icon {
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        margin-bottom: 6px;
+    }
+
+    .fc-icon svg {
+        width: 13px;
+        height: 13px;
+    }
+
+    .fc-left.fc-top  { top: 4%;  left: 0; }
+    .fc-left.fc-mid  { top: 36%; left: 0; }
+    .fc-left.fc-bot  { top: 66%; left: 0; }
+
+    .fc-right.fc-top { top: 4%;  right: 0; }
+    .fc-right.fc-mid { top: 36%; right: 0; }
+    .fc-right.fc-bot { top: 66%; right: 0; }
+
+    .fc-btm {
+        bottom: -90px;
+    }
+
+    .fc-btm-l {
+        left: calc(50% - 158px);
+    }
+
+    .fc-btm-r {
+        left: calc(50% + 10px);
+    }
+
+    .ripple-wrap {
+        width: 340px;
+        height: 340px;
+    }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — TABLET XS (≤ 600px)
+   Hide middle row of cards, shrink remaining
+══════════════════════════════════════ */
+@media (max-width: 600px) {
+    .phone-mockup-wrapper {
+        height: 500px;
+        margin-bottom: 70px;
+    }
+
+    /* Hide the middle row — too crowded at this width */
+    .fc-left.fc-mid,
+    .fc-right.fc-mid {
+        display: none;
+    }
+
+    .floating-card {
+        width: 130px;
+        padding: 8px 10px;
+        border-radius: 10px;
+    }
+
+    .floating-card h4 {
+        font-size: 10px;
+    }
+
+    .floating-card p {
+        font-size: 8.5px;
+    }
+
+    .fc-icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        margin-bottom: 5px;
+    }
+
+    .fc-icon svg {
+        width: 11px;
+        height: 11px;
+    }
+
+    .fc-left.fc-top  { top: 6%;  left: 0; }
+    .fc-left.fc-bot  { top: 62%; left: 0; }
+
+    .fc-right.fc-top { top: 6%;  right: 0; }
+    .fc-right.fc-bot { top: 62%; right: 0; }
+
+    .fc-btm {
+        bottom: -72px;
+    }
+
+    .fc-btm-l {
+        left: calc(50% - 138px);
+    }
+
+    .fc-btm-r {
+        left: calc(50% + 8px);
+    }
+
+    .ripple-wrap {
+        width: 280px;
+        height: 280px;
+    }
+}
+
+/* ══════════════════════════════════════
    RESPONSIVE — MOBILE (≤ 480px)
 ══════════════════════════════════════ */
 @media (max-width: 480px) {
@@ -1926,21 +2101,14 @@ nav.scrolled {
         padding: 14px 16px;
     }
 
-    .phone-mockup-wrapper {
-        height: 340px;
-        margin-bottom: 20px;
+    /* ── Cloud Solutions: mobile stack layout ────────────────── */
+
+    /* Hide the ripple ring animation + interactive controls */
+    .ripple-controls {
+        display: none;
     }
 
     .ripple-wrap {
-        width: 300px;
-        height: 300px;
-    }
-
-    .image-wrapper {
-        height: 300px;
-    }
-
-    .floating-card {
         display: none;
     }
 
@@ -1948,8 +2116,51 @@ nav.scrolled {
         display: none;
     }
 
-    .ripple-controls {
+    /* Wrapper: flex row-wrap so phone sits full-width on top,
+       cards tile in a 2-column grid below it */
+    .phone-mockup-wrapper {
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: stretch;
         gap: 10px;
+        padding: 0 12px;
+        margin-bottom: 40px;
+        width: 100%;
+    }
+
+    /* Phone image: full-width row, centred, no floating animation */
+    .image-wrapper {
+        order: -1;          /* Pull to top above all cards */
+        width: 100%;
+        height: 240px;
+        position: static;
+        animation: none;    /* Stop phoneFloat */
+        margin-bottom: 4px;
+    }
+
+    /* Cards: switch from absolute to in-flow, 2-column grid */
+    .floating-card {
+        position: static;           /* Remove absolute positioning */
+        width: calc(50% - 5px);     /* 2-column layout */
+        animation: none;            /* Stop cardFloat */
+        transform: none;
+        order: 1;                   /* Below phone */
+        min-height: 90px;
+    }
+
+    /* Reset bottom-card absolute offsets */
+    .fc-btm {
+        bottom: auto;
+        position: static;
+    }
+
+    .fc-btm-l,
+    .fc-btm-r {
+        left: auto;
+        right: auto;
     }
 
     .ripple-ctrl-group {

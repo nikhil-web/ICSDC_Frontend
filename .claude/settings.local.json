@@ -135,7 +135,30 @@
       "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\my-admin\\\\src\\\\components\\\\buttons'' | Select-Object Name\")",
       "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\my-admin\\\\src\\\\components\\\\buttons\\\\button.json''\")",
       "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC FINAL FE\\\\ICSDC_Frontend\\\\.claude\\\\worktrees\\\\zen-morse\\\\assets\\\\js\\\\main.js'' | Select-String ''LoginButton|login|mainLogo'' | Select-Object -First 10\")",
-      "Bash(powershell -Command \"Get-ChildItem -Filter ''*.html'' | ForEach-Object { \\(Get-Content $_FullName -Raw\\) -replace ''STRAPI_URL = \"\"http://localhost:1337\"\"'', ''STRAPI_URL = \"\"https://icsdcadmin.duckdns.org\"\"'' | Set-Content $_FullName -NoNewline }\")"
+      "Bash(powershell -Command \"Get-ChildItem -Filter ''*.html'' | ForEach-Object { \\(Get-Content $_FullName -Raw\\) -replace ''STRAPI_URL = \"\"http://localhost:1337\"\"'', ''STRAPI_URL = \"\"https://icsdcadmin.duckdns.org\"\"'' | Set-Content $_FullName -NoNewline }\")",
+      "Bash(powershell -Command \"Get-Content ''C:\\\\Users\\\\saket\\\\Downloads\\\\SSL Certificate ICSDC.md'' | Where-Object { $_-notmatch ''^\\\\!\\\\[\\\\]'' -and $_-notmatch ''^!\\\\[image'' } | Select-Object -First 300\")",
+      "Bash(powershell -Command \"$lines = [System.IO.File]::ReadAllLines\\(''C:\\\\Users\\\\saket\\\\Downloads\\\\H1- Fully Managed Dedicated Servers Built for Speed, Security & Stability.md''\\); $lines | Where-Object { $_-notmatch ''image[0-9]'' } | Select-Object -First 250 | Out-String\")",
+      "Bash(grep -l \"pricing\\\\|pricingTable\\\\|price-table\\\\|plan-card\" C:UserssaketOneDriveDesktopICSDC FINAL FEICSDC_Frontend.claudeworktreeszen-morse/*.html)",
+      "Bash(dir \"C:\\\\Users\\\\saket\\\\Downloads\"\" /b | findstr /i \"story contact about \")",
+      "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Users\\\\saket\\\\Downloads\\\\'' | Where-Object { $_Name -match ''story|contact|about'' } | Select-Object Name\")",
+      "Bash(powershell.exe -NoProfile -Command \"Get-ChildItem ''C:\\\\Users\\\\saket\\\\Downloads\\\\'' | Where-Object { [string]\\($_Name\\) -like ''*Contact*'' -or [string]\\($_Name\\) -like ''*Story*'' -or [string]\\($_Name\\) -like ''*about*'' } | Select-Object -ExpandProperty Name\")",
+      "Bash(cmd /c \"dir C:\\\\Users\\\\saket\\\\Downloads\\\\*.docx /b\")",
+      "Bash(cmd /c \"dir /b \"\"C:\\\\Users\\\\saket\\\\Downloads\\\\*.docx\"\"\")",
+      "Bash(cmd /c dir \"C:\\\\Users\\\\saket\\\\Downloads\" \" /b)",
+      "Bash(pandoc \"C:\\\\Users\\\\saket\\\\Downloads\\\\Contact us.docx\" -t plain)",
+      "Bash(pandoc \"C:\\\\Users\\\\saket\\\\Downloads\\\\Read our Story_ Because We''ve Never Settled for just _Good Enough_.docx\" -t plain)",
+      "Bash(node -e \"const fs=require\\(''fs''\\); const files=fs.readdirSync\\(''C:/Users/saket/Downloads''\\).filter\\(f=>f.endsWith\\(''.docx''\\)\\); console.log\\(files.join\\(''\\\\n''\\)\\);\")",
+      "Bash(pandoc \"C:\\\\Users\\\\saket\\\\Downloads\\\\about-us-story.docx\" -t plain)",
+      "Bash(cd /c)",
+      "Bash(find . -name style.css -path */ICSDC_Frontend/*)",
+      "Bash(node -e \"require\\(''C:/Users/saket/OneDrive/Desktop/ICSDC Strapi CMS/my-admin/seed/contact-us.js''\\); console.log\\(''contact-us OK''\\);\")",
+      "Bash(node -e \"require\\(''C:/Users/saket/OneDrive/Desktop/ICSDC Strapi CMS/my-admin/seed/about-us.js''\\); console.log\\(''about-us OK''\\);\")",
+      "Bash(node -e \"const fs=require\\(''fs''\\); console.log\\(fs.readdirSync\\(''C:/Users/saket/OneDrive/Desktop/ICSDC Strapi CMS/my-admin/src/components/ds''\\).join\\(''\\\\n''\\)\\);\")",
+      "Bash(node import-pages.js \"Home Page Extras\")",
+      "Bash(set STRAPI_URL=http://13.126.9.248:1337)",
+      "Bash(node -e \"process.env.STRAPI_URL=''http://13.126.9.248:1337''; require\\(''./import-pages.js''\\);\")",
+      "Bash(sort -k2 -n)",
+      "Bash(grep -l \"phone-mockup-wrapper\\\\|floating-card\\\\|fc-left\\\\|fc-right\\\\|fc-top\\\\|fc-mid\\\\|fc-bot\\\\|fc-btm\" \"C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC FINAL FE\\\\ICSDC_Frontend\\\\.claude\\\\worktrees\\\\zen-morse\\\\assets\\\\css\"/*.css)"
     ]
   }
 }
