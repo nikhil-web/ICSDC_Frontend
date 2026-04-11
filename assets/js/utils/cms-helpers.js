@@ -234,11 +234,11 @@ export function populateHero(section, data) {
     if (btns.length >= 1 && data.ctaPrimary) {
         // Try second button first (dedicated-server pattern), fall back to first
         var primaryBtn = btns.length >= 2 ? btns[1] : btns[0];
-        primaryBtn.innerHTML = data.ctaPrimary.text + ' &rarr;';
+        primaryBtn.innerHTML = (data.ctaPrimary.text || '') + ' &rarr;';
         if (data.ctaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + data.ctaPrimary.link + "'");
     }
     if (btns.length >= 2 && data.ctaSecondary) {
-        btns[0].textContent = data.ctaSecondary.text;
+        btns[0].textContent = data.ctaSecondary.text || '';
         if (data.ctaSecondary.link) btns[0].setAttribute('onclick', "window.location.href='" + data.ctaSecondary.link + "'");
     }
 }
@@ -316,11 +316,11 @@ export function populateCtaBand(selector, cta) {
         var secondaryBtn = btns.querySelector('.cloud-cta-btn-outline') || btns.querySelector('.ds-cta-btn-outline');
 
         if (primaryBtn && cta.ctaPrimary) {
-            primaryBtn.innerHTML = cta.ctaPrimary.text + ' &rarr;';
+            primaryBtn.innerHTML = (cta.ctaPrimary.text || '') + ' &rarr;';
             if (cta.ctaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaPrimary.link + "'");
         }
         if (secondaryBtn && cta.ctaSecondary) {
-            secondaryBtn.textContent = cta.ctaSecondary.text;
+            secondaryBtn.textContent = cta.ctaSecondary.text || '';
             if (cta.ctaSecondary.link) secondaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaSecondary.link + "'");
         }
     }

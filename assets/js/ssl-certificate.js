@@ -34,7 +34,7 @@ import {
             return '<div class="ssl-type-card">' +
                 '<div class="ssl-type-badge' + badgeExtra + '">' + (item.subtitle || '') + '</div>' +
                 '<h3 class="ssl-type-title">' + (item.title || '') + '</h3>' +
-                '<p class="ssl-type-desc">' + (item.desc || '') + '</p>' +
+                '<p class="ssl-type-desc">' + (item.desc || item.description || '') + '</p>' +
                 '<a href="' + (item.ctaLink || '#contact') + '" class="ssl-type-cta">' +
                 (item.ctaText || 'Contact Us') + ' &rarr;' +
                 '</a>' +

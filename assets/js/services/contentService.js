@@ -188,7 +188,7 @@ export function getLinuxVpsHostingPage() {
         "&populate[heroCtaPrimary]=*" +
         "&populate[heroCtaSecondary]=*" +
         "&populate[pillars]=*" +
-        "&populate[plans][populate]=specs" +
+        "&populate[plans]=*" +
         "&populate[powerFeatures]=*" +
         "&populate[osOptions]=*" +
         "&populate[controlPanels]=*" +
@@ -591,7 +591,7 @@ export function getWordpressHostingPage() {
         "&populate[heroCtaSecondary]=*" +
         "&populate[pillars]=*" +
         "&populate[plans][populate]=features" +
-        "&populate[featureCards]=*" +
+        "&populate[features]=*" +
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[performanceCards]=*" +
@@ -615,7 +615,7 @@ export function getLinuxCloudHostingPage() {
         "&populate[heroCtaPrimary]=*" +
         "&populate[heroCtaSecondary]=*" +
         "&populate[pillars]=*" +
-        "&populate[plans][populate]=specs" +
+        "&populate[plans]=*" +
         "&populate[powerFeatures]=*" +
         "&populate[frameworks]=*" +
         "&populate[whyLinuxCards]=*" +

@@ -82,7 +82,7 @@ import { populateIconCards } from "./utils/cms-helpers.js";
         if (primary) {
             const btn = document.querySelector('.hero-cta-primary, [data-cta="primary"], .hero-btns .btn-primary');
             if (btn) {
-                btn.textContent = primary.text;
+                btn.textContent = primary.text || '';
                 if (primary.link) btn.setAttribute('href', primary.link);
             }
         }
@@ -90,7 +90,7 @@ import { populateIconCards } from "./utils/cms-helpers.js";
         if (secondary) {
             const btn = document.querySelector('.hero-cta-secondary, [data-cta="secondary"], .hero-btns .btn-outline');
             if (btn) {
-                btn.textContent = secondary.text;
+                btn.textContent = secondary.text || '';
                 if (secondary.link) btn.setAttribute('href', secondary.link);
             }
         }
@@ -180,7 +180,7 @@ import { populateIconCards } from "./utils/cms-helpers.js";
             card.innerHTML = `
                 ${iconHTML}
                 <h4>${service.title}</h4>
-                <p>${service.description}</p>
+                <p>${service.description || service.desc || ''}</p>
             `;
 
             const isBottom = service.position?.startsWith('bottom');

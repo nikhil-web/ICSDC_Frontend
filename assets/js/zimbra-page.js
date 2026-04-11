@@ -348,7 +348,7 @@
             return '<div class="why-card">' +
                 '<div class="why-icon">' + p.icon + '</div>' +
                 '<h3>' + p.title + '</h3>' +
-                '<p>' + p.desc + '</p>' +
+                '<p>' + (p.desc || p.description || '') + '</p>' +
                 '</div>';
         }).join('');
     }
@@ -376,7 +376,7 @@
             return '<div class="cloud-power-card">' +
                 '<div class="cloud-power-icon">' + c.icon + '</div>' +
                 '<h3>' + c.title + '</h3>' +
-                '<p>' + c.desc + '</p>' +
+                '<p>' + (c.desc || c.description || '') + '</p>' +
                 '</div>';
         }).join('');
     }
@@ -401,7 +401,7 @@
                 '<div class="zimbra-step-num">' + (i + 1) + '</div>' +
                 '<div class="zimbra-step-body">' +
                 '<h3>' + s.title + '</h3>' +
-                '<p>' + s.desc + '</p>' +
+                '<p>' + (s.desc || s.description || '') + '</p>' +
                 '</div>' +
                 (i < m.steps.length - 1 ? '<span class="zimbra-step-arrow">›</span>' : '') +
                 '</div>';

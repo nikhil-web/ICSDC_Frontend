@@ -80,7 +80,7 @@ import {
         // CTA / Search button
         var searchBtn = section.querySelector('.dom-search-btn');
         if (searchBtn && page.heroCtaPrimary) {
-            searchBtn.innerHTML = page.heroCtaPrimary.text;
+            searchBtn.innerHTML = page.heroCtaPrimary.text || '';
             if (page.heroCtaPrimary.link && page.heroCtaPrimary.link !== '#') {
                 searchBtn.setAttribute('onclick', "window.location.href='" + page.heroCtaPrimary.link + "'");
             }

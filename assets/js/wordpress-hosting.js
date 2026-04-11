@@ -147,7 +147,7 @@ import {
 
             // 6. Features (cloud-power-grid)
             populateSectionHeader('#features', page.featuresLabel, page.featuresTitle, page.featuresSubtitle);
-            populateIconCards('#features .cloud-power-grid', page.featureCards, 'cloud-power-card');
+            populateIconCards('#features .cloud-power-grid', page.features, 'cloud-power-card');
 
             // 7. CTA Band 1
             populateCtaBand('.cloud-cta-band:not(.cloud-cta-dark)', page.ctaBand1);

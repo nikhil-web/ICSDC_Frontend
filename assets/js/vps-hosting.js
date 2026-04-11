@@ -94,7 +94,7 @@ import { getVpsHostingPage } from './services/contentService.js';
                         return '<div class="vps-pillar-card">' +
                             '<div class="vps-pillar-icon">' + resolveIcon(card.icon) + '</div>' +
                             '<h3>' + (card.title || '') + '</h3>' +
-                            '<p>' + (card.description || '') + '</p>' +
+                            '<p>' + (card.description || card.desc || '') + '</p>' +
                             '</div>';
                     }).join('');
                 }
@@ -194,7 +194,7 @@ import { getVpsHostingPage } from './services/contentService.js';
                             '<div class="vps-speed-icon">' + resolveIcon(f.icon) + '</div>' +
                             '<div>' +
                             '<h3>' + (f.title || '') + '</h3>' +
-                            '<p>' + (f.description || '') + '</p>' +
+                            '<p>' + (f.description || f.desc || '') + '</p>' +
                             '</div>' +
                             '</div>';
                     }).join('');
@@ -217,7 +217,7 @@ import { getVpsHostingPage } from './services/contentService.js';
                         return '<div class="vps-mgmt-card">' +
                             '<div class="vps-mgmt-icon">' + resolveIcon(card.icon) + '</div>' +
                             '<h3>' + (card.title || '') + '</h3>' +
-                            '<p>' + (card.description || '') + '</p>' +
+                            '<p>' + (card.description || card.desc || '') + '</p>' +
                             '</div>';
                     }).join('');
                 }
@@ -241,11 +241,11 @@ import { getVpsHostingPage } from './services/contentService.js';
                 var primaryBtn = btns.querySelector('.vps-cta-btn-primary');
                 var secondaryBtn = btns.querySelector('.vps-cta-btn-outline');
                 if (primaryBtn && cta.ctaPrimary) {
-                    primaryBtn.innerHTML = cta.ctaPrimary.text;
+                    primaryBtn.innerHTML = cta.ctaPrimary.text || '';
                     if (cta.ctaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaPrimary.link + "'");
                 }
                 if (secondaryBtn && cta.ctaSecondary) {
-                    secondaryBtn.textContent = cta.ctaSecondary.text;
+                    secondaryBtn.textContent = cta.ctaSecondary.text || '';
                     if (cta.ctaSecondary.link) secondaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaSecondary.link + "'");
                 }
             }
@@ -266,7 +266,7 @@ import { getVpsHostingPage } from './services/contentService.js';
                         return '<div class="vps-diff-card">' +
                             '<div class="vps-diff-icon">' + resolveIcon(card.icon) + '</div>' +
                             '<h3>' + (card.title || '') + '</h3>' +
-                            '<p>' + (card.description || '') + '</p>' +
+                            '<p>' + (card.description || card.desc || '') + '</p>' +
                             '</div>';
                     }).join('');
                 }
@@ -296,11 +296,11 @@ import { getVpsHostingPage } from './services/contentService.js';
                 var primaryBtn = content.querySelector('.btn-primary');
                 var outlineBtn = content.querySelector('.btn-outline');
                 if (primaryBtn && page.globalCtaPrimary) {
-                    primaryBtn.innerHTML = page.globalCtaPrimary.text;
+                    primaryBtn.innerHTML = page.globalCtaPrimary.text || '';
                     if (page.globalCtaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + page.globalCtaPrimary.link + "'");
                 }
                 if (outlineBtn && page.globalCtaSecondary) {
-                    outlineBtn.textContent = page.globalCtaSecondary.text;
+                    outlineBtn.textContent = page.globalCtaSecondary.text || '';
                     if (page.globalCtaSecondary.link) outlineBtn.setAttribute('onclick', "window.location.href='" + page.globalCtaSecondary.link + "'");
                 }
             }
@@ -339,7 +339,7 @@ import { getVpsHostingPage } from './services/contentService.js';
                             '<div class="vps-use-icon">' + resolveIcon(card.icon) + '</div>' +
                             '<div>' +
                             '<h3>' + (card.title || '') + '</h3>' +
-                            '<p>' + (card.description || '') + '</p>' +
+                            '<p>' + (card.description || card.desc || '') + '</p>' +
                             '</div>' +
                             '</div>';
                     }).join('');
@@ -403,11 +403,11 @@ import { getVpsHostingPage } from './services/contentService.js';
                 var primaryBtn = btns.querySelector('.vps-cta-btn-primary');
                 var secondaryBtn = btns.querySelector('.vps-cta-btn-outline');
                 if (primaryBtn && cta.ctaPrimary) {
-                    primaryBtn.innerHTML = cta.ctaPrimary.text;
+                    primaryBtn.innerHTML = cta.ctaPrimary.text || '';
                     if (cta.ctaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaPrimary.link + "'");
                 }
                 if (secondaryBtn && cta.ctaSecondary) {
-                    secondaryBtn.textContent = cta.ctaSecondary.text;
+                    secondaryBtn.textContent = cta.ctaSecondary.text || '';
                     if (cta.ctaSecondary.link) secondaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaSecondary.link + "'");
                 }
             }
