@@ -41,7 +41,9 @@ import {
     ICONS,
     starSVG,
     getInitials,
-    checkSVG
+    checkSVG,
+    initTestimonials,
+    initFAQ
 } from './utils/cms-helpers.js';
 
 import { getVpsHostingPage } from './services/contentService.js';
@@ -92,7 +94,7 @@ import { getVpsHostingPage } from './services/contentService.js';
                         return '<div class="vps-pillar-card">' +
                             '<div class="vps-pillar-icon">' + resolveIcon(card.icon) + '</div>' +
                             '<h3>' + (card.title || '') + '</h3>' +
-                            '<p>' + (card.description || '') + '</p>' +
+                            '<p>' + (card.description || card.desc || '') + '</p>' +
                             '</div>';
                     }).join('');
                 }
@@ -192,7 +194,7 @@ import { getVpsHostingPage } from './services/contentService.js';
                             '<div class="vps-speed-icon">' + resolveIcon(f.icon) + '</div>' +
                             '<div>' +
                             '<h3>' + (f.title || '') + '</h3>' +
-                            '<p>' + (f.description || '') + '</p>' +
+                            '<p>' + (f.description || f.desc || '') + '</p>' +
                             '</div>' +
                             '</div>';
                     }).join('');
@@ -215,7 +217,7 @@ import { getVpsHostingPage } from './services/contentService.js';
                         return '<div class="vps-mgmt-card">' +
                             '<div class="vps-mgmt-icon">' + resolveIcon(card.icon) + '</div>' +
                             '<h3>' + (card.title || '') + '</h3>' +
-                            '<p>' + (card.description || '') + '</p>' +
+                            '<p>' + (card.description || card.desc || '') + '</p>' +
                             '</div>';
                     }).join('');
                 }
@@ -239,11 +241,11 @@ import { getVpsHostingPage } from './services/contentService.js';
                 var primaryBtn = btns.querySelector('.vps-cta-btn-primary');
                 var secondaryBtn = btns.querySelector('.vps-cta-btn-outline');
                 if (primaryBtn && cta.ctaPrimary) {
-                    primaryBtn.innerHTML = cta.ctaPrimary.text;
+                    primaryBtn.innerHTML = cta.ctaPrimary.text || '';
                     if (cta.ctaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaPrimary.link + "'");
                 }
                 if (secondaryBtn && cta.ctaSecondary) {
-                    secondaryBtn.textContent = cta.ctaSecondary.text;
+                    secondaryBtn.textContent = cta.ctaSecondary.text || '';
                     if (cta.ctaSecondary.link) secondaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaSecondary.link + "'");
                 }
             }
@@ -264,7 +266,7 @@ import { getVpsHostingPage } from './services/contentService.js';
                         return '<div class="vps-diff-card">' +
                             '<div class="vps-diff-icon">' + resolveIcon(card.icon) + '</div>' +
                             '<h3>' + (card.title || '') + '</h3>' +
-                            '<p>' + (card.description || '') + '</p>' +
+                            '<p>' + (card.description || card.desc || '') + '</p>' +
                             '</div>';
                     }).join('');
                 }
@@ -294,11 +296,11 @@ import { getVpsHostingPage } from './services/contentService.js';
                 var primaryBtn = content.querySelector('.btn-primary');
                 var outlineBtn = content.querySelector('.btn-outline');
                 if (primaryBtn && page.globalCtaPrimary) {
-                    primaryBtn.innerHTML = page.globalCtaPrimary.text;
+                    primaryBtn.innerHTML = page.globalCtaPrimary.text || '';
                     if (page.globalCtaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + page.globalCtaPrimary.link + "'");
                 }
                 if (outlineBtn && page.globalCtaSecondary) {
-                    outlineBtn.textContent = page.globalCtaSecondary.text;
+                    outlineBtn.textContent = page.globalCtaSecondary.text || '';
                     if (page.globalCtaSecondary.link) outlineBtn.setAttribute('onclick', "window.location.href='" + page.globalCtaSecondary.link + "'");
                 }
             }
@@ -337,7 +339,7 @@ import { getVpsHostingPage } from './services/contentService.js';
                             '<div class="vps-use-icon">' + resolveIcon(card.icon) + '</div>' +
                             '<div>' +
                             '<h3>' + (card.title || '') + '</h3>' +
-                            '<p>' + (card.description || '') + '</p>' +
+                            '<p>' + (card.description || card.desc || '') + '</p>' +
                             '</div>' +
                             '</div>';
                     }).join('');
@@ -367,151 +369,22 @@ import { getVpsHostingPage } from './services/contentService.js';
             }
         })();
 
-        /* ── 14. Testimonials ───────────────────────────────── */
-        (function () {
-            if (!page.testimonials || !page.testimonials.length) return;
-            var grid = document.getElementById('vps-testi-grid');
-            var dotsWrap = document.getElementById('vps-testi-dots');
-            var prevBtn = document.getElementById('vps-testi-prev');
-            var nextBtn = document.getElementById('vps-testi-next');
-            if (!grid || !dotsWrap) return;
-
-            var items = page.testimonials;
-
-            grid.innerHTML = items.map(function (t, i) {
-                var initials = getInitials(t.name);
-                var stars = '';
-                for (var s = 0; s < (t.rating || 5); s++) { stars += starSVG(); }
-
-                return '<article class="testi-card" role="listitem" data-testi-index="' + i + '" aria-label="Testimonial from ' + t.name + '">' +
-                    '<div class="testi-left">' +
-                    '<div class="testi-avatar" aria-hidden="true">' +
-                    '<span class="testi-avatar-initials">' + initials + '</span>' +
-                    '</div>' +
-                    '<div class="testi-client-info">' +
-                    '<p class="testi-name">' + t.name + '</p>' +
-                    '<p class="testi-job">' + (t.title || '') + '</p>' +
-                    '<p class="testi-company">' + (t.company || '') + '</p>' +
-                    '</div>' +
-                    '<div class="testi-rating" aria-label="Rating: ' + (t.rating || 5) + ' out of 5 stars">' + stars + '</div>' +
-                    '</div>' +
-                    '<div class="testi-right">' +
-                    '<blockquote class="testi-quote">' + t.quote + '</blockquote>' +
-                    '</div>' +
-                    '</article>';
-            }).join('');
-
-            // Dots
-            dotsWrap.innerHTML = items.map(function (_, i) {
-                return '<button class="testi-dot' + (i === 0 ? ' testi-dot-active' : '') + '" role="tab" aria-selected="' + (i === 0) + '" aria-label="Go to testimonial ' + (i + 1) + '" data-dot="' + i + '"></button>';
-            }).join('');
-
-            var cards = Array.from(grid.querySelectorAll('.testi-card'));
-            var dots = Array.from(dotsWrap.querySelectorAll('.testi-dot'));
-
-            function scrollToCard(index) {
-                var card = cards[index];
-                if (!card) return;
-                grid.scrollTo({ left: card.offsetLeft - 4, behavior: 'smooth' });
+        if (page.testimonials && page.testimonials.length) {
+            initTestimonials(page.testimonials)
+        } else {
+            //hide the entire section if no testimonials            
+            var testiSection = document.getElementsByClassName('testi-section');
+            if (testiSection) {
+                testiSection.style.display = 'none';
             }
+        }
 
-            dots.forEach(function (btn, i) {
-                btn.addEventListener('click', function () { scrollToCard(i); });
-            });
 
-            function currentIndex() {
-                var scrollLeft = grid.scrollLeft;
-                var closest = 0, minDist = Infinity;
-                cards.forEach(function (card, i) {
-                    var dist = Math.abs(card.offsetLeft - scrollLeft);
-                    if (dist < minDist) { minDist = dist; closest = i; }
-                });
-                return closest;
-            }
-
-            if (prevBtn) prevBtn.addEventListener('click', function () {
-                var idx = currentIndex();
-                scrollToCard(idx === 0 ? items.length - 1 : idx - 1);
-            });
-
-            if (nextBtn) nextBtn.addEventListener('click', function () {
-                var idx = currentIndex();
-                scrollToCard(idx === items.length - 1 ? 0 : idx + 1);
-            });
-
-            var scrollTimer;
-            grid.addEventListener('scroll', function () {
-                clearTimeout(scrollTimer);
-                scrollTimer = setTimeout(function () {
-                    var idx = currentIndex();
-                    dots.forEach(function (d, i) {
-                        d.classList.toggle('testi-dot-active', i === idx);
-                        d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
-                    });
-                }, 80);
-            });
-        })();
-
-        /* ── 15. FAQ ────────────────────────────────────────── */
-        (function () {
-            if (!page.faqs || !page.faqs.length) return;
-            var dl = document.getElementById('vps-faq-accordions');
-            if (!dl) return;
-
-            if (page.faqTitle) {
-                setText(document, '.faq-title', page.faqTitle);
-            }
-
-            var sorted = page.faqs.slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
-            var openIndex = 0;
-
-            function render() {
-                dl.innerHTML = sorted.map(function (faq, i) {
-                    var isOpen = i === openIndex;
-                    return '<div class="faq-item' + (isOpen ? ' faq-open' : '') + '" data-faq-index="' + i + '">' +
-                        '<dt>' +
-                        '<button class="faq-question" aria-expanded="' + isOpen + '" aria-controls="vps-faq-' + i + '">' +
-                        '<span>' + faq.question + '</span>' +
-                        '<svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">' +
-                        '<path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
-                        '</svg>' +
-                        '</button>' +
-                        '</dt>' +
-                        '<dd class="faq-answer" id="vps-faq-' + i + '" role="region">' +
-                        '<p>' + faq.answer + '</p>' +
-                        '</dd>' +
-                        '</div>';
-                }).join('');
-
-                dl.querySelectorAll('.faq-question').forEach(function (btn) {
-                    btn.addEventListener('click', function () {
-                        var index = parseInt(btn.closest('.faq-item').dataset.faqIndex, 10);
-                        openIndex = (openIndex === index) ? null : index;
-                        render();
-                    });
-                });
-            }
-
-            render();
-
-            // FAQ contact card
-            if (page.faqContactTitle || page.faqContactDescription) {
-                var card = document.querySelector('.faq-contact-card');
-                if (card) {
-                    if (page.faqContactTitle) setText(card, '.faq-contact-title', page.faqContactTitle);
-                    if (page.faqContactDescription) setText(card, '.faq-contact-desc', page.faqContactDescription);
-                    if (page.faqContactBtnLabel) {
-                        var btn = card.querySelector('.faq-contact-btn');
-                        if (btn) {
-                            var svg = btn.querySelector('svg');
-                            btn.textContent = page.faqContactBtnLabel + ' ';
-                            if (svg) btn.appendChild(svg);
-                            if (page.faqContactBtnUrl) btn.setAttribute('href', page.faqContactBtnUrl);
-                        }
-                    }
-                }
-            }
-        })();
+        // 9. FAQ
+        if (page.faqTitle) {
+            setText(document, '#acr-faq-heading', page.faqTitle);
+        }
+        initFAQ(page.faq);
 
         /* ── 16. CTA Band #2 (final CTA) ───────────────────── */
         (function () {
@@ -530,11 +403,11 @@ import { getVpsHostingPage } from './services/contentService.js';
                 var primaryBtn = btns.querySelector('.vps-cta-btn-primary');
                 var secondaryBtn = btns.querySelector('.vps-cta-btn-outline');
                 if (primaryBtn && cta.ctaPrimary) {
-                    primaryBtn.innerHTML = cta.ctaPrimary.text;
+                    primaryBtn.innerHTML = cta.ctaPrimary.text || '';
                     if (cta.ctaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaPrimary.link + "'");
                 }
                 if (secondaryBtn && cta.ctaSecondary) {
-                    secondaryBtn.textContent = cta.ctaSecondary.text;
+                    secondaryBtn.textContent = cta.ctaSecondary.text || '';
                     if (cta.ctaSecondary.link) secondaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaSecondary.link + "'");
                 }
             }

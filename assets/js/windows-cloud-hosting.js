@@ -1,4 +1,4 @@
-import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, hidePageLoader, markActiveNavLink } from './utils/cms-helpers.js';
+import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, hidePageLoader, markActiveNavLink, initTestimonials, initFAQ, setText } from './utils/cms-helpers.js';
 import { getWindowsCloudHostingPage } from './services/contentService.js';
 
 (async function () {
@@ -32,6 +32,20 @@ import { getWindowsCloudHostingPage } from './services/contentService.js';
 
         populateSectionHeader('#apps', page.appsLabel, page.appsTitle, page.appsSubtitle);
         populateIconCards('.cloud-apps-grid', page.appCards, 'cloud-power-card');
+
+        if (page.testimonialTitle) setText(document, '#winvps-testi-heading', page.testimonialTitle);
+        initTestimonials(page.testimonials, {
+            grid: 'winvps-testi-grid',
+            dots: 'winvps-testi-dots',
+            prev: 'winvps-testi-prev',
+            next: 'winvps-testi-next'
+        });
+
+        if (page.faqTitle) setText(document, '#winvps-faq-heading', page.faqTitle);
+        initFAQ(page.faq, {
+            containerId: 'winvps-faq-accordions',
+            answerPrefix: 'wincloud-faq'
+        });
 
         populateCtaBand('.cloud-cta-band:not(.cloud-cta-dark)', page.ctaBand1);
         populateCtaBand('.cloud-cta-dark', page.ctaBand2);

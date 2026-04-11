@@ -1,4 +1,20 @@
-import { populateSEO, populateHero, populateIconCards, populateSectionHeader, populateCtaBand, populatePricingPlans, populateWhenCards, populateStats, populateTechBadges, hidePageLoader, markActiveNavLink, setText, setHTML } from './utils/cms-helpers.js';
+import {
+    populateSEO,
+    populateHero,
+    populateIconCards,
+    populateSectionHeader,
+    populateCtaBand,
+    populatePricingPlansCloud,
+    populateWhenCards,
+    populateStats,
+    populateTechBadges,
+    hidePageLoader,
+    markActiveNavLink,
+    setText,
+    setHTML,
+    initTestimonials,
+    initFAQ
+} from './utils/cms-helpers.js';
 import { getCloudHostingPage } from './services/contentService.js';
 
 (async function () {
@@ -23,8 +39,10 @@ import { getCloudHostingPage } from './services/contentService.js';
 
         populateIconCards('.why-grid', page.pillars, 'why-card');
 
-        populateSectionHeader('#pricing', page.pricingLabel, page.pricingTitle, page.pricingSubtitle);
-        populatePricingPlans('.cloud-pricing-grid', page.pricingPlans);
+        populateSectionHeader('#cloud-pricing', page.pricingLabel, page.pricingTitle, page.pricingSubtitle);
+        // populatePricingPlans('.cloud-pricing-grid', page.pricingPlans);
+
+        populatePricingPlansCloud('.cloud-pricing-grid', page.pricingPlans);
 
         populateSectionHeader('#power', page.powerLabel, page.powerTitle, page.powerSubtitle);
         populateIconCards('.cloud-power-grid', page.powerFeatures, 'cloud-power-card');
@@ -53,6 +71,19 @@ import { getCloudHostingPage } from './services/contentService.js';
 
         populateCtaBand('.cloud-cta-band:nth-of-type(2)', page.ctaBand2);
         populateCtaBand('.cloud-cta-dark', page.ctaBand3);
+
+
+        if (page.testimonials && page.testimonials.length) {
+            initTestimonials(page.testimonials)
+        } else {
+            //hide the entire section if no testimonials            
+            var testiSection = document.getElementsByClassName('testi-section');
+            if (testiSection) {
+                testiSection.style.display = 'none';
+            }
+        }
+
+        initFAQ(page.faq);
     } catch (err) {
         console.error('[cloud-hosting] CMS load failed:', err);
     }

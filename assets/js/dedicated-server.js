@@ -25,6 +25,7 @@
  */
 
 import { getDedicatedServerPage } from './services/contentService.js';
+import { initFAQ } from './utils/cms-helpers.js';
 
 (function () {
     'use strict';
@@ -160,11 +161,11 @@ import { getDedicatedServerPage } from './services/contentService.js';
         var btns = section.querySelectorAll('.hero-btns button');
         if (btns.length >= 2) {
             if (hero.ctaSecondary) {
-                btns[0].textContent = hero.ctaSecondary.text;
+                btns[0].textContent = hero.ctaSecondary.text || '';
                 if (hero.ctaSecondary.link) btns[0].setAttribute('onclick', "window.location.href='" + hero.ctaSecondary.link + "'");
             }
             if (hero.ctaPrimary) {
-                btns[1].innerHTML = hero.ctaPrimary.text + ' &rarr;';
+                btns[1].innerHTML = (hero.ctaPrimary.text || '') + ' &rarr;';
                 if (hero.ctaPrimary.link) btns[1].setAttribute('onclick', "window.location.href='" + hero.ctaPrimary.link + "'");
             }
         }
@@ -177,12 +178,12 @@ import { getDedicatedServerPage } from './services/contentService.js';
                     return '<div class="ds-rack-unit">' +
                         '<div class="ds-rack-led"></div>' +
                         '<div class="ds-rack-bars">' +
-                        '<div class="ds-rack-bar" style="flex:' + unit.bar1 + '"></div>' +
-                        '<div class="ds-rack-bar" style="flex:' + unit.bar2 + '"></div>' +
-                        '<div class="ds-rack-bar" style="flex:' + unit.bar3 + '"></div>' +
+                        '<div class="ds-rack-bar" style="flex:' + (unit.bar1 || '1') + '"></div>' +
+                        '<div class="ds-rack-bar" style="flex:' + (unit.bar2 || '1') + '"></div>' +
+                        '<div class="ds-rack-bar" style="flex:' + (unit.bar3 || '1') + '"></div>' +
                         '</div>' +
-                        '<span class="ds-rack-label">' + unit.label + '</span>' +
-                        '<span class="ds-rack-stat">' + unit.stat + '</span>' +
+                        '<span class="ds-rack-label">' + (unit.label || '') + '</span>' +
+                        '<span class="ds-rack-stat">' + (unit.stat || '') + '</span>' +
                         '</div>';
                 }).join('');
             }
@@ -206,8 +207,8 @@ import { getDedicatedServerPage } from './services/contentService.js';
                 '<div class="why-icon" aria-hidden="true">' +
                 resolveIcon(card.icon) +
                 '</div>' +
-                '<h3>' + card.title + '</h3>' +
-                '<p>' + card.description + '</p>' +
+                '<h3>' + (card.title || '') + '</h3>' +
+                '<p>' + (card.desc || '') + '</p>' +
                 '</div>';
         }).join('');
     }
@@ -281,8 +282,8 @@ import { getDedicatedServerPage } from './services/contentService.js';
         grid.innerHTML = sorted.map(function (p) {
             return '<div class="ds-pillar-card">' +
                 '<div class="ds-pillar-icon">' + resolveIcon(p.icon) + '</div>' +
-                '<h3>' + p.title + '</h3>' +
-                '<p>' + p.description + '</p>' +
+                '<h3>' + (p.title || '') + '</h3>' +
+                '<p>' + (p.desc || p.description || '') + '</p>' +
                 '</div>';
         }).join('');
     }
@@ -303,11 +304,11 @@ import { getDedicatedServerPage } from './services/contentService.js';
             var primaryBtn = btns.querySelector('.ds-cta-btn-primary');
             var secondaryBtn = btns.querySelector('.ds-cta-btn-outline');
             if (primaryBtn && cta.ctaPrimary) {
-                primaryBtn.innerHTML = cta.ctaPrimary.text + ' &rarr;';
+                primaryBtn.innerHTML = (cta.ctaPrimary.text || '') + ' &rarr;';
                 if (cta.ctaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaPrimary.link + "'");
             }
             if (secondaryBtn && cta.ctaSecondary) {
-                secondaryBtn.textContent = cta.ctaSecondary.text;
+                secondaryBtn.textContent = cta.ctaSecondary.text || '';
                 if (cta.ctaSecondary.link) secondaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaSecondary.link + "'");
             }
         }
@@ -343,8 +344,8 @@ import { getDedicatedServerPage } from './services/contentService.js';
         grid.innerHTML = sorted.map(function (c) {
             return '<div class="ds-security-card">' +
                 '<div class="ds-security-icon">' + resolveIcon(c.icon) + '</div>' +
-                '<h3>' + c.title + '</h3>' +
-                '<p>' + c.description + '</p>' +
+                '<h3>' + (c.title || '') + '</h3>' +
+                '<p>' + (c.desc || '') + '</p>' +
                 '</div>';
         }).join('');
     }
@@ -408,8 +409,8 @@ import { getDedicatedServerPage } from './services/contentService.js';
         tbody.innerHTML = sorted.map(function (r) {
             return '<tr>' +
                 '<td>' + r.feature + '</td>' +
-                '<td class="ds-col-icsdc">' + comparisonIcon(r.icsdc) + '</td>' +
-                '<td style="text-align:center;">' + comparisonIcon(r.others) + '</td>' +
+                '<td class="ds-col-icsdc">' + comparisonIcon(r.icsdcStatus) + '</td>' +
+                '<td style="text-align:center;">' + comparisonIcon(r.othersStatus) + '</td>' +
                 '</tr>';
         }).join('');
     }
@@ -433,7 +434,7 @@ import { getDedicatedServerPage } from './services/contentService.js';
                         '<span class="ds-cl-icon"><svg viewBox="0 0 12 12" fill="none">' +
                         '<polyline points="2,6 5,9 10,3" stroke-linecap="round" stroke-linejoin="round" />' +
                         '</svg></span>' +
-                        '<span><strong>' + item.label + '</strong> ' + item.description + '</span>' +
+                        '<span><strong>' + (item.label || '') + '</strong> ' + (item.description || '') + '</span>' +
                         '</li>';
                 }).join('');
             }
@@ -443,11 +444,11 @@ import { getDedicatedServerPage } from './services/contentService.js';
         var perfBtns = section.querySelectorAll('.hero-btns button');
         if (perfBtns.length >= 2) {
             if (ctaPrimary) {
-                perfBtns[0].innerHTML = ctaPrimary.text + ' &rarr;';
+                perfBtns[0].innerHTML = (ctaPrimary.text || '') + ' &rarr;';
                 if (ctaPrimary.link) perfBtns[0].setAttribute('onclick', "window.location.href='" + ctaPrimary.link + "'");
             }
             if (ctaSecondary) {
-                perfBtns[1].textContent = ctaSecondary.text;
+                perfBtns[1].textContent = ctaSecondary.text || '';
                 if (ctaSecondary.link) perfBtns[1].setAttribute('onclick', "window.location.href='" + ctaSecondary.link + "'");
             }
         }
@@ -458,8 +459,8 @@ import { getDedicatedServerPage } from './services/contentService.js';
             if (statsEl) {
                 statsEl.innerHTML = stats.map(function (s) {
                     return '<div class="ds-perf-stat">' +
-                        '<span class="ds-perf-stat-val">' + s.value + '</span>' +
-                        '<span class="ds-perf-stat-label">' + s.label + '</span>' +
+                        '<span class="ds-perf-stat-val">' + (s.value || '') + '</span>' +
+                        '<span class="ds-perf-stat-label">' + (s.label || '') + '</span>' +
                         '</div>';
                 }).join('');
             }
@@ -480,9 +481,9 @@ import { getDedicatedServerPage } from './services/contentService.js';
             var mapVisual = section.querySelector('.ds-map-visual');
             if (mapVisual) {
                 mapVisual.innerHTML = pins.map(function (pin) {
-                    return '<div class="ds-map-pin" style="top:' + pin.top + '; left:' + pin.left + ';">' +
+                    return '<div class="ds-map-pin" style="top:' + (pin.top || '50%') + '; left:' + (pin.left || '50%') + ';">' +
                         '<div class="ds-map-pin-dot"></div>' +
-                        '<div class="ds-map-pin-label">' + pin.label + '</div>' +
+                        '<div class="ds-map-pin-label">' + (pin.label || '') + '</div>' +
                         '</div>';
                 }).join('');
             }
@@ -493,7 +494,7 @@ import { getDedicatedServerPage } from './services/contentService.js';
             var tagWrap = section.querySelector('.ds-location-tags');
             if (tagWrap) {
                 tagWrap.innerHTML = tags.map(function (t) {
-                    return '<span class="ds-location-tag">' + t.emoji + ' ' + t.text + '</span>';
+                    return '<span class="ds-location-tag">' + (t.emoji || '') + ' ' + (t.text || '') + '</span>';
                 }).join('');
             }
         }
@@ -514,9 +515,9 @@ import { getDedicatedServerPage } from './services/contentService.js';
 
         grid.innerHTML = cards.map(function (card) {
             return '<div class="ds-when-card">' +
-                '<div class="ds-when-num">' + card.number + '</div>' +
-                '<h3>' + card.title + '</h3>' +
-                '<p>' + card.description + '</p>' +
+                '<div class="ds-when-num">' + (card.number || '') + '</div>' +
+                '<h3>' + (card.title || '') + '</h3>' +
+                '<p>' + (card.description || '') + '</p>' +
                 '</div>';
         }).join('');
     }
@@ -539,8 +540,8 @@ import { getDedicatedServerPage } from './services/contentService.js';
         grid.innerHTML = sorted.map(function (card) {
             return '<div class="ds-use-card">' +
                 '<div class="ds-use-icon">' + resolveIcon(card.icon) + '</div>' +
-                '<h3>' + card.title + '</h3>' +
-                '<p>' + card.description + '</p>' +
+                '<h3>' + (card.title || '') + '</h3>' +
+                '<p>' + (card.desc || '') + '</p>' +
                 '</div>';
         }).join('');
     }
@@ -551,20 +552,19 @@ import { getDedicatedServerPage } from './services/contentService.js';
         var stars = '';
         for (var s = 0; s < (t.rating || 5); s++) { stars += starSVG(); }
 
-        return '<article class="testi-card" role="listitem" data-testi-index="' + index + '" aria-label="Testimonial from ' + t.name + '">' +
-            '<div class="testi-left">' +
-            '<div class="testi-avatar" aria-hidden="true">' +
-            '<span class="testi-avatar-initials">' + initials + '</span>' +
-            '</div>' +
-            '<div class="testi-client-info">' +
-            '<p class="testi-name">' + t.name + '</p>' +
-            '<p class="testi-job">' + (t.title || '') + '</p>' +
-            '<p class="testi-company">' + (t.company || '') + '</p>' +
-            '</div>' +
+        var jobLine = [t.title || t.jobTitle || '', t.company || ''].filter(Boolean).join(' · ');
+        return '<article class="testi-card" role="listitem" data-testi-index="' + index + '" aria-label="Testimonial from ' + (t.name || '') + '">' +
+            '<div class="testi-body">' +
+            '<span class="testi-quote-mark" aria-hidden="true">&#10077;</span>' +
+            '<blockquote class="testi-quote">' + (t.quote || '') + '</blockquote>' +
             '<div class="testi-rating" aria-label="Rating: ' + (t.rating || 5) + ' out of 5 stars">' + stars + '</div>' +
             '</div>' +
-            '<div class="testi-right">' +
-            '<blockquote class="testi-quote">' + t.quote + '</blockquote>' +
+            '<div class="testi-footer">' +
+            '<div class="testi-avatar" aria-hidden="true"><span class="testi-avatar-initials">' + initials + '</span></div>' +
+            '<div class="testi-client-info">' +
+            '<p class="testi-name">' + (t.name || '') + '</p>' +
+            '<p class="testi-job">' + jobLine + '</p>' +
+            '</div>' +
             '</div>' +
             '</article>';
     }
@@ -642,14 +642,14 @@ import { getDedicatedServerPage } from './services/contentService.js';
                 return '<div class="faq-item' + (isOpen ? ' faq-open' : '') + '" data-faq-index="' + i + '">' +
                     '<dt>' +
                     '<button class="faq-question" aria-expanded="' + isOpen + '" aria-controls="ds-faq-answer-' + i + '" id="ds-faq-question-' + i + '">' +
-                    '<span>' + faq.question + '</span>' +
+                    '<span>' + (faq.question || '') + '</span>' +
                     '<svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">' +
                     '<path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
                     '</svg>' +
                     '</button>' +
                     '</dt>' +
                     '<dd class="faq-answer" id="ds-faq-answer-' + i + '" role="region" aria-labelledby="ds-faq-question-' + i + '">' +
-                    '<p>' + faq.answer + '</p>' +
+                    '<p>' + (faq.answer || '') + '</p>' +
                     '</dd>' +
                     '</div>';
             }).join('');
@@ -706,11 +706,11 @@ import { getDedicatedServerPage } from './services/contentService.js';
             if (addr) {
                 var a = footer.address;
                 addr.innerHTML =
-                    '<span>' + a.street + '</span>' +
-                    '<span>' + a.city + '</span>' +
-                    '<span>' + a.country + '</span>' +
-                    '<span class="footer-phone">Phone: ' + a.phone + '</span>' +
-                    '<span>Email: <a href="mailto:' + a.email + '" class="footer-email-link">' + a.email + '</a></span>';
+                    (a.street ? '<span>' + a.street + '</span>' : '') +
+                    (a.city ? '<span>' + a.city + '</span>' : '') +
+                    (a.country ? '<span>' + a.country + '</span>' : '') +
+                    (a.phone ? '<span class="footer-phone">Phone: ' + a.phone + '</span>' : '') +
+                    (a.email ? '<span>Email: <a href="mailto:' + a.email + '" class="footer-email-link">' + a.email + '</a></span>' : '');
             }
         }
 
@@ -719,8 +719,8 @@ import { getDedicatedServerPage } from './services/contentService.js';
             var socialWrap = footerEl.querySelector('.footer-social');
             if (socialWrap) {
                 socialWrap.innerHTML = footer.socialLinks.map(function (s) {
-                    return '<a href="' + s.url + '" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="' + s.label + '">' +
-                        s.svg +
+                    return '<a href="' + (s.url || '#') + '" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="' + (s.label || '') + '">' +
+                        (s.svg || '') +
                         '</a>';
                 }).join('');
             }
@@ -741,10 +741,10 @@ import { getDedicatedServerPage } from './services/contentService.js';
                     div.className = 'footer-link-group';
                     div.setAttribute('aria-labelledby', group.groupId);
                     div.innerHTML =
-                        '<h3 id="' + group.groupId + '" class="footer-link-title">' + group.title + '</h3>' +
+                        '<h3 id="' + (group.groupId || '') + '" class="footer-link-title">' + (group.title || '') + '</h3>' +
                         '<ul>' +
                         (group.links || []).map(function (link) {
-                            return '<li><a href="' + link.url + '" class="footer-link">' + link.text + '</a></li>';
+                            return '<li><a href="' + (link.url || '#') + '" class="footer-link">' + (link.text || '') + '</a></li>';
                         }).join('') +
                         '</ul>';
                     container.appendChild(div);
@@ -887,14 +887,12 @@ import { getDedicatedServerPage } from './services/contentService.js';
             if (page.faqTitle) {
                 setText(document, '.faq-title', page.faqTitle);
             }
-            initDSFAQ(page.faqs);
+            initFAQ(page.faq);
             populateFaqContact(page.faqContactTitle, page.faqContactDescription, page.faqContactBtnLabel, page.faqContactBtnUrl);
 
             // 16. CTA Band #2
             populateCtaBand('.ds-cta-dark', page.ctaBand2);
 
-            // 17. Footer
-            populateFooter(page.footer);
 
         } catch (err) {
             console.error('[dedicated-server] Failed to load CMS data:', err);

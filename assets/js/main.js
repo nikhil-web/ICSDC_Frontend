@@ -3,7 +3,7 @@
 //  Renders:  Navigation + Dropdown + Hamburger Menu
 // ══════════════════════════════════════════════════════════
 
-import { getNavigation } from "./services/contentService.js";
+import { getNavigation, getFooter } from "./services/contentService.js";
 
 
 // ══════════════════════════════════════════════════════════
@@ -29,7 +29,7 @@ function initNav(menuData) {
         id: String(menu.id),
         label: menu.lebel,
         icon: menu.icon,
-        desc: menu.desc,
+        desc: menu.desc || menu.description || '',
         cols: menu.cols,
         items: (menu.items || []).map(item => ({
             icon: item.icon,
@@ -205,7 +205,7 @@ function initHamburger() {
 
 function initMainLogo(menuData) {
     // data strapi is mainLogo we nedd to add main logo data to this image src 
-    const mainLogoEl = document.querySelector("[data-strapi-mainLogo]");
+    const mainLogoEl = document.querySelector('[data-strapi-mainLogo], [data-strapi="mainLogo"]');
     if (mainLogoEl && menuData?.data?.navLogo) {
         mainLogoEl.src = STRAPI_URL + menuData.data.navLogo.mainLogo.url;
         mainLogoEl.alt = menuData.data.navLogo.alternativeText || "Main Logo";
@@ -213,21 +213,98 @@ function initMainLogo(menuData) {
 }
 
 function initLoginButton(menuData) {
-    const loginBtn = document.querySelector(".desktop-login-btn");
-    if (loginBtn && menuData?.data?.LoginButton) {
-        loginBtn.textContent = menuData.data.LoginButton.btnText || "Login";
-        if (menuData.data.LoginButton.Link) {
+    const loginButtons = document.querySelectorAll(".desktop-login-btn, .mobile-login-btn");
+    if (!loginButtons.length || !menuData?.data?.LoginButton) return;
+
+    const { btnText, Link } = menuData.data.LoginButton;
+    loginButtons.forEach((loginBtn) => {
+        loginBtn.textContent = btnText || "Login";
+        if (Link) {
             loginBtn.addEventListener("click", () => {
-                window.location.href = menuData.data.LoginButton.Link;
+                window.location.href = Link;
             });
         }
-    }
+    });
 }
 
 // ══════════════════════════════════════════════════════════
 //  INIT — orchestrates the full render pipeline
 // ══════════════════════════════════════════════════════════
 
+function initFooter(footer) {
+    if (!footer) return;
+
+    // --- Logo ---
+    var logoFooter = document.querySelector("[data-strapi-logo]");
+    if (logoFooter && footer.logo) {
+        logoFooter.src = STRAPI_URL + footer.logo.url;
+        logoFooter.alt = footer.logoAlt || 'Logo';
+    }
+
+    // --- Address ---
+    var address = document.querySelector('[data-strapi-footer-address]');
+    if (address && footer.address) {
+        address.innerHTML = footer.address; // keep <br> tags from CMS
+    }
+
+    // --- Phone ---
+    var phone = document.querySelector('[data-strapi-footer-phone]');
+    if (phone && footer.phone) {
+        phone.innerHTML = footer.phone;
+    }
+
+    // --- Email ---
+    var email = document.querySelector('[data-strapi-footer-email]');
+    if (email && footer.email) {
+        email.href = 'mailto:' + footer.email;
+        email.innerHTML = footer.email;
+    }
+
+    // --- Social links ---
+    if (footer.socialLinks) {
+        footer.socialLinks.forEach(function (item) {
+            var el = document.querySelector('[data-strapi-social="' + item.platform + '"]');
+            if (el && item.url) {
+                el.href = item.url;
+            }
+        });
+    }
+
+    var groupsWrap = document.querySelector('[data-strapi-link-groups]');
+
+    if (groupsWrap && footer.linkGroups) {
+        footer.linkGroups.forEach(function (group) {
+
+            var links = (group.links || []).map(function (link) {
+                return `<li><a class="footer-link" href="${link.url || '#'}">${link.label || ''}</a></li>`;
+            }).join('');
+
+            groupsWrap.insertAdjacentHTML('beforeend', `
+            <div class="footer-link-group">
+                <h3 class="footer-link-title">${group.title || ''}</h3>
+                <ul>${links}</ul>
+            </div>
+        `);
+        });
+    }
+
+
+    /*
+    
+            <!-- Services -->
+            <div class="footer-link-group" aria-labelledby="footer-services">
+                <h3 id="footer-services" class="footer-link-title">Services</h3>
+                <ul data-strapi-link-group="services"></ul>
+            </div> */
+
+    // --- Year & Company ---
+    var yearEl = document.querySelector('[data-strapi-year]');
+    if (yearEl) yearEl.textContent = footer.copyrightYear || new Date().getFullYear();
+
+    var nameEl = document.querySelector('[data-strapi-company-name]');
+    if (nameEl && footer.companyName) nameEl.textContent = footer.companyName;
+
+}
 
 async function init() {
 
@@ -242,6 +319,10 @@ async function init() {
         initNav(menuData);
         initMainLogo(menuData);
         initLoginButton(menuData);
+
+        const footerData = await getFooter();
+        initFooter(footerData.data.commonFooter);
+
     } catch (err) {
         console.error(" Menu data fetch has failed frm strapi", err);
 
@@ -250,6 +331,76 @@ async function init() {
     }
 
     initHamburger();
+    initThemeToggle();
 }
 
 init();
+
+// ══════════════════════════════════════════════════════
+//  THEME TOGGLE
+// ══════════════════════════════════════════════════════
+function initThemeToggle() {
+    var MOON_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    var SUN_SVG  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
+
+    function getTheme() {
+        return document.documentElement.getAttribute('data-theme') || 'light';
+    }
+
+    // ── Desktop nav button ──────────────────────────────
+    var btn = document.createElement('button');
+    btn.id = 'theme-toggle';
+    btn.setAttribute('aria-label', 'Toggle dark mode');
+    btn.title = 'Toggle dark / light mode';
+
+    // ── Mobile menu row ─────────────────────────────────
+    var mobileRow = document.createElement('div');
+    mobileRow.className = 'mobile-theme-row';
+
+    var mobileLabel = document.createElement('span');
+    mobileLabel.className = 'mobile-theme-label';
+    mobileLabel.textContent = 'Dark Mode';
+
+    var mobileBtn = document.createElement('button');
+    mobileBtn.className = 'mobile-theme-toggle';
+    mobileBtn.setAttribute('aria-label', 'Toggle dark mode');
+    mobileBtn.type = 'button';
+
+    mobileRow.appendChild(mobileLabel);
+    mobileRow.appendChild(mobileBtn);
+
+    // ── Shared apply function — syncs both buttons ──────
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('icsdc-theme', theme);
+        var isDark = theme === 'dark';
+        var icon   = isDark ? SUN_SVG : MOON_SVG;
+        var label  = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+        btn.innerHTML     = icon;
+        mobileBtn.innerHTML = icon;
+        btn.setAttribute('aria-label', label);
+        mobileBtn.setAttribute('aria-label', label);
+        mobileLabel.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+    }
+
+    applyTheme(getTheme());
+
+    btn.addEventListener('click', function () {
+        applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
+    });
+    mobileBtn.addEventListener('click', function () {
+        applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
+    });
+
+    // Insert desktop button before login in nav-inner
+    var navInner = document.querySelector('.nav-inner');
+    var loginBtn = navInner && navInner.querySelector('.btn-login');
+    if (loginBtn) navInner.insertBefore(btn, loginBtn);
+    else if (navInner) navInner.appendChild(btn);
+
+    // Insert mobile row inside mobile-menu, before the mobile login button
+    var mobileMenu = document.getElementById('mobile-menu');
+    var mobileLoginBtn = mobileMenu && mobileMenu.querySelector('.mobile-login-btn');
+    if (mobileLoginBtn) mobileMenu.insertBefore(mobileRow, mobileLoginBtn);
+    else if (mobileMenu) mobileMenu.appendChild(mobileRow);
+}

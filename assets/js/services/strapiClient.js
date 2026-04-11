@@ -5,9 +5,12 @@
 // ══════════════════════════════════════════════════════════
 
 // ── Config ───────────────────────────────────────────────
-// In production: replace with environment variable injection
-// e.g.  const BASE_URL = process.env.STRAPI_URL
-const BASE_URL = (typeof STRAPI_URL !== "undefined" ? STRAPI_URL : "http://localhost:1337");
+// Priority: global STRAPI_URL variable → remote server → localhost fallback
+const _STRAPI_CANDIDATES = [
+    "http://13.126.9.248:1337",
+    "http://localhost:1337",
+];
+const BASE_URL = (typeof STRAPI_URL !== "undefined" ? STRAPI_URL : _STRAPI_CANDIDATES[0]);
 const API_TOKEN = (typeof TOKEN !== "undefined" ? TOKEN : "");
 
 const DEFAULT_HEADERS = {
@@ -23,29 +26,32 @@ const DEFAULT_HEADERS = {
  * @throws  on non-2xx HTTP status
  */
 export async function fetchAPI(path) {
-    const url = `${BASE_URL}${path}`;
+    // If STRAPI_URL is explicitly set, use only that — no fallback.
+    const candidates = (typeof STRAPI_URL !== "undefined")
+        ? [STRAPI_URL]
+        : _STRAPI_CANDIDATES;
 
-    let response;
-    try {
-        response = await fetch(url, { headers: DEFAULT_HEADERS });
-    } catch (networkErr) {
-        throw new Error(`[strapiClient] Network error fetching "${path}": ${networkErr.message}`);
+    let lastErr;
+    for (const base of candidates) {
+        const url = `${base}${path}`;
+        try {
+            const response = await fetch(url, { headers: DEFAULT_HEADERS });
+            if (!response.ok) {
+                lastErr = new Error(`[strapiClient] HTTP ${response.status} on "${path}" — ${response.statusText}`);
+                continue; // try next candidate
+            }
+            try {
+                return await response.json();
+            } catch (parseErr) {
+                throw new Error(`[strapiClient] Failed to parse JSON from "${path}": ${parseErr.message}`);
+            }
+        } catch (networkErr) {
+            if (networkErr.message.startsWith("[strapiClient]")) throw networkErr; // re-throw parse errors
+            lastErr = new Error(`[strapiClient] Network error fetching "${path}" from ${base}: ${networkErr.message}`);
+        }
     }
 
-    if (!response.ok) {
-        throw new Error(
-            `[strapiClient] HTTP ${response.status} on "${path}" — ${response.statusText}`
-        );
-    }
-
-    let json;
-    try {
-        json = await response.json();
-    } catch (parseErr) {
-        throw new Error(`[strapiClient] Failed to parse JSON from "${path}": ${parseErr.message}`);
-    }
-
-    return json;
+    throw lastErr;
 }
 
 // ── Media URL helper ──────────────────────────────────────
