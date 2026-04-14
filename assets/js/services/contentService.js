@@ -1236,3 +1236,23 @@ export function getContactUsPage() {
         "&populate[steps]=*"
     );
 }
+
+// ──────────────────────────────────────────────────────────
+//  PRICING PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+
+/**
+ * Fetches the entire Pricing page content in a single API call.
+ * Deep-populates all nested components: sections → tables → columns/rows → cells.
+ */
+export function getPricingPage() {
+    return fetchAPI(
+        "/api/pricing-page" +
+        "?populate[seo]=*" +
+        "&populate[heroBadges]=*" +
+        "&populate[sections][populate][tables][populate][columns]=*" +
+        "&populate[sections][populate][tables][populate][rows][populate][cells]=*" +
+        "&populate[ctaBand][populate][ctaPrimary]=*" +
+        "&populate[ctaBand][populate][ctaSecondary]=*"
+    );
+}
