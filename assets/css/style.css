@@ -266,6 +266,19 @@ nav.scrolled {
     background: var(--blue-hover-bg);
 }
 
+.nav-link--highlight {
+    background: var(--blue) !important;
+    color: var(--white) !important;
+    border-radius: 8px;
+    padding: 8px 16px !important;
+}
+
+.nav-link--highlight:hover,
+.nav-link--highlight.active {
+    background: var(--blue-dark) !important;
+    color: var(--white) !important;
+}
+
 .nav-link .chevron {
     transition: transform var(--transition-base) var(--ease-out-expo);
     flex-shrink: 0;

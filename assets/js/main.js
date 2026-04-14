@@ -28,6 +28,8 @@ function initNav(menuData) {
     const CMS_MENUS = (menuData?.data?.menus ?? []).map(menu => ({
         id: String(menu.id),
         label: menu.lebel,
+        directLink: menu.directLink || '',
+        isHighlighted: !!menu.isHighlighted,
         icon: menu.icon,
         desc: menu.desc || menu.description || '',
         cols: menu.cols,
@@ -50,9 +52,18 @@ function initNav(menuData) {
         })),
     }));
 
-    function buildNavLinkHTML(menu) {
+    function buildNavLinkHTML(menu, mobile = false) {
+        const hlClass = menu.isHighlighted ? ' nav-link--highlight' : '';
+        // Direct link — renders as a plain anchor, no dropdown
+        if (menu.directLink) {
+            return `<a class="nav-link nav-link--direct${hlClass}" href="${menu.directLink}">${menu.label}</a>`;
+        }
+        // Dropdown button
+        const onclick = mobile
+            ? `openDropdown('${menu.id}', this); closeMobileMenu()`
+            : `openDropdown('${menu.id}', this)`;
         return `
-            <button class="nav-link" onclick="openDropdown('${menu.id}', this)">
+            <button class="nav-link${hlClass}" onclick="${onclick}">
                 ${menu.label}
                 <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <polyline points="6 9 12 15 18 9"/>
@@ -64,7 +75,7 @@ function initNav(menuData) {
         CMS_MENUS.forEach(menu => {
             const li = document.createElement("li");
             li.className = "nav-item";
-            li.innerHTML = buildNavLinkHTML(menu);
+            li.innerHTML = buildNavLinkHTML(menu, false);
             navLinks.appendChild(li);
         });
     });
@@ -73,13 +84,7 @@ function initNav(menuData) {
         CMS_MENUS.forEach(menu => {
             const li = document.createElement("li");
             li.className = "nav-item";
-            li.innerHTML = `
-                <button class="nav-link" onclick="openDropdown('${menu.id}', this); closeMobileMenu()">
-                    ${menu.label}
-                    <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polyline points="6 9 12 15 18 9"/>
-                    </svg>
-                </button>`;
+            li.innerHTML = buildNavLinkHTML(menu, true);
             mobileNav.appendChild(li);
         });
     });
