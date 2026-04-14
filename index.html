@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <script src="assets/js/theme-init.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICSDC - Scalable Fortified Cloud</title>
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/homepage-extras.css">
+    <link rel="stylesheet" href="assets/css/dark-mode.css">
 </head>
 
 <body>
@@ -78,8 +80,8 @@
                         <p data-strapi="priceNote" class="price-note"></p>
                     </div>
                     <div class="hero-btns">
+                        <button class="btn-primary">View Plans</button>
                         <button class="btn-outline">Sign up</button>
-                        <button class="btn-primary">View Plans &rarr;</button>
                     </div>
                 </div>
             </div>
@@ -102,7 +104,7 @@
     <section id="who-we-are" class="who-we-are section">
         <div class="who-we-are-inner">
             <div class="who-we-are-image" data-animate="fade-right">
-                <img src="assets/images/best-cloud-service-provider 1.png" alt="Best cloud service provider">
+                <img src="assets/images/Home page images_s.png" alt="Best cloud service provider">
             </div>
             <div class="blue-container" data-animate="fade-left">
                 <h2 class="title" data-strapi="whoWeAreHeading">Who We Are?</h2>
@@ -309,11 +311,7 @@
         aria-labelledby="business-needs-cloud-heading">
         <div class="business-needs-cloud-inner">
             <div class="business-needs-visual" data-animate="fade-right">
-                <ul class="business-needs-labels" aria-hidden="true">
-                    <li class="business-needs-label">99.99%<span>Uptime</span></li>
-                    <li class="business-needs-label">Super Fast Speed<span>&amp; Performance</span></li>
-                    <li class="business-needs-label">Affordable<span>Price</span></li>
-                </ul>
+
                 <div class="business-needs-image-wrap">
                     <img src="assets/images/trusted-cloud-service-provider.png" alt="Cloud services illustration"
                         class="business-needs-image">
@@ -428,9 +426,7 @@
     <section id="hp-global" class="hp-global-section" aria-labelledby="hp-global-title">
 
         <div class="hp-global-header">
-            <span class="cloud-section-label"
-                style="color:var(--blue);opacity:0.75;font-size:11px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;display:inline-block;margin-bottom:8px;">GLOBAL
-                PRESENCE</span>
+            <span class="cloud-section-label">GLOBAL PRESENCE</span>
             <h2 class="hp-global-title" id="hp-global-title" data-animate="fade-up">Where We Are in the World</h2>
             <p class="hp-global-sub" id="hp-global-sub" data-animate="fade-up">From Noida to the globe — ICSDC serves
                 clients across 5+ countries with enterprise infrastructure and 24/7 expert support.</p>
@@ -481,7 +477,7 @@
     <!-- testimonials section end -->
 
     <!-- ════ TECHNOLOGY PARTNERS ════ -->
-    <section id="hp-tech-partners" class="hp-tech-section" aria-labelledby="hp-tech-title">
+    <section id="hp-tech-partners" class="hp-tech-section section" aria-labelledby="hp-tech-title">
         <div class="container">
             <h2 class="hp-logos-heading" id="hp-tech-title" data-animate="fade-up">Check our World-class Technologies
             </h2>
@@ -547,7 +543,7 @@
     <!-- tech partners section end -->
 
     <!-- ════ TRUSTED BY INDUSTRY LEADERS ════ -->
-    <section id="hp-trusted" class="hp-trusted-section" aria-labelledby="hp-trusted-title">
+    <section id="hp-trusted" class="hp-trusted-section section" aria-labelledby="hp-trusted-title">
         <div class="container">
             <h2 class="hp-logos-heading" id="hp-trusted-title" data-animate="fade-up">Trusted by Industry Leaders</h2>
             <div class="hp-logo-grid" id="hp-trusted-grid" data-stagger>
@@ -798,8 +794,8 @@
             const center = svg.querySelector('.ripple-center');
 
             let rings = 10;
-            let duration = 8;    // seconds
-            let radius = 260;  // max ripple radius in SVG units (viewBox is 600×600, centre=300)
+            let duration = 10;    // seconds
+            let radius = 460;  // max ripple radius in SVG units (viewBox is 600×600, centre=300)
 
             const ringsVal = document.getElementById('rings-val');
             const speedVal = document.getElementById('speed-val');

@@ -1,4 +1,4 @@
-/* ══════════════════════════════════════
+﻿/* ══════════════════════════════════════
    FOREX VPS PAGE — SCOPED STYLES
    All classes prefixed fvps-* to prevent
    any collision with style.css,
@@ -141,14 +141,14 @@
 ══════════════════════════════════════ */
 
 /* 1024px — 2 columns for most grids */
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
     .fvps-features-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 /* 640px — single column */
-@media (max-width: 640px) {
+@media (max-width: 767px) {
     .fvps-features-grid {
         grid-template-columns: 1fr;
     }
