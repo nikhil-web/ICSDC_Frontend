@@ -221,7 +221,11 @@
       "Bash(cmd /c taskkill /PID 31120 /F)",
       "Bash(powershell -Command \"Stop-Process -Id 31120 -Force -ErrorAction SilentlyContinue; Write-Host 'done'\")",
       "Bash(node -p ':*)",
-      "Bash(ls \"C:/Users/saket/OneDrive/Desktop/ICSDC Strapi CMS/my-admin/seed\"*)"
+      "Bash(ls \"C:/Users/saket/OneDrive/Desktop/ICSDC Strapi CMS/my-admin/seed\"*)",
+      "Bash(pandoc \"C:/Users/saket/OneDrive/Desktop/ICSDC Strapi CMS/pages/H1- Trade Without Interruptions With ICSDC High-Performance Forex VPS.docx\" -t markdown)",
+      "Bash(node seed/forex-vps.js)",
+      "Bash(grep \"\\\\.html$\")",
+      "Bash(pandoc \"C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\pages\\\\Acronis Backup_ Your Data, Always Protected.docx\" -t plain)"
     ]
   }
 }
