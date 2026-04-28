@@ -1,4 +1,4 @@
-/* ══════════════════════════════════════════════════════════
+﻿/* ══════════════════════════════════════════════════════════
    HOMEPAGE EXTRAS — new sections added to index.html
    All classes prefixed hp-* — zero collision with existing CSS
    ══════════════════════════════════════════════════════════ */
@@ -239,7 +239,7 @@
 }
 
 .hp-logo-name {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--muted, #64748b);
     text-align: center;
@@ -266,13 +266,13 @@
 /* ══════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════ */
-@media (max-width: 1200px) {
+@media (max-width: 1279px) {
     .hp-logo-grid {
         grid-template-columns: repeat(5, 1fr);
     }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
     .hp-map-wrap {
         max-height: 380px;
     }
@@ -286,7 +286,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .hp-global-section {
         padding: 56px 0 48px;
     }
@@ -319,7 +319,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
     .hp-map-wrap {
         max-height: 180px;
     }

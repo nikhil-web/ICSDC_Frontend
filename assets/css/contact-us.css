@@ -1,4 +1,4 @@
-/* ══════════════════════════════════════
+﻿/* ══════════════════════════════════════
    CONTACT US PAGE — SCOPED STYLES
    All page-specific classes prefixed cu-
    to prevent collision with style.css,
@@ -554,14 +554,14 @@
 ══════════════════════════════════════ */
 
 /* 1280px — tighten step connectors */
-@media (max-width: 1280px) {
+@media (max-width: 1279px) {
     .cu-step-connector {
         width: 24px;
     }
 }
 
 /* 1024px */
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
     .cu-contact-inner {
         grid-template-columns: 1fr;
         gap: 48px;
@@ -600,7 +600,7 @@
 }
 
 /* 768px */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .cu-hero-section {
         padding-top: 80px;
     }
@@ -634,10 +634,7 @@
     .cu-form-row {
         grid-template-columns: 1fr;
     }
-}
 
-/* 640px */
-@media (max-width: 640px) {
     .cu-hero-visual {
         max-width: 100%;
     }
@@ -649,10 +646,6 @@
 
     .cu-help-card {
         padding: 24px 20px 20px;
-    }
-
-    .cu-form-row {
-        grid-template-columns: 1fr;
     }
 
     .cu-contact-inner {

@@ -312,7 +312,9 @@ export function getAcronisBackupPage() {
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
         "&populate[ctaBand2][populate][ctaSecondary]=*" +
         "&populate[faq][populate]=*" +
-        "&populate[testimonials][populate]=*"
+        "&populate[testimonials][populate]=*" +
+        "&populate[aboutPoints]=*" +
+        "&populate[aboutFeatures]=*"
     );
 }
 
@@ -1020,12 +1022,16 @@ export function getForexVpsPage() {
         "&populate[heroCtaSecondary]=*" +
         "&populate[pillars][populate]=*" +
         "&populate[features][populate]=*" +
+        "&populate[whyChooseCards][populate]=*" +
+        "&populate[setupSteps]=*" +
+        "&populate[tradingApps]=*" +
         "&populate[useCasesCards][populate]=*" +
         "&populate[whoCards][populate]=*" +
         "&populate[testimonials][populate]=*" +
         "&populate[faq][populate]=*" +
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
-        "&populate[ctaBand1][populate][ctaSecondary]=*"
+        "&populate[ctaBand1][populate][ctaSecondary]=*" +
+        "&populate[plans]=*"
     );
 }
 
@@ -1234,5 +1240,25 @@ export function getContactUsPage() {
         "populate[seo]=*" +
         "&populate[helpCards]=*" +
         "&populate[steps]=*"
+    );
+}
+
+// ──────────────────────────────────────────────────────────
+//  PRICING PAGE (Single Type — full page data)
+// ──────────────────────────────────────────────────────────
+
+/**
+ * Fetches the entire Pricing page content in a single API call.
+ * Deep-populates all nested components: sections → tables → columns/rows → cells.
+ */
+export function getPricingPage() {
+    return fetchAPI(
+        "/api/pricing-page" +
+        "?populate[seo]=*" +
+        "&populate[heroBadges]=*" +
+        "&populate[sections][populate][tables][populate][columns]=*" +
+        "&populate[sections][populate][tables][populate][rows][populate][cells]=*" +
+        "&populate[ctaBand][populate][ctaPrimary]=*" +
+        "&populate[ctaBand][populate][ctaSecondary]=*"
     );
 }

@@ -346,10 +346,11 @@ import { populateIconCards } from "./utils/cms-helpers.js";
     // y-scale (tropical/subtropical): 9.78 px/° · temperate: 4.34–7.7 px/°
     var MAP_COORDS = {
         'usa': { x: 22.0, y: 24.0 },  // Washington DC  (77°W, 39°N)
-        'uk': { x: 49.6, y: 20.9 },  // London         ( 0°,  51.5°N)
-        'germany': { x: 52.8, y: 19.9 },  // Berlin         (13.4°E, 52.5°N)
+        'uk': { x: 49, y: 2 },  // London         ( 0°,  51.5°N)
+        'germany': { x: 52, y: 5 },  // Berlin         (13.4°E, 52.5°N)
         'russia': { x: 58.9, y: 16.9 },  // Moscow         (37.6°E, 55.8°N)
         'india': { x: 71, y: 36 },  // Noida/Delhi    (77.2°E, 28.6°N)
+        'russia': { x: 58.9, y: 16.9 },  // Moscow         (37.6°E, 55.8°N)
         'future-expansion': { x: 74.5, y: 45.3 },  // Bangkok/SE Asia(100.5°E, 13.8°N)
     };
 

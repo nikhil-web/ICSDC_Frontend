@@ -351,7 +351,7 @@ import { initFAQ } from './utils/cms-helpers.js';
     }
 
     /** 8. More Services */
-    function populateServices(label, title, desc, image, imageAlt, buttons) {
+    function populateServices(label, title, desc, image, imageAlt, buttons, footerText) {
         var section = document.getElementById('ds-services');
         if (!section) return;
 
@@ -380,6 +380,12 @@ import { initFAQ } from './utils/cms-helpers.js';
                     return '<button class="' + cls + ' feature-cards">' + b.text + '</button>';
                 }).join('');
             }
+        }
+
+        // Footer paragraph (after buttons)
+        if (footerText) {
+            var footerEl = section.querySelector('#ds-services-footer-text');
+            if (footerEl) footerEl.textContent = footerText;
         }
     }
 
@@ -467,36 +473,38 @@ import { initFAQ } from './utils/cms-helpers.js';
         }
     }
 
-    /** 11. Global Locations */
+    /** 11. Global Locations — renders the same world-map visual as the homepage */
     function populateLocations(label, title, desc, pins, tags) {
         var section = document.getElementById('ds-locations');
         if (!section) return;
 
         if (label) setText(section, '.ds-section-label', label);
-        if (title) setText(section, '.title', title);
-        if (desc) setHTML(section, '.who-we-are-paragraph', desc);
+        if (title) setText(section, '#ds-locations-title', title);
+        if (desc) setText(section, '.subtitle', desc);
 
-        // Map pins — top/left are CSS strings like "38%"
-        if (pins && pins.length) {
-            var mapVisual = section.querySelector('.ds-map-visual');
-            if (mapVisual) {
-                mapVisual.innerHTML = pins.map(function (pin) {
-                    return '<div class="ds-map-pin" style="top:' + (pin.top || '50%') + '; left:' + (pin.left || '50%') + ';">' +
-                        '<div class="ds-map-pin-dot"></div>' +
-                        '<div class="ds-map-pin-label">' + (pin.label || '') + '</div>' +
-                        '</div>';
-                }).join('');
-            }
+        // Map pins — use top/left percentages stored in CMS (locationPins schema)
+        var mapWrap = document.getElementById('ds-map-wrap');
+        if (mapWrap && pins && pins.length) {
+            mapWrap.querySelectorAll('.hp-pin').forEach(function (el) { el.remove(); });
+            pins.forEach(function (pin, idx) {
+                var el = document.createElement('div');
+                el.className = 'hp-pin';
+                el.style.cssText = 'left:' + (pin.left || '50%') + ';top:' + (pin.top || '50%') + ';--pin-c:#1a56db';
+                el.setAttribute('aria-label', pin.label || '');
+                el.innerHTML =
+                    '<div class="hp-pin-head"><span class="hp-pin-num">' +
+                    String(idx + 1).padStart(2, '0') +
+                    '</span></div><div class="hp-pin-tail"></div>';
+                mapWrap.appendChild(el);
+            });
         }
 
-        // Tags — emoji + text
-        if (tags && tags.length) {
-            var tagWrap = section.querySelector('.ds-location-tags');
-            if (tagWrap) {
-                tagWrap.innerHTML = tags.map(function (t) {
-                    return '<span class="ds-location-tag">' + (t.emoji || '') + ' ' + (t.text || '') + '</span>';
-                }).join('');
-            }
+        // Legend — emoji + text chips below the map
+        var legend = document.getElementById('ds-location-legend');
+        if (legend && tags && tags.length) {
+            legend.innerHTML = tags.map(function (t) {
+                return '<span class="ds-location-tag">' + (t.emoji || '') + ' ' + (t.text || '') + '</span>';
+            }).join('');
         }
     }
 
@@ -860,7 +868,7 @@ import { initFAQ } from './utils/cms-helpers.js';
             populateSecurity(page.securityLabel, page.securityTitle, page.securityDescription, page.shieldVisual, page.securityCards);
 
             // 8. More Services
-            populateServices(page.servicesLabel, page.servicesTitle, page.servicesDescription, page.servicesImage, page.servicesImageAlt, page.serviceButtons);
+            populateServices(page.servicesLabel, page.servicesTitle, page.servicesDescription, page.servicesImage, page.servicesImageAlt, page.serviceButtons, page.servicesFooterText);
 
             // 9. Comparison
             populateComparison(page.comparisonLabel, page.comparisonTitle, page.comparisonSubtitle, page.comparisonColumns, page.comparisonRows);

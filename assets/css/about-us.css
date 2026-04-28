@@ -1,4 +1,4 @@
-/* ══════════════════════════════════════
+﻿/* ══════════════════════════════════════
    ABOUT US PAGE — SCOPED STYLES
    All classes prefixed au-* to prevent
    any collision with style.css,
@@ -728,7 +728,7 @@
 ══════════════════════════════════════ */
 
 /* 1024px */
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
     .au-specs-grid {
         grid-template-columns: 1fr;
     }
@@ -756,7 +756,7 @@
 }
 
 /* 768px */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .au-who-section {
         padding: 72px 0;
     }
@@ -789,10 +789,7 @@
     .au-life-gallery {
         padding-left: 16px;
     }
-}
 
-/* 640px */
-@media (max-width: 640px) {
     .au-specs-grid {
         grid-template-columns: 1fr;
     }

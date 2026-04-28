@@ -142,11 +142,31 @@ import {
         }
     }
 
-    /** 7. Why Choose ICSDC (6 icon cards in #acr-why .cloud-use-grid) */
+    /** 7. Why Choose ICSDC (icon cards in #acr-why .cloud-use-grid) */
     function populateWhyCards(label, title, subtitle, cards) {
         populateSectionHeader('#acr-why', label, title, subtitle);
         if (cards && cards.length) {
             populateIconCards('#acr-why .cloud-use-grid', cards, 'cloud-use-card');
+        }
+    }
+
+    /** 4b. Who We Are (about section) */
+    function populateAbout(page) {
+        if (page.aboutTitle) setText(document, '#acr-about-title', page.aboutTitle);
+        if (page.aboutDescription) setText(document, '#acr-about-description', page.aboutDescription);
+        if (page.aboutPointsTitle) setText(document, '#acr-about-points-title', page.aboutPointsTitle);
+
+        // About points — title-only badges
+        var pointsGrid = document.getElementById('acr-about-points');
+        if (pointsGrid && Array.isArray(page.aboutPoints) && page.aboutPoints.length) {
+            pointsGrid.innerHTML = page.aboutPoints.map(function (p) {
+                return '<div class="acr-about-point">' + (p.title || '') + '</div>';
+            }).join('');
+        }
+
+        // About features — full cards
+        if (Array.isArray(page.aboutFeatures) && page.aboutFeatures.length) {
+            populateIconCards('#acr-about-features', page.aboutFeatures, 'cloud-power-card');
         }
     }
 
@@ -173,6 +193,9 @@ import {
             // 4. Pricing
             populatePricing(page);
 
+            // 4b. Who We Are
+            populateAbout(page);
+
             // 5. Features
             populateFeatures(page.featuresLabel, page.featuresTitle, page.featuresSubtitle, page.features);
 
@@ -183,18 +206,15 @@ import {
             populateWhyCards(page.whyLabel, page.whyTitle, page.whySubtitle, page.whyCards);
 
             // 8. Testimonials
-
-
-            if (page.testimonials && page.testimonials.length) {
-                initTestimonials(page.testimonials)
-            } else {
-                //hide the entire section if no testimonials            
-                var testiSection = document.getElementsByClassName('testi-section');
-                if (testiSection) {
-                    testiSection.style.display = 'none';
-                }
+            if (page.testimonialTitle) {
+                setText(document, '#testi-heading', page.testimonialTitle);
             }
-
+            if (page.testimonials && page.testimonials.length) {
+                initTestimonials(page.testimonials);
+            } else {
+                var testiSection = document.querySelector('.testi-section');
+                if (testiSection) testiSection.style.display = 'none';
+            }
 
             // 9. FAQ
             if (page.faqTitle) {
