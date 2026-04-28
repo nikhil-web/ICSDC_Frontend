@@ -225,7 +225,29 @@
       "Bash(pandoc \"C:/Users/saket/OneDrive/Desktop/ICSDC Strapi CMS/pages/H1- Trade Without Interruptions With ICSDC High-Performance Forex VPS.docx\" -t markdown)",
       "Bash(node seed/forex-vps.js)",
       "Bash(grep \"\\\\.html$\")",
-      "Bash(pandoc \"C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\pages\\\\Acronis Backup_ Your Data, Always Protected.docx\" -t plain)"
+      "Bash(pandoc \"C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\pages\\\\Acronis Backup_ Your Data, Always Protected.docx\" -t plain)",
+      "Bash(dir \"C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\pages\")",
+      "Bash(findstr /i \"dedicated\")",
+      "Bash(node seed/dedicated-server.js)",
+      "Bash(node --stack-trace-limit=20 seed/dedicated-server.js)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(node seed/contact-us.js)",
+      "Bash(node seed/domain-registration.js)",
+      "Bash(curl -s \"http://localhost:1337/api/domain-registration-page?populate[faq]=*\" -H \"Authorization: Bearer 5e685bd788588b5db88df3d3d47ad9a446f82768a2514d7dce437f6dc10c872d61b83b91763e6ea54acb9f7d7aac432e1714eef2dd12d718aae5c3bbae246aa90a85d22938474559dd9327dc2f7c9114b06bfdbb4ce9daf5d4e8f45b7a608c7d80eea92ac9896b47238380007a7d592b3825db93c9f9e5fbdab95be79a2c8e6e\")",
+      "Bash(node seed/aws-cloud-hosting.js)",
+      "Bash(pandoc \"C:/Users/saket/OneDrive/Desktop/ICSDC Strapi CMS/pages/H1- Access Tally Anytime, Anywhere with Tally on Cloud.docx\" -t plain)",
+      "Bash(node seed/tally-on-cloud.js)",
+      "Bash(pandoc \"C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\pages\\\\ICSDC VPS Hosting_ The Right Balance of Performance & Cost-Efficiency.docx\" -t plain)",
+      "Bash(node seed/vps-hosting.js)",
+      "Read(//c/tmp/**)",
+      "Bash(\"C:/Users/saket/AppData/Local/Programs/Python/Python313/python.exe\" -)",
+      "Bash(pandoc \"C:/Users/saket/OneDrive/Desktop/ICSDC Strapi CMS/pages/H1- Cloud Storage That Grows With Your Data, Not Against It.docx\" -t plain)",
+      "Bash(node seed/cloud-storage.js)",
+      "Bash(node seed/bare-metal-server.js)",
+      "Bash(node -e \"require\\('./seed/bare-metal-server.js'\\)\")",
+      "Bash(/c/Users/saket/AppData/Local/Programs/Python/Python313/python.exe -)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(pandoc \"C:\\\\Users\\\\saket\\\\OneDrive\\\\Desktop\\\\ICSDC Strapi CMS\\\\pages\\\\H1- Fast, Flexible & Developer-Ready - Linux VPS Hosting That Scales with You.docx\" --track-changes=all -o /tmp/vps_content.md)"
     ]
   }
 }

@@ -222,7 +222,7 @@
 }
 
 .dom-tld-card {
-    background: #fff;
+    /* background: #fff; */
     border: 2px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 28px 20px;

@@ -369,21 +369,16 @@ import { getVpsHostingPage } from './services/contentService.js';
             }
         })();
 
+        if (page.testimonialTitle) setText(document, '#testi-heading', page.testimonialTitle);
         if (page.testimonials && page.testimonials.length) {
-            initTestimonials(page.testimonials)
+            initTestimonials(page.testimonials);
         } else {
-            //hide the entire section if no testimonials            
-            var testiSection = document.getElementsByClassName('testi-section');
-            if (testiSection) {
-                testiSection.style.display = 'none';
-            }
+            var testiSection = document.querySelector('.testi-section');
+            if (testiSection) testiSection.style.display = 'none';
         }
 
-
-        // 9. FAQ
-        if (page.faqTitle) {
-            setText(document, '#acr-faq-heading', page.faqTitle);
-        }
+        // FAQ
+        if (page.faqTitle) setText(document, '#acr-faq-heading', page.faqTitle);
         initFAQ(page.faq);
 
         /* ── 16. CTA Band #2 (final CTA) ───────────────────── */

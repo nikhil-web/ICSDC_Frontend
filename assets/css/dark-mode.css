@@ -448,6 +448,10 @@ html[data-theme="dark"] [class*="-card"] {
     border-color: #334155;
 }
 
+html[data-theme="dark"] .blue-container {
+    background-color: #00000000
+}
+
 /* ══════════════════════════════════════════════════════
    8. BUTTONS
 ══════════════════════════════════════════════════════ */
@@ -517,7 +521,7 @@ html[data-theme="dark"] [class*="compare-table"] tr:nth-child(even) {
 html[data-theme="dark"] input,
 html[data-theme="dark"] textarea,
 html[data-theme="dark"] select {
-    background: #1e293b;
+    /* background: #1e293b; */
     border-color: #334155;
     color: var(--text);
 }
@@ -538,6 +542,10 @@ html[data-theme="dark"] select:focus {
    12. FAQ ACCORDIONS
 ══════════════════════════════════════════════════════ */
 html[data-theme="dark"] .faq-section {
+    background: #111827;
+}
+
+html[data-theme="dark"] .gws-plan-card {
     background: #111827;
 }
 
