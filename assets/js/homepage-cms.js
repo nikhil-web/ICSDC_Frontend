@@ -72,6 +72,15 @@ import { populateIconCards } from "./utils/cms-helpers.js";
         setText('[data-strapi="description"]', params.description);
         setText('[data-strapi="price"]', params.price);
         setText('[data-strapi="priceNote"]', params.priceNote);
+
+        if (params.heroImage && params.heroImage.image) {
+            const img = document.querySelector('.hero-right .hero-right-image');
+            if (img) {
+                img.src = mediaURL(params.heroImage.image, 'large');
+                img.style.display = '';
+            }
+        }
+
     }
 
     // ═══════════════════════════════════════════════════════════

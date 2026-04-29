@@ -241,6 +241,28 @@ export function populateHero(section, data) {
         btns[0].textContent = data.ctaSecondary.text || '';
         if (data.ctaSecondary.link) btns[0].setAttribute('onclick', "window.location.href='" + data.ctaSecondary.link + "'");
     }
+
+    // Hero Image — set from Strapi common.image component
+    if (data.heroImage && data.heroImage.image) {
+        var heroRight = section.querySelector('.hero-right');
+        var heroImg = heroRight && heroRight.querySelector('.hero-right-image');
+        if (heroImg) {
+            var _base = (typeof STRAPI_URL !== 'undefined' ? STRAPI_URL : 'http://localhost:1337');
+            var _m = data.heroImage.image;
+            var _url = (_m.formats && (_m.formats.large || _m.formats.medium || _m.formats.small)
+                ? (_m.formats.large || _m.formats.medium || _m.formats.small).url
+                : _m.url) || '';
+            if (_url && !_url.startsWith('http')) _url = _base + _url;
+            if (_url) {
+                heroImg.src = _url;
+                heroImg.style.display = '';
+                // Hide the CSS decorative visual so the CMS image shows cleanly
+                Array.from(heroRight.children).forEach(function (child) {
+                    if (!child.classList.contains('hero-right-image')) child.style.display = 'none';
+                });
+            }
+        }
+    }
 }
 
 /**

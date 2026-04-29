@@ -72,7 +72,8 @@ import { getVpsHostingPage } from './services/contentService.js';
                 price: page.heroPrice,
                 priceNote: page.heroPriceNote,
                 ctaPrimary: page.heroCtaPrimary,
-                ctaSecondary: page.heroCtaSecondary
+                ctaSecondary: page.heroCtaSecondary,
+            heroImage: page.heroImage
             });
         }
 
