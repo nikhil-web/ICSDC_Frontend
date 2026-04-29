@@ -536,7 +536,6 @@ export function getHomepagePage() {
         "&populate[Footer][populate][linkGroups][populate][links]=*" +
         "&populate[Footer][populate][logo]=true" +
         "&populate[faq][populate]=*" +
-        "&populate[heroImage][populate][image]=true" +
         "&populate[testimonials][populate]=*" +
         "&populate[globalLocations]=*" +
         "&populate[techPartners][populate][logo]=true" +
@@ -920,7 +919,7 @@ export function getMicrosoft365Page() {
 //         "&populate[whyCards][populate]=*" +
 //         "&populate[whoCards][populate]=*" +
 //         "&populate[faq][populate]=*" +
-"&populate[heroImage][populate][image]=true" +
+//         "&populate[heroImage][populate][image]=true" +
 //         "&populate[testimonials][populate]=*" +
 //         "&populate[ctaBand2][populate][ctaPrimary]=*" +
 //         "&populate[ctaBand2][populate][ctaSecondary]=*"
@@ -1100,7 +1099,7 @@ export function getVaptPage() {
 }
 
 // ----------------------------------------------------------
-//  TALLY ON CLOUD PAGE (Single Type � full page data)
+//  TALLY ON CLOUD PAGE (Single Type full page data)
 // ----------------------------------------------------------
 export function getTallyOnCloudPage() {
     return fetchAPI(
