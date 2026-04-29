@@ -140,7 +140,8 @@ import {
                 subtitle:    page.heroSubtitle,
                 description: page.heroDescription,
                 ctaPrimary:  page.heroCtaPrimary,
-                ctaSecondary: page.heroCtaSecondary
+                ctaSecondary: page.heroCtaSecondary,
+            heroImage: page.heroImage
             });
             // Override eyebrow text for MDS (no dynamic eyebrow field in schema)
             var heroTitle = document.getElementById('mds-hero-title');

@@ -16,7 +16,8 @@ import { getLinuxDedicatedServerPage } from './services/contentService.js';
             subtitle: page.heroSubtitle,
             description: page.heroDescription,
             ctaPrimary: page.heroCtaPrimary,
-            ctaSecondary: page.heroCtaSecondary
+            ctaSecondary: page.heroCtaSecondary,
+            heroImage: page.heroImage
         });
         // Eyebrow uses .lds-eyebrow (populateHero looks for .eyebrow-badge)
         if (page.heroEyebrow) {

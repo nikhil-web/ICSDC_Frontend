@@ -851,6 +851,27 @@ import { initFAQ } from './utils/cms-helpers.js';
             // 2. Hero (+ server rack + CTA links)
             populateHero(page.hero);
 
+            // 2b. Hero image from Strapi (common.image component at page level)
+            if (page.heroImage && page.heroImage.image) {
+                var heroRight = document.querySelector('.hero-right');
+                var heroImg = heroRight && heroRight.querySelector('.hero-right-image');
+                if (heroImg) {
+                    var _m = page.heroImage.image;
+                    var _base = (typeof STRAPI_URL !== 'undefined' ? STRAPI_URL : 'http://localhost:1337');
+                    var _url = (_m.formats && (_m.formats.large || _m.formats.medium || _m.formats.small)
+                        ? (_m.formats.large || _m.formats.medium || _m.formats.small).url
+                        : _m.url) || '';
+                    if (_url && !_url.startsWith('http')) _url = _base + _url;
+                    if (_url) {
+                        heroImg.src = _url;
+                        heroImg.style.display = '';
+                        Array.from(heroRight.children).forEach(function (child) {
+                            if (!child.classList.contains('hero-right-image')) child.style.display = 'none';
+                        });
+                    }
+                }
+            }
+
             // 3. Feature Highlights
             populateFeatureHighlights(page.featureHighlights);
 
