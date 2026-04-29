@@ -100,15 +100,19 @@ import { populateSEO } from './utils/cms-helpers.js';
             }
 
             var isActive = idx === 0 ? ' is-active' : '';
-            var icon = sec.sidebarIcon ? '<span class="pr-sidebar-icon">' + esc(sec.sidebarIcon) + '</span> ' : '';
+            var icon = sec.sidebarIcon
+                ? '<span class="pr-sidebar-icon"><i class="fa-solid fa-' + esc(sec.sidebarIcon) + '"></i></span> '
+                : '';
 
             sidebarHTML += '<button class="pr-sidebar-link' + isActive + '" data-target="' + esc(sec.sectionId) + '">' +
                 icon + esc(sec.sidebarLinkText) +
                 '</button>';
 
-            // Mobile tabs — use icon + short text
+            // Mobile tabs — icon + short text
             var mobIsActive = idx === 0 ? ' is-active' : '';
-            var mobIcon = sec.sidebarIcon ? esc(sec.sidebarIcon) + ' ' : '';
+            var mobIcon = sec.sidebarIcon
+                ? '<i class="fa-solid fa-' + esc(sec.sidebarIcon) + '"></i> '
+                : '';
             mobHTML += '<button class="pr-mob-tab' + mobIsActive + '" data-target="' + esc(sec.sectionId) + '">' +
                 mobIcon + esc(sec.sidebarLinkText) +
                 '</button>';
