@@ -920,7 +920,7 @@ export function getMicrosoft365Page() {
 //         "&populate[whyCards][populate]=*" +
 //         "&populate[whoCards][populate]=*" +
 //         "&populate[faq][populate]=*" +
-"&populate[heroImage][populate][image]=true" +
+//         "&populate[heroImage][populate][image]=true" +
 //         "&populate[testimonials][populate]=*" +
 //         "&populate[ctaBand2][populate][ctaPrimary]=*" +
 //         "&populate[ctaBand2][populate][ctaSecondary]=*"
