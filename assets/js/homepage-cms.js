@@ -21,7 +21,7 @@
  */
 
 import { getHomepagePage } from "./services/contentService.js";
-import { populateIconCards } from "./utils/cms-helpers.js";
+import { populateIconCards, resolveIcon } from "./utils/cms-helpers.js";
 
 (function () {
 
@@ -111,6 +111,40 @@ import { populateIconCards } from "./utils/cms-helpers.js";
     function populateWhyChooseUs(pillars) {
         if (!pillars || !pillars.length) return;
         populateIconCards('.why-us .why-grid', pillars, 'why-card');
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    //  WHY BUSINESS NEEDS CLOUD
+    // ═══════════════════════════════════════════════════════════
+    function populateWhyCloud(title, image, items) {
+        // Title
+        if (title) setText('[data-strapi="whyCloudTitle"]', title);
+
+        // Image
+        if (image) {
+            const img = document.querySelector('[data-strapi="whyCloudImage"]');
+            if (img) {
+                img.src = mediaURL(image, 'large') || mediaURL(image, 'medium') || mediaURL(image);
+                img.alt = image.alternativeText || 'Cloud services illustration';
+            }
+        }
+
+        // Items
+        if (!items || !items.length) return;
+        const list = document.querySelector('[data-strapi-grid="whyCloudItems"]');
+        if (!list) return;
+
+        list.innerHTML = items.map(item => `
+            <article class="business-needs-item">
+                <div class="business-needs-icon" aria-hidden="true">
+                    ${resolveIcon(item.icon)}
+                </div>
+                <div class="business-needs-copy">
+                    <h3>${item.title || ''}</h3>
+                    <p>${item.desc || ''}</p>
+                </div>
+            </article>
+        `).join('');
     }
 
 
@@ -509,6 +543,7 @@ import { populateIconCards } from "./utils/cms-helpers.js";
             populateHeroSection(page);
             populateHeroCTAs(page.CallToActionPrimary, page.callToActionSecondary);
             populateWhyChooseUs(page.whyChooseUs);
+            populateWhyCloud(page.whyCloudTitle, page.whyCloudImage, page.whyCloudItems);
             populateWhoWeAre(page.whoWeAre);
             populateLessComplexity(page.LessCloudComplexity);
             populateCloudSolutions(page.CloudSolutionsEngineered);
