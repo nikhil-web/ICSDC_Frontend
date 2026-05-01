@@ -541,8 +541,8 @@ export function getHomepagePage() {
         "&populate[techPartners][populate][logo]=true" +
         "&populate[heroImage][populate][image]=true" +
         "&populate[trustedPartners][populate][logo]=true" +
-        "&populate[whyCloudImage]=true" +
-        "&populate[whyCloudItems]=*"
+        "&populate[whyBusinessNeedsCloud][populate][image]=true" +
+        "&populate[whyBusinessNeedsCloud][populate][items]=*"
     );
 }
 

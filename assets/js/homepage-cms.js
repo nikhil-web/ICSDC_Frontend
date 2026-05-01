@@ -116,25 +116,27 @@ import { populateIconCards, resolveIcon } from "./utils/cms-helpers.js";
     // ═══════════════════════════════════════════════════════════
     //  WHY BUSINESS NEEDS CLOUD
     // ═══════════════════════════════════════════════════════════
-    function populateWhyCloud(title, image, items) {
+    function populateWhyCloud(data) {
+        if (!data) return;
+
         // Title
-        if (title) setText('[data-strapi="whyCloudTitle"]', title);
+        if (data.title) setText('[data-strapi="whyCloudTitle"]', data.title);
 
         // Image
-        if (image) {
+        if (data.image) {
             const img = document.querySelector('[data-strapi="whyCloudImage"]');
             if (img) {
-                img.src = mediaURL(image, 'large') || mediaURL(image, 'medium') || mediaURL(image);
-                img.alt = image.alternativeText || 'Cloud services illustration';
+                img.src = mediaURL(data.image, 'large') || mediaURL(data.image, 'medium') || mediaURL(data.image);
+                img.alt = data.image.alternativeText || 'Cloud services illustration';
             }
         }
 
         // Items
-        if (!items || !items.length) return;
+        if (!data.items || !data.items.length) return;
         const list = document.querySelector('[data-strapi-grid="whyCloudItems"]');
         if (!list) return;
 
-        list.innerHTML = items.map(item => `
+        list.innerHTML = data.items.map(item => `
             <article class="business-needs-item">
                 <div class="business-needs-icon" aria-hidden="true">
                     ${resolveIcon(item.icon)}
@@ -543,7 +545,7 @@ import { populateIconCards, resolveIcon } from "./utils/cms-helpers.js";
             populateHeroSection(page);
             populateHeroCTAs(page.CallToActionPrimary, page.callToActionSecondary);
             populateWhyChooseUs(page.whyChooseUs);
-            populateWhyCloud(page.whyCloudTitle, page.whyCloudImage, page.whyCloudItems);
+            populateWhyCloud(page.whyBusinessNeedsCloud);
             populateWhoWeAre(page.whoWeAre);
             populateLessComplexity(page.LessCloudComplexity);
             populateCloudSolutions(page.CloudSolutionsEngineered);
