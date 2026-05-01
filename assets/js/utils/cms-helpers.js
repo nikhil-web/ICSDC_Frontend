@@ -3,7 +3,10 @@
  * ──────────────
  * Shared CMS populator functions used by ALL page-specific JS files.
  * Icons use Font Awesome 6.5.2 — no inline SVGs.
+ * Custom SVG icons can be registered in utils/custom-icons.js.
  */
+
+import { CUSTOM_ICONS } from './custom-icons.js';
 
 /* ═══════════════════════════════════════════════════════════════
    FA ICONS MAP  (key → fa icon name, all fa-solid)
@@ -199,26 +202,33 @@ export function setHTML(parent, selector, html) {
 }
 
 /**
- * Resolve an icon key to FA <i> markup.
+ * Resolve an icon key to markup (SVG string or FA <i> tag).
  *
  * Resolution order:
- *  1. customIcons override map
- *  2. Explicit style prefix  →  "brands:linkedin", "regular:bell", "solid:house"
- *  3. FA_ICONS alias map     →  "lightning" → bolt, "linux" → fa-brands fa-linux
- *  4. Direct FA icon name    →  "shield-halved", "fa-rocket", "cart-shopping" …
+ *  1. CUSTOM_ICONS registry  →  custom-icons.js (your own SVGs, highest priority)
+ *  2. Per-call customIcons   →  inline override map passed by caller
+ *  3. Explicit style prefix  →  "brands:linkedin", "regular:bell", "solid:house"
+ *  4. FA_ICONS alias map     →  "lightning" → bolt, "linux" → fa-brands fa-linux
+ *  5. Direct FA icon name    →  "shield-halved", "fa-rocket", "cart-shopping" …
  *     (strips leading "fa-" if present, then uses the name as-is with fa-solid)
  *
- * This means ANY icon on fontawesome.com works — just paste its name.
+ * To add a custom SVG: edit assets/js/utils/custom-icons.js
+ * To use any FA icon: just paste its name (e.g. "circle-nodes", "brands:linkedin")
  */
 export function resolveIcon(key, customIcons) {
     if (!key) return defaultIconSVG();
+
+    // ── 1. Global custom SVG registry ──
+    if (CUSTOM_ICONS[key]) return CUSTOM_ICONS[key];
+
+    // ── 2. Per-call override map ──
     if (customIcons && customIcons[key]) return customIcons[key];
 
     var k = key.toLowerCase().trim();
     var style = 'fa-solid';
     var iconName = k;
 
-    // ── 1. Explicit prefix: "brands:linkedin"  "regular:bell"  "solid:house" ──
+    // ── 3. Explicit prefix: "brands:linkedin"  "regular:bell"  "solid:house" ──
     if (k.indexOf(':') !== -1) {
         var sep = k.indexOf(':');
         var prefix = k.slice(0, sep);
@@ -227,14 +237,14 @@ export function resolveIcon(key, customIcons) {
         else if (prefix === 'regular' || prefix === 'reg') style = 'fa-regular';
         // "solid:" falls through as default
     } else {
-        // ── 2. Strip "fa-" prefix if caller passed e.g. "fa-rocket" ──
+        // ── 4. Strip "fa-" prefix if caller passed e.g. "fa-rocket" ──
         if (iconName.slice(0, 3) === 'fa-') iconName = iconName.slice(3);
 
-        // ── 3. Try alias map ──
+        // ── 5. Try alias map ──
         var mapped = FA_ICONS[key] || FA_ICONS[k] || FA_ICONS[iconName];
         if (mapped) iconName = mapped;
 
-        // ── 4. Determine style (brand check on resolved name) ──
+        // ── 6. Determine style (brand check on resolved name) ──
         style = FA_BRANDS[iconName] ? 'fa-brands' : 'fa-solid';
     }
 
