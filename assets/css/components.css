@@ -1970,33 +1970,62 @@
 }
 
 /* Why-card icons */
-.why-icon i.fa-solid { font-size: 22px; color: var(--blue, var(--c-blue)); }
+.why-icon i.fa-solid {
+    font-size: 22px;
+    color: var(--blue, var(--c-blue));
+}
 
 /* Cloud power / feature icons */
 .cloud-power-icon i.fa-solid,
-.cloud-power-icon i.fa-brands { font-size: 20px; color: var(--blue, var(--c-blue)); }
+.cloud-power-icon i.fa-brands {
+    font-size: 20px;
+    color: var(--blue, var(--c-blue));
+}
 
 /* Solution cards */
 .solution-icon i.fa-solid,
-.solution-icon i.fa-brands { font-size: 24px; color: var(--blue, var(--c-blue)); }
+.solution-icon i.fa-brands {
+    font-size: 24px;
+    color: var(--blue, var(--c-blue));
+}
 
 /* Framework / tech badges */
 .cloud-framework-badge i.fa-solid,
 .cloud-framework-badge i.fa-brands,
 .tech-badge i.fa-solid,
-.tech-badge i.fa-brands { font-size: 18px; color: var(--blue, var(--c-blue)); }
+.tech-badge i.fa-brands {
+    font-size: 18px;
+    color: var(--blue, var(--c-blue));
+}
 
 /* Checklist check icons */
 .ds-cl-icon i.fa-solid,
-[class*="plan-check"] i.fa-solid { font-size: 11px; color: var(--blue, var(--c-blue)); }
+[class*="plan-check"] i.fa-solid {
+    font-size: 11px;
+    color: var(--blue, var(--c-blue));
+}
 
 /* Comparison table icons */
-.ds-check-icon i.fa-solid { font-size: 13px; color: #16a34a; }
-.ds-partial-icon i.fa-solid { font-size: 13px; color: #ca8a04; }
-.ds-cross-icon i.fa-solid { font-size: 13px; color: #dc2626; }
+.ds-check-icon i.fa-solid {
+    font-size: 13px;
+    color: #16a34a;
+}
+
+.ds-partial-icon i.fa-solid {
+    font-size: 13px;
+    color: #ca8a04;
+}
+
+.ds-cross-icon i.fa-solid {
+    font-size: 13px;
+    color: #dc2626;
+}
 
 /* Testimonial stars */
-.testi-star { font-size: 14px; color: #f59e0b; }
+.testi-star {
+    font-size: 14px;
+    color: #f59e0b;
+}
 
 /* FAQ chevron */
 .faq-chevron {
@@ -2005,10 +2034,13 @@
     color: var(--c-text-mid, #4a5568);
     flex-shrink: 0;
 }
-.faq-open .faq-chevron { transform: rotate(180deg); }
+
+.faq-open .faq-chevron {
+    transform: rotate(180deg);
+}
 
 /* Dark mode overrides */
 [data-theme="dark"] [class*="-icon"] i.fa-solid,
 [data-theme="dark"] [class*="-icon"] i.fa-brands {
-    color: var(--blue-light, #93b4fc);
+    color: var(--blue, var(--c-blue));
 }

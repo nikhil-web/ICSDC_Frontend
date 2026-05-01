@@ -10,67 +10,118 @@
    ═══════════════════════════════════════════════════════════════ */
 
 export var FA_ICONS = {
+    // Speed / Power
     lightning:      'bolt',
     zap:            'bolt',
     speed:          'bolt',
+    nvme:           'bolt',
+    // Devices / Display
     monitor:        'desktop',
+    mobile:         'mobile-screen',
+    smartphone:     'mobile-screen',
+    tablet:         'tablet',
+    // Money
     dollar:         'dollar-sign',
     price:          'dollar-sign',
     billing:        'dollar-sign',
+    currency:       'dollar-sign',
+    // People
     users:          'users',
     team:           'users',
+    headset:        'headset',
+    support:        'headset',
+    // Security
     lock:           'lock',
     ssl:            'lock',
-    pulse:          'wave-square',
-    activity:       'wave-square',
-    globe:          'globe',
-    'globe-lines':  'globe',
-    domain:         'globe',
-    database:       'database',
     shield:         'shield',
     security:       'shield-halved',
     protect:        'shield-halved',
-    document:       'file',
-    'file-text':    'file-lines',
-    clock:          'clock',
     firewall:       'fire-flame-curved',
     'lock-key':     'key',
     key:            'key',
     'shield-check': 'shield-check',
     vapt:           'shield-check',
-    layout:         'table-columns',
-    panel:          'table-columns',
-    gaming:         'gamepad',
-    video:          'video',
-    code:           'code',
-    terminal:       'terminal',
-    mail:           'envelope',
-    email:          'envelope',
-    server:         'server',
-    dedicated:      'server',
-    hosting:        'server',
-    chart:          'chart-bar',
-    'bar-chart':    'chart-bar',
-    grid:           'grip',
-    upload:         'cloud-arrow-up',
-    backup:         'cloud-arrow-up',
+    'eye-off':      'eye-slash',
+    // Network / Global
+    pulse:          'wave-square',
+    activity:       'wave-square',
+    globe:          'globe',
+    'globe-lines':  'globe',
+    domain:         'globe',
     network:        'network-wired',
     connect:        'network-wired',
-    layers:         'layer-group',
-    'check-circle': 'circle-check',
-    uptime:         'circle-check',
     wifi:           'wifi',
-    house:          'house',
-    rocket:         'rocket',
-    launch:         'rocket',
-    search:         'magnifying-glass',
+    // Data
+    database:       'database',
+    storage:        'hard-drive',
+    'hard-drive':   'hard-drive',
+    upload:         'cloud-arrow-up',
+    backup:         'cloud-arrow-up',
+    cloud:          'cloud',
+    // Compute
     cpu:            'microchip',
     gpu:            'microchip',
     compute:        'microchip',
-    'hard-drive':   'hard-drive',
-    storage:        'hard-drive',
+    nvidia:         'microchip',
+    // Code / Dev
+    code:           'code',
+    terminal:       'terminal',
+    'git-branch':   'code-branch',
+    container:      'box',
+    filter:         'filter',
+    // Files / Docs
+    document:       'file',
+    'file-text':    'file-lines',
+    clipboard:      'clipboard',
+    // Communication
+    mail:           'envelope',
+    email:          'envelope',
+    chat:           'comments',
+    // Infrastructure
+    server:         'server',
+    dedicated:      'server',
+    hosting:        'server',
+    layout:         'table-columns',
+    panel:          'table-columns',
+    // Analytics
+    chart:          'chart-bar',
+    'bar-chart':    'chart-bar',
+    // Status
+    check:          'check',
+    'check-circle': 'circle-check',
+    uptime:         'circle-check',
+    clock:          'clock',
     refresh:        'rotate',
     recovery:       'rotate',
+    calendar:       'calendar',
+    // Content
+    video:          'video',
+    camera:         'camera',
+    // UI
+    grid:           'grip',
+    layers:         'layer-group',
+    // Actions
+    arrow:          'arrow-right',
+    share:          'share-nodes',
+    search:         'magnifying-glass',
+    rocket:         'rocket',
+    launch:         'rocket',
+    house:          'house',
+    gaming:         'gamepad',
+    // Business
+    brain:          'brain',
+    building:       'building',
+    scale:          'scale-balanced',
+    scalability:    'up-right-and-down-left-from-center',
+    tag:            'tag',
+    // OS / Platform brands (fa-brands)
+    linux:          'linux',
+    windows:        'windows',
+    microsoft:      'microsoft',
+    google:         'google',
+    aws:            'aws',
+    azure:          'microsoft',
+    // Misc
     settings:       'gear',
     manage:         'gear',
     tool:           'wrench',
@@ -124,6 +175,9 @@ export var FA_ICONS = {
     azure:          'microsoft',
 };
 
+/* Brand icons that use fa-brands instead of fa-solid */
+var FA_BRANDS = { linux:1, windows:1, microsoft:1, google:1, aws:1, apple:1, android:1, github:1, gitlab:1, docker:1 };
+
 /* Legacy SVG map kept for backward compat — empty, all resolved via FA now */
 export var ICONS = {};
 
@@ -146,13 +200,45 @@ export function setHTML(parent, selector, html) {
 
 /**
  * Resolve an icon key to FA <i> markup.
+ *
+ * Resolution order:
+ *  1. customIcons override map
+ *  2. Explicit style prefix  →  "brands:linkedin", "regular:bell", "solid:house"
+ *  3. FA_ICONS alias map     →  "lightning" → bolt, "linux" → fa-brands fa-linux
+ *  4. Direct FA icon name    →  "shield-halved", "fa-rocket", "cart-shopping" …
+ *     (strips leading "fa-" if present, then uses the name as-is with fa-solid)
+ *
+ * This means ANY icon on fontawesome.com works — just paste its name.
  */
 export function resolveIcon(key, customIcons) {
     if (!key) return defaultIconSVG();
     if (customIcons && customIcons[key]) return customIcons[key];
-    var name = FA_ICONS[key] || FA_ICONS[key.toLowerCase()];
-    if (name) return '<i class="fa-solid fa-' + name + '" aria-hidden="true"></i>';
-    return defaultIconSVG();
+
+    var k = key.toLowerCase().trim();
+    var style = 'fa-solid';
+    var iconName = k;
+
+    // ── 1. Explicit prefix: "brands:linkedin"  "regular:bell"  "solid:house" ──
+    if (k.indexOf(':') !== -1) {
+        var sep = k.indexOf(':');
+        var prefix = k.slice(0, sep);
+        iconName = k.slice(sep + 1);
+        if (prefix === 'brands' || prefix === 'brand') style = 'fa-brands';
+        else if (prefix === 'regular' || prefix === 'reg') style = 'fa-regular';
+        // "solid:" falls through as default
+    } else {
+        // ── 2. Strip "fa-" prefix if caller passed e.g. "fa-rocket" ──
+        if (iconName.slice(0, 3) === 'fa-') iconName = iconName.slice(3);
+
+        // ── 3. Try alias map ──
+        var mapped = FA_ICONS[key] || FA_ICONS[k] || FA_ICONS[iconName];
+        if (mapped) iconName = mapped;
+
+        // ── 4. Determine style (brand check on resolved name) ──
+        style = FA_BRANDS[iconName] ? 'fa-brands' : 'fa-solid';
+    }
+
+    return '<i class="' + style + ' fa-' + iconName + '" aria-hidden="true"></i>';
 }
 
 /** Default fallback icon */
