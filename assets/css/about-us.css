@@ -375,7 +375,24 @@
     font-size: 14px;
     color: var(--muted);
     line-height: 1.75;
-    margin: 0;
+    margin: 0 0 14px 0;
+}
+
+.au-what-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a56db;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: gap var(--transition-base) ease, opacity var(--transition-base) ease;
+}
+
+.au-what-cta:hover {
+    gap: 8px;
+    opacity: 0.8;
 }
 
 
@@ -564,6 +581,13 @@
     font-weight: 700;
 }
 
+.au-journey-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+    margin: 0;
+}
+
 .au-flag-chips {
     display: flex;
     flex-wrap: wrap;
@@ -624,29 +648,44 @@
     height: 210px;
     border-radius: var(--radius-lg);
     flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12); */
-    transition: transform var(--transition-base) ease;
+    position: relative;
+    overflow: hidden;
+    background: #e2e8f0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    transition: transform var(--transition-base) ease, box-shadow var(--transition-base) ease;
 }
 
 .au-life-card:hover {
     transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
 }
 
-.au-life-card-icon {
-    font-size: 40px;
-    line-height: 1;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.20));
+.au-life-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.au-life-card:hover img {
+    transform: scale(1.06);
+}
+
+.au-life-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.08) 55%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 14px;
+    pointer-events: none;
 }
 
 .au-life-card-label {
     font-size: 13px;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.92);
+    color: rgba(255, 255, 255, 0.95);
     letter-spacing: 0.04em;
     text-transform: uppercase;
 }
