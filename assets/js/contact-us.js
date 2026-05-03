@@ -38,6 +38,10 @@ import {
         if (page.contactPhone) setText(document, '#cu-contact-phone', page.contactPhone);
         if (page.contactAddress) setText(document, '#cu-contact-address', page.contactAddress);
         if (page.officeHours) setText(document, '#cu-contact-hours', page.officeHours);
+        if (page.mapEmbedUrl) {
+            var mapFrame = document.getElementById('cu-map-iframe');
+            if (mapFrame) mapFrame.src = page.mapEmbedUrl;
+        }
     }
 
     // Basic form submission handler
