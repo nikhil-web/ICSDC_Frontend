@@ -194,6 +194,7 @@ import {
 
             // 2. Hero
             populateDomHero(page);
+            populateHero('.hero-section', { heroImage: page.heroImage });
 
             // 3. Pillars
             populatePillars(page.pillars);

@@ -6,11 +6,12 @@
 import { getAboutUsPage } from './services/contentService.js';
 import {
     populateSEO,
+    populateHero,
     populateCtaBand,
     hidePageLoader,
     markActiveNavLink,
     setText,
-    ICONS
+    resolveIcon
 } from './utils/cms-helpers.js';
 
 (function () {
@@ -25,13 +26,12 @@ import {
         var grid = document.getElementById('au-specs-grid');
         if (!grid) return;
 
-        var iconKeys = ['server', 'cloud', 'refresh', 'shield'];
+        var fallbackIcons = ['server', 'cloud', 'refresh', 'shield'];
 
         grid.innerHTML = cards.map(function (card, idx) {
-            var iconKey = card.icon || iconKeys[idx % iconKeys.length] || 'server';
-            var iconSVG = ICONS[iconKey] || ICONS['server'];
+            var iconKey = card.icon || fallbackIcons[idx % fallbackIcons.length] || 'server';
             return '<div class="au-spec-card">' +
-                '<div class="au-spec-icon" aria-hidden="true">' + iconSVG + '</div>' +
+                '<div class="au-spec-icon" aria-hidden="true">' + resolveIcon(iconKey) + '</div>' +
                 '<h3>' + (card.title || '') + '</h3>' +
                 '<p>' + (card.desc || card.description || '') + '</p>' +
                 '</div>';
@@ -59,38 +59,58 @@ import {
     }
 
     /**
-     * Render "How We Started" items — array of strings → <li> elements.
+     * Split a plain-text string by newlines, filtering empty lines.
      */
-    function populateStartedList(items) {
-        if (!items || !items.length) return;
+    function splitLines(text) {
+        if (!text) return [];
+        return String(text).split('\n').map(function (l) { return l.trim(); }).filter(Boolean);
+    }
+
+    /**
+     * Render "How We Started" — one bullet per line → <li> elements.
+     */
+    function populateStartedList(text) {
+        if (!text) return;
         var list = document.getElementById('au-started-list');
         if (!list) return;
-        list.innerHTML = items.map(function (item) {
-            return '<li>' + item + '</li>';
+        var lines = splitLines(text);
+        if (!lines.length) return;
+        list.innerHTML = lines.map(function (line) {
+            return '<li>' + line + '</li>';
         }).join('');
     }
 
     /**
-     * Render "Where We Operate" — array of country strings → flag chips.
+     * Render "Where We Operate" — one country per line → flag chips.
      */
-    function populateOperateList(items) {
-        if (!items || !items.length) return;
+    function populateOperateList(text) {
+        if (!text) return;
         var container = document.getElementById('au-operate-list');
         if (!container) return;
-        container.innerHTML = items.map(function (country) {
+        var lines = splitLines(text);
+        if (!lines.length) return;
+        container.innerHTML = lines.map(function (country) {
             return '<span class="au-flag-chip">' + country + '</span>';
         }).join('');
     }
 
     /**
-     * Render data centers — array of {name, partner} → <li> elements.
+     * Render data centers — one entry per line, format: "Name — Partner description"
+     * Splits on the first " — " to bold the name and show the rest as description.
      */
-    function populateDataCenters(items) {
-        if (!items || !items.length) return;
+    function populateDataCenters(text) {
+        if (!text) return;
         var list = document.getElementById('au-dc-list');
         if (!list) return;
-        list.innerHTML = items.map(function (dc) {
-            return '<li><strong>' + (dc.name || '') + '</strong> &mdash; ' + (dc.partner || '') + '</li>';
+        var lines = splitLines(text);
+        if (!lines.length) return;
+        list.innerHTML = lines.map(function (line) {
+            var sep = line.indexOf(' — ');
+            if (sep === -1) sep = line.indexOf(' - ');
+            if (sep !== -1) {
+                return '<li><strong>' + line.slice(0, sep) + '</strong> &mdash; ' + line.slice(sep + 3) + '</li>';
+            }
+            return '<li>' + line + '</li>';
         }).join('');
     }
 
@@ -130,6 +150,7 @@ import {
             if (page.heroTitle)       setText(document, '#au-hero-title', page.heroTitle);
             if (page.heroSubtitle)    setText(document, '#au-hero-sub', page.heroSubtitle);
             if (page.heroDescription) setText(document, '#au-hero-desc', page.heroDescription);
+            populateHero('.au-hero-section', { heroImage: page.heroImage });
 
             // ── Stats ─────────────────────────────────────────
             if (page.foundedYear)      setText(document, '#au-stat-founded', page.foundedYear);

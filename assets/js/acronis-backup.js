@@ -186,6 +186,7 @@ import {
 
             // 2. Hero
             populateAcrHero(page);
+            populateHero('.hero-section', { heroImage: page.heroImage });
 
             // 3. Pillars
             populatePillars(page.pillars);

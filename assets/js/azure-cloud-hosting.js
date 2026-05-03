@@ -1,5 +1,6 @@
 import {
     populateSEO,
+    populateHero,
     hidePageLoader,
     markActiveNavLink,
     setText,
@@ -121,6 +122,7 @@ import { getAzureCloudHostingPage } from './services/contentService.js';
                 }
                 if (page.heroCtaSecondary?.text) setText(hero, '.hero-btns .btn-outline', page.heroCtaSecondary.text);
             }
+            populateHero('.hero-section', { heroImage: page.heroImage });
 
             renderAzureCards('#azure-features .why-grid', page.pillars, 'why-card', 'why-icon');
 

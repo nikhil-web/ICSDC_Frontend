@@ -1244,6 +1244,7 @@ export function getAboutUsPage() {
         "&populate[specializationsCards]=*" +
         "&populate[whatWeDoCards]=*" +
         "&populate[partnersCards][populate][logo]=true" +
+        "&populate[heroImage][populate][image]=true" +
         "&populate[ctaBand][populate][ctaPrimary]=*" +
         "&populate[ctaBand][populate][ctaSecondary]=*"
     );

@@ -79,6 +79,7 @@ import { getSharedHostingPage } from './services/contentService.js';
                 }
             }
         }
+        populateHero('.hero-section', { heroImage: page.heroImage });
 
         /* 3. Pillars (4 icon cards) */
         populateIconCards('.why-us .why-grid', page.pillars, 'why-card');
