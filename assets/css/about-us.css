@@ -212,6 +212,7 @@
     box-shadow: var(--shadow-card);
     transition: transform var(--transition-base) ease, box-shadow var(--transition-base) ease,
         border-color var(--transition-base) ease;
+    align-items: center;
 }
 
 .au-spec-card:hover {
