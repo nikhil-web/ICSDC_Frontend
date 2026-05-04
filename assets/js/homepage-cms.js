@@ -16,6 +16,7 @@
  *   ✅ Best Cloud Services / Our Partnerships  (heading, paragraph, featureCards)
  *   ✅ Testimonials  (carousel)
  *   ✅ FAQ  (accordion)
+ *   ✅ Get In Touch  (title, subtitle, email, phone, hours, submit label)
  *   ✅ Footer  (address, phone, email, socialLinks, linkGroups)
  * ──────────────────────────────────────────────────────────────
  */
@@ -524,6 +525,22 @@ import { populateIconCards, resolveIcon } from "./utils/cms-helpers.js";
     }
 
     // ═══════════════════════════════════════════════════════════
+    //  GET IN TOUCH  (contact section before footer)
+    // ═══════════════════════════════════════════════════════════
+    function populateContactSection(page) {
+        if (page.contactSectionTitle)    setText('#hp-contact-title',        page.contactSectionTitle);
+        if (page.contactSectionSubtitle) setText('#hp-contact-subtitle',     page.contactSectionSubtitle);
+        if (page.contactEmail)           setText('#hp-contact-email',        page.contactEmail);
+        if (page.contactEmailHours)      setText('#hp-contact-email-hours',  page.contactEmailHours);
+        if (page.contactPhone)           setText('#hp-contact-phone',        page.contactPhone);
+        if (page.contactPhoneHours)      setText('#hp-contact-phone-hours',  page.contactPhoneHours);
+        if (page.contactSubmitText) {
+            const btn = document.getElementById('hp-contact-submit');
+            if (btn) btn.textContent = page.contactSubmitText;
+        }
+    }
+
+    // ═══════════════════════════════════════════════════════════
     //  FOOTER
     // ═══════════════════════════════════════════════════════════
 
@@ -556,6 +573,7 @@ import { populateIconCards, resolveIcon } from "./utils/cms-helpers.js";
             populateTestimonials(page.testimonials);
             populateLogoGrid('hp-tech-grid', page.techPartnersTitle, page.techPartners, '#hp-tech-title');
             populateLogoGrid('hp-trusted-grid', page.trustedTitle, page.trustedPartners, '#hp-trusted-title');
+            populateContactSection(page);
             populateFAQ(page.faq);
 
 
