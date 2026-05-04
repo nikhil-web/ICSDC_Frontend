@@ -333,7 +333,7 @@
     box-shadow: var(--c-shadow-card);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
     padding: 28px 28px 24px;
     min-height: 260px;
     height: auto;
