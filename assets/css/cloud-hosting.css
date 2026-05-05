@@ -236,7 +236,7 @@
 
 .cloud-power-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     text-align: left;
 }
@@ -778,6 +778,9 @@
     gap: 16px;
     margin-top: 48px;
     text-align: left;
+    grid-auto-flow: row;
+    margin-top: 25px;
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .cloud-why-item {
@@ -791,6 +794,7 @@
     box-shadow: var(--shadow-card);
     transition: transform var(--transition-base) ease,
         box-shadow var(--transition-base) ease;
+    /* width: 226px; */
 }
 
 .cloud-why-item:hover {
@@ -824,7 +828,7 @@
 
 .cloud-use-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 20px;
     text-align: left;
 }
@@ -1249,7 +1253,7 @@
     }
 
     .cloud-why-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
 
     .cloud-use-grid {
@@ -1279,7 +1283,8 @@
     }
 
     .cloud-why-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
+        grid-auto-flow: row;
     }
 
     .cloud-dashboard-grid {
