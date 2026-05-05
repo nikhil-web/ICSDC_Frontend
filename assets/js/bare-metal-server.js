@@ -52,7 +52,7 @@ import {
                 '<td>' + storage + '</td>' +
                 '<td>' + bw + '</td>' +
                 '<td>' + speed + '</td>' +
-                '<td><a href="/contact" class="bms-config-quote-btn">Get a Quote</a></td>' +
+                '<td><a href="/contact-us.html" class="bms-config-quote-btn">Get a Quote</a></td>' +
                 '</tr>';
         }).join('');
     }

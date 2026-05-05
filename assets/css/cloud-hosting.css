@@ -253,6 +253,7 @@
     transition: transform var(--transition-base) ease,
         box-shadow var(--transition-base) ease,
         border-color var(--transition-base) ease;
+    align-items: center;
 }
 
 .cloud-power-card:hover {
@@ -1311,4 +1312,3 @@
         grid-template-columns: 1fr 1fr;
     }
 }
-
