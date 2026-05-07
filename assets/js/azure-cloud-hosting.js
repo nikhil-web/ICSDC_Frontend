@@ -12,6 +12,7 @@ import {
     initFAQ
 } from './utils/cms-helpers.js';
 import { getAzureCloudHostingPage } from './services/contentService.js';
+import { uploadURL } from './services/strapiClient.js';
 
 (function () {
     'use strict';
@@ -135,7 +136,10 @@ import { getAzureCloudHostingPage } from './services/contentService.js';
             }
             if (page.aboutImage) {
                 var aboutImg = document.querySelector('#azure-who .azure-who-visual img');
-                if (aboutImg) aboutImg.src = page.aboutImage;
+                if (aboutImg) {
+                    var aboutImgUrl = uploadURL(page.aboutImage);
+                    if (aboutImgUrl) aboutImg.src = aboutImgUrl;
+                }
             }
 
             setSectionHeader('azure-advantages', page.advantagesLabel, page.advantagesTitle, page.advantagesSubtitle, {

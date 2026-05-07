@@ -35,6 +35,7 @@ import {
 } from './utils/cms-helpers.js';
 
 import { getSharedHostingPage } from './services/contentService.js';
+import { uploadURL } from './services/strapiClient.js';
 
 (async function () {
     'use strict';
@@ -89,7 +90,10 @@ import { getSharedHostingPage } from './services/contentService.js';
         if (aboutSection) {
             if (page.aboutImage) {
                 var imgEl = aboutSection.querySelector('.who-we-are-image img');
-                if (imgEl) imgEl.src = page.aboutImage;
+                if (imgEl) {
+                    var aboutImgUrl = uploadURL(page.aboutImage);
+                    if (aboutImgUrl) imgEl.src = aboutImgUrl;
+                }
             }
             if (page.aboutLabel) setText(aboutSection, '.cloud-section-label', page.aboutLabel);
             if (page.aboutTitle) setText(aboutSection, '.title', page.aboutTitle);
@@ -135,6 +139,39 @@ import { getSharedHostingPage } from './services/contentService.js';
         /* 7. Next-Gen Tech (6 icon cards) */
         populateSectionHeader('#tech', page.techLabel, page.techTitle, page.techSubtitle);
         populateIconCards('#tech .cloud-use-grid', page.techCards, 'cloud-use-card');
+
+        /* 7b. When Should You Use Shared Hosting */
+        var whenSection = document.querySelector('#when-use');
+        if (whenSection) {
+            if (page.whenUseTitle) setText(whenSection, '.title', page.whenUseTitle);
+
+            if (page.whenUseCards && page.whenUseCards.length) {
+                var whenGrid = whenSection.querySelector('.sh-when-grid');
+                if (whenGrid) {
+                    var sorted = page.whenUseCards.slice().sort(function (a, b) {
+                        return (a.number || '').localeCompare(b.number || '');
+                    });
+                    whenGrid.innerHTML = sorted.map(function (card) {
+                        return '<div class="sh-when-card">' +
+                            '<div class="sh-when-header">' +
+                            '<span class="sh-when-num">' + (card.number || '') + '</span>' +
+                            '</div>' +
+                            '<h3>' + (card.title || '') + '</h3>' +
+                            '<p>' + (card.description || '') + '</p>' +
+                            '</div>';
+                    }).join('');
+                }
+            }
+
+            if (page.whenUsePerfectFor) {
+                var tagsWrap = whenSection.querySelector('.sh-when-tags');
+                if (tagsWrap) {
+                    tagsWrap.innerHTML = page.whenUsePerfectFor.split(',').map(function (tag) {
+                        return '<span>' + tag.trim() + '</span>';
+                    }).join('');
+                }
+            }
+        }
 
         /* 8. CTA Band #1 */
         populateCtaBand('.cloud-cta-band:not(.cloud-cta-dark)', page.ctaBand1);

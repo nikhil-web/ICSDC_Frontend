@@ -681,6 +681,7 @@ html[data-theme="dark"] [class*="-section"],
 html[data-theme="dark"] [class*="-wrap"] {
     background-color: transparent;
     /* let body bg show through unless specifically overridden */
+    background: none;
 }
 
 /* Pricing sections */
@@ -1091,4 +1092,8 @@ html[data-theme="dark"] .cloud-cta-band.cloud-cta-dark p {
 html[data-theme="dark"] .cloud-cta-btn-outline {
     color: #ffffff !important;
     border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+html[data-theme="dark"] .cloud-why-grid .ds-when-card {
+    background: #00000026;
 }

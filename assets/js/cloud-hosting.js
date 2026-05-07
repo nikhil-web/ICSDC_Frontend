@@ -45,32 +45,31 @@ import { getCloudHostingPage } from './services/contentService.js';
 
         populatePricingPlansCloud('.cloud-pricing-grid', page.pricingPlans);
 
-        populateSectionHeader('#power', page.powerLabel, page.powerTitle, page.powerSubtitle);
+        populateSectionHeader('#cloud-features', page.powerLabel, page.powerTitle, page.powerSubtitle);
         populateIconCards('.cloud-power-grid', page.powerFeatures, 'cloud-power-card');
 
-        populateCtaBand('.cloud-cta-band:not(.cloud-cta-dark):first-of-type', page.ctaBand1);
+        populateCtaBand('.cloud-cta-band:not(.cloud-cta-dark)', page.ctaBand1);
 
-        populateSectionHeader('#frameworks', page.frameworksLabel, page.frameworksTitle, page.frameworksSubtitle);
-        populateTechBadges('.cloud-framework-grid', page.frameworks);
+        populateSectionHeader('#cloud-frameworks', page.frameworksLabel, page.frameworksTitle, page.frameworksSubtitle);
+        populateTechBadges('.cloud-frameworks-grid', page.frameworks);
 
-        populateSectionHeader('#choice', page.choiceLabel, page.choiceTitle, page.choiceSubtitle);
-        populateIconCards('.cloud-choice-grid', page.choiceCards, 'cloud-choice-card');
+        populateSectionHeader('#cloud-choice', page.choiceLabel, page.choiceTitle, page.choiceSubtitle);
+        populateIconCards('.cloud-choice-options', page.choiceCards, 'cloud-choice-card');
         populateWhenCards('.cloud-portal-steps', page.portalSteps);
 
-        populateSectionHeader('#why-icsdc', page.whyLabel, page.whyTitle, page.whySubtitle);
+        populateSectionHeader('#cloud-why', page.whyLabel, page.whyTitle, page.whySubtitle);
         populateWhenCards('.cloud-why-grid', page.whyReasons);
 
-        populateSectionHeader('#use-cases', page.useCasesLabel, page.useCasesTitle, page.useCasesSubtitle);
+        populateSectionHeader('#cloud-usecases', page.useCasesLabel, page.useCasesTitle, page.useCasesSubtitle);
         populateIconCards('.cloud-use-grid', page.useCases, 'cloud-use-card');
 
-        populateSectionHeader('#workloads', page.workloadsLabel, page.workloadsTitle, page.workloadsSubtitle);
-        populateIconCards('.cloud-workload-grid', page.workloadFeatures, 'cloud-power-card');
+        populateSectionHeader('#cloud-workloads', page.workloadsLabel, page.workloadsTitle, page.workloadsSubtitle);
+        populateIconCards('.cloud-workload-list', page.workloadFeatures, 'cloud-power-card');
         populateStats('.cloud-workload-stats', page.workloadStats);
 
-        populateSectionHeader('#dashboard', page.dashboardLabel, page.dashboardTitle, page.dashboardSubtitle);
+        populateSectionHeader('#cloud-dashboard', page.dashboardLabel, page.dashboardTitle, page.dashboardSubtitle);
         populateIconCards('.cloud-dashboard-grid', page.dashboardFeatures, 'cloud-power-card');
 
-        populateCtaBand('.cloud-cta-band:nth-of-type(2)', page.ctaBand2);
         populateCtaBand('.cloud-cta-dark', page.ctaBand3);
 
 

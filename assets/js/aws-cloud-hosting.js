@@ -1,4 +1,5 @@
 import { getAwsCloudHostingPage } from './services/contentService.js';
+import { uploadURL } from './services/strapiClient.js';
 
 import {
     populateSEO,
@@ -48,7 +49,10 @@ import {
             }
             if (page.aboutImage) {
                 var img = document.querySelector('#who-we-are .who-we-are-image img');
-                if (img) img.src = page.aboutImage;
+                if (img) {
+                    var aboutImgUrl = uploadURL(page.aboutImage);
+                    if (aboutImgUrl) img.src = aboutImgUrl;
+                }
             }
             // Render about items as cloud-why-item elements (numbered grid)
             if (page.aboutItems && page.aboutItems.length) {

@@ -223,10 +223,12 @@ export function getSharedHostingPage() {
         "&populate[heroCtaPrimary]=*" +
         "&populate[heroCtaSecondary]=*" +
         "&populate[pillars]=*" +
+        "&populate[aboutImage]=true" +
         "&populate[aboutItems]=*" +
         "&populate[features]=*" +
         "&populate[whyReasons]=*" +
         "&populate[techCards]=*" +
+        "&populate[whenUseCards]=*" +
         "&populate[ctaBand1][populate][ctaPrimary]=*" +
         "&populate[ctaBand1][populate][ctaSecondary]=*" +
         "&populate[ctaBand2][populate][ctaPrimary]=*" +
@@ -342,6 +344,7 @@ export function getAwsCloudHostingPage() {
         "&populate[heroCtaPrimary]=*" +
         "&populate[heroCtaSecondary]=*" +
         "&populate[pillars]=*" +
+        "&populate[aboutImage]=true" +
         "&populate[aboutItems]=*" +
         "&populate[strengths]=*" +
         "&populate[services]=*" +
@@ -369,6 +372,7 @@ export function getAzureCloudHostingPage() {
         "/api/azure-cloud-hosting-page" +
         "?populate[seo]=*" +
         "&populate[pillars]=*" +
+        "&populate[aboutImage]=true" +
         "&populate[advantages]=*" +
         "&populate[comparisonRows]=*" +
         "&populate[whyCards]=*" +

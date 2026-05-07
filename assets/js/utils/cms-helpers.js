@@ -166,7 +166,16 @@ export var FA_ICONS = {
     'trending-up':  'arrow-trend-up',
     package:        'box',
     docker:         'box',
-    kubernetes:     'box',
+    kubernetes:     'dharmachakra',
+    openstack:      'layer-group',
+    vmware:         'server',
+    ceph:           'database',
+    nginx:          'globe',
+    terraform:      'terminal',
+    ansible:        'terminal',
+    prometheus:     'chart-line',
+    grafana:        'chart-line',
+    cloudflare:     'shield-halved',
     compliance:     'clipboard-check',
     api:            'code',
     developer:      'code',
@@ -401,13 +410,21 @@ export function populateCtaBand(selector, cta) {
         var primaryBtn = btns.querySelector('.cloud-cta-btn-primary') || btns.querySelector('.ds-cta-btn-primary');
         var secondaryBtn = btns.querySelector('.cloud-cta-btn-outline') || btns.querySelector('.ds-cta-btn-outline');
 
-        if (primaryBtn && cta.ctaPrimary) {
-            primaryBtn.innerHTML = (cta.ctaPrimary.text || '') + ' &rarr;';
-            if (cta.ctaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaPrimary.link + "'");
+        if (primaryBtn) {
+            if (cta.ctaPrimary && cta.ctaPrimary.text) {
+                primaryBtn.innerHTML = cta.ctaPrimary.text + ' &rarr;';
+                if (cta.ctaPrimary.link) primaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaPrimary.link + "'");
+            } else {
+                primaryBtn.remove();
+            }
         }
-        if (secondaryBtn && cta.ctaSecondary) {
-            secondaryBtn.textContent = cta.ctaSecondary.text || '';
-            if (cta.ctaSecondary.link) secondaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaSecondary.link + "'");
+        if (secondaryBtn) {
+            if (cta.ctaSecondary && cta.ctaSecondary.text) {
+                secondaryBtn.textContent = cta.ctaSecondary.text;
+                if (cta.ctaSecondary.link) secondaryBtn.setAttribute('onclick', "window.location.href='" + cta.ctaSecondary.link + "'");
+            } else {
+                secondaryBtn.remove();
+            }
         }
     }
 }
@@ -576,8 +593,10 @@ export function populateTechBadges(containerSelector, badges, customIcons) {
     var sorted = badges.slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
 
     container.innerHTML = sorted.map(function (badge) {
-        return '<div class="tech-badge">' +
-            '<span class="tech-badge-name">' + (badge.name || '') + '</span>' +
+        var iconMarkup = badge.icon ? resolveIcon(badge.icon, customIcons) : resolveIcon('cloud');
+        return '<div class="cloud-framework-badge">' +
+            '<div class="cloud-fw-icon">' + iconMarkup + '</div>' +
+            '<span class="cloud-fw-name">' + (badge.name || '') + '</span>' +
             '</div>';
     }).join('');
 }
