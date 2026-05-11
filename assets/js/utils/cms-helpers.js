@@ -751,47 +751,67 @@ export function initTestimonials(items) {
     }).join('');
 
     var cards = Array.from(grid.querySelectorAll('.testi-card'));
-    var dots = Array.from(dotsWrap.querySelectorAll('.testi-dot'));
+    var dots  = Array.from(dotsWrap.querySelectorAll('.testi-dot'));
+    var currentIdx = 0;
+    var programmaticScroll = false;
+    var programmaticTimer;
+
+    function updateDots(idx) {
+        dots.forEach(function (d, i) {
+            d.classList.toggle('testi-dot-active', i === idx);
+            d.setAttribute('aria-selected', String(i === idx));
+        });
+    }
 
     function scrollToCard(index) {
         var card = cards[index];
         if (!card) return;
-        grid.scrollTo({ left: card.offsetLeft - 4, behavior: 'smooth' });
+        currentIdx = index;
+
+        /* Update dot immediately — before any scroll fires */
+        updateDots(index);
+
+        /* Block the scroll listener from overriding the dot while
+           the smooth animation plays (browsers take up to ~500 ms) */
+        programmaticScroll = true;
+        clearTimeout(programmaticTimer);
+        programmaticTimer = setTimeout(function () {
+            programmaticScroll = false;
+        }, 600);
+
+        var gridRect = grid.getBoundingClientRect();
+        var cardRect = card.getBoundingClientRect();
+        var targetLeft = grid.scrollLeft + (cardRect.left - gridRect.left);
+        grid.scrollTo({ left: targetLeft, behavior: 'smooth' });
     }
 
     dots.forEach(function (btn, i) {
         btn.addEventListener('click', function () { scrollToCard(i); });
     });
 
-    function currentIndex() {
-        var scrollLeft = grid.scrollLeft;
-        var closest = 0, minDist = Infinity;
-        cards.forEach(function (card, i) {
-            var dist = Math.abs(card.offsetLeft - scrollLeft);
-            if (dist < minDist) { minDist = dist; closest = i; }
-        });
-        return closest;
-    }
-
     if (prevBtn) prevBtn.addEventListener('click', function () {
-        var idx = currentIndex();
-        scrollToCard(idx === 0 ? items.length - 1 : idx - 1);
+        scrollToCard((currentIdx - 1 + items.length) % items.length);
     });
 
     if (nextBtn) nextBtn.addEventListener('click', function () {
-        var idx = currentIndex();
-        scrollToCard(idx === items.length - 1 ? 0 : idx + 1);
+        scrollToCard((currentIdx + 1) % items.length);
     });
 
+    /* Sync dots after manual swipe / drag only — ignored during
+       programmatic scrolls so button clicks don't flicker */
     var scrollTimer;
     grid.addEventListener('scroll', function () {
+        if (programmaticScroll) return;
         clearTimeout(scrollTimer);
         scrollTimer = setTimeout(function () {
-            var idx = currentIndex();
-            dots.forEach(function (d, i) {
-                d.classList.toggle('testi-dot-active', i === idx);
-                d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+            var gridLeft = grid.getBoundingClientRect().left;
+            var closest = 0, minDist = Infinity;
+            cards.forEach(function (card, i) {
+                var dist = Math.abs(card.getBoundingClientRect().left - gridLeft);
+                if (dist < minDist) { minDist = dist; closest = i; }
             });
+            currentIdx = closest;
+            updateDots(closest);
         }, 80);
     });
 }

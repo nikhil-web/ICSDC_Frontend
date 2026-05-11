@@ -136,6 +136,7 @@ export function getVpsHostingPage() {
         "&populate[ctaBand2][populate][ctaSecondary]=*" +
         "&populate[faq][populate]=*" +
         "&populate[heroImage][populate][image]=true" +
+        "&populate[panelsImage][populate][image]=true" +
         "&populate[testimonials][populate]=*"
     );
 }

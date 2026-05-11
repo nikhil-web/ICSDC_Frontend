@@ -1039,7 +1039,9 @@
     width: 100%;
 }
 
-.cloud-why-grid {
+/* All grid/card rules scoped under .cloud-why-inner so they don't
+   affect other pages that also use .cloud-why-grid / .cloud-why-item */
+.cloud-why-inner .cloud-why-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
@@ -1047,7 +1049,7 @@
 }
 
 /* Static HTML items */
-.cloud-why-item {
+.cloud-why-inner .cloud-why-item {
     background: rgba(255, 255, 255, 0.80);
     border: 1px solid rgba(26, 86, 219, 0.10);
     border-radius: 14px;
@@ -1061,13 +1063,13 @@
     transition: transform 0.20s ease, box-shadow 0.20s ease, background 0.20s ease;
 }
 
-.cloud-why-item:hover {
+.cloud-why-inner .cloud-why-item:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 24px rgba(26, 86, 219, 0.12);
     background: rgba(255, 255, 255, 0.96);
 }
 
-.cloud-why-num {
+.cloud-why-inner .cloud-why-num {
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.06em;
@@ -1079,7 +1081,7 @@
     line-height: 1.8;
 }
 
-.cloud-why-item h3 {
+.cloud-why-inner .cloud-why-item h3 {
     font-size: 13.5px;
     font-weight: 700;
     color: var(--text-dark);
@@ -1089,7 +1091,7 @@
 }
 
 /* CMS-driven items (.ds-when-card via populateWhenCards) */
-.cloud-why-grid .ds-when-card {
+.cloud-why-inner .cloud-why-grid .ds-when-card {
     background: rgba(255, 255, 255, 0.80);
     border: 1px solid rgba(26, 86, 219, 0.10);
     border-radius: 14px;
@@ -1103,12 +1105,12 @@
     transition: transform 0.20s ease, box-shadow 0.20s ease;
 }
 
-.cloud-why-grid .ds-when-card:hover {
+.cloud-why-inner .cloud-why-grid .ds-when-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 24px rgba(26, 86, 219, 0.12);
 }
 
-.cloud-why-grid .ds-when-num {
+.cloud-why-inner .cloud-why-grid .ds-when-num {
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.06em;
@@ -1120,7 +1122,7 @@
     line-height: 1.8;
 }
 
-.cloud-why-grid .ds-when-card h3 {
+.cloud-why-inner .cloud-why-grid .ds-when-card h3 {
     font-size: 13.5px;
     font-weight: 700;
     color: var(--text-dark);
@@ -1129,7 +1131,7 @@
     line-height: 1.4;
 }
 
-.cloud-why-grid .ds-when-card p {
+.cloud-why-inner .cloud-why-grid .ds-when-card p {
     display: none;
 }
 
@@ -1700,7 +1702,7 @@
         text-align: center;
     }
 
-    .cloud-why-grid {
+    .cloud-why-inner .cloud-why-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1753,7 +1755,7 @@
         grid-template-columns: 1fr;
     }
 
-    .cloud-why-grid {
+    .cloud-why-inner .cloud-why-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1810,7 +1812,7 @@
 }
 
 @media (max-width: 479px) {
-    .cloud-why-grid {
+    .cloud-why-inner .cloud-why-grid {
         grid-template-columns: 1fr;
     }
 

@@ -22,7 +22,7 @@
  */
 
 import { getHomepagePage } from "./services/contentService.js";
-import { populateIconCards, resolveIcon } from "./utils/cms-helpers.js";
+import { populateIconCards, resolveIcon, initTestimonials } from "./utils/cms-helpers.js";
 
 (function () {
 
@@ -286,91 +286,7 @@ import { populateIconCards, resolveIcon } from "./utils/cms-helpers.js";
         }).join('');
     }
 
-    // ═══════════════════════════════════════════════════════════
-    //  TESTIMONIALS
-    // ═══════════════════════════════════════════════════════════
-    function starSVG() {
-        return `<svg class="testi-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-        </svg>`;
-    }
-
-    function getInitials(name) {
-        return (name || '').split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-    }
-
-    function populateTestimonials(items) {
-        if (!Array.isArray(items) || !items.length) return;
-        const grid = document.getElementById('testi-grid');
-        const dotsWrap = document.getElementById('testi-dots');
-        const prevBtn = document.getElementById('testi-prev');
-        const nextBtn = document.getElementById('testi-next');
-        if (!grid) return;
-
-        grid.innerHTML = items.map((t, idx) => {
-            const initials = getInitials(t.name);
-            const stars = Array.from({ length: t.rating || 5 }, () => starSVG()).join('');
-            const avatarSrc = t.Avatar ? mediaURL(t.Avatar, 'thumbnail') : null;
-            const avatarHTML = avatarSrc
-                ? `<img src="${avatarSrc}" alt="${t.name}" class="testi-avatar-img" loading="lazy">`
-                : `<span class="testi-avatar-initials">${initials}</span>`;
-
-            return `
-            <article class="testi-card" role="listitem" data-testi-index="${idx}"
-                     aria-label="Testimonial from ${t.name}">
-                <div class="testi-left">
-                    <div class="testi-avatar" aria-hidden="true">${avatarHTML}</div>
-                    <div class="testi-client-info">
-                        <p class="testi-name">${t.name}</p>
-                        <p class="testi-job">${t.title || ''}</p>
-                        <p class="testi-company">${t.company || ''}</p>
-                    </div>
-                    <div class="testi-rating" aria-label="Rating: ${t.rating || 5} out of 5 stars">
-                        ${stars}
-                    </div>
-                </div>
-                <div class="testi-right">
-                    <blockquote class="testi-quote">${t.quote}</blockquote>
-                </div>
-            </article>`;
-        }).join('');
-
-        if (dotsWrap) {
-            dotsWrap.innerHTML = items.map((_, i) => `
-                <button class="testi-dot${i === 0 ? ' testi-dot-active' : ''}"
-                        role="tab" aria-selected="${i === 0}"
-                        aria-label="Go to testimonial ${i + 1}"
-                        data-dot="${i}"></button>`).join('');
-
-            const cards = Array.from(grid.querySelectorAll('.testi-card'));
-            const dots = Array.from(dotsWrap.querySelectorAll('.testi-dot'));
-
-            function scrollToCard(index) {
-                const card = cards[index];
-                if (card) grid.scrollTo({ left: card.offsetLeft - 4, behavior: 'smooth' });
-            }
-
-            dots.forEach((btn, i) => btn.addEventListener('click', () => scrollToCard(i)));
-
-            function currentIndex() {
-                let closest = 0, minDist = Infinity;
-                cards.forEach((card, i) => {
-                    const dist = Math.abs(card.offsetLeft - grid.scrollLeft);
-                    if (dist < minDist) { minDist = dist; closest = i; }
-                });
-                return closest;
-            }
-
-            prevBtn?.addEventListener('click', () => {
-                const idx = currentIndex();
-                scrollToCard(idx === 0 ? items.length - 1 : idx - 1);
-            });
-            nextBtn?.addEventListener('click', () => {
-                const idx = currentIndex();
-                scrollToCard(idx === items.length - 1 ? 0 : idx + 1);
-            });
-        }
-    }
+    // Testimonials handled by shared initTestimonials from cms-helpers.js
 
     // ═══════════════════════════════════════════════════════════
     //  FAQ ACCORDION
@@ -570,7 +486,7 @@ import { populateIconCards, resolveIcon } from "./utils/cms-helpers.js";
             populateISOStandards(page.BeyondBestPracticeOurISOStandards);
             populateBestCloudServices(page.BestCloudServices);
             renderMapSection(page.globalPresenceTitle, page.globalPresenceSubtitle, page.globalLocations);
-            populateTestimonials(page.testimonials);
+            initTestimonials(page.testimonials);
             populateLogoGrid('hp-tech-grid', page.techPartnersTitle, page.techPartners, '#hp-tech-title');
             populateLogoGrid('hp-trusted-grid', page.trustedTitle, page.trustedPartners, '#hp-trusted-title');
             populateContactSection(page);

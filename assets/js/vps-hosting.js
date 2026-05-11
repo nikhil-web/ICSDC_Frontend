@@ -149,18 +149,19 @@ import { getVpsHostingPage } from './services/contentService.js';
             }
         })();
 
-        /* ── 6. VPS Types (button strip) ────────────────────── */
+        /* ── 6. VPS Types (link cards) ──────────────────────── */
         (function () {
             if (!page.vpsTypes || !page.vpsTypes.length) return;
             var strip = document.querySelector('.vps-types-strip');
             if (!strip) return;
 
             strip.innerHTML = page.vpsTypes.map(function (t) {
-                return '<button class="vps-type-link">' +
-                    resolveIcon(t.icon) +
-                    (t.title || '') +
-                    '<span class="vps-type-arrow">&rarr;</span>' +
-                    '</button>';
+                var href = t.link || '#';
+                return '<a class="vps-type-link" href="' + href + '">' +
+                    '<span class="vps-type-icon-wrap">' + resolveIcon(t.icon) + '</span>' +
+                    '<span class="vps-type-label">' + (t.title || '') + '</span>' +
+                    '<span class="vps-type-arrow">&#x2197;</span>' +
+                    '</a>';
             }).join('');
         })();
 
@@ -348,24 +349,24 @@ import { getVpsHostingPage } from './services/contentService.js';
             }
         })();
 
-        /* ── 13. Control Panels (5 badges) ──────────────────── */
+        /* ── 13. Control Panels ──────────────────────────────── */
         (function () {
             var section = document.getElementById('vps-panels');
             if (!section) return;
-            if (page.panelsLabel) setText(section, '.vps-section-label', page.panelsLabel);
-            if (page.panelsTitle) setText(section, '.title', page.panelsTitle);
+            if (page.panelsLabel)    setText(section, '.vps-section-label', page.panelsLabel);
+            if (page.panelsTitle)    setText(section, '.title', page.panelsTitle);
             if (page.panelsSubtitle) setText(section, '.subtitle', page.panelsSubtitle);
-
-            if (page.controlPanels && page.controlPanels.length) {
-                var strip = section.querySelector('.vps-panels-strip');
-                if (strip) {
-                    var sorted = page.controlPanels.slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
-                    strip.innerHTML = sorted.map(function (panel) {
-                        return '<div class="vps-panel-badge">' +
-                            '<div class="vps-panel-icon">' + resolveIcon(panel.icon) + '</div>' +
-                            '<span class="vps-panel-name">' + (panel.name || '') + '</span>' +
-                            '</div>';
-                    }).join('');
+            if (page.panelsImage && page.panelsImage.image) {
+                var img = section.querySelector('.vps-panels-img');
+                if (img) {
+                    var _base = (typeof STRAPI_URL !== 'undefined' ? STRAPI_URL : 'http://localhost:1337');
+                    var _m = page.panelsImage.image;
+                    var _url = (_m.formats && (_m.formats.large || _m.formats.medium || _m.formats.small)
+                        ? (_m.formats.large || _m.formats.medium || _m.formats.small).url
+                        : _m.url) || '';
+                    if (_url && !_url.startsWith('http')) _url = _base + _url;
+                    if (_url) { img.src = _url; img.style.display = ''; }
+                    img.alt = page.panelsTitle || 'Control Panel Options';
                 }
             }
         })();

@@ -518,11 +518,11 @@
 }
 
 /* ══════════════════════════════════════
-   VPS TYPES ROW (links strip)
+   VPS TYPES ROW (link cards)
 ══════════════════════════════════════ */
 .vps-types-section {
     background: var(--bg-light);
-    padding: 48px 0;
+    padding: 56px 0 60px;
 }
 
 .vps-types-inner {
@@ -534,76 +534,116 @@
 
 .vps-types-inner h2 {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 36px;
+    color: var(--text-dark);
 }
 
 .vps-types-strip {
     display: flex;
-    gap: 16px;
+    gap: 18px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
+/* ── card tile ── */
 .vps-type-link {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
+    min-width: 260px;
+    flex: 1 1 260px;
+    max-width: 360px;
     background: var(--white);
     border: 1.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 18px 28px;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text-dark);
+    border-radius: 14px;
+    padding: 20px 22px;
     text-decoration: none;
     cursor: pointer;
     font-family: inherit;
-    box-shadow: var(--shadow-card);
-    transition: transform var(--transition-base) ease,
-                box-shadow var(--transition-base) ease,
-                border-color var(--transition-base) ease,
-                color var(--transition-base) ease;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.22s ease,
+                border-color 0.22s ease,
+                box-shadow 0.22s ease;
 }
 
-.vps-type-link::before {
+.vps-type-link::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(26,86,219,0.04) 0%, transparent 60%);
+    background: linear-gradient(135deg, rgba(26,86,219,0.04) 0%, transparent 65%);
     opacity: 0;
-    transition: opacity var(--transition-base) ease;
+    transition: opacity 0.22s ease;
+    border-radius: inherit;
 }
 
 .vps-type-link:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
+    border-color: rgba(26,86,219,0.30);
     box-shadow: var(--shadow-card-hover);
-    border-color: rgba(26,86,219,0.25);
-    color: var(--blue);
 }
 
-.vps-type-link:hover::before { opacity: 1; }
+.vps-type-link:hover::after { opacity: 1; }
 
-.vps-type-link svg {
+/* ── icon bubble ── */
+.vps-type-icon-wrap {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: rgba(26,86,219,0.08);
+    border: 1px solid rgba(26,86,219,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--blue);
+    transition: background 0.22s ease, color 0.22s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.vps-type-link:hover .vps-type-icon-wrap {
+    background: rgba(26,86,219,0.14);
+}
+
+.vps-type-icon-wrap svg {
     width: 20px;
     height: 20px;
-    stroke: var(--blue);
+    stroke: currentColor;
     stroke-width: 1.8;
     fill: none;
-    flex-shrink: 0;
 }
 
+/* ── label ── */
+.vps-type-label {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+    transition: color 0.22s ease;
+}
+
+.vps-type-link:hover .vps-type-label { color: var(--blue); }
+
+/* ── diagonal arrow ── */
 .vps-type-arrow {
-    margin-left: auto;
-    font-size: 16px;
+    flex-shrink: 0;
+    font-size: 18px;
     color: var(--muted);
-    transition: transform var(--transition-base) var(--ease-out-expo),
-                color var(--transition-base) ease;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.22s var(--ease-out-expo, cubic-bezier(.19,1,.22,1)),
+                color 0.22s ease;
+    line-height: 1;
 }
 
 .vps-type-link:hover .vps-type-arrow {
-    transform: translateX(4px);
+    transform: translate(2px, -2px);
     color: var(--blue);
 }
 
@@ -1113,63 +1153,54 @@
    CONTROL PANELS
 ══════════════════════════════════════ */
 .vps-panels-section {
-    background: var(--white);
+    background: #f0f6ff;
+    padding: 72px 0;
 }
 
-.vps-panels-strip {
+.vps-panels-inner {
+    width: 100%;
+    max-width: var(--c-container);
+    margin: 0 auto;
+    padding: 0 var(--c-px);
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: center;
+}
+
+/* ── Left: text ── */
+.vps-panels-content {
     display: flex;
+    flex-direction: column;
     gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 36px;
 }
 
-.vps-panel-badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--white);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 16px 24px;
-    box-shadow: var(--shadow-card);
-    transition: transform var(--transition-base) ease,
-                box-shadow var(--transition-base) ease,
-                border-color var(--transition-base) ease;
-    min-width: 160px;
-    justify-content: center;
-}
-
-.vps-panel-badge:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-card-hover);
-    border-color: rgba(26,86,219,0.22);
-}
-
-.vps-panel-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #e8f0fe 0%, #c7d9fb 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.vps-panel-icon svg {
-    width: 18px;
-    height: 18px;
-    stroke: var(--blue);
-    stroke-width: 1.8;
-    fill: none;
-}
-
-.vps-panel-name {
-    font-size: 14px;
-    font-weight: 700;
+.vps-panels-title {
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.25;
     color: var(--text-dark);
-    letter-spacing: -0.01em;
+}
+
+.vps-panels-subtitle {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ── Right: image ── */
+.vps-panels-image-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vps-panels-img {
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    display: block;
+    border-radius: 12px;
 }
 
 /* ══════════════════════════════════════
@@ -1330,15 +1361,15 @@
 
     .vps-locations-grid { grid-template-columns: 1fr; }
 
-    .vps-types-strip { flex-direction: column; align-items: center; }
-    .vps-type-link { width: 100%; max-width: 340px; }
+    .vps-types-strip { flex-direction: column; align-items: stretch; }
+    .vps-type-link { width: 100%; max-width: 100%; flex: none; }
 
     .vps-cta-btns { flex-direction: column; align-items: center; }
     .vps-cta-btn-primary,
     .vps-cta-btn-outline { width: 100%; max-width: 320px; }
 
-    .vps-panels-strip { gap: 12px; }
-    .vps-panel-badge { min-width: 130px; padding: 14px 18px; }
+    .vps-panels-inner { grid-template-columns: 1fr; gap: 40px; }
+    .vps-panels-img { max-width: 100%; }
 
     .vps-global-cta-row { flex-direction: column; }
 }

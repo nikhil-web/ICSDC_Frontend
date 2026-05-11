@@ -444,21 +444,21 @@
             <h2 class="title" style="margin-bottom:28px;" data-animate="fade-up">Catch the Right High-Performance VPS
                 For Your Business</h2>
             <div class="vps-types-strip" data-stagger>
-                <button class="vps-type-link">
-                    <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
-                    Windows VPS Hosting
-                    <span class="vps-type-arrow">&rarr;</span>
-                </button>
-                <button class="vps-type-link">
-                    <i class="fa-solid fa-server" aria-hidden="true"></i>
-                    Linux VPS Hosting
-                    <span class="vps-type-arrow">&rarr;</span>
-                </button>
-                <button class="vps-type-link">
-                    <i class="fa-solid fa-users" aria-hidden="true"></i>
-                    Managed VPS Hosting
-                    <span class="vps-type-arrow">&rarr;</span>
-                </button>
+                <a class="vps-type-link" href="windows-vps-hosting.html">
+                    <span class="vps-type-icon-wrap"><i class="fa-solid fa-display" aria-hidden="true"></i></span>
+                    <span class="vps-type-label">Windows VPS Hosting</span>
+                    <span class="vps-type-arrow">&#x2197;</span>
+                </a>
+                <a class="vps-type-link" href="linux-vps-hosting.html">
+                    <span class="vps-type-icon-wrap"><i class="fa-brands fa-linux" aria-hidden="true"></i></span>
+                    <span class="vps-type-label">Linux VPS Hosting</span>
+                    <span class="vps-type-arrow">&#x2197;</span>
+                </a>
+                <a class="vps-type-link" href="managed-vps-hosting.html">
+                    <span class="vps-type-icon-wrap"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+                    <span class="vps-type-label">Managed VPS Hosting</span>
+                    <span class="vps-type-arrow">&#x2197;</span>
+                </a>
             </div>
         </div>
     </section>
@@ -797,36 +797,23 @@
     <!-- ════════════════════════════════════
          SECTION 12 — CONTROL PANELS
     ════════════════════════════════════ -->
-    <section id="vps-panels" class="section vps-panels-section">
-        <div class="container">
-            <span class="vps-section-label" data-animate="fade-up">Control Panels</span>
-            <h2 class="title" data-animate="fade-up">Flexible Control Panel Options for Every Workflow</h2>
-            <p class="subtitle" data-animate="fade-up">Choose from industry-leading control panels designed to simplify
-                server operations and enhance productivity. Our VPS supports the tools your team already knows and
-                trusts.</p>
+    <section id="vps-panels" class="vps-panels-section">
+        <div class="vps-panels-inner">
 
-            <div class="vps-panels-strip" data-stagger>
-                <div class="vps-panel-badge">
-                    <div class="vps-panel-icon"><i class="fa-solid fa-headset" aria-hidden="true"></i></div>
-                    <span class="vps-panel-name">cPanel</span>
-                </div>
-                <div class="vps-panel-badge">
-                    <div class="vps-panel-icon"><i class="fa-solid fa-table-columns" aria-hidden="true"></i></div>
-                    <span class="vps-panel-name">Plesk</span>
-                </div>
-                <div class="vps-panel-badge">
-                    <div class="vps-panel-icon"><i class="fa-solid fa-globe" aria-hidden="true"></i></div>
-                    <span class="vps-panel-name">ICSDC Dashboard</span>
-                </div>
-                <div class="vps-panel-badge">
-                    <div class="vps-panel-icon"><i class="fa-solid fa-table-columns" aria-hidden="true"></i></div>
-                    <span class="vps-panel-name">DirectAdmin</span>
-                </div>
-                <div class="vps-panel-badge">
-                    <div class="vps-panel-icon"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></div>
-                    <span class="vps-panel-name">Webmin</span>
-                </div>
+            <!-- Left: text content -->
+            <div class="vps-panels-content" data-animate="fade-right">
+                <span class="vps-section-label">Control Panels</span>
+                <h2 class="title vps-panels-title">Flexible Control Panel Options for Every Workflow</h2>
+                <p class="subtitle vps-panels-subtitle">Choose from industry-leading control panels designed to simplify
+                    server operations and enhance productivity. Our VPS supports the tools your team already knows and
+                    trusts.</p>
             </div>
+
+            <!-- Right: image (populated by Strapi) -->
+            <div class="vps-panels-image-col" data-animate="fade-left">
+                <img class="vps-panels-img" src="" alt="VPS Control Panel Options" style="display:none;">
+            </div>
+
         </div>
     </section>
 
