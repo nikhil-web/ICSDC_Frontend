@@ -497,6 +497,319 @@ td.pr-cell-highlight {
   transform: translateY(-1px);
 }
 
+/* ══════════════════════════════════════
+   PLAN-BASED PRICING TABLE
+   3-row thead: names / prices / CTA
+   Featured column has solid blue header
+══════════════════════════════════════ */
+
+/* Reset the generic thead background — each column controls its own */
+table.pr-table thead tr {
+  background: transparent;
+}
+
+/* ── Column geometry ── */
+table.pr-table th.pr-feature-col,
+table.pr-table td.pr-feature-label {
+  width: 200px;
+  min-width: 160px;
+}
+
+table.pr-table th.pr-plan-col {
+  text-align: center;
+}
+
+/* ────────────────────────────────────
+   ROW 1 — Plan names
+──────────────────────────────────── */
+table.pr-table tr.pr-thead-names th {
+  padding: 24px 20px 14px;
+  text-align: center;
+  border-bottom: none;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  vertical-align: bottom;
+}
+
+/* Regular plan columns — light panel with top border */
+table.pr-table tr.pr-thead-names th.pr-plan-col {
+  background: #f5f8ff;
+  border-top: 2px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  color: var(--text-dark);
+}
+
+table.pr-table tr.pr-thead-names th.pr-feature-col {
+  background: transparent;
+  border: none;
+}
+
+/* Featured (popular) column — solid blue, rounded top */
+table.pr-table tr.pr-thead-names th.pr-plan-featured {
+  background: var(--blue);
+  border: none;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  padding-top: 28px; /* slightly taller to "lift" it */
+  color: #fff;
+  position: relative;
+}
+
+/* Popular badge pill inside name cell */
+.pr-popular-tag {
+  display: block;
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 3px 11px;
+  border-radius: 20px;
+  width: fit-content;
+  margin: 0 auto 8px;
+}
+
+/* Plan name text */
+.pr-plan-name {
+  display: block;
+  font-size: 16px;
+  font-weight: 800;
+  color: inherit;
+}
+
+/* ────────────────────────────────────
+   ROW 2 — Prices
+──────────────────────────────────── */
+table.pr-table tr.pr-thead-prices th {
+  padding: 10px 20px 10px;
+  text-align: center;
+  border-bottom: none;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: var(--text);
+}
+
+table.pr-table tr.pr-thead-prices th.pr-plan-col {
+  background: #f5f8ff;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+table.pr-table tr.pr-thead-prices th.pr-feature-col {
+  background: transparent;
+  border: none;
+}
+
+table.pr-table tr.pr-thead-prices th.pr-plan-featured {
+  background: var(--blue);
+  border: none;
+}
+
+/* Price number */
+.pr-price-amount {
+  display: inline-block;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text-dark);
+  letter-spacing: -0.02em;
+}
+
+table.pr-table tr.pr-thead-prices th.pr-plan-featured .pr-price-amount {
+  color: #fff;
+}
+
+/* /mo suffix */
+.pr-pa-sub {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-left: 1px;
+}
+
+table.pr-table tr.pr-thead-prices th.pr-plan-featured .pr-pa-sub {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Annual price — visibility managed entirely by pricing.js via inline style.
+   Do NOT set display:none here; JS uses el.style.display='' to reveal it. */
+
+/* ────────────────────────────────────
+   ROW 3 — CTA buttons
+──────────────────────────────────── */
+table.pr-table tr.pr-thead-cta th {
+  padding: 10px 20px 22px;
+  text-align: center;
+  border-bottom: 2px solid var(--border);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+table.pr-table tr.pr-thead-cta th.pr-plan-col {
+  background: #f5f8ff;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+table.pr-table tr.pr-thead-cta th.pr-feature-col {
+  background: transparent;
+  border-bottom: 2px solid var(--border);
+}
+
+table.pr-table tr.pr-thead-cta th.pr-plan-featured {
+  background: var(--blue);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+/* ── CTA buttons ── */
+.pr-plan-btn {
+  display: inline-block;
+  padding: 9px 22px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease,
+              transform 0.15s ease, box-shadow 0.18s ease;
+  background: transparent;
+  color: var(--blue);
+  border: 2px solid var(--blue);
+}
+
+.pr-plan-btn:hover {
+  background: var(--blue);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(26, 86, 219, 0.28);
+}
+
+/* Featured plan CTA — white button on blue bg */
+.pr-plan-btn-featured {
+  background: #fff;
+  color: var(--blue);
+  border-color: transparent;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+}
+
+.pr-plan-btn-featured:hover {
+  background: #eef3ff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* ────────────────────────────────────
+   TBODY — feature rows
+──────────────────────────────────── */
+
+/* Feature label cells */
+table.pr-table td.pr-feature-label {
+  color: var(--text);
+  font-weight: 500;
+  font-size: 13px;
+  text-align: left;
+}
+
+/* All non-label data cells */
+table.pr-table td:not(.pr-feature-label) {
+  text-align: center;
+}
+
+/* Featured column subtle tint in tbody */
+table.pr-table td.pr-col-featured {
+  background: rgba(26, 86, 219, 0.04);
+  font-weight: 500;
+  color: var(--text-dark);
+  border-left: 1px solid rgba(26, 86, 219, 0.1);
+  border-right: 1px solid rgba(26, 86, 219, 0.1);
+}
+
+table.pr-table tbody tr:hover td.pr-col-featured {
+  background: rgba(26, 86, 219, 0.08);
+}
+
+/* Highlighted rows (section separators / category headers) */
+table.pr-table tbody tr.pr-row-hl {
+  background: #f8f9fc;
+}
+
+table.pr-table tbody tr.pr-row-hl td.pr-col-featured {
+  background: rgba(26, 86, 219, 0.07);
+}
+
+table.pr-table tbody tr.pr-row-hl td.pr-feature-label {
+  font-weight: 700;
+  color: var(--text-dark);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ────────────────────────────────────
+   DARK MODE — new plan-table classes
+──────────────────────────────────── */
+html[data-theme="dark"] table.pr-table thead tr {
+  background: transparent;
+}
+
+html[data-theme="dark"] table.pr-table tr.pr-thead-names th.pr-plan-col,
+html[data-theme="dark"] table.pr-table tr.pr-thead-prices th.pr-plan-col,
+html[data-theme="dark"] table.pr-table tr.pr-thead-cta th.pr-plan-col {
+  background: #111827;
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] table.pr-table tr.pr-thead-names th.pr-plan-col {
+  color: var(--text-dark);
+  border-top-color: var(--border);
+}
+
+html[data-theme="dark"] table.pr-table tr.pr-thead-prices th .pr-price-amount {
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] table.pr-table tr.pr-thead-prices th .pr-pa-sub {
+  color: #475569;
+}
+
+html[data-theme="dark"] table.pr-table tr.pr-thead-cta th.pr-plan-col {
+  border-bottom-color: var(--border);
+}
+
+html[data-theme="dark"] .pr-plan-btn {
+  color: #7eb3ff;
+  border-color: #7eb3ff;
+}
+
+html[data-theme="dark"] .pr-plan-btn:hover {
+  background: #7eb3ff;
+  color: #0f1623;
+}
+
+html[data-theme="dark"] table.pr-table td.pr-col-featured {
+  background: rgba(26, 86, 219, 0.09);
+  border-color: rgba(26, 86, 219, 0.2);
+}
+
+html[data-theme="dark"] table.pr-table tbody tr:hover td.pr-col-featured {
+  background: rgba(26, 86, 219, 0.15);
+}
+
+html[data-theme="dark"] table.pr-table tbody tr.pr-row-hl {
+  background: #141b29;
+}
+
+html[data-theme="dark"] table.pr-table tbody tr.pr-row-hl td.pr-col-featured {
+  background: rgba(26, 86, 219, 0.14);
+}
+
 /* ── TABLE CAPTION / NOTE ── */
 .pr-caption {
   font-size: 12px;
@@ -750,6 +1063,250 @@ html[data-theme="dark"] .pr-note {
   background: #2a2210;
   border-color: #78530a;
   color: #fcd34d;
+}
+
+/* ══════════════════════════════════════
+   SPEC-ROW TABLE  (.pr-spec-table)
+   Plans as rows — PLAN | CPU | RAM | GPU |
+   STORAGE | TRANSFER | MONTHLY | CTA
+   Auto-triggered when any plan has spec fields
+══════════════════════════════════════ */
+
+/* ── Wrapper inherits .pr-table-wrap — no changes needed ── */
+
+table.pr-table.pr-spec-table {
+  min-width: 480px;
+  font-size: 13.5px;
+}
+
+/* ── Header row ── */
+table.pr-spec-table thead tr {
+  background: #f8fafc;
+}
+
+table.pr-spec-table th.pr-sc-th {
+  padding: 12px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+  text-align: left;
+}
+
+table.pr-spec-table th.pr-sc-th-spec {
+  text-align: center;
+}
+
+table.pr-spec-table th.pr-sc-th-spec i,
+table.pr-spec-table th.pr-sc-th-price i {
+  margin-right: 5px;
+  font-size: 11px;
+  opacity: 0.65;
+}
+
+table.pr-spec-table th.pr-sc-th-price {
+  text-align: right;
+  color: var(--blue);
+}
+
+table.pr-spec-table th.pr-sc-th-action {
+  width: 120px;
+  text-align: right;
+}
+
+/* ── Body rows ── */
+table.pr-spec-table tbody tr.pr-sc-row {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.14s ease;
+}
+
+table.pr-spec-table tbody tr.pr-sc-row:last-child {
+  border-bottom: none;
+}
+
+table.pr-spec-table tbody tr.pr-sc-row:hover {
+  background: var(--blue-hover-bg);
+}
+
+/* Featured / Popular row */
+table.pr-spec-table tbody tr.pr-sc-row-featured {
+  background: rgba(26, 86, 219, 0.035);
+  border-left: 3px solid var(--blue);
+}
+
+table.pr-spec-table tbody tr.pr-sc-row-featured:hover {
+  background: rgba(26, 86, 219, 0.07);
+}
+
+/* ── Cells ── */
+table.pr-spec-table td {
+  padding: 15px 16px;
+  vertical-align: middle;
+  border-bottom: none;
+}
+
+/* Plan name */
+td.pr-sc-td-name {
+  min-width: 160px;
+  white-space: nowrap;
+}
+
+.pr-sc-name-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.pr-sc-pop-badge {
+  display: inline-block;
+  background: var(--blue);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-left: 9px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+/* Spec value cells */
+td.pr-sc-td-spec {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted-alt);
+  font-weight: 500;
+  min-width: 90px;
+  white-space: nowrap;
+}
+
+/* Price cell */
+td.pr-sc-td-price {
+  text-align: right;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+.pr-sc-price {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: -0.01em;
+}
+
+.pr-sc-price-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-left: 1px;
+}
+
+/* Action cell */
+td.pr-sc-td-action {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.pr-sc-btn {
+  display: inline-block;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: inherit;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.16s ease, color 0.16s ease,
+              transform 0.14s ease, box-shadow 0.16s ease;
+  background: transparent;
+  color: var(--blue);
+  border: 1.5px solid var(--blue);
+}
+
+.pr-sc-btn:hover {
+  background: var(--blue);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(26, 86, 219, 0.25);
+}
+
+/* Featured row button — solid fill */
+.pr-sc-btn-featured {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+}
+
+.pr-sc-btn-featured:hover {
+  background: var(--blue-dark);
+  border-color: var(--blue-dark);
+  box-shadow: 0 4px 12px rgba(26, 86, 219, 0.35);
+}
+
+/* ── Dark mode ── */
+html[data-theme="dark"] table.pr-spec-table thead tr {
+  background: #0f1623;
+}
+
+html[data-theme="dark"] table.pr-spec-table tbody tr.pr-sc-row {
+  border-bottom-color: #1e2535;
+}
+
+html[data-theme="dark"] table.pr-spec-table tbody tr.pr-sc-row:hover {
+  background: rgba(26, 86, 219, 0.08);
+}
+
+html[data-theme="dark"] table.pr-spec-table tbody tr.pr-sc-row-featured {
+  background: rgba(26, 86, 219, 0.09);
+}
+
+html[data-theme="dark"] table.pr-spec-table tbody tr.pr-sc-row-featured:hover {
+  background: rgba(26, 86, 219, 0.15);
+}
+
+html[data-theme="dark"] .pr-sc-name-text {
+  color: var(--text-dark);
+}
+
+html[data-theme="dark"] td.pr-sc-td-spec {
+  color: #64748b;
+}
+
+html[data-theme="dark"] .pr-sc-price {
+  color: #7eb3ff;
+}
+
+html[data-theme="dark"] .pr-sc-price-sub {
+  color: #475569;
+}
+
+html[data-theme="dark"] .pr-sc-btn {
+  color: #7eb3ff;
+  border-color: #7eb3ff;
+}
+
+html[data-theme="dark"] .pr-sc-btn:hover {
+  background: #7eb3ff;
+  color: #0f1623;
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .pr-sc-btn-featured {
+  background: #4f82e8;
+  border-color: #4f82e8;
+  color: #fff;
+}
+
+html[data-theme="dark"] .pr-sc-btn-featured:hover {
+  background: #6494f0;
+  border-color: #6494f0;
 }
 
 /* ══════════════════════════════════════

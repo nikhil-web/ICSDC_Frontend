@@ -1308,8 +1308,8 @@ export function getPricingPage() {
         "/api/pricing-page" +
         "?populate[seo]=*" +
         "&populate[heroBadges]=*" +
-        "&populate[sections][populate][tables][populate][columns]=*" +
-        "&populate[sections][populate][tables][populate][rows][populate][cells]=*" +
+        "&populate[sections][populate][tables][populate][plans]=*" +
+        "&populate[sections][populate][tables][populate][features]=*" +
         "&populate[ctaBand][populate][ctaPrimary]=*" +
         "&populate[ctaBand][populate][ctaSecondary]=*"
     );
