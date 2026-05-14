@@ -160,34 +160,95 @@
      in the DOM. Re-run all initialisers.
   ───────────────────────────────────── */
   document.addEventListener('pricing:ready', function () {
+    // Resolve refs for elements rendered dynamically by pricing-cms.js
+    billingWrap   = document.querySelector('.pr-billing-wrap');
+    billingRow    = document.querySelector('.pr-billing-row');
+    billingSwitch = document.querySelector('.pr-billing-switch');
+    optMonthly    = document.querySelector('.pr-bill-opt.is-monthly');
+    optAnnual     = document.querySelector('.pr-bill-opt.is-annual');
+
+    // Attach toggle listeners now that the elements exist
+    if (billingSwitch) billingSwitch.addEventListener('click', () => { isAnnual = !isAnnual; applyBilling(); });
+    if (optMonthly)    optMonthly.addEventListener('click',    () => { isAnnual = false;      applyBilling(); });
+    if (optAnnual)     optAnnual.addEventListener('click',     () => { isAnnual = true;        applyBilling(); });
+
     cacheWrapLeft();
     updateSidebarPhase();
+    updateBillingPhase();
     updateActiveSection();
     applyBilling();
   });
 
   /* ─────────────────────────────────────
-     4. BILLING TOGGLE
+     4. BILLING ROW STICKY
+     Same 2-phase approach as the sidebar:
+       Phase 1 — relative (wrap still above nav)
+       Phase 2 — fixed at top of viewport (below nav)
+     A spaceholder (.pr-billing-wrap) keeps
+     the layout from collapsing when fixed.
   ───────────────────────────────────── */
-  const billingSwitch = document.querySelector('.pr-billing-switch');
-  const optMonthly    = document.querySelector('.pr-bill-opt.is-monthly');
-  const optAnnual     = document.querySelector('.pr-bill-opt.is-annual');
-  let   isAnnual      = false;
+  let billingWrap = null;   // set after pricing:ready
+  let billingRow  = null;
+
+  function updateBillingPhase() {
+    if (!billingWrap || !billingRow) return;
+
+    const navH    = parseInt(getComputedStyle(document.documentElement)
+                      .getPropertyValue('--nav-height')) || 72;
+    const rowH    = billingRow.offsetHeight;
+    const wrapTop = billingWrap.getBoundingClientRect().top;
+
+    if (wrapTop <= navH) {
+      // Phase 2 — fix it below the navbar
+      if (billingRow.style.position !== 'fixed') {
+        billingWrap.style.paddingTop = rowH + 'px';
+        billingRow.style.position   = 'fixed';
+        billingRow.style.top        = navH + 'px';
+        billingRow.style.left       = prContent.getBoundingClientRect().left + 'px';
+        billingRow.style.width      = prContent.offsetWidth + 'px';
+      }
+    } else {
+      // Phase 1 — back to normal flow
+      if (billingRow.style.position === 'fixed') {
+        billingWrap.style.paddingTop = '';
+        billingRow.style.position   = 'relative';
+        billingRow.style.top        = '';
+        billingRow.style.left       = '';
+        billingRow.style.width      = '';
+      }
+    }
+  }
+
+  window.addEventListener('scroll', updateBillingPhase, { passive: true });
+  window.addEventListener('resize', function () {
+    // Recalculate width when viewport resizes
+    if (billingRow && billingRow.style.position === 'fixed' && prContent) {
+      billingRow.style.left  = prContent.getBoundingClientRect().left + 'px';
+      billingRow.style.width = prContent.offsetWidth + 'px';
+    }
+    updateBillingPhase();
+  }, { passive: true });
+
+  /* ─────────────────────────────────────
+     5. BILLING TOGGLE
+     Elements are CMS-rendered, so refs and
+     listeners are set up inside pricing:ready.
+  ───────────────────────────────────── */
+  let billingSwitch = null;
+  let optMonthly    = null;
+  let optAnnual     = null;
+  let isAnnual      = false;
 
   function applyBilling() {
-    billingSwitch && billingSwitch.classList.toggle('is-annual', isAnnual);
-    optMonthly    && optMonthly.classList.toggle('is-active', !isAnnual);
-    optAnnual     && optAnnual.classList.toggle('is-active',  isAnnual);
+    if (billingSwitch) billingSwitch.classList.toggle('is-annual', isAnnual);
+    if (optMonthly)    optMonthly.classList.toggle('is-active', !isAnnual);
+    if (optAnnual)     optAnnual.classList.toggle('is-active',   isAnnual);
     document.querySelectorAll('[data-price-monthly]').forEach(el => el.style.display = isAnnual ? 'none' : '');
     document.querySelectorAll('[data-price-annual]').forEach(el  => el.style.display = isAnnual ? ''     : 'none');
   }
 
-  billingSwitch && billingSwitch.addEventListener('click', () => { isAnnual = !isAnnual; applyBilling(); });
-  optMonthly    && optMonthly.addEventListener('click',    () => { isAnnual = false;      applyBilling(); });
-  optAnnual     && optAnnual.addEventListener('click',     () => { isAnnual = true;       applyBilling(); });
-
   /* ─────────────────────────────────────
-     5. CTA BUTTONS
+     6. CTA BUTTONS
   ───────────────────────────────────── */
   document.addEventListener('click', function (e) {
     if (e.target.matches('.pr-row-btn, .pr-cta-primary')) {

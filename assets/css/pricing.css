@@ -122,6 +122,7 @@
 .pr-sidebar {
   position: relative;
   /* default — JS overrides to fixed/absolute */
+  margin-top: 20px;
   width: 220px;
   /* max-height: 80vh; */
   overflow-y: auto;
@@ -259,13 +260,33 @@
 /* ══════════════════════════════════════
    BILLING TOGGLE
 ══════════════════════════════════════ */
+/* ── BILLING WRAP (space-holder, mirrors .pr-sidebar-wrap) ── */
+.pr-billing-wrap {
+  margin-bottom: 40px;
+}
+
+/* ── BILLING ROW (JS toggles position: relative ↔ fixed) ── */
 .pr-billing-row {
+  position: relative;
+  /* default — JS overrides to fixed */
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 40px;
-  padding-bottom: 24px;
+  padding: 14px 0;
   border-bottom: 1px solid var(--border);
+  background: #ffffff;
+  z-index: 80;
+  padding-top: 20px;
+}
+
+.pr-billing-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-right: auto;
+  /* pushes the toggle controls to the right */
 }
 
 .pr-bill-opt {
@@ -553,7 +574,8 @@ table.pr-table tr.pr-thead-names th.pr-plan-featured {
   border: none;
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
-  padding-top: 28px; /* slightly taller to "lift" it */
+  padding-top: 28px;
+  /* slightly taller to "lift" it */
   color: #fff;
   position: relative;
 }
@@ -678,7 +700,7 @@ table.pr-table tr.pr-thead-cta th.pr-plan-featured {
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.18s ease, color 0.18s ease,
-              transform 0.15s ease, box-shadow 0.18s ease;
+    transform 0.15s ease, box-shadow 0.18s ease;
   background: transparent;
   color: var(--blue);
   border: 2px solid var(--blue);
@@ -719,7 +741,7 @@ table.pr-table td.pr-feature-label {
 
 /* All non-label data cells */
 table.pr-table td:not(.pr-feature-label) {
-  text-align: center;
+  text-align: start;
 }
 
 /* Featured column subtle tint in tbody */
@@ -833,7 +855,6 @@ html[data-theme="dark"] table.pr-table tbody tr.pr-row-hl td.pr-col-featured {
   border-radius: var(--radius-md);
   padding: 13px 16px;
   font-size: 13px;
-  color: #92400e;
   line-height: 1.55;
   margin-bottom: 36px;
 }
@@ -1006,7 +1027,12 @@ html[data-theme="dark"] .pr-mob-tab.is-active {
 }
 
 html[data-theme="dark"] .pr-billing-row {
+  background: #0f172a;
   border-bottom-color: var(--border);
+}
+
+html[data-theme="dark"] .pr-billing-label {
+  color: #475569;
 }
 
 html[data-theme="dark"] .pr-bill-opt {
@@ -1060,9 +1086,9 @@ html[data-theme="dark"] .pr-price {
 }
 
 html[data-theme="dark"] .pr-note {
-  background: #2a2210;
-  border-color: #78530a;
-  color: #fcd34d;
+  background: #1a1f2e;
+  border-color: var(--border);
+  color: inherit;
 }
 
 /* ══════════════════════════════════════
@@ -1097,7 +1123,7 @@ table.pr-spec-table th.pr-sc-th {
 }
 
 table.pr-spec-table th.pr-sc-th-spec {
-  text-align: center;
+  text-align: start;
 }
 
 table.pr-spec-table th.pr-sc-th-spec i,
@@ -1108,7 +1134,7 @@ table.pr-spec-table th.pr-sc-th-price i {
 }
 
 table.pr-spec-table th.pr-sc-th-price {
-  text-align: right;
+  text-align: start;
   color: var(--blue);
 }
 
@@ -1224,7 +1250,7 @@ td.pr-sc-td-action {
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.16s ease, color 0.16s ease,
-              transform 0.14s ease, box-shadow 0.16s ease;
+    transform 0.14s ease, box-shadow 0.16s ease;
   background: transparent;
   color: var(--blue);
   border: 1.5px solid var(--blue);

@@ -1308,8 +1308,11 @@ export function getPricingPage() {
         "/api/pricing-page" +
         "?populate[seo]=*" +
         "&populate[heroBadges]=*" +
-        "&populate[sections][populate][tables][populate][plans]=*" +
-        "&populate[sections][populate][tables][populate][features]=*" +
+        // New schema: columns + rows + cells
+        "&populate[sections][populate][tables][populate][columns]=*" +
+        "&populate[sections][populate][tables][populate][rows][populate][cells]=*" +
+        // Legacy schema: plans (c1Label–c4Label are scalar, returned automatically)
+        // "&populate[sections][populate][tables][populate][plans]=*" +
         "&populate[ctaBand][populate][ctaPrimary]=*" +
         "&populate[ctaBand][populate][ctaSecondary]=*"
     );
